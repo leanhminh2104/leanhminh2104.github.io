@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn lấy App Password Google</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4285F4, #34A853);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .important-note {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .important-note h3 {
+            color: #ff9800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #4285F4;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+        
+        .step-content {
+            padding-left: 55px;
+        }
+        
+        .step-content p {
+            margin-bottom: 15px;
+        }
+        
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .link-button:hover {
+            background-color: #0d62d9;
+        }
+        
+        .link-button i {
+            margin-right: 10px;
+        }
+        
+        .option-list {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .option-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .option-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34A853;
+            font-weight: bold;
+        }
+        
+        .password-display {
+            background-color: #f1f3f4;
+            border: 2px dashed #5f6368;
+            padding: 15px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #202124;
+        }
+        
+        .warning {
+            color: #d93025;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .note {
+            background-color: #e8f0fe;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #5f6368;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .step {
+                padding: 20px;
+            }
+            
+            .step-content {
+                padding-left: 0;
+            }
+            
+            .step-header {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-key"></i> Hướng dẫn lấy App Password Google</h1>
+            <p class="subtitle">Cách tạo mật khẩu ứng dụng để kết nối email với các ứng dụng bên thứ ba</p>
+        </header>
+        
+        <div class="content">
+            <div class="important-note">
+                <h3><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng</h3>
+                <p>App Password (mật khẩu ứng dụng) là một mật khẩu 16 ký tự cho phép các ứng dụng hoặc thiết bị kém an toàn truy cập vào tài khoản Google của bạn. Bạn chỉ có thể tạo App Password sau khi đã bật xác minh 2 bước (2FA).</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2 class="step-title">Truy cập Bảo mật Google</h2>
+                </div>
+                <div class="step-content">
+                    <p>Vào trang quản lý bảo mật tài khoản Google của bạn.</p>
+                    <a href="https://myaccount.google.com/security" target="_blank" class="link-button">
+                        <i class="fas fa-external-link-alt"></i> Truy cập myaccount.google.com/security
+                    </a>
+                    <p>Đăng nhập nếu bạn chưa đăng nhập vào tài khoản Google của mình.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2 class="step-title">Bật xác minh 2 bước (2FA)</h2>
+                </div>
+                <div class="step-content">
+                    <p>Cuộn xuống phần <strong>"Signing in to Google"</strong> (Đăng nhập vào Google).</p>
+                    <p>Tìm và nhấp vào <strong>"2-Step Verification"</strong> (Xác minh 2 bước).</p>
+                    <p>Làm theo hướng dẫn để bật xác minh 2 bước. Bạn có thể chọn một trong các phương thức xác minh:</p>
+                    <ul class="option-list">
+                        <li>Tin nhắn SMS</li>
+                        <li>Google Authenticator</li>
+                        <li>Prompt trên điện thoại</li>
+                        <li>Khóa bảo mật</li>
+                    </ul>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i> Bước này chỉ cần thực hiện một lần duy nhất cho tài khoản Google của bạn.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h2 class="step-title">Truy cập App Passwords</h2>
+                </div>
+                <div class="step-content">
+                    <p>Sau khi đã bật xác minh 2 bước, truy cập trang tạo mật khẩu ứng dụng.</p>
+                    <a href="https://myaccount.google.com/apppasswords" target="_blank" class="link-button">
+                        <i class="fas fa-external-link-alt"></i> Truy cập myaccount.google.com/apppasswords
+                    </a>
+                    <p>Nếu bạn không thấy trang này, điều đó có nghĩa là bạn chưa bật xác minh 2 bước. Hãy quay lại Bước 2.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h2 class="step-title">Tạo mật khẩu ứng dụng</h2>
+                </div>
+                <div class="step-content">
+                    <p>Trên trang App Passwords, thực hiện các bước sau:</p>
+                    <ol style="padding-left: 20px; margin: 15px 0;">
+                        <li>Tại mục <strong>"Select app"</strong>: Chọn <strong>"Mail"</strong></li>
+                        <li>Tại mục <strong>"Select device"</strong>: Chọn <strong>"Other (Custom name)"</strong></li>
+                        <li>Nhập tên cho mật khẩu này, ví dụ: <strong>"ACB-API"</strong> (bạn có thể đặt tên bất kỳ)</li>
+                        <li>Nhấp vào nút <strong>"Generate"</strong> (Tạo)</li>
+                    </ol>
+                    <div class="note">
+                        <i class="fas fa-lightbulb"></i> Tên này chỉ để bạn dễ nhận biết mật khẩu dùng cho mục đích gì, không ảnh hưởng đến chức năng.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h2 class="step-title">Sao chép và lưu mật khẩu</h2>
+                </div>
+                <div class="step-content">
+                    <p>Google sẽ hiển thị mật khẩu ứng dụng 16 ký tự của bạn. Mật khẩu sẽ có dạng:</p>
+                    <div class="password-display">
+                        abcd efgh ijkl mnop
+                    </div>
+                    <p><strong>Sao chép ngay mật khẩu này</strong> vì bạn sẽ không thể xem lại nó sau khi đóng cửa sổ.</p>
+                    <p>Sử dụng mật khẩu này thay cho mật khẩu thông thường của bạn khi thiết lập email trong các ứng dụng bên thứ ba (như Outlook, Thunderbird, hoặc ứng dụng ngân hàng ACB).</p>
+                    <div class="warning">
+                        <i class="fas fa-exclamation-circle"></i> Lưu ý: Mật khẩu ứng dụng chỉ hiển thị một lần duy nhất. Hãy sao chép và lưu trữ nó ở nơi an toàn ngay lập tức.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Hướng dẫn này chỉ phục vụ mục đích thông tin. Luôn đảm bảo bảo vệ thông tin đăng nhập của bạn.</p>
+            <p><i class="far fa-copyright"></i> Hướng dẫn lấy App Password Google - 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        // Thêm hiệu ứng khi click vào các bước
+        document.querySelectorAll('.step').forEach(step => {
+            step.addEventListener('click', function() {
+                this.style.transform = 'translateY(-5px)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-3px)';
+                }, 150);
+            });
+        });
+        
+        // Mô phỏng hiệu ứng sao chép mật khẩu
+        const passwordDisplay = document.querySelector('.password-display');
+        passwordDisplay.addEventListener('click', function() {
+            const originalText = this.textContent;
+            const password = originalText.replace(/\s/g, '');
+            
+            // Sao chép vào clipboard
+            navigator.clipboard.writeText(password).then(() => {
+                this.textContent = 'Đã sao chép vào clipboard!';
+                this.style.backgroundColor = '#e6f4ea';
+                this.style.color = '#137333';
+                this.style.border = '2px dashed #34A853';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.backgroundColor = '#f1f3f4';
+                    this.style.color = '#202124';
+                    this.style.border = '2px dashed #5f6368';
+                }, 2000);
+            });
+        });
+        
+        // Hiệu ứng cho các nút liên kết
+        document.querySelectorAll('.link-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
