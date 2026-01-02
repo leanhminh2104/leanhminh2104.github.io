@@ -3,148 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng dẫn cấu hình API ngân hàng ACB</title>
+    <title>Hướng dẫn cấu hình API ngân hàng ACB | dichvusale.io.vn</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0066b3;
-            --secondary-color: #00a1e0;
-            --accent-color: #ff6b35;
-            --success-color: #34A853;
-            --warning-color: #ffc107;
-            --danger-color: #d93025;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --gray-color: #6c757d;
+            --primary: #0066b3;
+            --primary-light: #3385c6;
+            --primary-dark: #004d8c;
+            --secondary: #00a1e0;
+            --accent: #ff6b35;
+            --success: #34A853;
+            --warning: #ff9800;
+            --danger: #d93025;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f0 100%);
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark);
+            line-height: 1.7;
             padding: 20px;
             min-height: 100vh;
             position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 102, 179, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 161, 224, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
             position: relative;
             z-index: 1;
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 50px 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         
         header::before {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,202.7C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
+            background-image: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 60px 60px;
         }
         
-        header h1 {
-            font-size: 32px;
-            margin-bottom: 15px;
+        .header-content {
             position: relative;
-            z-index: 1;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         
         .logo {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 25px;
+            left: 30px;
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
             color: white;
-            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .logo i {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            font-weight: 300;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .content {
-            padding: 40px;
+            padding: 50px 30px;
         }
         
         .section {
-            margin-bottom: 50px;
-            padding-bottom: 40px;
-            border-bottom: 2px dashed #e9ecef;
+            margin-bottom: 60px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--light-gray);
             position: relative;
         }
         
         .section:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         
         .section-title {
-            color: var(--primary-color);
-            font-size: 26px;
-            margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            font-weight: 700;
             position: relative;
-            padding-left: 60px;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
         
         .section-title i {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            left: 0;
-            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
+            font-size: 24px;
+            box-shadow: 0 8px 20px rgba(0, 102, 179, 0.3);
+            flex-shrink: 0;
         }
         
         .important-note {
-            background: linear-gradient(to right, #fff8e1, #fff3cd);
-            border-left: 6px solid var(--warning-color);
-            padding: 25px;
-            margin-bottom: 35px;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(to right, rgba(255, 248, 225, 0.8), rgba(255, 243, 205, 0.8));
+            border-left: 5px solid var(--warning);
+            padding: 25px 30px;
+            margin-bottom: 40px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 193, 7, 0.2);
         }
         
         .important-note h3 {
-            color: var(--warning-color);
-            margin-bottom: 12px;
+            color: var(--warning);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -153,66 +224,96 @@
         
         .step {
             background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: var(--radius);
+            padding: 35px;
+            margin-bottom: 35px;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
         
         .step::before {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 6px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .step:hover::before {
+            opacity: 1;
         }
         
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .step-number {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            font-weight: bold;
-            font-size: 22px;
+            font-weight: 700;
+            font-size: 24px;
             margin-right: 20px;
             flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 102, 179, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-number::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            z-index: -1;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.3; }
         }
         
         .step-title {
-            font-size: 22px;
-            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: var(--primary);
             font-weight: 600;
         }
         
         .step-content {
-            padding-left: 65px;
+            padding-left: 70px;
         }
         
         .step-content p {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             font-size: 16px;
+            color: #444;
         }
         
         .step-content ol, .step-content ul {
@@ -221,17 +322,29 @@
         }
         
         .step-content li {
-            margin-bottom: 10px;
-            padding-left: 5px;
+            margin-bottom: 12px;
+            padding-left: 8px;
+            position: relative;
+        }
+        
+        .step-content li::marker {
+            color: var(--primary);
+            font-weight: bold;
         }
         
         .image-guide {
-            margin: 25px 0;
+            margin: 30px 0;
             text-align: center;
-            border-radius: 12px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e9ecef;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .image-guide:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
         
         .image-guide img {
@@ -246,30 +359,32 @@
         
         .image-guide figcaption {
             font-style: italic;
-            color: var(--gray-color);
-            margin-top: 10px;
-            padding: 10px;
+            color: var(--gray);
+            padding: 15px;
             background-color: #f8f9fa;
             font-size: 14px;
+            border-top: 1px solid var(--light-gray);
         }
         
         .link-button {
             display: inline-flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 10px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
             margin-top: 15px;
             font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 102, 179, 0.3);
         }
         
         .link-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 102, 179, 0.4);
+            box-shadow: 0 12px 25px rgba(0, 102, 179, 0.4);
             color: white;
         }
         
@@ -283,362 +398,476 @@
         }
         
         .option-list li {
-            padding: 10px 0;
-            padding-left: 35px;
+            padding: 12px 0;
+            padding-left: 40px;
             position: relative;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .option-list li:last-child {
+            border-bottom: none;
         }
         
         .option-list li:before {
             content: "✓";
             position: absolute;
             left: 0;
-            color: var(--success-color);
+            color: var(--success);
             font-weight: bold;
-            font-size: 18px;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            background: rgba(52, 168, 83, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .password-display {
-            background-color: #f1f3f4;
-            border: 2px dashed var(--gray-color);
-            padding: 18px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--primary);
+            padding: 20px;
             text-align: center;
             font-family: 'Courier New', monospace;
-            font-size: 22px;
-            letter-spacing: 4px;
+            font-size: 24px;
+            letter-spacing: 3px;
             margin: 25px 0;
-            border-radius: 10px;
-            color: #202124;
+            border-radius: var(--radius);
+            color: var(--dark);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
         
+        .password-display::after {
+            content: 'Click để sao chép';
+            position: absolute;
+            bottom: 8px;
+            right: 15px;
+            font-size: 12px;
+            color: var(--gray);
+            font-family: 'Inter', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        
         .password-display:hover {
-            background-color: #e8f0fe;
-            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
         }
         
         .warning {
-            color: var(--danger-color);
+            color: var(--danger);
             font-weight: 600;
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(217, 48, 37, 0.05);
-            border-radius: 8px;
-            border-left: 4px solid var(--danger-color);
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(217, 48, 37, 0.05);
+            border-radius: var(--radius);
+            border-left: 5px solid var(--danger);
         }
         
         .note {
-            background: linear-gradient(to right, #e8f0fe, #d2e3fc);
-            padding: 15px 20px;
-            border-radius: 10px;
+            background: linear-gradient(to right, rgba(232, 240, 254, 0.8), rgba(210, 227, 252, 0.8));
+            padding: 20px 25px;
+            border-radius: var(--radius);
             margin-top: 20px;
             font-size: 15px;
-            color: var(--primary-color);
-            border-left: 4px solid var(--primary-color);
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
+            backdrop-filter: blur(10px);
         }
         
-        .website-config {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 25px;
-            border: 2px dashed var(--primary-color);
-        }
-        
-        .config-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .form-input {
-            padding: 12px 15px;
-            border: 2px solid #ced4da;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1);
-        }
-        
-        .form-note {
-            font-size: 14px;
-            color: var(--gray-color);
-            margin-top: 5px;
-            font-style: italic;
-        }
-        
-        .password-field {
+        .config-guide {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            margin-top: 30px;
+            border: 2px dashed var(--primary);
             position: relative;
         }
         
-        .password-toggle {
+        .config-guide::before {
+            content: 'HƯỚNG DẪN CẤU HÌNH';
             position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--gray-color);
-            cursor: pointer;
+            top: -15px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
+        }
+        
+        .config-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .config-item {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .config-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .config-item h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .config-item p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .config-value {
+            display: inline-block;
+            background: rgba(0, 102, 179, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            margin-top: 10px;
+            border: 1px solid rgba(0, 102, 179, 0.2);
+        }
+        
+        .success-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success), #2E8B57);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 10px;
+            box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3);
         }
         
         footer {
             text-align: center;
-            padding: 30px 20px;
-            color: var(--gray-color);
+            padding: 40px 30px;
+            color: var(--gray);
             font-size: 15px;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 20px;
+            border-top: 1px solid var(--light-gray);
+            margin-top: 50px;
             background-color: #f8f9fa;
         }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
+        .legal-warning {
+            background: linear-gradient(to right, rgba(255, 243, 224, 0.8), rgba(255, 235, 204, 0.8));
+            padding: 25px 30px;
+            border-radius: var(--radius);
+            margin-top: 30px;
+            border-left: 5px solid var(--danger);
+            text-align: center;
         }
         
-        .footer-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-link:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
-        
-        .copyright {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-        
-        .donate-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c42 100%);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-            transition: all 0.3s;
-            z-index: 1000;
+        .legal-warning h4 {
+            color: var(--danger);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 12px;
+            font-size: 18px;
         }
         
-        .donate-button:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+        .copyright {
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         
-        .modal {
-            display: none;
+        /* Nút Nuôi tôi */
+        .donate-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 28px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            transition: var(--transition);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .donate-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.6);
+        }
+        
+        /* Modal QR Code */
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
-            background-color: white;
+            background: white;
+            border-radius: var(--radius-lg);
             padding: 40px;
-            border-radius: 20px;
             max-width: 500px;
-            width: 100%;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            box-shadow: var(--shadow-lg);
             position: relative;
-            animation: modalAppear 0.5s ease;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        @keyframes modalAppear {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        @keyframes slideUp {
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
         
-        .close-modal {
+        .modal-close {
             position: absolute;
-            top: 15px;
+            top: 20px;
             right: 20px;
+            background: none;
+            border: none;
             font-size: 28px;
-            color: var(--gray-color);
+            color: var(--gray);
             cursor: pointer;
-            transition: color 0.3s;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .close-modal:hover {
-            color: var(--danger-color);
+        .modal-close:hover {
+            background-color: #f8f9fa;
+            color: var(--danger);
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            font-size: 26px;
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .qr-container {
+            text-align: center;
+            margin-bottom: 25px;
         }
         
         .qr-code {
-            text-align: center;
-            margin: 20px 0;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--primary);
+            position: relative;
         }
         
-        .qr-code img {
-            max-width: 250px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px;
-            background-color: white;
+        .qr-code::before {
+            content: 'QR CODE';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
         }
         
         .bank-info {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: var(--radius);
             margin-top: 20px;
+            border: 1px solid var(--light-gray);
         }
         
         .info-item {
             display: flex;
-            margin-bottom: 10px;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         
         .info-label {
             font-weight: 600;
-            min-width: 120px;
-            color: var(--primary-color);
+            color: var(--primary);
+            min-width: 150px;
         }
         
         .info-value {
-            color: var(--dark-color);
+            font-weight: 500;
+            color: var(--dark);
+            text-align: right;
+            word-break: break-word;
         }
         
-        .legal-warning {
-            background-color: rgba(217, 48, 37, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            border-left: 5px solid var(--danger-color);
-        }
-        
-        .legal-warning h4 {
-            color: var(--danger-color);
-            margin-bottom: 10px;
+        /* Progress indicator */
+        .progress-container {
             display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .success-badge {
-            display: inline-block;
-            background-color: var(--success-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-        
-        .progress-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
+            justify-content: center;
+            margin-bottom: 50px;
             position: relative;
+        }
+        
+        .progress-line {
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            height: 4px;
+            background: var(--light-gray);
+            z-index: 0;
         }
         
         .progress-step {
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex: 1;
             position: relative;
             z-index: 1;
+            flex: 1;
+            max-width: 200px;
         }
         
-        .progress-step:not(:last-child)::after {
-            content: "";
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            width: 100%;
-            height: 4px;
-            background-color: #e9ecef;
-            z-index: -1;
-        }
-        
-        .step-circle {
-            width: 40px;
-            height: 40px;
+        .step-icon {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background-color: #e9ecef;
-            color: var(--gray-color);
+            background: var(--light-gray);
+            color: var(--gray);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: var(--transition);
             border: 4px solid white;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .step-circle.active {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        .progress-step.active .step-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 102, 179, 0.3);
         }
         
-        .step-circle.completed {
-            background-color: var(--success-color);
-            color: white;
-        }
-        
-        .step-text {
-            font-size: 14px;
+        .step-label {
             font-weight: 600;
-            color: var(--gray-color);
+            color: var(--gray);
             text-align: center;
+            font-size: 14px;
         }
         
-        .step-circle.active + .step-text {
-            color: var(--primary-color);
+        .progress-step.active .step-label {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 992px) {
+            .config-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-container {
+                flex-direction: column;
+                gap: 30px;
+                align-items: flex-start;
+            }
+            
+            .progress-line {
+                display: none;
+            }
+            
+            .progress-step {
+                flex-direction: row;
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .step-icon {
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
         }
         
         @media (max-width: 768px) {
@@ -647,29 +876,29 @@
             }
             
             header {
-                padding: 30px 15px;
+                padding: 40px 20px;
             }
             
             header h1 {
-                font-size: 26px;
+                font-size: 28px;
             }
             
             .content {
-                padding: 25px;
+                padding: 40px 20px;
             }
             
             .section-title {
-                font-size: 22px;
-                padding-left: 50px;
+                font-size: 24px;
             }
             
             .section-title i {
-                width: 40px;
-                height: 40px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
             
             .step {
-                padding: 20px;
+                padding: 25px;
             }
             
             .step-content {
@@ -677,49 +906,95 @@
             }
             
             .step-header {
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
             
-            .progress-indicator {
-                flex-wrap: wrap;
-                gap: 15px;
+            .donate-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 14px 24px;
+                font-size: 15px;
             }
             
-            .progress-step:not(:last-child)::after {
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .logo {
+                position: relative;
+                top: 0;
+                left: 0;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .step-title {
+                font-size: 20px;
+            }
+            
+            .donate-btn span {
                 display: none;
             }
             
-            .donate-button {
-                bottom: 20px;
-                right: 20px;
-                width: 55px;
-                height: 55px;
+            .donate-btn i {
+                margin-right: 0;
+            }
+            
+            .config-guide {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="logo">
+            <i class="fas fa-university"></i>
+            <span>dichvusale.io.vn</span>
+        </div>
+        
         <header>
-            <div class="logo">dichvusale.io.vn</div>
-            <h1><i class="fas fa-university"></i> Hướng dẫn cấu hình API ngân hàng ACB</h1>
-            <p class="subtitle">Hướng dẫn chi tiết cấu hình nhận thông báo từ ACB ONE và tích hợp thanh toán tự động</p>
+            <div class="header-content">
+                <h1>Hướng dẫn cấu hình API ngân hàng ACB</h1>
+                <p class="subtitle">Hướng dẫn chi tiết từng bước cấu hình nhận thông báo từ ACB ONE và tích hợp thanh toán tự động</p>
+                <div class="badge">Hướng dẫn không yêu cầu code - Chỉ cần làm theo các bước</div>
+            </div>
         </header>
         
         <div class="content">
-            <!-- Thanh tiến trình -->
-            <div class="progress-indicator">
-                <div class="progress-step">
-                    <div class="step-circle active">1</div>
-                    <div class="step-text">Cấu hình ACB ONE</div>
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-line"></div>
+                <div class="progress-step active">
+                    <div class="step-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="step-label">Cấu hình ACB ONE</div>
                 </div>
                 <div class="progress-step">
-                    <div class="step-circle">2</div>
-                    <div class="step-text">Lấy Passkey Email</div>
+                    <div class="step-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="step-label">Lấy Passkey Email</div>
                 </div>
                 <div class="progress-step">
-                    <div class="step-circle">3</div>
-                    <div class="step-text">Cấu hình Website</div>
+                    <div class="step-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="step-label">Cấu hình Website</div>
                 </div>
             </div>
             
@@ -776,14 +1051,12 @@
                                     <li>Thông báo giao dịch</li>
                                     <li>Thông báo khuyến mãi</li>
                                 </ul>
-                            <b>Ở đây bạn hãy chọn thông báo biến động số dư</b>
                             </li>
+                            <div class="note">
+                                <i class="fas fa-lightbulb"></i> <b>Ở đây bạn hãy chọn thông báo biến động số dư</b>
+                            </div>
                             <li>Xác nhận cài đặt bằng mã OTP từ ACB Safekey (nếu có)</li>
                         </ol>
-                        
-                        <div class="note">
-                            <i class="fas fa-lightbulb"></i> Bạn có thể chọn nhận tất cả thông báo hoặc chỉ chọn những thông báo quan trọng.
-                        </div>
                     </div>
                 </div>
                 
@@ -811,7 +1084,7 @@
                 
                 <div class="image-guide">
                     <img src="https://i.postimg.cc/vHP1Whzt/1.png" alt="Các Bước cài đặt thông báo trên ACB ONE">
-                    <figcaption>Các Bước cài đặt thông báo trên ACB ONE</figcaption>
+                    <figcaption>Hình 1: Các bước cài đặt thông báo trên ACB ONE</figcaption>
                 </div>
             </div>
             
@@ -912,7 +1185,7 @@
                 
                 <div class="image-guide">
                     <img src="https://i.postimg.cc/SQZw6YBc/cai-nao.png" alt="Các Bước Lấy Passkey Email">
-                    <figcaption>Các Bước Lấy Passkey Email</figcaption>
+                    <figcaption>Hình 2: Các bước lấy Passkey Email từ Google</figcaption>
                 </div>
             </div>
             
@@ -921,74 +1194,64 @@
                 <h2 class="section-title"><i class="fas fa-globe"></i> Phần 3: Cấu hình website nhận thông báo</h2>
                 
                 <div class="important-note">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Hướng dẫn cấu hình website</h3>
-                    <p>Bước này yêu cầu bạn điền thông tin cấu hình vào website của dichvusale.io.vn. <strong>Không cần viết code</strong> - chỉ cần điền thông tin vào form dưới đây.</p>
+                    <h3><i class="fas fa-info-circle"></i> Hướng dẫn cấu hình website</h3>
+                    <p>Bước này yêu cầu bạn điền thông tin cấu hình vào website - chỉ cần điền thông tin theo hướng dẫn dưới đây.</p>
                 </div>
                 
-                <div class="website-config">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-cogs"></i> Cấu hình thanh toán ACB trên website
+                <div class="config-guide">
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Poppins', sans-serif;">
+                        Hướng dẫn cấu hình thanh toán ACB trên website 
                     </h3>
                     
-                    <div class="config-form">
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-credit-card"></i> Số tài khoản ACB:</label>
-                            <input type="text" class="form-input" placeholder="Nhập số tài khoản ACB của bạn" id="account-number">
-                            <div class="form-note">Ví dụ: 22002921</div>
+                    <p style="margin-bottom: 20px;">Để cấu hình website nhận thông báo từ ACB, bạn cần điền các thông tin sau vào phần cấu hình trên website của chúng tôi:</p>
+                    
+                    <div class="config-items">
+                        <div class="config-item">
+                            <h4><i class="fas fa-user"></i> Tên chủ tài khoản (Bắt buộc)</h4>
+                            <p>Điền tên chủ tài khoản ngân hàng ACB Của Bạn.</p>
+                            <div class="config-value">Ví dụ: Nguyễn Văn A </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-user"></i> Tên chủ tài khoản:</label>
-                            <input type="text" class="form-input" placeholder="Nhập tên chủ tài khoản" id="account-name">
-                            <div class="form-note">Tên chủ tài khoản ACB (như trong thẻ ngân hàng)</div>
+                        <div class="config-item">
+                            <h4><i class="fas fa-credit-card"></i> Số tài khoản ACB (Bắt buộc)</h4>
+                            <p>Điền số tài khoản ngân hàng ACB của bạn vào trường "Số tài khoản".</p>
+                            <div class="config-value">Ví dụ: 123456789</div>
+                        </div>
+
+                        <div class="config-item">
+                            <h4><i class="fas fa-credit-card"></i> Nạp tối thiểu</h4>
+                            <p>Điền mức nạp tối thiểu ( nếu nuapj dưới mức này sẽ không được tự động ).</p>
+                            <div class="config-value">Ví dụ: 10000</div>
+                        </div>
+
+                        <div class="config-item">
+                            <h4><i class="fas fa-credit-card"></i> Tài Khoản</h4>
+                            <p>Thường là số tài khoản ACB của bạn.</p>
+                            <div class="config-value">Ví dụ: 123456789</div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-envelope"></i> Email nhận thông báo:</label>
-                            <input type="email" class="form-input" placeholder="Nhập email nhận thông báo từ ACB" id="email-notification" value="admin@dichvusale.io.vn">
-                            <div class="form-note">Email bạn đã cấu hình trong ACB ONE để nhận thông báo</div>
+                        <div class="config-item">
+                            <h4><i class="fas fa-envelope"></i> Email nhận thông báo (Bắt buộc)</h4>
+                            <p>Điền email bạn đã cấu hình trong ACB ONE để nhận thông báo.</p>
+                            <div class="config-value">Ví dụ: admin@dichvusale.io.vn</div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-key"></i> Passkey Email (từ Google):</label>
-                            <div class="password-field">
-                                <input type="password" class="form-input" placeholder="Nhập Passkey email đã lấy từ Google" id="email-passkey">
-                                <button type="button" class="password-toggle" id="toggle-password">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <div class="form-note">Passkey 16 ký tự bạn đã lấy từ Google trong Phần 2</div>
+                        <div class="config-item">
+                            <h4><i class="fas fa-key"></i> Passkey Email (Bắt buộc)</h4>
+                            <p>Dán Passkey 16 ký tự bạn đã lấy từ Google trong Phần 2.</p>
+                            <div class="config-value">Ví dụ: abcd efgh ijkl mnop</div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-bell"></i> Loại thông báo:</label>
-                            <select class="form-input" id="notification-type">
-                                <option value="balance">Thông báo biến động số dư</option>
-                                <option value="transaction">Thông báo giao dịch</option>
-                                <option value="all">Tất cả thông báo</option>
-                            </select>
-                            <div class="form-note">Chọn loại thông báo bạn muốn nhận từ ACB</div>
+                        <div class="config-item">
+                            <h4><i class="fas fa-comment"></i> Token (Bắt buộc)</h4>
+                            <p>Điền token api vào đây (Token do bạn tự chọn )</p>
+                            <div class="config-value">Ví dụ: dvsalm-token-api-bank-acb</div>
                         </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-lightbulb"></i> Sau khi điền đầy đủ thông tin, nhấn nút "Lưu cấu hình" để hoàn tất. Hệ thống sẽ tự động xử lý và tích hợp với ACB.
-                        </div>
-                        
-                        <button type="button" class="link-button" id="save-config" style="align-self: flex-start;">
-                            <i class="fas fa-save"></i> Lưu cấu hình
-                        </button>
                     </div>
-                </div>
-                <div class="image-guide">
-                    <img src="https://i.postimg.cc/15S4xTWk/cai-nao-(1).png" alt="Các Bước Lấy Passkey Email">
-                    <figcaption>Các Bước Lấy Passkey Email</figcaption>
-                </div>
-                
-                <div class="legal-warning">
-                    <h4><i class="fas fa-gavel"></i> THÔNG BÁO QUAN TRỌNG</h4>
-                    <p><strong>Bản quyền thuộc về dichvusale.io.vn</strong> - Mọi hành vi sao chép, sử dụng trái phép đều bị nghiêm cấm.</p>
-                    <p>Hướng dẫn này chỉ phục vụ mục đích thông tin và hỗ trợ kỹ thuật. <strong>Admin không chịu trách nhiệm</strong> đối với mọi hành vi lợi dụng, sử dụng sai mục đích hoặc vi phạm pháp luật.</p>
-                    <p>Người dùng tự chịu trách nhiệm về việc tuân thủ các quy định của ngân hàng và pháp luật Việt Nam khi sử dụng dịch vụ.</p>
+                    
+                    <div class="note">
+                        <i class="fas fa-lightbulb"></i> Sau khi điền đầy đủ thông tin, nhấn nút "Lưu cấu hình" để hoàn tất. Hệ thống sẽ tự động xử lý và tích hợp với ACB.
+                    </div>
                 </div>
                 
                 <div class="step">
@@ -999,11 +1262,11 @@
                     <div class="step-content">
                         <p>Sau khi cấu hình, thực hiện kiểm tra:</p>
                         <ol>
-                            <li>Thực hiện một giao dịch thử trên tài khoản ACB</li>
-                            <li>Nội dung chuyển khoản trùng với nội dung của website</li>
-                            <li>Nếu thấy cộng tiền thì thành công</li>
-                            <li>Nếu không thấy thì kiểu tra lại các bước trên</li>
-                            <li>Vẫn ko được tì liên hệ admin để được hưỡng dẫn</li>
+                            <li>Thực hiện một giao dịch thử trên tài khoản ACB của bạn</li>
+                            <li>Đảm bảo nội dung chuyển khoản trùng với nội dung đã cấu hình trên website</li>
+                            <li>Nếu thấy tiền được cộng tự động vào tài khoản trên website thì thành công</li>
+                            <li>Nếu không thấy thì kiểm tra lại các bước trên</li>
+                            <li>Vẫn không được thì liên hệ admin để được hướng dẫn</li>
                         </ol>
                         
                         <div class="note">
@@ -1011,46 +1274,64 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="image-guide">
+                    <img src="https://i.postimg.cc/15S4xTWk/cai-nao-(1).png" alt="Giao diện cấu hình website">
+                    <figcaption>Hình 3: Giao diện cấu hình website dichvusale.io.vn</figcaption>
+                </div>
+                
+                <div class="legal-warning">
+                    <h4><i class="fas fa-gavel"></i> THÔNG BÁO QUAN TRỌNG</h4>
+                    <p><strong>Bản quyền thuộc về dichvusale.io.vn</strong> - Mọi hành vi sao chép, sử dụng trái phép đều bị nghiêm cấm.</p>
+                    <p>Hướng dẫn này chỉ phục vụ mục đích thông tin và hỗ trợ kỹ thuật. <strong>Admin không chịu trách nhiệm</strong> đối với mọi hành vi lợi dụng, sử dụng sai mục đích hoặc vi phạm pháp luật.</p>
+                    <p>Người dùng tự chịu trách nhiệm về việc tuân thủ các quy định của ngân hàng và pháp luật Việt Nam khi sử dụng dịch vụ.</p>
+                </div>
             </div>
         </div>
         
         <footer>
-            <div class="footer-links">
-                <a href="/../../../" class="footer-link">Trang chủ</a>
-                <a href="https://dichvusale.io.vn" class="footer-link">Liên hệ</a>
+            <div class="legal-warning">
+                <h4><i class="fas fa-exclamation-triangle"></i> CẢNH BÁO PHÁP LÝ</h4>
+                <p><strong>Mọi hành vi lợi dụng làm trái pháp luật, admin sẽ không chịu trách nhiệm.</strong></p>
+                <p>Hướng dẫn này chỉ nhằm mục đích thông tin và hỗ trợ kỹ thuật cho các giao dịch hợp pháp.</p>
             </div>
             
-            <p class="copyright">
-                &copy; <span id="current-year">2026</span> - Bản quyền thuộc về <a href="https://dichvusale.io.vn" class="footer-link">DVSLAM</a><br>
-                Mọi hành vi sao chép, sử dụng trái phép đều bị nghiêm cấm.<br>
-                <small>Hướng dẫn này chỉ phục vụ mục đích thông tin. Admin không chịu trách nhiệm với mọi hành vi lợi dụng làm trái pháp luật.</small>
+            <div class="copyright">
+                <i class="far fa-copyright"></i> <span id="current-year"></span> dichvusale.io.vn - Bản quyền thuộc về DVSLAM
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Hướng dẫn này chỉ phục vụ mục đích thông tin. Luôn đảm bảo bảo vệ thông tin đăng nhập và tuân thủ chính sách bảo mật của ACB.
             </p>
         </footer>
     </div>
     
-    <!-- Nút Nuôi Tôi -->
-    <button class="donate-button" id="donate-btn">
+    <!-- Nút Nuôi tôi -->
+    <button class="donate-btn" id="donateBtn">
         <i class="fas fa-heart"></i>
+        <span>Nuôi tôi</span>
     </button>
     
     <!-- Modal QR Code -->
-    <div class="modal" id="donate-modal">
+    <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <h2 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">
-                <i class="fas fa-donate"></i> Ủng hộ Admin
-            </h2>
-            <p style="text-align: center; margin-bottom: 20px;">Cảm ơn bạn đã ủng hộ! Mọi đóng góp sẽ giúp duy trì và phát triển dịch vụ.</p>
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title"><i class="fas fa-qrcode"></i> Ủng hộ Admin</h3>
             
-            <div class="qr-code">
-                <div style="width: 250px; height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 10px; font-weight: bold; color: var(--gray-color);">
-                    [QR Code sẽ hiển thị tại đây]
+            <div class="qr-container">
+                <div class="qr-code">
+                    <!-- QR Code Placeholder -->
+                    <div style="width: 180px; height: 180px; background: linear-gradient(45deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; border-radius: 10px; color: white; font-weight: bold; text-align: center; padding: 15px;">
+                        <div>
+                            <div style="font-size: 22px; margin-bottom: 10px;">ACB</div>
+                            <div style="font-size: 16px;">STK: 22002921</div>
+                            <div style="font-size: 14px; margin-top: 5px;">Lê Văn Anh Minh</div>
+                        </div>
+                    </div>
                 </div>
-                <p style="margin-top: 10px; font-style: italic;">Quét mã QR để chuyển khoản</p>
+                <p>Quét QR code hoặc chuyển khoản theo thông tin bên dưới</p>
             </div>
             
             <div class="bank-info">
-                <h4 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">Thông tin chuyển khoản</h4>
                 <div class="info-item">
                     <span class="info-label">Ngân hàng:</span>
                     <span class="info-value">ACB</span>
@@ -1064,61 +1345,47 @@
                     <span class="info-value">Lê Văn Anh Minh</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">Nội dung:</span>
+                    <span class="info-label">Nội dung CK:</span>
                     <span class="info-value">Nuôi Admin DA api bank acb</span>
                 </div>
             </div>
             
             <div class="note" style="margin-top: 20px;">
-                <i class="fas fa-info-circle"></i> Sau khi chuyển khoản, hệ thống sẽ tự động xác nhận và gửi thông báo cảm ơn đến bạn.
+                <i class="fas fa-info-circle"></i> Cảm ơn bạn đã ủng hộ! Sự đóng góp của bạn giúp duy trì và phát triển dịch vụ.
             </div>
         </div>
     </div>
 
     <script>
-        // Lấy năm hiện tại
+        // Lấy năm hiện tại cho copyright
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
-        // Cập nhật tiến trình
+        // Cập nhật tiến trình khi cuộn trang
         function updateProgress() {
             const sections = document.querySelectorAll('.section');
-            const progressCircles = document.querySelectorAll('.step-circle');
+            const progressSteps = document.querySelectorAll('.progress-step');
             
-            // Đặt tất cả về không active
-            progressCircles.forEach(circle => {
-                circle.classList.remove('active', 'completed');
+            let currentSectionIndex = 0;
+            let maxVisible = 0;
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight * 0.3) {
+                    currentSectionIndex = index;
+                    maxVisible = Math.max(maxVisible, index);
+                }
             });
             
-            // Thêm class active cho section đầu tiên
-            progressCircles[0].classList.add('active');
-            
-            // Thêm sự kiện scroll để cập nhật tiến trình
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.scrollY + 100;
-                
-                sections.forEach((section, index) => {
-                    const sectionTop = section.offsetTop;
-                    
-                    if (scrollPosition >= sectionTop) {
-                        progressCircles.forEach(circle => circle.classList.remove('active'));
-                        
-                        // Đánh dấu tất cả các bước trước đó là completed
-                        for (let i = 0; i <= index; i++) {
-                            if (i < progressCircles.length) {
-                                progressCircles[i].classList.add('completed');
-                            }
-                        }
-                        
-                        // Đánh dấu bước hiện tại là active
-                        if (index < progressCircles.length - 1) {
-                            progressCircles[index + 1].classList.add('active');
-                        }
-                    }
-                });
+            // Cập nhật trạng thái các bước
+            progressSteps.forEach((step, index) => {
+                step.classList.remove('active');
+                if (index <= maxVisible) {
+                    step.classList.add('active');
+                }
             });
         }
         
-        // Hiệu ứng cho các bước
+        // Thêm hiệu ứng khi click vào các bước
         document.querySelectorAll('.step').forEach(step => {
             step.addEventListener('click', function() {
                 this.style.transform = 'translateY(-5px)';
@@ -1138,19 +1405,49 @@
                 // Sao chép vào clipboard
                 navigator.clipboard.writeText(password).then(() => {
                     this.textContent = 'Đã sao chép vào clipboard!';
-                    this.style.backgroundColor = '#e6f4ea';
+                    this.style.background = 'linear-gradient(135deg, #e6f4ea, #c8e6c9)';
                     this.style.color = '#137333';
                     this.style.border = '2px dashed #34A853';
                     
                     setTimeout(() => {
                         this.textContent = originalText;
-                        this.style.backgroundColor = '#f1f3f4';
-                        this.style.color = '#202124';
-                        this.style.border = '2px dashed #5f6368';
+                        this.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
+                        this.style.color = 'var(--dark)';
+                        this.style.border = '2px dashed var(--primary)';
                     }, 2000);
                 });
             });
         }
+        
+        // Xử lý nút Nuôi tôi và modal
+        const donateBtn = document.getElementById('donateBtn');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        
+        donateBtn.addEventListener('click', function() {
+            modalOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        modalClose.addEventListener('click', function() {
+            modalOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Đóng modal bằng phím ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.style.display === 'flex') {
+                modalOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
         
         // Hiệu ứng cho các nút liên kết
         document.querySelectorAll('.link-button').forEach(button => {
@@ -1159,120 +1456,70 @@
             });
         });
         
-        // Xử lý nút lưu cấu hình
-        document.getElementById('save-config').addEventListener('click', function() {
-            const accountNumber = document.getElementById('account-number').value;
-            const accountName = document.getElementById('account-name').value;
-            const email = document.getElementById('email-notification').value;
-            const passkey = document.getElementById('email-passkey').value;
+        // Hiệu ứng xuất hiện khi cuộn
+        function checkScroll() {
+            const elements = document.querySelectorAll('.step, .config-item, .image-guide');
             
-            if (!accountNumber || !accountName || !email || !passkey) {
-                alert('Vui lòng điền đầy đủ thông tin cấu hình!');
-                return;
-            }
-            
-            // Hiệu ứng loading
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang lưu...';
-            this.disabled = true;
-            
-            // Mô phỏng lưu cấu hình
-            setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-check"></i> Đã lưu thành công!';
-                this.style.background = 'linear-gradient(135deg, #34A853 0%, #2E8B57 100%)';
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
                 
-                // Hiển thị thông báo thành công
-                const successNote = document.createElement('div');
-                successNote.className = 'note';
-                successNote.innerHTML = '<i class="fas fa-check-circle"></i> <strong>Cấu hình đã được lưu thành công!</strong> Hệ thống sẽ tự động tích hợp với ACB trong vài phút.';
-                
-                const configForm = document.querySelector('.config-form');
-                configForm.appendChild(successNote);
-                
-                // Reset nút sau 3 giây
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-save"></i> Lưu cấu hình';
-                    this.disabled = false;
-                    this.style.background = 'linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)';
-                }, 3000);
-            }, 1500);
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Thêm class visible cho các element đã hiển thị
+        document.querySelectorAll('.step, .config-item, .image-guide').forEach(el => {
+            el.classList.add('fade-in');
         });
         
-        // Xử lý hiển thị/ẩn mật khẩu
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordField = document.getElementById('email-passkey');
-            const icon = this.querySelector('i');
-            
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
+        // Cập nhật tiến trình khi cuộn
+        window.addEventListener('scroll', function() {
+            updateProgress();
+            checkScroll();
         });
         
-        // Xử lý modal quyên góp
-        const donateBtn = document.getElementById('donate-btn');
-        const donateModal = document.getElementById('donate-modal');
-        const closeModal = document.getElementById('close-modal');
-        
-        donateBtn.addEventListener('click', function() {
-            donateModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeModal.addEventListener('click', function() {
-            donateModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Đóng modal khi click bên ngoài
-        donateModal.addEventListener('click', function(e) {
-            if (e.target === donateModal) {
-                donateModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // Cập nhật tiến trình khi trang được tải
+        // Khởi tạo
         document.addEventListener('DOMContentLoaded', function() {
             updateProgress();
+            checkScroll();
             
-            // Thêm hiệu ứng khi cuộn đến các phần
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Quan sát tất cả các section và step
-            document.querySelectorAll('.section, .step').forEach(el => {
-                el.style.opacity = 0;
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(el);
+            // Thêm hiệu ứng cho các section
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             });
             
-            // Khởi tạo với hiệu ứng
+            // Hiển thị từng section với độ trễ
             setTimeout(() => {
-                document.querySelectorAll('.section, .step').forEach(el => {
-                    if (el.getBoundingClientRect().top < window.innerHeight) {
-                        el.style.opacity = 1;
-                        el.style.transform = 'translateY(0)';
-                    }
+                sections.forEach((section, index) => {
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, index * 200);
                 });
-            }, 100);
+            }, 300);
         });
+        
+        // Thêm CSS cho hiệu ứng fade-in
+        const style = document.createElement('style');
+        style.textContent = `
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
