@@ -1,1 +1,907 @@
-html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn cấu hình API ngân hàng ACB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #0066b3, #00a1e0);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            color: #0066b3;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            background-color: #0066b3;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .important-note {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .important-note h3 {
+            color: #ff9800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0066b3;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            color: #0066b3;
+            font-weight: 600;
+        }
+        
+        .step-content {
+            padding-left: 55px;
+        }
+        
+        .step-content p {
+            margin-bottom: 15px;
+        }
+        
+        .step-content ol, .step-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .step-content li {
+            margin-bottom: 8px;
+        }
+        
+        .image-guide {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .image-guide img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+        
+        .image-guide figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #0066b3;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .link-button:hover {
+            background-color: #005292;
+        }
+        
+        .link-button i {
+            margin-right: 10px;
+        }
+        
+        .option-list {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .option-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .option-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34A853;
+            font-weight: bold;
+        }
+        
+        .password-display {
+            background-color: #f1f3f4;
+            border: 2px dashed #5f6368;
+            padding: 15px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #202124;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .warning {
+            color: #d93025;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .note {
+            background-color: #e8f0fe;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #1a73e8;
+        }
+        
+        .code-block {
+            background-color: #f5f5f5;
+            border-left: 4px solid #0066b3;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .api-config {
+            background-color: #e8f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .config-item {
+            margin-bottom: 15px;
+        }
+        
+        .config-label {
+            font-weight: bold;
+            color: #0066b3;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .config-value {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #5f6368;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 20px;
+        }
+        
+        .tab-container {
+            margin-top: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 8px 8px 0 0;
+            transition: background-color 0.3s;
+        }
+        
+        .tab.active {
+            background-color: #0066b3;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .step {
+                padding: 20px;
+            }
+            
+            .step-content {
+                padding-left: 0;
+            }
+            
+            .step-header {
+                margin-bottom: 20px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                margin-right: 0;
+                margin-bottom: 5px;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-university"></i> Hướng dẫn cấu hình API ngân hàng ACB</h1>
+            <p class="subtitle">Cấu hình nhận thông báo từ ACB ONE về email và tích hợp API trên website</p>
+        </header>
+        
+        <div class="content">
+            <div class="important-note">
+                <h3><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng</h3>
+                <p>Để cấu hình nhận thông báo từ ACB, bạn cần có tài khoản ACB với quyền truy cập Internet Banking và ACB ONE. Đảm bảo bạn đã kích hoạt đầy đủ các tính năng bảo mật.</p>
+            </div>
+            
+            <!-- Phần 1: Cấu hình ACB ONE -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-mobile-alt"></i> Phần 1: Cấu hình thông báo từ ACB ONE về email</h2>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h2 class="step-title">Đăng nhập vào ACB ONE</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Mở ứng dụng ACB ONE trên điện thoại và đăng nhập bằng tài khoản của bạn.</p>
+                        <div class="note">
+                            <i class="fas fa-info-circle"></i> Nếu chưa có ứng dụng ACB ONE, hãy tải về từ CH Play (Android) hoặc App Store (iOS).
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h2 class="step-title">Truy cập phần Cài đặt</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Sau khi đăng nhập, thực hiện các bước sau:</p>
+                        <ol>
+                            <li>Nhấn vào biểu tượng <strong>Menu</strong> (thường là 3 gạch ngang hoặc biểu tượng người dùng)</li>
+                            <li>Chọn mục <strong>"Cài đặt"</strong> hoặc <strong>"Settings"</strong></li>
+                            <li>Trong phần cài đặt, tìm mục <strong>"Thông báo"</strong> hoặc <strong>"Notification"</strong></li>
+                        </ol>
+                        
+                        <div class="image-guide">
+                            <!-- Ảnh minh họa từ link được cung cấp -->
+                            <img src="https://i.postimg.cc/vHP1Whzt/1.png" alt="Giao diện cài đặt ACB ONE">
+                            <figcaption>Giao diện cài đặt thông báo trên ACB ONE</figcaption>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h2 class="step-title">Cấu hình thông báo qua Email</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Trong phần thông báo, thực hiện các bước sau:</p>
+                        <ol>
+                            <li>Tìm và chọn mục <strong>"Nhận thông báo qua Email"</strong></li>
+                            <li>Bật tính năng nhận thông báo qua Email</li>
+                            <li>Nhập địa chỉ email mà bạn muốn nhận thông báo: <strong>admin@dichvusale.io.vn</strong></li>
+                            <li>Chọn các loại thông báo bạn muốn nhận:
+                                <ul class="option-list">
+                                    <li>Thông báo biến động số dư</li>
+                                    <li>Thông báo giao dịch</li>
+                                    <li>Thông báo khuyến mãi</li>
+                                </ul>
+                            </li>
+                            <li>Xác nhận cài đặt bằng mã OTP từ ACB Safekey</li>
+                        </ol>
+                        
+                        <div class="note">
+                            <i class="fas fa-lightbulb"></i> Bạn có thể chọn nhận tất cả thông báo hoặc chỉ chọn những thông báo quan trọng.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h2 class="step-title">Xác nhận và kích hoạt</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Hoàn tất quá trình cấu hình:</p>
+                        <ol>
+                            <li>Nhấn nút <strong>"Lưu"</strong> hoặc <strong>"Xác nhận"</strong></li>
+                            <li>Kiểm tra email <strong>admin@dichvusale.io.vn</strong> để xác nhận đăng ký</li>
+                            <li>Nhấn vào link xác nhận trong email (nếu có)</li>
+                            <li>Quay lại ứng dụng ACB ONE để kiểm tra trạng thái đã kích hoạt</li>
+                        </ol>
+                        
+                        <div class="warning">
+                            <i class="fas fa-exclamation-circle"></i> Lưu ý: Một số cài đặt có thể yêu cầu xác thực qua ACB Safekey hoặc Face ID nếu đã kích hoạt.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 2: Lấy App Password từ Google -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-key"></i> Phần 2: Lấy App Password từ Google</h2>
+                
+                <div class="important-note">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng</h3>
+                    <p>App Password (mật khẩu ứng dụng) là một mật khẩu 16 ký tự cho phép các ứng dụng hoặc thiết bị kém an toàn truy cập vào tài khoản Google của bạn. Bạn chỉ có thể tạo App Password sau khi đã bật xác minh 2 bước (2FA).</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h2 class="step-title">Truy cập Bảo mật Google</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Vào trang quản lý bảo mật tài khoản Google của bạn.</p>
+                        <a href="https://myaccount.google.com/security" target="_blank" class="link-button">
+                            <i class="fas fa-external-link-alt"></i> Truy cập myaccount.google.com/security
+                        </a>
+                        <p>Đăng nhập nếu bạn chưa đăng nhập vào tài khoản Google của mình.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h2 class="step-title">Bật xác minh 2 bước (2FA)</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Cuộn xuống phần <strong>"Signing in to Google"</strong> (Đăng nhập vào Google).</p>
+                        <p>Tìm và nhấp vào <strong>"2-Step Verification"</strong> (Xác minh 2 bước).</p>
+                        <p>Làm theo hướng dẫn để bật xác minh 2 bước. Bạn có thể chọn một trong các phương thức xác minh:</p>
+                        <ul class="option-list">
+                            <li>Tin nhắn SMS</li>
+                            <li>Google Authenticator</li>
+                            <li>Prompt trên điện thoại</li>
+                            <li>Khóa bảo mật</li>
+                        </ul>
+                        <div class="note">
+                            <i class="fas fa-info-circle"></i> Bước này chỉ cần thực hiện một lần duy nhất cho tài khoản Google của bạn.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h2 class="step-title">Truy cập App Passwords</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Sau khi đã bật xác minh 2 bước, truy cập trang tạo mật khẩu ứng dụng.</p>
+                        <a href="https://myaccount.google.com/apppasswords" target="_blank" class="link-button">
+                            <i class="fas fa-external-link-alt"></i> Truy cập myaccount.google.com/apppasswords
+                        </a>
+                        <p>Nếu bạn không thấy trang này, điều đó có nghĩa là bạn chưa bật xác minh 2 bước. Hãy quay lại Bước 2.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h2 class="step-title">Tạo mật khẩu ứng dụng</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Trên trang App Passwords, thực hiện các bước sau:</p>
+                        <ol>
+                            <li>Tại mục <strong>"Select app"</strong>: Chọn <strong>"Mail"</strong></li>
+                            <li>Tại mục <strong>"Select device"</strong>: Chọn <strong>"Other (Custom name)"</strong></li>
+                            <li>Nhập tên cho mật khẩu này, ví dụ: <strong>"ACB-API"</strong> (bạn có thể đặt tên bất kỳ)</li>
+                            <li>Nhấp vào nút <strong>"Generate"</strong> (Tạo)</li>
+                        </ol>
+                        <div class="note">
+                            <i class="fas fa-lightbulb"></i> Tên này chỉ để bạn dễ nhận biết mật khẩu dùng cho mục đích gì, không ảnh hưởng đến chức năng.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <h2 class="step-title">Sao chép và lưu mật khẩu</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Google sẽ hiển thị mật khẩu ứng dụng 16 ký tự của bạn. Mật khẩu sẽ có dạng:</p>
+                        <div class="password-display" id="google-password">
+                            abcd efgh ijkl mnop
+                        </div>
+                        <p><strong>Sao chép ngay mật khẩu này</strong> vì bạn sẽ không thể xem lại nó sau khi đóng cửa sổ.</p>
+                        <p>Sử dụng mật khẩu này thay cho mật khẩu thông thường của bạn khi thiết lập email trong các ứng dụng bên thứ ba (như Outlook, Thunderbird, hoặc ứng dụng ngân hàng ACB).</p>
+                        <div class="warning">
+                            <i class="fas fa-exclamation-circle"></i> Lưu ý: Mật khẩu ứng dụng chỉ hiển thị một lần duy nhất. Hãy sao chép và lưu trữ nó ở nơi an toàn ngay lập tức.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phần 3: Cấu hình website -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-globe"></i> Phần 3: Cấu hình website nhận thông báo</h2>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="webhook">Cấu hình Webhook</div>
+                        <div class="tab" data-tab="api">Cấu hình API</div>
+                        <div class="tab" data-tab="email">Cấu hình Email Server</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="webhook">
+                        <h3>Cấu hình Webhook nhận thông báo từ ACB</h3>
+                        <p>Webhook là cách hiệu quả nhất để nhận thông báo trực tiếp từ ACB về website của bạn.</p>
+                        
+                        <div class="step">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <h2 class="step-title">Tạo endpoint nhận webhook</h2>
+                            </div>
+                            <div class="step-content">
+                                <p>Tạo một endpoint trên server của bạn để nhận thông báo từ ACB. Ví dụ với PHP:</p>
+                                <div class="code-block">
+// webhook.php - Endpoint nhận thông báo từ ACB<br>
+&lt;?php<br>
+// Log thông tin nhận được<br>
+$log_data = [<br>
+&nbsp;&nbsp;'timestamp' => date('Y-m-d H:i:s'),<br>
+&nbsp;&nbsp;'headers' => getallheaders(),<br>
+&nbsp;&nbsp;'body' => file_get_contents('php://input'),<br>
+&nbsp;&nbsp;'get' => $_GET,<br>
+&nbsp;&nbsp;'post' => $_POST<br>
+];<br>
+<br>
+// Lưu log vào file<br>
+file_put_contents('acb_webhook.log', json_encode($log_data, JSON_PRETTY_PRINT) . "\n\n", FILE_APPEND);<br>
+<br>
+// Xử lý thông báo<br>
+$data = json_decode(file_get_contents('php://input'), true);<br>
+<br>
+if ($data && isset($data['type'])) {<br>
+&nbsp;&nbsp;// Xử lý theo loại thông báo<br>
+&nbsp;&nbsp;switch($data['type']) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case 'balance_change':<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Xử lý biến động số dư<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;process_balance_change($data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;case 'transaction':<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Xử lý giao dịch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;process_transaction($data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+&nbsp;&nbsp;}<br>
+}<br>
+<br>
+// Trả về response thành công<br>
+http_response_code(200);<br>
+echo json_encode(['status' => 'success', 'message' => 'Webhook received']);<br>
+<br>
+function process_balance_change($data) {<br>
+&nbsp;&nbsp;// Xử lý biến động số dư<br>
+&nbsp;&nbsp;// Lưu vào database, gửi thông báo, v.v.<br>
+}<br>
+?&gt;
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <h2 class="step-title">Cấu hình webhook trên ACB</h2>
+                            </div>
+                            <div class="step-content">
+                                <p>Liên hệ với bộ phận hỗ trợ kỹ thuật của ACB để đăng ký webhook. Cung cấp các thông tin sau:</p>
+                                <ul>
+                                    <li>URL endpoint webhook của bạn (ví dụ: https://yourdomain.com/webhook/acb)</li>
+                                    <li>Loại thông báo bạn muốn nhận</li>
+                                    <li>Mã xác thực (nếu có)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="api">
+                        <h3>Cấu hình API kết nối trực tiếp với ACB</h3>
+                        <p>ACB cung cấp API chính thức cho đối tác tích hợp. Bạn cần đăng ký với ACB để nhận thông tin kết nối.</p>
+                        
+                        <div class="api-config">
+                            <h4>Thông tin cấu hình API ACB mẫu:</h4>
+                            <div class="config-item">
+                                <span class="config-label">Endpoint API:</span>
+                                <div class="config-value">https://api.acb.com.vn/v1/</div>
+                            </div>
+                            <div class="config-item">
+                                <span class="config-label">Client ID:</span>
+                                <div class="config-value">acb_client_123456789</div>
+                            </div>
+                            <div class="config-item">
+                                <span class="config-label">Client Secret:</span>
+                                <div class="config-value">acb_secret_abcdef123456</div>
+                            </div>
+                            <div class="config-item">
+                                <span class="config-label">API Key:</span>
+                                <div class="config-value">acb_api_key_987654321</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <h2 class="step-title">Đăng ký API với ACB</h2>
+                            </div>
+                            <div class="step-content">
+                                <p>Liên hệ với bộ phận Đối tác - Khách hàng doanh nghiệp của ACB để đăng ký sử dụng API.</p>
+                                <p>Bạn sẽ cần cung cấp:</p>
+                                <ul>
+                                    <li>Thông tin doanh nghiệp</li>
+                                    <li>Mục đích sử dụng API</li>
+                                    <li>Phạm vi dữ liệu cần truy cập</li>
+                                    <li>Thông tin kỹ thuật (IP whitelist, callback URL, v.v.)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <h2 class="step-title">Triển khai kết nối API</h2>
+                            </div>
+                            <div class="step-content">
+                                <p>Sau khi nhận được thông tin đăng ký từ ACB, thực hiện kết nối:</p>
+                                <div class="code-block">
+// Ví dụ kết nối API ACB bằng PHP<br>
+$api_url = "https://api.acb.com.vn/v1/";<br>
+$client_id = "your_client_id";<br>
+$client_secret = "your_client_secret";<br>
+<br>
+// Lấy access token<br>
+$token_url = $api_url . "oauth/token";<br>
+$token_data = [<br>
+&nbsp;&nbsp;'grant_type' => 'client_credentials',<br>
+&nbsp;&nbsp;'client_id' => $client_id,<br>
+&nbsp;&nbsp;'client_secret' => $client_secret<br>
+];<br>
+<br>
+$ch = curl_init($token_url);<br>
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);<br>
+curl_setopt($ch, CURLOPT_POST, true);<br>
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($token_data));<br>
+$response = curl_exec($ch);<br>
+$token_info = json_decode($response, true);<br>
+<br>
+if (isset($token_info['access_token'])) {<br>
+&nbsp;&nbsp;$access_token = $token_info['access_token'];<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;// Sử dụng token để gọi API<br>
+&nbsp;&nbsp;$api_endpoint = $api_url . "transactions";<br>
+&nbsp;&nbsp;$headers = [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Authorization: Bearer ' . $access_token,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Content-Type: application/json'<br>
+&nbsp;&nbsp;];<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;curl_setopt($ch, CURLOPT_URL, $api_endpoint);<br>
+&nbsp;&nbsp;curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);<br>
+&nbsp;&nbsp;curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);<br>
+&nbsp;&nbsp;$result = curl_exec($ch);<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;// Xử lý kết quả<br>
+&nbsp;&nbsp;$transactions = json_decode($result, true);<br>
+}<br>
+<br>
+curl_close($ch);
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="email">
+                        <h3>Cấu hình Email Server nhận thông báo từ ACB</h3>
+                        <p>Nếu ACB chỉ gửi thông báo qua email, bạn có thể cấu hình server email để xử lý tự động.</p>
+                        
+                        <div class="step">
+                            <div class="step-header">
+                                <div class="step-number">1</div>
+                                <h2 class="step-title">Cấu hình email server</h2>
+                            </div>
+                            <div class="step-content">
+                                <p>Cấu hình email server của bạn để nhận và xử lý email từ ACB:</p>
+                                <div class="code-block">
+// Cấu hình email server (Postfix) để chuyển tiếp email đến script xử lý<br>
+// Thêm vào /etc/postfix/virtual<br>
+admin@dichvusale.io.vn acb-processor<br>
+<br>
+// Tạo script xử lý email<br>
+#!/bin/bash<br>
+# /usr/local/bin/acb-email-processor.sh<br>
+<br>
+# Đọc email từ stdin<br>
+EMAIL=$(cat)<br>
+<br>
+# Trích xuất thông tin quan trọng<br>
+SUBJECT=$(echo "$EMAIL" | grep -i "^subject:" | head -1)<br>
+BODY=$(echo "$EMAIL" | sed -n '/^$/,$p' | tail -n +2)<br>
+<br>
+# Lưu email để xử lý<br>
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)<br>
+echo "$EMAIL" > "/var/log/acb-emails/email_$TIMESTAMP.txt"<br>
+<br>
+# Gọi script PHP xử lý<br>
+php /var/www/html/process_acb_email.php "$SUBJECT" "$BODY"
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-header">
+                                <div class="step-number">2</div>
+                                <h2 class="step-title">Xử lý email tự động</h2>
+                            </div>
+                            <div class="step-content">
+                                <p>Tạo script xử lý email từ ACB:</p>
+                                <div class="code-block">
+// process_acb_email.php - Xử lý email từ ACB<br>
+&lt;?php<br>
+// Lấy tham số từ command line<br>
+$subject = $argv[1] ?? '';<br>
+$body = $argv[2] ?? '';<br>
+<br>
+// Xác định loại thông báo dựa trên tiêu đề<br>
+if (strpos($subject, 'biến động số dư') !== false) {<br>
+&nbsp;&nbsp;// Xử lý thông báo biến động số dư<br>
+&nbsp;&nbsp;process_balance_notification($body);<br>
+} elseif (strpos($subject, 'giao dịch') !== false) {<br>
+&nbsp;&nbsp;// Xử lý thông báo giao dịch<br>
+&nbsp;&nbsp;process_transaction_notification($body);<br>
+} elseif (strpos($subject, 'ACB') !== false) {<br>
+&nbsp;&nbsp;// Xử lý các thông báo khác từ ACB<br>
+&nbsp;&nbsp;process_acb_notification($body);<br>
+}<br>
+<br>
+function process_balance_notification($body) {<br>
+&nbsp;&nbsp;// Trích xuất thông tin từ email<br>
+&nbsp;&nbsp;// Lưu vào database<br>
+&nbsp;&nbsp;// Gửi thông báo đến hệ thống<br>
+&nbsp;&nbsp;file_put_contents('/var/log/acb-emails/balance.log', date('Y-m-d H:i:s') . " - $body\n", FILE_APPEND);<br>
+}<br>
+?&gt;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h2 class="step-title">Kiểm tra và xác nhận</h2>
+                    </div>
+                    <div class="step-content">
+                        <p>Sau khi cấu hình, thực hiện kiểm tra:</p>
+                        <ol>
+                            <li>Thực hiện một giao dịch thử trên tài khoản ACB</li>
+                            <li>Kiểm tra email nhận được thông báo</li>
+                            <li>Xác nhận hệ thống của bạn đã xử lý thông báo</li>
+                            <li>Kiểm tra log hệ thống để đảm bảo không có lỗi</li>
+                        </ol>
+                        
+                        <div class="note">
+                            <i class="fas fa-check-circle"></i> Nếu mọi thứ hoạt động, bạn đã hoàn thành cấu hình API ngân hàng ACB thành công!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Hướng dẫn này chỉ phục vụ mục đích thông tin. Luôn đảm bảo bảo vệ thông tin đăng nhập và tuân thủ chính sách bảo mật của ACB.</p>
+            <p><i class="far fa-copyright"></i> Hướng dẫn cấu hình API ngân hàng ACB - 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        // Thêm hiệu ứng khi click vào các bước
+        document.querySelectorAll('.step').forEach(step => {
+            step.addEventListener('click', function() {
+                this.style.transform = 'translateY(-5px)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-3px)';
+                }, 150);
+            });
+        });
+        
+        // Mô phỏng hiệu ứng sao chép mật khẩu Google
+        const passwordDisplay = document.getElementById('google-password');
+        if (passwordDisplay) {
+            passwordDisplay.addEventListener('click', function() {
+                const originalText = this.textContent;
+                const password = originalText.replace(/\s/g, '');
+                
+                // Sao chép vào clipboard
+                navigator.clipboard.writeText(password).then(() => {
+                    this.textContent = 'Đã sao chép vào clipboard!';
+                    this.style.backgroundColor = '#e6f4ea';
+                    this.style.color = '#137333';
+                    this.style.border = '2px dashed #34A853';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.backgroundColor = '#f1f3f4';
+                        this.style.color = '#202124';
+                        this.style.border = '2px dashed #5f6368';
+                    }, 2000);
+                });
+            });
+        }
+        
+        // Hiệu ứng cho các nút liên kết
+        document.querySelectorAll('.link-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+        
+        // Xử lý tab
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Xóa active class từ tất cả các tab và nội dung
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Thêm active class cho tab được click
+                this.classList.add('active');
+                
+                // Hiển thị nội dung tương ứng
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
