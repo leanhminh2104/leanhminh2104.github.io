@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng dẫn cấu hình API ngân hàng ACB </title>
+    <title>Hướng dẫn cấu hình API ngân hàng ACB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0066b3;
+            --secondary-color: #00a1e0;
+            --accent-color: #ff6b35;
+            --success-color: #34A853;
+            --warning-color: #ffc107;
+            --danger-color: #d93025;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,49 +26,82 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f0 100%);
             color: #333;
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
+            position: relative;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
         
         header {
-            background: linear-gradient(to right, #0066b3, #00a1e0);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,202.7C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
         }
         
         header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 32px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .subtitle {
             font-size: 18px;
-            opacity: 0.9;
+            opacity: 0.95;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            z-index: 2;
         }
         
         .content {
-            padding: 30px;
+            padding: 40px;
         }
         
         .section {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px dashed #ddd;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 2px dashed #e9ecef;
+            position: relative;
         }
         
         .section:last-child {
@@ -64,132 +109,168 @@
         }
         
         .section-title {
-            color: #0066b3;
-            font-size: 24px;
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 26px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            position: relative;
+            padding-left: 60px;
         }
         
         .section-title i {
-            background-color: #0066b3;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: absolute;
+            left: 0;
+            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
         }
         
         .important-note {
-            background-color: #fff8e1;
-            border-left: 5px solid #ffc107;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 0 8px 8px 0;
+            background: linear-gradient(to right, #fff8e1, #fff3cd);
+            border-left: 6px solid var(--warning-color);
+            padding: 25px;
+            margin-bottom: 35px;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .important-note h3 {
-            color: #ff9800;
-            margin-bottom: 10px;
+            color: var(--warning-color);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-size: 20px;
         }
         
         .step {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 25px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
             border: 1px solid #e9ecef;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
         }
         
         .step:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .step-number {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #0066b3;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             font-weight: bold;
-            font-size: 20px;
-            margin-right: 15px;
+            font-size: 22px;
+            margin-right: 20px;
             flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
         }
         
         .step-title {
-            font-size: 20px;
-            color: #0066b3;
+            font-size: 22px;
+            color: var(--primary-color);
             font-weight: 600;
         }
         
         .step-content {
-            padding-left: 55px;
+            padding-left: 65px;
         }
         
         .step-content p {
             margin-bottom: 15px;
+            font-size: 16px;
         }
         
         .step-content ol, .step-content ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
+            margin-left: 25px;
+            margin-bottom: 20px;
         }
         
         .step-content li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            padding-left: 5px;
         }
         
         .image-guide {
-            margin: 20px 0;
+            margin: 25px 0;
             text-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
         }
         
         .image-guide img {
             max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-guide:hover img {
+            transform: scale(1.02);
         }
         
         .image-guide figcaption {
             font-style: italic;
-            color: #666;
+            color: var(--gray-color);
             margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-size: 14px;
         }
         
         .link-button {
             display: inline-flex;
             align-items: center;
-            background-color: #0066b3;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            padding: 12px 24px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 102, 179, 0.3);
         }
         
         .link-button:hover {
-            background-color: #005292;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 179, 0.4);
+            color: white;
         }
         
         .link-button i {
@@ -198,12 +279,12 @@
         
         .option-list {
             list-style-type: none;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
         .option-list li {
-            padding: 8px 0;
-            padding-left: 30px;
+            padding: 10px 0;
+            padding-left: 35px;
             position: relative;
         }
         
@@ -211,138 +292,380 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: #34A853;
+            color: var(--success-color);
             font-weight: bold;
+            font-size: 18px;
         }
         
         .password-display {
             background-color: #f1f3f4;
-            border: 2px dashed #5f6368;
-            padding: 15px;
+            border: 2px dashed var(--gray-color);
+            padding: 18px;
             text-align: center;
-            font-family: monospace;
-            font-size: 20px;
-            letter-spacing: 3px;
-            margin: 20px 0;
-            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 22px;
+            letter-spacing: 4px;
+            margin: 25px 0;
+            border-radius: 10px;
             color: #202124;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .password-display:hover {
+            background-color: #e8f0fe;
+            border-color: var(--primary-color);
         }
         
         .warning {
-            color: #d93025;
-            font-weight: 500;
+            color: var(--danger-color);
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(217, 48, 37, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--danger-color);
         }
         
         .note {
-            background-color: #e8f0fe;
+            background: linear-gradient(to right, #e8f0fe, #d2e3fc);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 15px;
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .website-config {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border: 2px dashed var(--primary-color);
+        }
+        
+        .config-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-input {
             padding: 12px 15px;
+            border: 2px solid #ced4da;
             border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1);
+        }
+        
+        .form-note {
+            font-size: 14px;
+            color: var(--gray-color);
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .password-field {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray-color);
+            cursor: pointer;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--gray-color);
+            font-size: 15px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .footer-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        .copyright {
             margin-top: 15px;
             font-size: 14px;
-            color: #1a73e8;
         }
         
-        .code-block {
-            background-color: #f5f5f5;
-            border-left: 4px solid #0066b3;
+        .donate-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #ff8c42 100%);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .donate-button:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalAppear 0.5s ease;
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: var(--gray-color);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--danger-color);
+        }
+        
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code img {
+            max-width: 250px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
             padding: 15px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            border-radius: 0 8px 8px 0;
+            background-color: white;
         }
         
-        .api-config {
-            background-color: #e8f4ff;
+        .bank-info {
+            background-color: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
         }
         
-        .config-item {
-            margin-bottom: 15px;
-        }
-        
-        .config-label {
-            font-weight: bold;
-            color: #0066b3;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .config-value {
-            background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-family: monospace;
-            word-break: break-all;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #5f6368;
-            font-size: 14px;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 20px;
-        }
-        
-        .tab-container {
-            margin-top: 20px;
-        }
-        
-        .tabs {
+        .info-item {
             display: flex;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         
-        .tab {
-            padding: 12px 20px;
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            border-bottom: none;
-            cursor: pointer;
-            margin-right: 5px;
-            border-radius: 8px 8px 0 0;
-            transition: background-color 0.3s;
+        .info-label {
+            font-weight: 600;
+            min-width: 120px;
+            color: var(--primary-color);
         }
         
-        .tab.active {
-            background-color: #0066b3;
-            color: white;
-            font-weight: bold;
+        .info-value {
+            color: var(--dark-color);
         }
         
-        .tab-content {
-            display: none;
+        .legal-warning {
+            background-color: rgba(217, 48, 37, 0.05);
             padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 0 0 8px 8px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid var(--danger-color);
         }
         
-        .tab-content.active {
-            display: block;
+        .legal-warning h4 {
+            color: var(--danger-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .success-badge {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .progress-step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 4px;
+            background-color: #e9ecef;
+            z-index: -1;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border: 4px solid white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-circle.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+        
+        .step-circle.completed {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-color);
+            text-align: center;
+        }
+        
+        .step-circle.active + .step-text {
+            color: var(--primary-color);
         }
         
         @media (max-width: 768px) {
             .container {
-                border-radius: 10px;
+                border-radius: 15px;
             }
             
             header {
-                padding: 20px 15px;
+                padding: 30px 15px;
+            }
+            
+            header h1 {
+                font-size: 26px;
             }
             
             .content {
-                padding: 20px;
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+                padding-left: 50px;
+            }
+            
+            .section-title i {
+                width: 40px;
+                height: 40px;
             }
             
             .step {
@@ -354,17 +677,23 @@
             }
             
             .step-header {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             
-            .tabs {
-                flex-direction: column;
+            .progress-indicator {
+                flex-wrap: wrap;
+                gap: 15px;
             }
             
-            .tab {
-                margin-right: 0;
-                margin-bottom: 5px;
-                border-radius: 8px;
+            .progress-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .donate-button {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
             }
         }
     </style>
@@ -372,19 +701,36 @@
 <body>
     <div class="container">
         <header>
+            <div class="logo">dichvusale.io.vn</div>
             <h1><i class="fas fa-university"></i> Hướng dẫn cấu hình API ngân hàng ACB</h1>
-            <p class="subtitle">Cấu hình nhận thông báo từ ACB ONE về email và tích hợp API trên website</p>
+            <p class="subtitle">Hướng dẫn chi tiết cấu hình nhận thông báo từ ACB ONE và tích hợp thanh toán tự động</p>
         </header>
         
         <div class="content">
-            <div class="important-note">
-                <h3><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng</h3>
-                <p>Để cấu hình nhận thông báo từ ACB, bạn cần có tài khoản ACB với quyền truy cập Internet Banking và ACB ONE. Đảm bảo bạn đã kích hoạt đầy đủ các tính năng bảo mật.</p>
+            <!-- Thanh tiến trình -->
+            <div class="progress-indicator">
+                <div class="progress-step">
+                    <div class="step-circle active">1</div>
+                    <div class="step-text">Cấu hình ACB ONE</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <div class="step-text">Lấy Passkey Email</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <div class="step-text">Cấu hình Website</div>
+                </div>
             </div>
             
             <!-- Phần 1: Cấu hình ACB ONE -->
             <div class="section">
                 <h2 class="section-title"><i class="fas fa-mobile-alt"></i> Phần 1: Cấu hình thông báo từ ACB ONE về email</h2>
+                
+                <div class="important-note">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Lưu ý quan trọng</h3>
+                    <p>Để cấu hình nhận thông báo từ ACB, bạn cần có tài khoản ACB với quyền truy cập Internet Banking và ACB ONE. Đảm bảo bạn đã kích hoạt đầy đủ các tính năng bảo mật.</p>
+                </div>
                 
                 <div class="step">
                     <div class="step-header">
@@ -407,16 +753,9 @@
                     <div class="step-content">
                         <p>Sau khi đăng nhập, thực hiện các bước sau:</p>
                         <ol>
-                            <li>Nhấn vào biểu tượng <strong>Menu</strong> (thường là 3 gạch ngang hoặc biểu tượng người dùng)</li>
                             <li>Chọn mục <strong>"Cài đặt"</strong> hoặc <strong>"Settings"</strong></li>
                             <li>Trong phần cài đặt, tìm mục <strong>"Thông báo"</strong> hoặc <strong>"Notification"</strong></li>
                         </ol>
-                        
-                        <div class="image-guide">
-                            <!-- Ảnh minh họa từ link được cung cấp -->
-                            <img src="https://i.postimg.cc/vHP1Whzt/1.png" alt="Giao diện cài đặt ACB ONE">
-                            <figcaption>Giao diện cài đặt thông báo trên ACB ONE</figcaption>
-                        </div>
                     </div>
                 </div>
                 
@@ -430,15 +769,16 @@
                         <ol>
                             <li>Tìm và chọn mục <strong>"Nhận thông báo qua Email"</strong></li>
                             <li>Bật tính năng nhận thông báo qua Email</li>
-                            <li>Nhập địa chỉ email mà bạn muốn nhận thông báo: <strong>admin@dichvusale.io.vn</strong></li>
+                            <li>Nhập địa chỉ email mà bạn muốn nhận thông báo: Ví dụ: <strong>admin@dichvusale.io.vn</strong></li>
                             <li>Chọn các loại thông báo bạn muốn nhận:
                                 <ul class="option-list">
                                     <li>Thông báo biến động số dư</li>
                                     <li>Thông báo giao dịch</li>
                                     <li>Thông báo khuyến mãi</li>
                                 </ul>
+                            <b>Ở đây bạn hãy chọn thông báo biến động số dư</b>
                             </li>
-                            <li>Xác nhận cài đặt bằng mã OTP từ ACB Safekey</li>
+                            <li>Xác nhận cài đặt bằng mã OTP từ ACB Safekey (nếu có)</li>
                         </ol>
                         
                         <div class="note">
@@ -456,15 +796,22 @@
                         <p>Hoàn tất quá trình cấu hình:</p>
                         <ol>
                             <li>Nhấn nút <strong>"Lưu"</strong> hoặc <strong>"Xác nhận"</strong></li>
-                            <li>Kiểm tra email <strong>admin@dichvusale.io.vn</strong> để xác nhận đăng ký</li>
+                            <li>Kiểm tra email để xác nhận đăng ký</li>
                             <li>Nhấn vào link xác nhận trong email (nếu có)</li>
                             <li>Quay lại ứng dụng ACB ONE để kiểm tra trạng thái đã kích hoạt</li>
+                            <li>Bạn có thể dùng ngân hàng khác chuyển khoản vào để xem ACB có thông báo về email không</li>
+                            <li>Nếu có thì qua bước tiếp theo <span class="success-badge">Thành công!</span></li>
                         </ol>
                         
                         <div class="warning">
                             <i class="fas fa-exclamation-circle"></i> Lưu ý: Một số cài đặt có thể yêu cầu xác thực qua ACB Safekey hoặc Face ID nếu đã kích hoạt.
                         </div>
                     </div>
+                </div>
+                
+                <div class="image-guide">
+                    <img src="https://i.postimg.cc/vHP1Whzt/1.png" alt="Các Bước cài đặt thông báo trên ACB ONE">
+                    <figcaption>Các Bước cài đặt thông báo trên ACB ONE</figcaption>
                 </div>
             </div>
             
@@ -562,273 +909,101 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="image-guide">
+                    <img src="https://i.postimg.cc/SQZw6YBc/cai-nao.png" alt="Các Bước Lấy Passkey Email">
+                    <figcaption>Các Bước Lấy Passkey Email</figcaption>
+                </div>
             </div>
             
             <!-- Phần 3: Cấu hình website -->
             <div class="section">
                 <h2 class="section-title"><i class="fas fa-globe"></i> Phần 3: Cấu hình website nhận thông báo</h2>
                 
-                <div class="tab-container">
-                    <div class="tabs">
-                        <div class="tab active" data-tab="webhook">Cấu hình Webhook</div>
-                        <div class="tab" data-tab="api">Cấu hình API</div>
-                        <div class="tab" data-tab="email">Cấu hình Email Server</div>
-                    </div>
+                <div class="important-note">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Hướng dẫn cấu hình website</h3>
+                    <p>Bước này yêu cầu bạn điền thông tin cấu hình vào website của dichvusale.io.vn. <strong>Không cần viết code</strong> - chỉ cần điền thông tin vào form dưới đây.</p>
+                </div>
+                
+                <div class="website-config">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-cogs"></i> Cấu hình thanh toán ACB trên website
+                    </h3>
                     
-                    <div class="tab-content active" id="webhook">
-                        <h3>Cấu hình Webhook nhận thông báo từ ACB</h3>
-                        <p>Webhook là cách hiệu quả nhất để nhận thông báo trực tiếp từ ACB về website của bạn.</p>
-                        
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">1</div>
-                                <h2 class="step-title">Tạo endpoint nhận webhook</h2>
-                            </div>
-                            <div class="step-content">
-                                <p>Tạo một endpoint trên server của bạn để nhận thông báo từ ACB. Ví dụ với PHP:</p>
-                                <div class="code-block">
-// webhook.php - Endpoint nhận thông báo từ ACB<br>
-&lt;?php<br>
-// Log thông tin nhận được<br>
-$log_data = [<br>
-&nbsp;&nbsp;'timestamp' => date('Y-m-d H:i:s'),<br>
-&nbsp;&nbsp;'headers' => getallheaders(),<br>
-&nbsp;&nbsp;'body' => file_get_contents('php://input'),<br>
-&nbsp;&nbsp;'get' => $_GET,<br>
-&nbsp;&nbsp;'post' => $_POST<br>
-];<br>
-<br>
-// Lưu log vào file<br>
-file_put_contents('acb_webhook.log', json_encode($log_data, JSON_PRETTY_PRINT) . "\n\n", FILE_APPEND);<br>
-<br>
-// Xử lý thông báo<br>
-$data = json_decode(file_get_contents('php://input'), true);<br>
-<br>
-if ($data && isset($data['type'])) {<br>
-&nbsp;&nbsp;// Xử lý theo loại thông báo<br>
-&nbsp;&nbsp;switch($data['type']) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;case 'balance_change':<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Xử lý biến động số dư<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;process_balance_change($data);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;case 'transaction':<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Xử lý giao dịch<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;process_transaction($data);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-&nbsp;&nbsp;}<br>
-}<br>
-<br>
-// Trả về response thành công<br>
-http_response_code(200);<br>
-echo json_encode(['status' => 'success', 'message' => 'Webhook received']);<br>
-<br>
-function process_balance_change($data) {<br>
-&nbsp;&nbsp;// Xử lý biến động số dư<br>
-&nbsp;&nbsp;// Lưu vào database, gửi thông báo, v.v.<br>
-}<br>
-?&gt;
-                                </div>
-                            </div>
+                    <div class="config-form">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-credit-card"></i> Số tài khoản ACB:</label>
+                            <input type="text" class="form-input" placeholder="Nhập số tài khoản ACB của bạn" id="account-number">
+                            <div class="form-note">Ví dụ: 22002921</div>
                         </div>
                         
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">2</div>
-                                <h2 class="step-title">Cấu hình webhook trên ACB</h2>
-                            </div>
-                            <div class="step-content">
-                                <p>Liên hệ với bộ phận hỗ trợ kỹ thuật của ACB để đăng ký webhook. Cung cấp các thông tin sau:</p>
-                                <ul>
-                                    <li>URL endpoint webhook của bạn (ví dụ: https://yourdomain.com/webhook/acb)</li>
-                                    <li>Loại thông báo bạn muốn nhận</li>
-                                    <li>Mã xác thực (nếu có)</li>
-                                </ul>
-                            </div>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-user"></i> Tên chủ tài khoản:</label>
+                            <input type="text" class="form-input" placeholder="Nhập tên chủ tài khoản" id="account-name">
+                            <div class="form-note">Tên chủ tài khoản ACB (như trong thẻ ngân hàng)</div>
                         </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-envelope"></i> Email nhận thông báo:</label>
+                            <input type="email" class="form-input" placeholder="Nhập email nhận thông báo từ ACB" id="email-notification" value="admin@dichvusale.io.vn">
+                            <div class="form-note">Email bạn đã cấu hình trong ACB ONE để nhận thông báo</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-key"></i> Passkey Email (từ Google):</label>
+                            <div class="password-field">
+                                <input type="password" class="form-input" placeholder="Nhập Passkey email đã lấy từ Google" id="email-passkey">
+                                <button type="button" class="password-toggle" id="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-note">Passkey 16 ký tự bạn đã lấy từ Google trong Phần 2</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-bell"></i> Loại thông báo:</label>
+                            <select class="form-input" id="notification-type">
+                                <option value="balance">Thông báo biến động số dư</option>
+                                <option value="transaction">Thông báo giao dịch</option>
+                                <option value="all">Tất cả thông báo</option>
+                            </select>
+                            <div class="form-note">Chọn loại thông báo bạn muốn nhận từ ACB</div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-lightbulb"></i> Sau khi điền đầy đủ thông tin, nhấn nút "Lưu cấu hình" để hoàn tất. Hệ thống sẽ tự động xử lý và tích hợp với ACB.
+                        </div>
+                        
+                        <button type="button" class="link-button" id="save-config" style="align-self: flex-start;">
+                            <i class="fas fa-save"></i> Lưu cấu hình
+                        </button>
                     </div>
-                    
-                    <div class="tab-content" id="api">
-                        <h3>Cấu hình API kết nối trực tiếp với ACB</h3>
-                        <p>ACB cung cấp API chính thức cho đối tác tích hợp. Bạn cần đăng ký với ACB để nhận thông tin kết nối.</p>
-                        
-                        <div class="api-config">
-                            <h4>Thông tin cấu hình API ACB mẫu:</h4>
-                            <div class="config-item">
-                                <span class="config-label">Endpoint API:</span>
-                                <div class="config-value">https://api.acb.com.vn/v1/</div>
-                            </div>
-                            <div class="config-item">
-                                <span class="config-label">Client ID:</span>
-                                <div class="config-value">acb_client_123456789</div>
-                            </div>
-                            <div class="config-item">
-                                <span class="config-label">Client Secret:</span>
-                                <div class="config-value">acb_secret_abcdef123456</div>
-                            </div>
-                            <div class="config-item">
-                                <span class="config-label">API Key:</span>
-                                <div class="config-value">acb_api_key_987654321</div>
-                            </div>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">1</div>
-                                <h2 class="step-title">Đăng ký API với ACB</h2>
-                            </div>
-                            <div class="step-content">
-                                <p>Liên hệ với bộ phận Đối tác - Khách hàng doanh nghiệp của ACB để đăng ký sử dụng API.</p>
-                                <p>Bạn sẽ cần cung cấp:</p>
-                                <ul>
-                                    <li>Thông tin doanh nghiệp</li>
-                                    <li>Mục đích sử dụng API</li>
-                                    <li>Phạm vi dữ liệu cần truy cập</li>
-                                    <li>Thông tin kỹ thuật (IP whitelist, callback URL, v.v.)</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">2</div>
-                                <h2 class="step-title">Triển khai kết nối API</h2>
-                            </div>
-                            <div class="step-content">
-                                <p>Sau khi nhận được thông tin đăng ký từ ACB, thực hiện kết nối:</p>
-                                <div class="code-block">
-// Ví dụ kết nối API ACB bằng PHP<br>
-$api_url = "https://api.acb.com.vn/v1/";<br>
-$client_id = "your_client_id";<br>
-$client_secret = "your_client_secret";<br>
-<br>
-// Lấy access token<br>
-$token_url = $api_url . "oauth/token";<br>
-$token_data = [<br>
-&nbsp;&nbsp;'grant_type' => 'client_credentials',<br>
-&nbsp;&nbsp;'client_id' => $client_id,<br>
-&nbsp;&nbsp;'client_secret' => $client_secret<br>
-];<br>
-<br>
-$ch = curl_init($token_url);<br>
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);<br>
-curl_setopt($ch, CURLOPT_POST, true);<br>
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($token_data));<br>
-$response = curl_exec($ch);<br>
-$token_info = json_decode($response, true);<br>
-<br>
-if (isset($token_info['access_token'])) {<br>
-&nbsp;&nbsp;$access_token = $token_info['access_token'];<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;// Sử dụng token để gọi API<br>
-&nbsp;&nbsp;$api_endpoint = $api_url . "transactions";<br>
-&nbsp;&nbsp;$headers = [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;'Authorization: Bearer ' . $access_token,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;'Content-Type: application/json'<br>
-&nbsp;&nbsp;];<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;curl_setopt($ch, CURLOPT_URL, $api_endpoint);<br>
-&nbsp;&nbsp;curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);<br>
-&nbsp;&nbsp;curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);<br>
-&nbsp;&nbsp;$result = curl_exec($ch);<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;// Xử lý kết quả<br>
-&nbsp;&nbsp;$transactions = json_decode($result, true);<br>
-}<br>
-<br>
-curl_close($ch);
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="email">
-                        <h3>Cấu hình Email Server nhận thông báo từ ACB</h3>
-                        <p>Nếu ACB chỉ gửi thông báo qua email, bạn có thể cấu hình server email để xử lý tự động.</p>
-                        
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">1</div>
-                                <h2 class="step-title">Cấu hình email server</h2>
-                            </div>
-                            <div class="step-content">
-                                <p>Cấu hình email server của bạn để nhận và xử lý email từ ACB:</p>
-                                <div class="code-block">
-// Cấu hình email server (Postfix) để chuyển tiếp email đến script xử lý<br>
-// Thêm vào /etc/postfix/virtual<br>
-admin@dichvusale.io.vn acb-processor<br>
-<br>
-// Tạo script xử lý email<br>
-#!/bin/bash<br>
-# /usr/local/bin/acb-email-processor.sh<br>
-<br>
-# Đọc email từ stdin<br>
-EMAIL=$(cat)<br>
-<br>
-# Trích xuất thông tin quan trọng<br>
-SUBJECT=$(echo "$EMAIL" | grep -i "^subject:" | head -1)<br>
-BODY=$(echo "$EMAIL" | sed -n '/^$/,$p' | tail -n +2)<br>
-<br>
-# Lưu email để xử lý<br>
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)<br>
-echo "$EMAIL" > "/var/log/acb-emails/email_$TIMESTAMP.txt"<br>
-<br>
-# Gọi script PHP xử lý<br>
-php /var/www/html/process_acb_email.php "$SUBJECT" "$BODY"
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-header">
-                                <div class="step-number">2</div>
-                                <h2 class="step-title">Xử lý email tự động</h2>
-                            </div>
-                            <div class="step-content">
-                                <p>Tạo script xử lý email từ ACB:</p>
-                                <div class="code-block">
-// process_acb_email.php - Xử lý email từ ACB<br>
-&lt;?php<br>
-// Lấy tham số từ command line<br>
-$subject = $argv[1] ?? '';<br>
-$body = $argv[2] ?? '';<br>
-<br>
-// Xác định loại thông báo dựa trên tiêu đề<br>
-if (strpos($subject, 'biến động số dư') !== false) {<br>
-&nbsp;&nbsp;// Xử lý thông báo biến động số dư<br>
-&nbsp;&nbsp;process_balance_notification($body);<br>
-} elseif (strpos($subject, 'giao dịch') !== false) {<br>
-&nbsp;&nbsp;// Xử lý thông báo giao dịch<br>
-&nbsp;&nbsp;process_transaction_notification($body);<br>
-} elseif (strpos($subject, 'ACB') !== false) {<br>
-&nbsp;&nbsp;// Xử lý các thông báo khác từ ACB<br>
-&nbsp;&nbsp;process_acb_notification($body);<br>
-}<br>
-<br>
-function process_balance_notification($body) {<br>
-&nbsp;&nbsp;// Trích xuất thông tin từ email<br>
-&nbsp;&nbsp;// Lưu vào database<br>
-&nbsp;&nbsp;// Gửi thông báo đến hệ thống<br>
-&nbsp;&nbsp;file_put_contents('/var/log/acb-emails/balance.log', date('Y-m-d H:i:s') . " - $body\n", FILE_APPEND);<br>
-}<br>
-?&gt;
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="image-guide">
+                    <img src="https://i.postimg.cc/15S4xTWk/cai-nao-(1).png" alt="Các Bước Lấy Passkey Email">
+                    <figcaption>Các Bước Lấy Passkey Email</figcaption>
+                </div>
+                
+                <div class="legal-warning">
+                    <h4><i class="fas fa-gavel"></i> THÔNG BÁO QUAN TRỌNG</h4>
+                    <p><strong>Bản quyền thuộc về dichvusale.io.vn</strong> - Mọi hành vi sao chép, sử dụng trái phép đều bị nghiêm cấm.</p>
+                    <p>Hướng dẫn này chỉ phục vụ mục đích thông tin và hỗ trợ kỹ thuật. <strong>Admin không chịu trách nhiệm</strong> đối với mọi hành vi lợi dụng, sử dụng sai mục đích hoặc vi phạm pháp luật.</p>
+                    <p>Người dùng tự chịu trách nhiệm về việc tuân thủ các quy định của ngân hàng và pháp luật Việt Nam khi sử dụng dịch vụ.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-header">
-                        <div class="step-number">3</div>
+                        <div class="step-number">6</div>
                         <h2 class="step-title">Kiểm tra và xác nhận</h2>
                     </div>
                     <div class="step-content">
                         <p>Sau khi cấu hình, thực hiện kiểm tra:</p>
                         <ol>
                             <li>Thực hiện một giao dịch thử trên tài khoản ACB</li>
-                            <li>Kiểm tra email nhận được thông báo</li>
-                            <li>Xác nhận hệ thống của bạn đã xử lý thông báo</li>
-                            <li>Kiểm tra log hệ thống để đảm bảo không có lỗi</li>
+                            <li>Nội dung chuyển khoản trùng với nội dung của website</li>
+                            <li>Nếu thấy cộng tiền thì thành công</li>
+                            <li>Nếu không thấy thì kiểu tra lại các bước trên</li>
+                            <li>Vẫn ko được tì liên hệ admin để được hưỡng dẫn</li>
                         </ol>
                         
                         <div class="note">
@@ -840,13 +1015,110 @@ function process_balance_notification($body) {<br>
         </div>
         
         <footer>
-            <p>Hướng dẫn này chỉ phục vụ mục đích thông tin. Luôn đảm bảo bảo vệ thông tin đăng nhập và tuân thủ chính sách bảo mật của ACB.</p>
-            <p><i class="far fa-copyright"></i> Hướng dẫn cấu hình API ngân hàng ACB - 2023</p>
+            <div class="footer-links">
+                <a href="/../../../" class="footer-link">Trang chủ</a>
+                <a href="https://dichvusale.io.vn" class="footer-link">Liên hệ</a>
+            </div>
+            
+            <p class="copyright">
+                &copy; <span id="current-year">2026</span> - Bản quyền thuộc về <a href="https://dichvusale.io.vn" class="footer-link">DVSLAM</a><br>
+                Mọi hành vi sao chép, sử dụng trái phép đều bị nghiêm cấm.<br>
+                <small>Hướng dẫn này chỉ phục vụ mục đích thông tin. Admin không chịu trách nhiệm với mọi hành vi lợi dụng làm trái pháp luật.</small>
+            </p>
         </footer>
+    </div>
+    
+    <!-- Nút Nuôi Tôi -->
+    <button class="donate-button" id="donate-btn">
+        <i class="fas fa-heart"></i>
+    </button>
+    
+    <!-- Modal QR Code -->
+    <div class="modal" id="donate-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">
+                <i class="fas fa-donate"></i> Ủng hộ Admin
+            </h2>
+            <p style="text-align: center; margin-bottom: 20px;">Cảm ơn bạn đã ủng hộ! Mọi đóng góp sẽ giúp duy trì và phát triển dịch vụ.</p>
+            
+            <div class="qr-code">
+                <div style="width: 250px; height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 10px; font-weight: bold; color: var(--gray-color);">
+                    [QR Code sẽ hiển thị tại đây]
+                </div>
+                <p style="margin-top: 10px; font-style: italic;">Quét mã QR để chuyển khoản</p>
+            </div>
+            
+            <div class="bank-info">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">Thông tin chuyển khoản</h4>
+                <div class="info-item">
+                    <span class="info-label">Ngân hàng:</span>
+                    <span class="info-value">ACB</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Số tài khoản:</span>
+                    <span class="info-value">22002921</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tên tài khoản:</span>
+                    <span class="info-value">Lê Văn Anh Minh</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Nội dung:</span>
+                    <span class="info-value">Nuôi Admin DA api bank acb</span>
+                </div>
+            </div>
+            
+            <div class="note" style="margin-top: 20px;">
+                <i class="fas fa-info-circle"></i> Sau khi chuyển khoản, hệ thống sẽ tự động xác nhận và gửi thông báo cảm ơn đến bạn.
+            </div>
+        </div>
     </div>
 
     <script>
-        // Thêm hiệu ứng khi click vào các bước
+        // Lấy năm hiện tại
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Cập nhật tiến trình
+        function updateProgress() {
+            const sections = document.querySelectorAll('.section');
+            const progressCircles = document.querySelectorAll('.step-circle');
+            
+            // Đặt tất cả về không active
+            progressCircles.forEach(circle => {
+                circle.classList.remove('active', 'completed');
+            });
+            
+            // Thêm class active cho section đầu tiên
+            progressCircles[0].classList.add('active');
+            
+            // Thêm sự kiện scroll để cập nhật tiến trình
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    
+                    if (scrollPosition >= sectionTop) {
+                        progressCircles.forEach(circle => circle.classList.remove('active'));
+                        
+                        // Đánh dấu tất cả các bước trước đó là completed
+                        for (let i = 0; i <= index; i++) {
+                            if (i < progressCircles.length) {
+                                progressCircles[i].classList.add('completed');
+                            }
+                        }
+                        
+                        // Đánh dấu bước hiện tại là active
+                        if (index < progressCircles.length - 1) {
+                            progressCircles[index + 1].classList.add('active');
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Hiệu ứng cho các bước
         document.querySelectorAll('.step').forEach(step => {
             step.addEventListener('click', function() {
                 this.style.transform = 'translateY(-5px)';
@@ -887,20 +1159,119 @@ function process_balance_notification($body) {<br>
             });
         });
         
-        // Xử lý tab
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Xóa active class từ tất cả các tab và nội dung
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        // Xử lý nút lưu cấu hình
+        document.getElementById('save-config').addEventListener('click', function() {
+            const accountNumber = document.getElementById('account-number').value;
+            const accountName = document.getElementById('account-name').value;
+            const email = document.getElementById('email-notification').value;
+            const passkey = document.getElementById('email-passkey').value;
+            
+            if (!accountNumber || !accountName || !email || !passkey) {
+                alert('Vui lòng điền đầy đủ thông tin cấu hình!');
+                return;
+            }
+            
+            // Hiệu ứng loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang lưu...';
+            this.disabled = true;
+            
+            // Mô phỏng lưu cấu hình
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Đã lưu thành công!';
+                this.style.background = 'linear-gradient(135deg, #34A853 0%, #2E8B57 100%)';
                 
-                // Thêm active class cho tab được click
-                this.classList.add('active');
+                // Hiển thị thông báo thành công
+                const successNote = document.createElement('div');
+                successNote.className = 'note';
+                successNote.innerHTML = '<i class="fas fa-check-circle"></i> <strong>Cấu hình đã được lưu thành công!</strong> Hệ thống sẽ tự động tích hợp với ACB trong vài phút.';
                 
-                // Hiển thị nội dung tương ứng
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
+                const configForm = document.querySelector('.config-form');
+                configForm.appendChild(successNote);
+                
+                // Reset nút sau 3 giây
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-save"></i> Lưu cấu hình';
+                    this.disabled = false;
+                    this.style.background = 'linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)';
+                }, 3000);
+            }, 1500);
+        });
+        
+        // Xử lý hiển thị/ẩn mật khẩu
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordField = document.getElementById('email-passkey');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Xử lý modal quyên góp
+        const donateBtn = document.getElementById('donate-btn');
+        const donateModal = document.getElementById('donate-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        donateBtn.addEventListener('click', function() {
+            donateModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeModal.addEventListener('click', function() {
+            donateModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Đóng modal khi click bên ngoài
+        donateModal.addEventListener('click', function(e) {
+            if (e.target === donateModal) {
+                donateModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Cập nhật tiến trình khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            
+            // Thêm hiệu ứng khi cuộn đến các phần
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Quan sát tất cả các section và step
+            document.querySelectorAll('.section, .step').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
             });
+            
+            // Khởi tạo với hiệu ứng
+            setTimeout(() => {
+                document.querySelectorAll('.section, .step').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.style.opacity = 1;
+                        el.style.transform = 'translateY(0)';
+                    }
+                });
+            }, 100);
         });
     </script>
 </body>
