@@ -1,0 +1,73 @@
+﻿# ============================================================
+# .gitignore cho leanhminh2104.github.io
+# Bao ve: key, token, env, file nhay cam
+# ============================================================
+
+# Bien moi truong - CHUA PASSWORD / SECRET
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.staging
+
+# Private keys and certificates - NGUY HIEM TUYET DOI
+*.pem
+*.key
+*.p12
+*.pfx
+*.ppk
+id_rsa
+id_rsa.pub
+id_dsa
+id_ed25519
+
+# Database dumps - CO DU LIEU THAT
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# Log files
+*.log
+logs/
+npm-debug.log*
+
+# Backup / Temp files
+*.bak
+*.tmp
+*.orig
+*.swp
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor
+.vscode/settings.json
+.idea/
+
+# Node.js
+node_modules/
+
+# PHP / Composer
+vendor/
+
+# Build output
+dist/
+build/
+.cache/
+
+# Deploy scripts noi bo
+deploy.bat
+*.bat
+
+# Skill files noi bo AI agent
+.agents/
+
+# Config noi bo
+config.local.php
+config.local.js
