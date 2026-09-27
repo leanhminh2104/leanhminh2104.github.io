@@ -37,32 +37,8 @@
     <div id="stars3"></div>
 </div>
 
-<!-- TOPBAR / HEADER -->
-<header class="blog-topbar">
-    <div class="blog-header-inner">
-        <a href="../../" class="blog-logo">
-            <div class="blog-logo-icon">
-                <i class="fas fa-pen-nib"></i>
-            </div>
-            <span>leanhminh</span>
-        </a>
-
-        <nav class="blog-nav">
-            <a href="../../">Trang chủ</a>
-            <a href="../../tech/">Công nghệ</a>
-            <a href="../../life/">Cuộc sống</a>
-        </nav>
-
-        <div class="topbar-actions">
-            <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub" aria-label="GitHub Profile">
-                <i class="fab fa-github"></i>
-            </a>
-            <button type="button" class="icon-btn hamburger-mobile" id="hamburger-btn" aria-label="Mở menu" style="display:none;">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </div>
-</header>
+<!-- TOPBAR / HEADER (Tự động tạo bởi components.js) -->
+<div id="site-header"></div>
 
 <!-- MAIN CONTENT -->
 <main class="blog-main">
@@ -192,119 +168,19 @@ helloWorld();</code></pre>
 
         </div><!-- /article-layout -->
 
+        <!-- Vị trí Quảng Cáo / Gợi Ý Khóa Học -->
+        <div class="ad-slot-container" data-slot="article"></div>
+
     </div><!-- /blog-container -->
 </main>
 
-<!-- Footer -->
-<footer class="blog-footer">
-    <div class="blog-container">
-        Made with <span style="color:#ef4444;">♥</span> by <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer">Lê Anh Minh</a>
-        <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.35rem;">© 2026 leanhminh2104 · Chúc bạn một ngày tràn đầy cảm hứng!</div>
-    </div>
-</footer>
+<!-- Chân trang & Mobile Bottom Dock (Tự động tạo bởi components.js) -->
+<div id="site-footer"></div>
+<div id="site-bottom-dock"></div>
 
-<!-- Back to top -->
-<button class="back-to-top" id="back-to-top" aria-label="Lên đầu trang">
-    <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- MOBILE BOTTOM NAV -->
-<div class="bottom-nav-wrapper">
-    <div class="bottom-nav-inner">
-        <div class="bottom-nav-glass">
-            <div class="bottom-nav-gradients"></div>
-            <nav class="bottom-nav-menu">
-                <a href="../../" class="nav-item">
-                    <i class="fas fa-house nav-icon"></i>
-                    <span class="nav-text">Trang chủ</span>
-                </a>
-                <a href="../../tech/" class="nav-item">
-                    <i class="fas fa-code nav-icon"></i>
-                    <span class="nav-text">Công nghệ</span>
-                </a>
-
-                <div class="fab-container">
-                    <div class="fab-ping"></div>
-                    <a href="../../" class="fab-btn" title="Trang chủ" aria-label="Trang chủ">
-                        <i class="fas fa-pen-nib"></i>
-                    </a>
-                    <div class="fab-placeholder"></div>
-                    <span class="fab-text">Khám phá</span>
-                </div>
-
-                <a href="../../life/" class="nav-item">
-                    <i class="fas fa-heart nav-icon"></i>
-                    <span class="nav-text">Cuộc sống</span>
-                </a>
-                <button type="button" class="nav-item" id="open-drawer-btn" aria-label="Mở menu">
-                    <i class="fas fa-bars nav-icon"></i>
-                    <span class="nav-text">Menu</span>
-                </button>
-            </nav>
-        </div>
-    </div>
-</div>
-
-<!-- MOBILE DRAWER -->
-<div class="drawer-overlay" id="mobile-drawer-overlay"></div>
-<div class="drawer-sheet" id="mobile-drawer">
-    <div class="drawer-handle"></div>
-    <div class="drawer-head">
-        <div style="display:flex; align-items:center; gap:0.6rem;">
-            <div class="blog-logo-icon" style="width:30px; height:30px; font-size:0.8rem;">
-                <i class="fas fa-pen-nib"></i>
-            </div>
-            <span style="font-weight:700; font-size:0.95rem; color:#fff;">leanhminh</span>
-        </div>
-        <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Đóng menu">
-            <i class="fas fa-xmark"></i>
-        </button>
-    </div>
-    <div class="drawer-body">
-        <div class="drawer-section-label">Điều hướng</div>
-        <a href="../../" class="drawer-item">
-            <div class="drawer-item-icon" style="background:rgba(168,85,247,0.15); color:#c084fc;">
-                <i class="fas fa-house"></i>
-            </div>
-            <div class="drawer-item-text">
-                <div class="drawer-item-title">Trang chủ</div>
-                <div class="drawer-item-desc">Tất cả bài viết mới nhất</div>
-            </div>
-        </a>
-        <a href="../../tech/" class="drawer-item">
-            <div class="drawer-item-icon" style="background:rgba(56,189,248,0.15); color:#38bdf8;">
-                <i class="fas fa-code"></i>
-            </div>
-            <div class="drawer-item-text">
-                <div class="drawer-item-title">Công nghệ</div>
-                <div class="drawer-item-desc">Laravel, PHP, JavaScript, DevOps</div>
-            </div>
-        </a>
-        <a href="../../life/" class="drawer-item">
-            <div class="drawer-item-icon" style="background:rgba(52,211,153,0.15); color:#34d399;">
-                <i class="fas fa-heart"></i>
-            </div>
-            <div class="drawer-item-text">
-                <div class="drawer-item-title">Cuộc sống</div>
-                <div class="drawer-item-desc">Tâm sự nghề nghiệp, mindset, cân bằng</div>
-            </div>
-        </a>
-
-        <div class="drawer-divider"></div>
-        <div class="drawer-section-label">Liên kết ngoài</div>
-        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="drawer-item">
-            <div class="drawer-item-icon" style="background:rgba(255,255,255,0.08); color:#94a3b8;">
-                <i class="fab fa-github"></i>
-            </div>
-            <div class="drawer-item-text">
-                <div class="drawer-item-title">GitHub</div>
-                <div class="drawer-item-desc">@leanhminh2104</div>
-            </div>
-        </a>
-    </div>
-</div>
-
-<!-- JS dùng chung -->
+<!-- Core & Components Scripts -->
+<script src="../../assets/js/blog-data.js"></script>
+<script src="../../assets/js/components.js"></script>
 <script src="../../assets/js/core.js"></script>
 </body>
 </html>
