@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
+
+    <!-- SEO & OpenGraph -->
+    <meta name="description" content="Hướng dẫn chi tiết từng bước cấu hình thông báo biến động số dư ACB ONE về Email và kết nối API tự động hóa thanh toán cho website.">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng">
+    <meta property="og:description" content="Từng bước cấu hình nhận thông báo số dư từ ACB ONE về Gmail, lấy App Password và kết nối hệ thống tự động thanh toán.">
+    <title>Cấu Hình Thông Báo ACB Về Email & API — Lê Anh Minh Blog</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../../assets/css/blog.css">
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Stars Background -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<!-- TOPBAR / HEADER (Tự động tạo bởi components.js) -->
+<div id="site-header"></div>
+
+<!-- MAIN CONTENT -->
+<main class="blog-main">
+    <div class="blog-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../"><i class="fas fa-code"></i> Công nghệ</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Cấu hình ACB Email API</span>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="article-header animate-up">
+            <div class="article-category-badge">
+                <span class="badge badge-info"><i class="fas fa-code"></i> Công nghệ</span>
+                <span class="badge badge-warning">Mới</span>
+            </div>
+
+            <h1 class="article-title">
+                Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & Kết Nối API Ngân Hàng
+            </h1>
+
+            <div class="article-meta">
+                <div class="author-info">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <div>
+                        <div class="author-name">Lê Anh Minh</div>
+                        <div class="author-role">Backend Developer</div>
+                    </div>
+                </div>
+
+                <div class="meta-divider"></div>
+
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>26 Tháng 3, 2026</span>
+                </div>
+
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="reading-time">7 phút đọc</span>
+                </div>
+
+                <div class="meta-item">
+                    <i class="fas fa-eye"></i>
+                    <span>Lượt xem: <img src="https://komarev.com/ghpvc/?username=leanhminh2104-acb-api&label=%20&color=6366f1&style=flat-square" alt="views" style="vertical-align:middle; display:inline-block; margin:0;" /></span>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="article-tags">
+                <span class="badge badge-primary">ACB</span>
+                <span class="badge badge-primary">Banking API</span>
+                <span class="badge badge-primary">Gmail SMTP</span>
+                <span class="badge badge-primary">Webhook</span>
+                <span class="badge badge-primary">Automation</span>
+            </div>
+        </header>
+
+        <!-- Article Layout -->
+        <div class="article-layout">
+
+            <!-- Content Body -->
+            <article class="article-body">
+
+                <!-- Sapo / Lead paragraph -->
+                <p class="article-lead">
+                    Trong các dự án thương mại điện tử, cổng nạp thẻ hoặc website bán hàng, việc tự động hóa xác nhận giao dịch ngân hàng là yếu tố sống còn giúp nâng cao trải nghiệm khách hàng. Bài viết này hướng dẫn chi tiết từ A-Z cách thiết lập nhận thông báo biến động số dư ACB ONE qua email và tích hợp webhook xử lý đơn hàng tự động 24/7.
+                </p>
+
+                <!-- Section 1 -->
+                <h2><i class="fas fa-mobile-screen-button" style="color:var(--primary);"></i> Phần 1: Cấu hình thông báo ACB ONE gửi về Email</h2>
+                
+                <blockquote>
+                    <i class="fas fa-circle-info"></i> <b>Lưu ý quan trọng:</b> Hãy đảm bảo ứng dụng <b>ACB ONE</b> của bạn đã được cập nhật phiên bản mới nhất trên App Store hoặc Google Play để có đầy đủ menu Cài đặt thông báo.
+                </blockquote>
+
+                <h3>Bước 1.1: Đăng nhập vào ACB ONE</h3>
+                <p>Mở ứng dụng ACB ONE trên điện thoại, đăng nhập bằng vân tay, FaceID hoặc mật khẩu tài khoản ngân hàng của bạn.</p>
+
+                <h3>Bước 2.1: Truy cập mục Cài đặt thông báo</h3>
+                <ul>
+                    <li>Chọn icon <b>Cá nhân / Menu</b> ở góc dưới màn hình.</li>
+                    <li>Tìm và chọn mục <b>Cài đặt thông báo (Notifications Settings)</b>.</li>
+                    <li>Chọn <b>Thông báo biến động số dư</b>.</li>
+                </ul>
+
+                <h3>Bước 3.1: Kích hoạt gửi biến động số dư qua Email</h3>
+                <p>Mặc định ACB ONE có thể chỉ bật thông báo OTT (qua app). Để kết nối server tự động đọc email:</p>
+                <ul>
+                    <li>Bật tùy chọn <b>Nhận thông báo qua Email</b>.</li>
+                    <li>Điền chính xác địa chỉ Gmail / Email mà bạn dự định dùng để làm hộp thư lắng nghe biến động.</li>
+                    <li>Xác thực mã <b>OTP / Safekey</b> để hoàn tất việc kích hoạt.</li>
+                </ul>
+
+                <hr>
+
+                <!-- Section 2 -->
+                <h2><i class="fas fa-key" style="color:var(--primary);"></i> Phần 2: Tạo App Password (Mật khẩu ứng dụng) Google</h2>
+
+                <p>Để hệ thống backend (Laravel, NodeJS, Python) có thể tự động đọc email từ hộp thư Gmail qua giao thức IMAP/POP3, Google bắt buộc bạn phải dùng <b>App Password (Mật khẩu ứng dụng 16 ký tự)</b> thay vì mật khẩu thông thường.</p>
+
+                <div class="glass-card" style="margin: 1.5rem 0; border-left: 4px solid var(--accent);">
+                    <h4 style="color:#fff; margin-bottom:0.5rem;"><i class="fab fa-google"></i> Quy trình lấy App Password:</h4>
+                    <ol style="margin-left: 1.2rem; color: var(--text-muted);">
+                        <li>Truy cập <a href="https://myaccount.google.com/security" target="_blank" rel="noopener noreferrer">Google Account Security</a>.</li>
+                        <li>Đảm bảo đã bật <b>Xác minh 2 bước (2-Step Verification)</b>.</li>
+                        <li>Tìm mục <b>Mật khẩu ứng dụng (App Passwords)</b> hoặc truy cập link trực tiếp: <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener noreferrer">myaccount.google.com/apppasswords</a>.</li>
+                        <li>Đặt tên ứng dụng (Ví dụ: <code>ACB-Bank-Webhook</code>) rồi nhấn <b>Tạo (Create)</b>.</li>
+                        <li>Google sẽ cung cấp chuỗi mật khẩu 16 chữ cái (dạng <code>xxxx xxxx xxxx xxxx</code>). Hãy lưu lại mã này!</li>
+                    </ol>
+                </div>
+
+                <hr>
+
+                <!-- Section 3 -->
+                <h2><i class="fas fa-server" style="color:var(--primary);"></i> Phần 3: Cấu hình Backend lắng nghe và xử lý giao dịch</h2>
+
+                <p>Dưới đây là ví dụ cấu hình đọc email ACB tự động bằng Laravel / PHP thông qua thư viện IMAP:</p>
+
+                <pre><code class="language-php">// Cấu hình .env
+ACB_MAIL_HOST=imap.gmail.com
+ACB_MAIL_PORT=993
+ACB_MAIL_ENCRYPTION=ssl
+ACB_MAIL_USERNAME=your-bank-email@gmail.com
+ACB_MAIL_PASSWORD=xxxx-xxxx-xxxx-xxxx # App password 16 ký tự
+
+// Xử lý trích xuất nội dung chuyển khoản trong Controller/Command
+preg_match('/Số tiền:\s*([\+\-][\d,\.]+)\s*VND/u', $emailBody, $amountMatches);
+preg_match('/Nội dung:\s*(.+?)(?=\n|$)/u', $emailBody, $contentMatches);
+
+if (!empty($amountMatches) && !empty($contentMatches)) {
+    $amount = str_replace([',', '.'], '', $amountMatches[1]);
+    $comment = trim($contentMatches[1]);
+
+    // Tìm đơn hàng tương ứng theo cú pháp mã nạp (ví dụ: DH12345)
+    OrderService::processAutoDeposit($comment, $amount);
+}</code></pre>
+
+                <div class="glass-card" style="margin: 1.5rem 0;">
+                    <h4 style="color:#34d399;"><i class="fas fa-check-circle"></i> Lợi ích khi dùng giải pháp Email Thông Báo ACB:</h4>
+                    <ul style="margin-left:1.2rem; color:var(--text-muted); margin-top:0.5rem;">
+                        <li><b>Hoàn toàn miễn phí:</b> Không phải trả phí thuê API trung gian của bên thứ ba.</li>
+                        <li><b>An toàn tuyệt đối:</b> Không cần chia sẻ tài khoản hay mật khẩu đăng nhập ngân hàng ACB cho bất kỳ dịch vụ ngoài nào.</li>
+                        <li><b>Tốc độ tức thì:</b> ACB gửi email gần như ngay lập tức khi tiền vào tài khoản (chậm nhất 3 - 5 giây).</li>
+                    </ul>
+                </div>
+
+            </article>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="article-sidebar">
+                <div class="toc-sticky" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Auto-generated by core.js -->
+                    </ul>
+                </div>
+            </aside>
+
+        </div><!-- /article-layout -->
+
+        <!-- Vị trí Quảng Cáo / Gợi Ý -->
+        <div class="ad-slot-container" data-slot="article"></div>
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Chân trang & Mobile Bottom Dock (Tự động tạo bởi components.js) -->
+<div id="site-footer"></div>
+<div id="site-bottom-dock"></div>
+
+<!-- Core & Components Scripts -->
+<script src="../../assets/js/blog-data.js"></script>
+<script src="../../assets/js/components.js"></script>
+<script src="../../assets/js/core.js"></script>
+</body>
+</html>

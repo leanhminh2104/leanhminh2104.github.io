@@ -60,6 +60,36 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "cau-hinh-thong-bao-acb-email",
+            title: "Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng",
+            slug: "cau-hinh-thong-bao-acb-email",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/cau-hinh-thong-bao-acb-email/",
+            date: "2026-03-26",
+            formattedDate: "26 Th03, 2026",
+            readTime: "7 phút",
+            excerpt: "Từng bước thiết lập nhận thông báo biến động số dư ACB ONE về Gmail và kết nối webhook xử lý nạp tiền tự động 24/7.",
+            tags: ["ACB", "Banking API", "Gmail", "Webhook", "Automation"],
+            isNew: true,
+            icon: "fa-mobile-screen-button"
+        },
+        {
+            id: "lay-app-password-google",
+            title: "Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer",
+            slug: "lay-app-password-google",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/lay-app-password-google/",
+            date: "2026-03-25",
+            formattedDate: "25 Th03, 2026",
+            readTime: "5 phút",
+            excerpt: "Cách tạo App Password 16 ký tự của Gmail để gửi nhận email qua SMTP/IMAP trong Laravel, WordPress, NodeJS.",
+            tags: ["Google", "App Password", "SMTP", "Security", "Gmail"],
+            isNew: true,
+            icon: "fa-key"
+        },
+        {
             id: "laravel-tips",
             title: "10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn",
             slug: "laravel-tips",

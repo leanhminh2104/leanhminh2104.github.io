@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
+
+    <!-- SEO & OpenGraph -->
+    <meta name="description" content="Hướng dẫn chi tiết cách tạo Mật khẩu ứng dụng (App Password) Google mới nhất để gửi email qua SMTP trong Laravel, WordPress, NodeJS.">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer">
+    <meta property="og:description" content="Cách tạo App Password 16 ký tự của Gmail để gửi nhận email qua SMTP/IMAP một cách an toàn và không bị chặn.">
+    <title>Lấy App Password Google Cho Developer — Lê Anh Minh Blog</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../../assets/css/blog.css">
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Stars Background -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<!-- TOPBAR / HEADER (Tự động tạo bởi components.js) -->
+<div id="site-header"></div>
+
+<!-- MAIN CONTENT -->
+<main class="blog-main">
+    <div class="blog-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../"><i class="fas fa-code"></i> Công nghệ</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Google App Password</span>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="article-header animate-up">
+            <div class="article-category-badge">
+                <span class="badge badge-info"><i class="fas fa-code"></i> Công nghệ</span>
+                <span class="badge badge-warning">Mới</span>
+            </div>
+
+            <h1 class="article-title">
+                Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Mới Nhất Cho Developer
+            </h1>
+
+            <div class="article-meta">
+                <div class="author-info">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <div>
+                        <div class="author-name">Lê Anh Minh</div>
+                        <div class="author-role">Backend Developer</div>
+                    </div>
+                </div>
+
+                <div class="meta-divider"></div>
+
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>25 Tháng 3, 2026</span>
+                </div>
+
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="reading-time">5 phút đọc</span>
+                </div>
+
+                <div class="meta-item">
+                    <i class="fas fa-eye"></i>
+                    <span>Lượt xem: <img src="https://komarev.com/ghpvc/?username=leanhminh2104-google-app-pass&label=%20&color=6366f1&style=flat-square" alt="views" style="vertical-align:middle; display:inline-block; margin:0;" /></span>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="article-tags">
+                <span class="badge badge-primary">Google</span>
+                <span class="badge badge-primary">App Password</span>
+                <span class="badge badge-primary">SMTP</span>
+                <span class="badge badge-primary">Security</span>
+                <span class="badge badge-primary">Gmail</span>
+            </div>
+        </header>
+
+        <!-- Article Layout -->
+        <div class="article-layout">
+
+            <!-- Content Body -->
+            <article class="article-body">
+
+                <p class="article-lead">
+                    Từ khi Google ngừng hỗ trợ tính năng "Ứng dụng kém an toàn" (Less secure apps), việc sử dụng mật khẩu chính của tài khoản Gmail để gửi email từ website hoặc ứng dụng sẽ bị từ chối 100%. Giải pháp duy nhất và an toàn nhất hiện nay là sử dụng <b>Mật khẩu ứng dụng (App Password)</b>. Dưới đây là hướng dẫn từng bước chi tiết nhất.
+                </p>
+
+                <!-- Section 1 -->
+                <h2><i class="fas fa-shield-halved" style="color:var(--primary);"></i> Điều kiện bắt buộc: Bật Xác minh 2 bước (2FA)</h2>
+                
+                <p>Google chỉ cho phép tạo App Password nếu tài khoản của bạn đã kích hoạt tính năng bảo mật 2 lớp.</p>
+
+                <ol>
+                    <li>Đăng nhập tài khoản Google của bạn tại <a href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer">myaccount.google.com</a>.</li>
+                    <li>Ở thanh menu bên trái, nhấp vào tab <b>Bảo mật (Security)</b>.</li>
+                    <li>Tìm đến phần <b>Cách bạn đăng nhập vào Google (How you sign in to Google)</b>.</li>
+                    <li>Nếu mục <b>Xác minh 2 bước (2-Step Verification)</b> đang tắt, hãy nhấp vào và làm theo hướng dẫn liên kết số điện thoại để bật lên.</li>
+                </ol>
+
+                <hr>
+
+                <!-- Section 2 -->
+                <h2><i class="fas fa-key" style="color:var(--primary);"></i> Các bước tạo Mật khẩu ứng dụng (App Password)</h2>
+
+                <div class="glass-card" style="margin: 1.5rem 0;">
+                    <h3 style="color:#c084fc; margin-bottom: 0.8rem;"><i class="fas fa-arrow-right"></i> Bước 1: Mở trang Mật khẩu ứng dụng</h3>
+                    <p>Sau khi đã bật 2FA, bạn có thể truy cập nhanh vào đường dẫn trực tiếp sau:</p>
+                    <p><a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener noreferrer" style="font-weight:700; color:var(--primary-light);">🔗 https://myaccount.google.com/apppasswords</a></p>
+                    <p><i>(Hệ thống sẽ yêu cầu bạn nhập lại mật khẩu chính của tài khoản một lần nữa để xác nhận danh tính).</i></p>
+                </div>
+
+                <div class="glass-card" style="margin: 1.5rem 0;">
+                    <h3 style="color:#c084fc; margin-bottom: 0.8rem;"><i class="fas fa-arrow-right"></i> Bước 2: Đặt tên cho ứng dụng</h3>
+                    <p>Tại ô <b>Tên ứng dụng (App name)</b>, nhập một tên gợi nhớ để phân biệt sau này. Ví dụ:</p>
+                    <ul>
+                        <li><code>Laravel-Shop-Mailer</code></li>
+                        <li><code>Wordpress-Contact-Form</code></li>
+                        <li><code>NodeJS-Notification-Bot</code></li>
+                    </ul>
+                    <p>Nhấp vào nút <b>Tạo (Create)</b>.</p>
+                </div>
+
+                <div class="glass-card" style="margin: 1.5rem 0; border: 1px solid rgba(52,211,153,0.35);">
+                    <h3 style="color:#34d399; margin-bottom: 0.8rem;"><i class="fas fa-check-circle"></i> Bước 3: Lưu lại mật khẩu 16 ký tự</h3>
+                    <p>Một hộp thoại sẽ hiển thị chuỗi 16 chữ cái màu vàng, ví dụ:</p>
+                    <div style="background: rgba(0,0,0,0.5); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 1.15rem; color: #facc15; letter-spacing: 0.15em; text-align: center; margin: 1rem 0;">
+                        abcd efgh ijkl mnop
+                    </div>
+                    <p><b>Lưu ý:</b></p>
+                    <ul>
+                        <li>Sao chép toàn bộ 16 chữ cái này (bỏ qua khoảng trắng khi dán vào code cấu hình).</li>
+                        <li>Google sẽ <b>không bao giờ hiển thị lại</b> chuỗi này sau khi bạn bấm nút "Xong".</li>
+                    </ul>
+                </div>
+
+                <hr>
+
+                <!-- Section 3 -->
+                <h2><i class="fas fa-code" style="color:var(--primary);"></i> Cấu hình vào dự án thực tế</h2>
+
+                <h3>1. Cấu hình gửi mail trong Laravel (`.env`):</h3>
+                <pre><code class="language-env">MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=abcdefghijklmnop # Dán 16 ký tự App Password vào đây
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your-email@gmail.com
+MAIL_FROM_NAME="Lê Anh Minh Blog"</code></pre>
+
+                <h3>2. Cấu hình gửi mail trong NodeJS (Nodemailer):</h3>
+                <pre><code class="language-javascript">const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransporter({
+    service: 'gmail',
+    auth: {
+        user: 'your-email@gmail.com',
+        pass: 'abcdefghijklmnop' // App Password 16 ký tự
+    }
+});
+
+await transporter.sendMail({
+    from: '"LAMDev" <your-email@gmail.com>',
+    to: 'customer@example.com',
+    subject: 'Xác nhận đơn hàng thành công',
+    text: 'Cảm ơn bạn đã sử dụng dịch vụ!'
+});</code></pre>
+
+                <blockquote>
+                    <i class="fas fa-lightbulb"></i> <b>Bảo mật:</b> Tuyệt đối không commit trực tiếp App Password lên GitHub công khai! Luôn đặt nó trong file <code>.env</code> và đảm bảo file này đã nằm trong <code>.gitignore</code>.
+                </blockquote>
+
+            </article>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="article-sidebar">
+                <div class="toc-sticky" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Auto-generated by core.js -->
+                    </ul>
+                </div>
+            </aside>
+
+        </div><!-- /article-layout -->
+
+        <!-- Vị trí Quảng Cáo / Gợi Ý -->
+        <div class="ad-slot-container" data-slot="article"></div>
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Chân trang & Mobile Bottom Dock (Tự động tạo bởi components.js) -->
+<div id="site-footer"></div>
+<div id="site-bottom-dock"></div>
+
+<!-- Core & Components Scripts -->
+<script src="../../assets/js/blog-data.js"></script>
+<script src="../../assets/js/components.js"></script>
+<script src="../../assets/js/core.js"></script>
+</body>
+</html>
