@@ -99,17 +99,11 @@
                     <kbd class="search-kbd">Ctrl K</kbd>
                 </div>
 
-                <!-- Right Actions -->
+                <!-- Right Actions (Dành cho PC) -->
                 <div class="topbar-actions">
-                    <button type="button" class="icon-btn mobile-search-btn" id="mobile-top-search-btn" title="Tìm kiếm" aria-label="Tìm kiếm">
-                        <i class="fas fa-search"></i>
-                    </button>
                     <a href="${DATA.site.github || 'https://github.com/leanhminh2104'}" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub" aria-label="GitHub Profile">
                         <i class="fab fa-github"></i>
                     </a>
-                    <button type="button" class="icon-btn hamburger-mobile" id="hamburger-btn" aria-label="Mở menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
                 </div>
             </div>
         `;

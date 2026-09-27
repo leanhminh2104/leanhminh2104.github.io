@@ -1496,18 +1496,14 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
 
-.mobile-search-btn {
-    display: none;
-}
-
 @media (max-width: 900px) {
     .header-search-bar { width: 170px; }
     .search-kbd { display: none; }
 }
 
 @media (max-width: 768px) {
-    .header-search-bar { display: none; }
-    .mobile-search-btn { display: flex; }
+    .header-search-bar { display: none !important; }
+    .topbar-actions { display: none !important; }
 }
 
 /* ==========================================================================
