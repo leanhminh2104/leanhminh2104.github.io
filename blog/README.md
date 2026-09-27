@@ -2,17 +2,49 @@
 
 Blog cá nhân — Static HTML + CSS + JS thuần, host trên GitHub Pages.
 
-## 🏗️ Cấu trúc
+## 🗂️ Cấu trúc thư mục đồng bộ 2 môi trường
 
 ```
-/
+D:\code\laragon\www\
+│
+├── blog/                              ← Dev workspace (http://blog.test/)
+│   ├── index.html
+│   ├── assets/css/   assets/js/
+│   ├── tech/   life/   _template/
+│   └── deploy.bat                    ← 1-click deploy
+│
+└── leanhminh2104.github.io/          ← Git repo (http://leanhminh2104.github.io.test/)
+    ├── .git/   .gitignore
+    ├── index.html                    ← Trang gốc GitHub Pages
+    └── blog/                         ← Mirror đồng bộ từ blog/ (qua deploy.bat)
+        ├── index.html
+        ├── assets/css/   assets/js/
+        ├── tech/
+        └── life/
+```
+
+### URL truy cập:
+
+| Môi trường | URL |
+|---|---|
+| Dev blog | http://blog.test/ |
+| Local mirror (giống GitHub Pages) | http://leanhminh2104.github.io.test/blog/ |
+| **GitHub Pages live** | **https://leanhminh2104.github.io/blog/** |
+
+> 💡 Cấu trúc thư mục `laragon\www\leanhminh2104.github.io\blog\` khớp 100% với URL `leanhminh2104.github.io/blog/` — test local xong là deploy y chang lên live!
+
+---
+
+## 🏗️ Cấu trúc blog/
+
+```
+blog/
 ├── assets/
 │   ├── css/
-│   │   ├── design-system.css   ← Design tokens, glass cards, buttons, badges
-│   │   ├── blog.css            ← Header, post cards, article layout, TOC, sidebar
-│   │   └── highlight.css       ← Code syntax highlight
+│   │   ├── blog.css            ← CSS duy nhất cho toàn blog
+│   │   └── stars.css           ← Hiệu ứng sao (import bởi blog.css)
 │   └── js/
-│       └── core.js             ← Mobile nav, TOC, scroll reveal, reading time...
+│       └── core.js             ← JS duy nhất cho toàn blog
 │
 ├── index.html                  ← Trang chủ
 │
@@ -27,40 +59,34 @@ Blog cá nhân — Static HTML + CSS + JS thuần, host trên GitHub Pages.
 │       └── index.html
 │
 └── _template/
-    └── post-template.html      ← ← Template để viết bài mới
+    └── post-template.html      ← Template viết bài mới
 ```
+
+---
 
 ## ✍️ Cách viết bài mới
 
-### 3 bước đơn giản:
-
-**Bước 1:** Copy file `_template/post-template.html`
-
-**Bước 2:** Đặt vào thư mục đúng vị trí:
-```
-tech/ten-bai-viet/index.html
-life/ten-bai-viet/index.html
+**Bước 1:** Copy template
+```bat
+copy blog\_template\post-template.html blog\tech\ten-bai-viet\index.html
 ```
 
-**Bước 3:** Điền thông tin:
-- Thay `[TIÊU ĐỀ BÀI VIẾT]` bằng tiêu đề thật
-- Thay `[MÔ TẢ BÀI VIẾT]` bằng mô tả SEO
-- Thay `[NGÀY THÁNG NĂM]` bằng ngày đăng
-- Viết nội dung vào phần `article-content`
-- Đặt `class="active"` vào đúng danh mục trong nav
+**Bước 2:** Điền thông tin (title, meta, breadcrumb, tags, nội dung)
 
-**Bước 4:** Thêm card vào trang chủ (`index.html`) và trang danh mục (`tech/index.html` hoặc `life/index.html`)
+**Bước 3:** Thêm card vào `index.html` và `tech/index.html` (hoặc `life/index.html`)
 
-**Bước 5:** Push lên GitHub — tự publish!
+**Bước 4:** Chạy `deploy.bat` — tự publish!
+
+---
 
 ## 🎨 Design System
 
 | Token | Giá trị | Dùng cho |
 |-------|---------|----------|
-| `--primary` | `#a855f7` | Màu chủ đạo |
+| `--primary` | `#a855f7` | Màu tím chủ đạo |
 | `--accent` | `#6366f1` | Gradient pair |
-| `--bg-dark` | `#06070a` | Background |
-| `--glass-border` | `rgba(168,85,247,0.11)` | Viền card |
+| `--success` | `#10b981` | Life category |
+| `--glass-border` | `rgba(168,85,247,0.12)` | Viền card |
 
 ## 🧩 Components có sẵn
 
@@ -68,32 +94,34 @@ life/ten-bai-viet/index.html
 <!-- Glass Card -->
 <div class="glass-card">Nội dung</div>
 
-<!-- Button Primary -->
-<a href="#" class="btn btn-primary"><i class="fas fa-icon"></i> Text</a>
-
-<!-- Button Secondary -->
+<!-- Buttons -->
+<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Text</a>
 <a href="#" class="btn btn-secondary">Text</a>
 
-<!-- Badge / Tag -->
-<span class="badge badge-primary">Laravel</span>
-<span class="badge badge-success">Life</span>
+<!-- Badges -->
 <span class="badge badge-info">Tech</span>
-<span class="badge badge-warning">Tips</span>
+<span class="badge badge-success">Life</span>
+<span class="badge badge-primary">Laravel</span>
+<span class="badge badge-warning">Coming Soon</span>
 
-<!-- Scroll reveal animation (thêm class reveal vào element) -->
-<div class="reveal">Sẽ animate khi scroll đến</div>
+<!-- Code block (tự có nút Copy) -->
+<pre><code class="language-php">$x = 1;</code></pre>
+
+<!-- Animation -->
+<div class="reveal">Animate khi scroll đến</div>
 ```
 
-## 🚀 GitHub Pages Setup
+## 🚀 Deploy
 
-1. Tạo repo tên `leanhminh2104.github.io`
-2. Push code lên branch `main`
-3. Vào Settings → Pages → Source: `main` branch
-4. URL tự động: `https://leanhminh2104.github.io/`
+```bat
+REM 1-click deploy từ blog.test lên GitHub Pages
+deploy.bat
+```
 
-## 📦 Dependencies (CDN — không cần cài)
+Script tự động: scan file nhạy cảm → robocopy → git add → git commit → git push
 
-- **Font Inter**: Google Fonts
-- **Font Fira Code**: Google Fonts (cho code)
-- **Font Awesome 6.5**: cdnjs.cloudflare.com
-- Không dùng framework nào khác!
+## 📦 Dependencies (CDN — không cài gì)
+
+- **Font Inter** — Google Fonts
+- **Font Fira Code** — Google Fonts
+- **Font Awesome 6.5** — cdnjs.cloudflare.com
