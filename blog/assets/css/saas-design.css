@@ -1,0 +1,3786 @@
+/* 
+ * DaLyMMO SaaS - Central Management CSS 
+ * K tha chun thit k DaLyMMO (Dark Mode, Glassmorphism, Bottom Nav)
+ */
+
+:root {
+    --bg-main: #06070a;
+    /* Liquid Glass — giọt nước siêu trong suốt, tím cực nhẹ và thanh thoát */
+    --bg-sidebar: rgba(147, 51, 234, 0.008);
+    --bg-card:    rgba(147, 51, 234, 0.010);
+    --bg-card-hover: rgba(168, 85, 247, 0.03);
+
+    --text-main: #ffffff;
+    --text-secondary: #f1f5f9;
+    --text-muted: #cbd5e1;
+    --text-dim: #94a3b8;
+
+    --primary: #a855f7;
+    --primary-hover: #c084fc;
+    --primary-light: #d8b4fe;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --info: #38bdf8;
+
+    --border-color:  rgba(168, 85, 247, 0.11);
+    --glass-bg:      rgba(147, 51, 234, 0.010);
+    --glass-bg-2:    rgba(168, 85, 247, 0.025);
+    --glass-border:  rgba(168, 85, 247, 0.11);
+    --glass-border-inner: rgba(216, 180, 254, 0.22);
+    --glass-blur:    none;
+    --glass-specular: linear-gradient(135deg, rgba(192, 132, 252, 0.06) 0%, rgba(147, 51, 234, 0.01) 40%, rgba(168, 85, 247, 0) 100%);
+    --glass-shadow:  0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1.5px 1px rgba(216, 180, 254, 0.20), inset 0 -1px 2px rgba(139, 92, 246, 0.08);
+
+    /* Aliases for design-system.css compatibility */
+    --surface: rgba(147, 51, 234, 0.010);
+    --border-glass: rgba(168, 85, 247, 0.11);
+}
+
+html {
+    background-color: #06070a;
+    color-scheme: dark;
+}
+
+body {
+    background-color: var(--bg-main, #06070a);
+    color-scheme: dark;
+    color: var(--text-main);
+    font-family: 'Inter', 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    isolation: isolate;
+}
+
+/* ==========================================================
+   Dalymmo Custom Scrollbar System (Luxury Glassmorphism)
+   ========================================================== */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+/* Utility ẩn thanh cuộn nhưng vẫn vuốt trượt được */
+.no-scrollbar,
+.scrollbar-hidden {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* ===== APP WRAPPER (Desktop: Sidebar + Content) ===== */
+.saas-app-wrapper,
+.app-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-main,
+.app-content,
+.content-container,
+.page-title-section,
+.stats-grid {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== SIDEBAR (Liquid Glass) ===== */
+.saas-sidebar {
+    width: 260px;
+    background: var(--bg-sidebar);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    box-shadow: inset -1px 0 0 rgba(255,255,255,0.04);
+}
+
+.saas-sidebar .logo-area {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.saas-sidebar .nav-menu {
+    padding: 15px 10px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.saas-sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.saas-sidebar .menu-item:hover,
+.saas-sidebar .menu-item.active {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: var(--primary);
+}
+
+.saas-sidebar .menu-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin: 20px 0 10px 16px;
+    font-weight: 600;
+}
+
+/* ===== MAIN CONTENT ===== */
+.saas-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.saas-header {
+    height: 70px;
+    background: var(--bg-sidebar);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.04);
+}
+
+.saas-content {
+    padding: 24px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* ===== COMPONENTS ===== */
+.glass-card {
+    position: relative;
+    z-index: 1;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), inset 0 1.5px 1px rgba(216, 180, 254, 0.20), inset 0 -1px 2px rgba(139, 92, 246, 0.08);
+}
+
+.alert-banner {
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    color: #ffffff;
+    border: 1px solid rgba(216, 180, 254, 0.3);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(168, 85, 247, 0.55);
+    color: #ffffff;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        /* Giữ 2 cột cho các thẻ nhỏ */
+        gap: 10px;
+        /* Giảm gap xíu cho đỡ chật */
+    }
+}
+
+.stat-card {
+    position: relative;
+    z-index: 1;
+    background: var(--glass-bg, rgba(147, 51, 234, 0.010)) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border, rgba(168, 85, 247, 0.16)) !important;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: var(--glass-shadow) !important;
+    transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+    background: rgba(168, 85, 247, 0.035) !important;
+    border-color: rgba(168, 85, 247, 0.28) !important;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.stat-label {
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ===== MOBILE BOTTOM NAV ===== */
+.saas-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(147, 51, 234, 0.015);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--glass-border);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35), inset 0 1.5px 1px rgba(216, 180, 254, 0.20);
+    height: 70px;
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    flex: 1;
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-item-fab {
+    position: relative;
+    top: -20px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary), #6D28D9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.5);
+    border: 4px solid var(--bg-main);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .saas-sidebar {
+        display: none;
+    }
+
+    .saas-bottom-nav {
+        display: flex;
+    }
+
+    .saas-content {
+        padding-bottom: 90px;
+    }
+}
+
+/* ==========================================================
+   dalymmo-style Reusable Layout Components
+   ========================================================== */
+
+/* 1. Alert Banners */
+.dalymmo-alert {
+    position: relative;
+    z-index: 1;
+    background: var(--glass-bg, rgba(147, 51, 234, 0.010)) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(168, 85, 247, 0.22) !important;
+    border-radius: var(--radius-md, 14px);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+.dalymmo-alert.alert-info {
+    background: rgba(59, 130, 246, 0.02) !important;
+    border-color: rgba(59, 130, 246, 0.25) !important;
+}
+
+.dalymmo-alert.alert-primary {
+    background: rgba(168, 85, 247, 0.02) !important;
+    border-color: rgba(168, 85, 247, 0.25) !important;
+}
+
+.dalymmo-alert-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.dalymmo-alert-text {
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    line-height: 1.45;
+}
+
+.dalymmo-alert-text strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.dalymmo-alert-btn {
+    font-size: 0.82rem;
+    padding: 0.5rem 1.15rem;
+    margin-left: auto;
+    white-space: nowrap;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .dalymmo-alert {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding: 14px 16px !important;
+    }
+    .dalymmo-alert-content {
+        width: 100% !important;
+    }
+    .dalymmo-alert-btn,
+    .dalymmo-alert .btn {
+        width: 100% !important;
+        margin-left: 0 !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0.65rem 1rem !important;
+        font-size: 0.88rem !important;
+    }
+}
+
+/* 2. Main Block (Liquid Glass) */
+.dalymmo-block {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), inset 0 1.5px 1px rgba(255, 255, 255, 0.35), inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* 2.5 Page Header */
+.dalymmo-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.dalymmo-page-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.dalymmo-page-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* 3. Block Header & Tabs */
+.dalymmo-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.dalymmo-block-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Tabs like DaLyMMO "Hosting / VPS KVM / VPS VMWare" */
+.dalymmo-tabs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.dalymmo-tab-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.2s;
+}
+
+.dalymmo-tab-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dalymmo-tab-item.active {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: rgba(168, 85, 247, 0.08);
+}
+
+/* 4. Service Card inside Block (Liquid Glass) */
+.dalymmo-service-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--glass-shadow);
+}
+
+.dalymmo-service-card:hover {
+    border-color: var(--primary);
+    background: rgba(168, 85, 247, 0.05);
+}
+
+.dalymmo-service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(168, 85, 247, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dalymmo-service-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* 5. Account Info Grid */
+.dalymmo-account-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 1rem;
+}
+
+.dalymmo-account-item {
+    display: flex;
+    gap: 8px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ===== MOBILE BOTTOM NAV ===== */
+.saas-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--border-color);
+    height: 70px;
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    flex: 1;
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-item-fab {
+    position: relative;
+    top: -20px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary), #6D28D9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.5);
+    border: 4px solid var(--bg-main);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .saas-sidebar {
+        display: none;
+    }
+
+    .saas-bottom-nav,
+    .bottom-nav-wrapper {
+        display: block;
+        /* Make sure bottom nav shows */
+    }
+
+    .app-content {
+        padding-bottom: 100px !important;
+    }
+}
+
+/* ==========================================================
+   dalymmo-style Reusable Layout Components
+   ========================================================== */
+
+/* 1. Alert Banners */
+.dalymmo-alert {
+    position: relative;
+    z-index: 1;
+    background: var(--glass-bg, rgba(147, 51, 234, 0.010)) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(168, 85, 247, 0.22) !important;
+    border-radius: var(--radius-md, 14px);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+.dalymmo-alert.alert-info {
+    background: rgba(59, 130, 246, 0.02) !important;
+    border-color: rgba(59, 130, 246, 0.25) !important;
+}
+
+.dalymmo-alert.alert-primary {
+    background: rgba(168, 85, 247, 0.02) !important;
+    border-color: rgba(168, 85, 247, 0.25) !important;
+}
+
+.dalymmo-alert-text {
+    font-size: 0.9rem;
+    color: #e2e8f0;
+}
+
+.dalymmo-alert-text strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 5. Account Info Grid */
+.dalymmo-account-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 1rem;
+}
+
+.dalymmo-account-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.dalymmo-account-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: all 0.2s;
+}
+
+.dalymmo-account-item:hover .dalymmo-account-icon {
+    background: var(--glass-bg-2);
+    border-color: var(--primary);
+}
+
+.dalymmo-account-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* 5.5 Info Card (Tenants/Logs) */
+.dalymmo-info-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: var(--glass-shadow);
+}
+
+/* 5.6 Sleek Tenant Item Row */
+.tenant-item-card {
+    padding: 0.75rem 1.1rem;
+    background: var(--glass-bg, rgba(147, 51, 234, 0.010)) !important;
+    border: 1px solid var(--glass-border, rgba(168, 85, 247, 0.11)) !important;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+.tenant-item-card:hover {
+    background: rgba(168, 85, 247, 0.04) !important;
+    border-color: rgba(168, 85, 247, 0.28) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 640px) {
+    .tenant-item-card {
+        padding: 0.85rem 0.95rem;
+    }
+}
+
+.dalymmo-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.dalymmo-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dalymmo-kv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 44px;
+}
+
+.dalymmo-kv-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.dalymmo-kv-key {
+    color: var(--text-muted);
+}
+
+.dalymmo-kv-value {
+    color: #fff;
+    font-weight: 500;
+}
+
+.dalymmo-kv-value.highlight {
+    color: #c084fc;
+    font-weight: 600;
+}
+
+/* 6. Voucher Card */
+.dalymmo-voucher-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.dalymmo-voucher-bg-icon {
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 140px;
+    height: 140px;
+    color: rgba(255, 255, 255, 0.02);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+/* 7. Grid Layout */
+.dalymmo-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .dalymmo-layout {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 2fr);
+    }
+}
+
+/* ==============================================================
+   PROFILE / SETTINGS GRID LAYOUT & FORMS (Extracted)
+   ============================================================== */
+
+/* BÃƒÂ¡Ã‚Â»Ã¢â‚¬Ëœ cÃƒÂ¡Ã‚Â»Ã‚Â¥c Grid 2 cÃƒÂ¡Ã‚Â»Ã¢â€žÂ¢t chuÃƒÂ¡Ã‚ÂºÃ‚Â©n XVPS */
+.dalymmo-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.dalymmo-sidebar-column {
+    grid-column: span 3;
+}
+
+.dalymmo-content-column {
+    grid-column: span 9;
+}
+
+@media (max-width: 1023px) {
+    .dalymmo-dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dalymmo-sidebar-column,
+    .dalymmo-content-column {
+        width: 100%;
+    }
+}
+
+/* Style Form Input chuÃƒÂ¡Ã‚ÂºÃ‚Â©n XVPS */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: #a1a1aa;
+    /* text-zinc-400 */
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    box-shadow: inset 0 1px 0 rgba(216, 180, 254, 0.15);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary), 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tabs XVPS Style */
+.dalymmo-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #27272a;
+    /* zinc-800 */
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+.dalymmo-tab-item {
+    padding-bottom: 1rem;
+    color: #a1a1aa;
+    /* text-zinc-400 */
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.dalymmo-tab-item:hover {
+    color: #e4e4e7;
+    /* zinc-200 */
+}
+
+.dalymmo-tab-item.active {
+    color: var(--primary);
+    font-weight: 600;
+    border-bottom-color: var(--primary);
+}
+
+/* Left Menu XVPS Style */
+.xvps-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border-radius: 0.5rem;
+    margin: 0.25rem 0.5rem;
+}
+
+.xvps-menu-item.active {
+    color: #ffffff;
+    font-weight: 600;
+    background: rgba(168, 85, 247, 0.18);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+.xvps-menu-item:not(.active) {
+    color: #cbd5e1;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.xvps-menu-item:not(.active):hover {
+    background: rgba(168, 85, 247, 0.10);
+    color: #ffffff;
+}
+
+.xvps-menu-icon {
+    color: inherit;
+    width: 18px;
+    height: 18px;
+}
+
+.xvps-menu-item.active .xvps-menu-icon {
+    color: #c084fc;
+    filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.6));
+}
+
+/* UI Toast Container & Alerts (iOS / SaaS Translucent Liquid Glass - Mờ kính giọt nước thanh thoát) */
+#toast-container {
+    position: fixed !important;
+    top: 5.25rem !important; /* Hạ xuống dưới thanh header bar (tránh đè lên số dư và avatar) */
+    right: 1.5rem !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+    #toast-container {
+        top: 4.5rem !important;
+        right: 1rem !important;
+        left: 1rem !important;
+    }
+}
+
+.ui-alert {
+    padding: 0.85rem 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 4px solid;
+    margin-bottom: 0.75rem;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.ui-alert.toast-alert {
+    min-width: 320px;
+    max-width: 480px;
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 640px) {
+    #toast-container {
+        top: 1rem !important;
+        right: 0.75rem !important;
+        left: 0.75rem !important;
+        align-items: center !important;
+    }
+    .ui-alert.toast-alert {
+        min-width: unset !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+.ui-alert.toast-alert.hiding {
+    animation: slideOutRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(110%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(115%);
+    }
+}
+
+.ui-alert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -5px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.ui-alert svg {
+    height: 1.45rem;
+    width: 1.45rem;
+    flex-shrink: 0;
+    margin-right: 0;
+}
+
+.ui-alert p {
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Success: Nền kính mờ xanh ngọc nhẹ nhàng, giọt nước */
+.ui-alert-success {
+    background-color: rgba(6, 32, 18, 0.6) !important;
+    border-color: rgba(34, 197, 94, 0.28) !important;
+    border-left-color: #10b981 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(16, 185, 129, 0.15) !important;
+}
+
+.ui-alert-success:hover {
+    background-color: rgba(8, 42, 24, 0.75) !important;
+}
+
+.ui-alert-success svg {
+    color: #34d399 !important;
+}
+
+/* Info: Nền kính mờ xanh dương nhẹ nhàng */
+.ui-alert-info {
+    background-color: rgba(10, 24, 48, 0.6) !important;
+    border-color: rgba(59, 130, 246, 0.28) !important;
+    border-left-color: #3b82f6 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(59, 130, 246, 0.15) !important;
+}
+
+.ui-alert-info:hover {
+    background-color: rgba(14, 32, 64, 0.75) !important;
+}
+
+.ui-alert-info svg {
+    color: #60a5fa !important;
+}
+
+/* Warning: Nền kính mờ vàng hổ phách nhẹ */
+.ui-alert-warning {
+    background-color: rgba(38, 24, 8, 0.6) !important;
+    border-color: rgba(245, 158, 11, 0.28) !important;
+    border-left-color: #f59e0b !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(245, 158, 11, 0.15) !important;
+}
+
+.ui-alert-warning:hover {
+    background-color: rgba(48, 30, 10, 0.75) !important;
+}
+
+.ui-alert-warning svg {
+    color: #fbbf24 !important;
+}
+
+/* Error: Nền kính mờ đỏ nhẹ nhàng */
+.ui-alert-error {
+    background-color: rgba(40, 10, 12, 0.6) !important;
+    border-color: rgba(239, 68, 68, 0.28) !important;
+    border-left-color: #ef4444 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(239, 68, 68, 0.15) !important;
+}
+
+.ui-alert-error:hover {
+    background-color: rgba(52, 14, 16, 0.75) !important;
+}
+
+.ui-alert-error svg {
+    color: #f87171 !important;
+}
+
+/* ==========================================================================
+   CONSOLIDATED SHARED SYSTEM: SUBSCRIPTION, ORDERS & SERVICES (LIQUID GLASS)
+   ========================================================================== */
+
+/* --- Order & Subscription Layout --- */
+.order-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 1.5rem;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .order-layout { grid-template-columns: 1fr; }
+    .order-sidebar { order: -1; }
+}
+
+/* Plan Cards */
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+.plan-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.plan-card:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    background: rgba(139, 92, 246, 0.04);
+    transform: translateY(-2px);
+}
+.plan-card.selected {
+    border-color: var(--primary, #8b5cf6) !important;
+    background: rgba(139, 92, 246, 0.08) !important;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.plan-card.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    background: var(--primary, #8b5cf6);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+}
+.plan-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.plan-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary, #8b5cf6);
+    margin-bottom: 0.75rem;
+}
+.plan-price small { font-size: 0.75rem; font-weight: 400; color: #94a3b8; }
+.plan-specs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.plan-specs li {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.plan-specs li i { color: var(--success, #10b981); font-size: 0.7rem; flex-shrink: 0; }
+.plan-badge {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #f59e0b, #ef4444);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 0 0 8px 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Billing Cycle */
+.cycle-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.cycle-btn {
+    padding: 0.45rem 1rem;
+    border-radius: 99px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+.cycle-btn:hover { border-color: rgba(139, 92, 246, 0.4); color: #f8fafc; }
+.cycle-btn.active {
+    border-color: var(--primary, #8b5cf6);
+    background: rgba(139, 92, 246, 0.1);
+    color: #f8fafc;
+    font-weight: 600;
+}
+.cycle-badge {
+    position: absolute;
+    top: -8px;
+    right: -4px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 99px;
+}
+
+/* Order Sidebar */
+.order-sidebar .dalymmo-block { position: sticky; top: 80px; }
+.order-row { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; }
+.order-row + .order-row { border-top: 1px solid rgba(255,255,255,0.06); }
+.order-label { font-size: 0.82rem; color: #94a3b8; }
+.order-value { font-size: 0.85rem; color: #e2e8f0; font-weight: 500; }
+.order-total { font-size: 1.2rem; font-weight: 700; color: var(--primary, #8b5cf6); }
+.order-specs { font-size: 0.78rem; color: #64748b; line-height: 1.7; margin: 0; }
+
+/* Section Label & Form Inputs */
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.section-label i { color: var(--primary, #8b5cf6); }
+
+.dalymmo-form-group {
+    margin-bottom: 1.25rem;
+}
+.dalymmo-form-label {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+.dalymmo-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.dalymmo-input:focus {
+    outline: none;
+    border-color: var(--primary, #8b5cf6);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    background: var(--glass-bg-2);
+}
+.dalymmo-input::placeholder {
+    color: #64748b;
+}
+
+/* --- Service Management & Search Filter (Liquid Glass) --- */
+.service-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+}
+.service-search-wrapper {
+    position: relative;
+}
+.service-search-input {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    color: #f8fafc;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    width: 300px;
+    font-size: 0.85rem;
+}
+.service-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+.service-filter-select {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    color: #94a3b8;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+.service-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 6px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+}
+.service-action-btn:hover {
+    background: var(--glass-bg-2);
+    color: #f8fafc;
+}
+
+/* Toggle switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255,255,255,0.1);
+    transition: .4s;
+    border-radius: 34px;
+}
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .toggle-slider {
+    background-color: var(--primary);
+}
+input:checked + .toggle-slider:before {
+    transform: translateX(16px);
+    background-color: #fff;
+}
+
+/* --- Service Detail / Hosting Dashboard (Liquid Glass) --- */
+.hosting-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.service-header-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+.service-header-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    word-break: break-all;
+}
+.service-meta-badges {
+    display: flex;
+    gap: 0.75rem 1rem;
+    font-size: 0.85rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.service-header-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+.service-nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+}
+.service-nav-tabs::-webkit-scrollbar {
+    display: none;
+}
+.service-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.metric-card {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.metric-header {
+    text-align: left;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.gauge-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gauge-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+.gauge-bg {
+    fill: none;
+    stroke: rgba(255,255,255,0.05);
+    stroke-width: 8;
+}
+.gauge-progress {
+    fill: none;
+    stroke: var(--color, var(--primary));
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: calc(283 - (283 * var(--pct, 0)) / 100);
+    transition: stroke-dashoffset 1s ease;
+}
+.gauge-text {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+}
+.metric-value {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+.service-content-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+}
+.service-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.25rem;
+}
+.service-info-item .info-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 0.25rem;
+}
+.service-info-item .info-val {
+    font-size: 0.95rem;
+    color: #f8fafc;
+    font-weight: 500;
+    word-break: break-all;
+}
+.service-actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.service-actions-list .action-btn {
+    margin-bottom: 0;
+}
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: #f8fafc;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s;
+}
+.action-btn > div {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+.action-btn:hover {
+    background: var(--glass-bg-2);
+    border-color: rgba(255,255,255,0.15);
+    color: #f8fafc;
+}
+.action-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.85rem;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 992px) {
+    .service-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+    }
+    .service-content-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .service-header-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.25rem;
+    }
+    .service-header-actions {
+        width: 100%;
+    }
+    .service-header-actions .btn {
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+    }
+    .service-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.65rem;
+    }
+    .service-metrics-grid .hosting-card {
+        padding: 1rem 0.65rem;
+    }
+    .service-metrics-grid .metric-header {
+        font-size: 0.78rem;
+        margin-bottom: 0.6rem;
+        white-space: normal;
+        min-height: 2.2em;
+        line-height: 1.25;
+    }
+    .service-metrics-grid .gauge-wrapper {
+        width: 84px;
+        height: 84px;
+        margin-bottom: 0.65rem;
+    }
+    .service-metrics-grid .gauge-text {
+        font-size: 1.15rem;
+    }
+    .service-metrics-grid .metric-value {
+        font-size: 0.75rem;
+        word-break: break-word;
+    }
+    .service-info-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.15rem 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .service-info-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+}
+
+/* --- Drawer Accordion Submenu with Tree Guide Line (Liquid Glass) --- */
+.accordion-item.active > .drawer-menu-item.accordion-header {
+    background: rgba(168, 85, 247, 0.08);
+    border-color: rgba(168, 85, 247, 0.35);
+}
+
+.drawer-tree-submenu {
+    position: relative;
+    margin-left: 28px;
+    padding-left: 18px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Nhánh gạch ngang mặc định: Mờ chìm, KHÔNG sáng */
+.drawer-tree-item::before {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 50%;
+    width: 10px;
+    height: 1.5px;
+    background: rgba(168, 85, 247, 0.18);
+    border-radius: 1px;
+    transition: all 0.25s ease;
+    z-index: 1;
+}
+
+/* Trục gạch dọc mặc định: Mờ chìm, KHÔNG sáng */
+.drawer-tree-item::after {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: rgba(168, 85, 247, 0.18);
+    border-radius: 1px;
+    transition: all 0.25s ease;
+    z-index: 1;
+}
+
+/* Mục đầu tiên: không trồi lên trên */
+.drawer-tree-item:first-child::after {
+    top: 0;
+}
+
+/* Mục DƯỚI CÙNG: Dừng lại đúng 50% ngay tại nhánh ngang, TUYỆT ĐỐI KHÔNG NỐI THÒ XUỐNG DƯỚI */
+.drawer-tree-item:last-child::after {
+    bottom: 50%;
+}
+
+.drawer-tree-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.drawer-tree-item:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(2px);
+}
+
+.drawer-tree-item:hover::before {
+    width: 14px;
+    height: 2.5px;
+    top: calc(50% - 1px);
+    background: #c084fc;
+    box-shadow: 0 0 6px rgba(192, 132, 252, 0.6);
+}
+
+.drawer-tree-item.active {
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.18), rgba(168, 85, 247, 0.04));
+    border-color: rgba(168, 85, 247, 0.35);
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.12);
+}
+
+/* Nhánh ngang của mục đang ACTIVE: Đậm 3px, dài 15px, sáng nổi rực rỡ */
+.drawer-tree-item.active::before {
+    width: 15px !important;
+    height: 3px !important;
+    top: calc(50% - 1.5px) !important;
+    background: #c084fc !important;
+    box-shadow: 0 0 12px rgba(192, 132, 252, 1), 0 0 4px #ffffff !important;
+    border-radius: 1.5px !important;
+    z-index: 3 !important;
+}
+
+/* Trục gạch dọc trên Mobile Drawer: Các mục trước mục active sáng từ trên xuống */
+.drawer-tree-item:has(~ .drawer-tree-item.active)::after {
+    width: 3px !important;
+    left: -18.5px !important;
+    background: #c084fc !important;
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.95), 0 0 4px #ffffff !important;
+    z-index: 3 !important;
+}
+
+/* Mục active: dừng lại ở 50%, không chạy xuống dưới */
+.drawer-tree-item.active::after {
+    width: 3px !important;
+    left: -18.5px !important;
+    bottom: 50% !important;
+    background: #c084fc !important;
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.95), 0 0 4px #ffffff !important;
+    border-bottom-left-radius: 2px !important;
+    z-index: 3 !important;
+}
+
+.drawer-tree-item-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.drawer-tree-item i {
+    font-size: 0.9rem;
+    width: 18px;
+    text-align: center;
+    color: #94a3b8;
+    transition: all 0.2s ease;
+}
+
+.drawer-tree-item:hover i {
+    color: #c084fc;
+    transform: scale(1.1);
+}
+
+.drawer-tree-item.active i {
+    color: #c084fc;
+}
+
+/* Badge (như 'Sắp ra mắt') */
+.drawer-tree-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2.5px 7px;
+    border-radius: 6px;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.06);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   DALYMMO MODAL / BOTTOM SHEET SYSTEM
+   - Desktop PC: Centered floating glassmorphism popup
+   - Mobile ≤ 768px: Bottom Sheet Drawer (giống hệt .drawer-content)
+   ============================================================ */
+
+/* --- Desktop: Overlay + centered modal --- */
+.dalymmo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.dalymmo-modal.show,
+.dalymmo-modal.open,
+.dalymmo-modal.active {
+    display: flex;
+    opacity: 1;
+}
+.dalymmo-modal-content {
+    background: rgba(15, 12, 25, 0.88);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    width: 100%;
+    max-width: 500px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+.dalymmo-modal.show .dalymmo-modal-content,
+.dalymmo-modal.open .dalymmo-modal-content,
+.dalymmo-modal.active .dalymmo-modal-content {
+    transform: translateY(0);
+}
+.dalymmo-modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+.dalymmo-modal-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f8fafc;
+}
+.dalymmo-modal-body {
+    padding: 1.5rem;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    /* Custom scrollbar luxury trên PC */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168, 85, 247, 0.4) transparent;
+}
+.dalymmo-modal-body::-webkit-scrollbar { width: 5px; }
+.dalymmo-modal-body::-webkit-scrollbar-track { background: transparent; }
+.dalymmo-modal-body::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.4); border-radius: 10px; }
+.dalymmo-modal-body::-webkit-scrollbar-thumb:hover { background: rgba(168, 85, 247, 0.6); }
+
+.dalymmo-modal-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.dalymmo-modal-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+.dalymmo-modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+.modal:not(.show):not(.open) {
+    display: none !important;
+}
+
+/* ============================================================
+   MOBILE BOTTOM SHEET — Đồng nhất 100% với .drawer-content
+   Cùng height 85vh, border-radius 16px 16px 0 0,
+   cùng animation cubic-bezier(0.32, 0.72, 0, 1),
+   cùng background, backdrop-filter, box-shadow
+   ============================================================ */
+@media (max-width: 768px) {
+    /* Overlay backdrop */
+    .dalymmo-modal,
+    .modal-wrapper,
+    .modal {
+        display: none;
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 99999 !important;
+        background: rgba(0, 0, 0, 0.6) !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        align-items: flex-end !important;
+        justify-content: center;
+        padding: 0 !important;
+        opacity: 1 !important;
+        transition: none !important;
+    }
+    .dalymmo-modal.show,
+    .dalymmo-modal.open,
+    .dalymmo-modal.active,
+    .modal-wrapper.open,
+    .modal-wrapper.show,
+    .modal-wrapper.active,
+    .modal.show,
+    .modal.active {
+        display: flex !important;
+    }
+
+    /* Panel nội dung — giống hệt .drawer-content */
+    .dalymmo-modal-content,
+    .modal-wrapper .modal-container,
+    .modal.show .modal-dialog,
+    .modal.show .modal-content {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        /* Cùng border-radius với .drawer-content */
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border: 1px solid var(--glass-border) !important;
+        border-bottom: none !important;
+        /* Cùng chiều cao cố định 82vh đồng nhất với 3 menu drawer */
+        height: 82vh !important;
+        max-height: 82vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        /* Cùng animation với .drawer-content */
+        transform: translateY(100%) !important;
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1) !important;
+        margin: 0 !important;
+        /* Cùng background & blur với .drawer-content */
+        background: rgb(15, 12, 25) !important;
+        background: linear-gradient(180deg, rgba(20, 16, 35, 0.98) 0%, rgba(12, 10, 22, 0.99) 100%) !important;
+        backdrop-filter: var(--glass-blur) !important;
+        -webkit-backdrop-filter: var(--glass-blur) !important;
+        /* Cùng box-shadow với .drawer-content */
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(168, 85, 247, 0.15) !important;
+    }
+    /* Slide lên khi open */
+    .dalymmo-modal.show .dalymmo-modal-content,
+    .dalymmo-modal.open .dalymmo-modal-content,
+    .dalymmo-modal.active .dalymmo-modal-content,
+    .modal-wrapper.open .modal-container,
+    .modal-wrapper.active .modal-container,
+    .modal.show .modal-dialog,
+    .modal.show .modal-content {
+        transform: translateY(0) !important;
+    }
+
+    /* Form bên trong */
+    .dalymmo-modal-content form,
+    .modal-wrapper form,
+    .modal.show form {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+    }
+
+    /* Header — padding để handle pill không đè lên text, gọn gàng mỏng viền */
+    .dalymmo-modal-header,
+    .modal-wrapper .modal-header,
+    .modal.show .modal-header {
+        position: relative !important;
+        padding: 0.85rem 1rem 0.55rem 1rem !important;
+        flex-shrink: 0 !important;
+        border-bottom: 1px solid var(--glass-border) !important;
+    }
+    /* Tắt handle giả lập bằng ::before để dùng duy nhất .drawer-handle đồng bộ với Menu Drawer, tránh bị 2 gạch */
+    .dalymmo-modal-header::before,
+    .modal-wrapper .modal-header::before,
+    .modal.show .modal-header::before {
+        display: none !important;
+        content: none !important;
+    }
+
+    /* Body — native swipe, không hiện scrollbar */
+    .dalymmo-modal-body,
+    .modal-wrapper .modal-body,
+    .modal.show .modal-body {
+        flex: 1 1 auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 0.75rem 1rem !important;
+        min-height: 0 !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+    .dalymmo-modal-body::-webkit-scrollbar,
+    .modal-wrapper .modal-body::-webkit-scrollbar,
+    .modal.show .modal-body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    /* Footer — viền mỏng gọn gàng, tăng không gian hiển thị, chừa khoảng cách đáy chuẩn dock menu */
+    .dalymmo-modal-footer,
+    .modal-wrapper .modal-footer,
+    .modal.show .modal-footer {
+        flex-shrink: 0 !important;
+        padding: 0.55rem 1rem !important;
+        padding-bottom: calc(74px + env(safe-area-inset-bottom, 8px)) !important;
+        background: rgba(15, 12, 25, 0.98) !important;
+        border-top: 1px solid var(--glass-border) !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Fallback: Khi modal mở không có footer, chừa khoảng cách đáy chuẩn dock menu */
+    .dalymmo-modal-content:not(:has(.dalymmo-modal-footer)) .dalymmo-modal-body,
+    .modal-wrapper .modal-container:not(:has(.modal-footer)) .modal-body,
+    .dalymmo-modal-body:last-child {
+        padding-bottom: calc(74px + env(safe-area-inset-bottom, 8px)) !important;
+    }
+
+    /* Confirm dialog & Auto-height Action Sheet trên Mobile */
+    .dalymmo-modal-confirm .dalymmo-modal-content,
+    .dalymmo-modal[data-size="sm"] .dalymmo-modal-content,
+    .dalymmo-sheet-auto .dalymmo-modal-content {
+        height: auto !important;
+        max-height: 88vh !important;
+    }
+    .dalymmo-modal-confirm .dalymmo-modal-footer {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 0.75rem !important;
+        padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom, 12px)) !important;
+    }
+    .dalymmo-modal-confirm .dalymmo-modal-footer button {
+        flex: 1 !important;
+        min-height: 44px !important;
+        font-size: 0.92rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+/* --- Dalymmo Modal Confirm (Popup nổi trên PC, Action Sheet trên Mobile) --- */
+.dalymmo-modal-confirm .dalymmo-modal-content {
+    max-width: 440px !important;
+    border-radius: 16px !important;
+}
+.dalymmo-modal-confirm .dalymmo-modal-header {
+    padding: 1.25rem 1.5rem 0.75rem 1.5rem;
+    border-bottom: none;
+}
+.dalymmo-modal-confirm .dalymmo-modal-body {
+    padding: 0.5rem 1.5rem 1.25rem 1.5rem;
+}
+.dalymmo-modal-confirm .dalymmo-modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --- Global Form Number Spinners --- */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* --- Nav Pills (Shared) --- */
+.nav-pills .nav-link {
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    border-radius: var(--radius-sm);
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: var(--primary);
+    color: #fff !important;
+}
+
+/* --- Setting Cards & Mode Switchers (Shared Liquid Glass) --- */
+.setting-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.setting-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mode-group {
+    display: flex;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.mode-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.mode-btn:first-child {
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
+}
+.mode-btn:last-child {
+    border-top-right-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+}
+.mode-btn.active {
+    background: rgba(139, 92, 246, 0.15);
+    color: #c084fc;
+    border-color: var(--primary);
+}
+.toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: normal;
+}
+
+/* ==========================================================================
+   Consolidated Shared Utilities & Layout Components (Zero Inline Styles)
+   ========================================================================== */
+
+/* Responsive visibility utilities */
+@media (min-width: 769px) { 
+    .hide-on-desktop { display: none !important; } 
+}
+@media (max-width: 768px) { 
+    .hide-on-mobile { display: none !important; } 
+    .app-header-left .header-icon-btn { display: none !important; }
+    .app-header-right .hide-on-mobile { display: none !important; }
+}
+
+/* Drawer accordion */
+.accordion-item.active .custom-acc-icon {
+    transform: rotate(90deg) !important;
+}
+
+/* Alert animations */
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes fadeOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+.toast-alert.hiding {
+    animation: fadeOutRight 0.4s ease-in forwards !important;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* User & Role Permission Pills */
+.override-pill {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.override-pill:hover {
+    color: #fff;
+    background: rgba(168, 85, 247, 0.08);
+}
+.override-pill.active-inherit {
+    background: rgba(168, 85, 247, 0.15);
+    color: #fff;
+    font-weight: 600;
+}
+.override-pill.active-allow {
+    background: rgba(16, 185, 129, 0.20);
+    color: #34d399;
+    font-weight: 600;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+.override-pill.active-deny {
+    background: rgba(239, 68, 68, 0.20);
+    color: #f87171;
+    font-weight: 600;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Profile / Account Settings Layout */
+.profile-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+.profile-top-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.mobile-menu-toggle {
+    display: none;
+}
+@media (max-width: 768px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .profile-top-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    .profile-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .profile-sidebar {
+        display: none !important;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 18px;
+        background: rgba(30, 27, 75, 0.45);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(168, 85, 247, 0.28);
+        border-radius: 14px;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 1.25rem;
+        width: 100%;
+        text-align: left;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        transition: all 0.2s ease;
+    }
+    .mobile-menu-toggle:active {
+        transform: scale(0.99);
+        border-color: rgba(168, 85, 247, 0.5);
+        background: rgba(45, 35, 95, 0.55);
+    }
+    .mobile-menu-toggle-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #c084fc;
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+    .mobile-menu-toggle-left i {
+        font-size: 1rem;
+        color: #a855f7;
+    }
+    .mobile-menu-toggle-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #f1f5f9;
+        font-size: 0.92rem;
+        font-weight: 600;
+    }
+    .mobile-menu-toggle-right i {
+        font-size: 0.95rem;
+        color: #cbd5e1;
+    }
+}
+
+/* Real-time Input Validation Styles */
+.validate-input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2) !important;
+}
+.validate-input.is-invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+.realtime-error {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+}
+.realtime-error.show {
+    display: flex;
+}
+
+/* ==========================================================
+   WALLET TOPUP & VIETQR (DaLyMMO Clean Design)
+   ========================================================== */
+.topup-grid {
+    display: grid;
+    grid-template-columns: 430px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+}
+@media (max-width: 960px) {
+    .topup-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.topup-balance-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding: 1.1rem 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.topup-balance-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.topup-balance-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.topup-balance-val {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--success);
+    line-height: 1.2;
+}
+.topup-qr-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.topup-qr-box {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    display: inline-block;
+    max-width: 270px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    position: relative;
+    min-height: 270px;
+}
+.dalymmo-modal .topup-qr-box,
+.modal-wrapper .topup-qr-box {
+    min-height: unset !important;
+    max-width: 100% !important;
+}
+.topup-qr-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+.topup-qr-loader {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.topup-qr-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+    width: 100%;
+    max-width: 270px;
+}
+.topup-amount-selector {
+    margin-top: 1.25rem;
+    width: 100%;
+    text-align: left;
+}
+.topup-amount-pills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+}
+.topup-pill-btn,
+.topup-chip-btn {
+    padding: 7px 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #cbd5e1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+.topup-pill-btn:hover,
+.topup-chip-btn:hover {
+    background: rgba(168, 85, 247, 0.2);
+    border-color: rgba(168, 85, 247, 0.45);
+    color: #fff;
+}
+.topup-pill-btn.active,
+.topup-chip-btn.active {
+    background: linear-gradient(135deg, var(--primary), #7c3aed);
+    border-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.35);
+}
+.topup-input-wrap {
+    position: relative;
+    margin-top: 0.65rem;
+}
+.topup-input-wrap .form-input {
+    padding-right: 32px;
+    font-weight: 600;
+}
+.topup-input-unit {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+.topup-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+.topup-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+.topup-item:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+}
+.topup-item-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.topup-item-label {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.topup-item-val {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+}
+.topup-item-val.mono {
+    font-family: monospace;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+}
+.topup-item-val.highlight {
+    color: var(--primary-light);
+}
+.topup-memo-highlight {
+    padding: 0.9rem 1rem;
+    background: rgba(168, 85, 247, 0.08);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.topup-memo-title {
+    font-size: 0.76rem;
+    color: var(--primary-light);
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.topup-memo-code {
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+.topup-copy-btn {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #f8fafc;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.topup-copy-btn:hover {
+    background: rgba(168, 85, 247, 0.25);
+    border-color: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+.topup-notice-box {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+.topup-notice-box i {
+    margin-top: 2px;
+    color: var(--warning);
+    flex-shrink: 0;
+}
+.topup-toast, .global-toast {
+    position: fixed;
+    top: 5.25rem;
+    right: 1.5rem;
+    z-index: 999999;
+    padding: 0.85rem 1.25rem;
+    border-radius: 12px;
+    display: none;
+    align-items: center;
+    gap: 0.85rem;
+    border: 1px solid rgba(34, 197, 94, 0.28);
+    border-left: 4px solid #10b981;
+    background-color: rgba(6, 32, 18, 0.6) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(16, 185, 129, 0.15);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-width: 320px;
+    max-width: 480px;
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.topup-toast.toast-error, .global-toast.toast-error {
+    background-color: rgba(40, 10, 12, 0.6) !important;
+    border-color: rgba(239, 68, 68, 0.28);
+    border-left-color: #ef4444;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(239, 68, 68, 0.15);
+}
+.topup-toast.toast-warning, .global-toast.toast-warning {
+    background-color: rgba(38, 24, 8, 0.6) !important;
+    border-color: rgba(245, 158, 11, 0.28);
+    border-left-color: #f59e0b;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(245, 158, 11, 0.15);
+}
+
+/* ==========================================================================
+   SIDEBAR SUBMENU & TREE NAVIGATION (SaaS Sleek Tree Style)
+   ========================================================================== */
+.sidebar-submenu {
+    list-style: none;
+    margin: 4px 0 6px 1.4rem !important;
+    padding: 2px 0 2px 18px !important;
+    border-left: none !important;
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    position: relative;
+}
+
+.sidebar-dropdown.open > .sidebar-submenu {
+    display: flex !important;
+}
+
+.sidebar-dropdown.open > .sidebar-item > .dropdown-arrow {
+    transform: rotate(180deg);
+    color: #c084fc;
+}
+
+.sidebar-dropdown.open > .sidebar-item {
+    color: #ffffff;
+}
+
+/* Từng thẻ li trong submenu trên PC */
+.sidebar-submenu > li {
+    position: relative;
+    list-style: none;
+}
+
+/* Nhánh gạch ngang mặc định: Mờ chìm, KHÔNG sáng */
+.sidebar-submenu > li::before {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 50%;
+    width: 10px;
+    height: 1.5px;
+    background: rgba(168, 85, 247, 0.18);
+    border-radius: 1px;
+    transition: all 0.25s ease;
+    z-index: 1;
+}
+
+/* Trục gạch dọc mặc định: Mờ chìm, KHÔNG sáng */
+.sidebar-submenu > li::after {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: rgba(168, 85, 247, 0.18);
+    border-radius: 1px;
+    transition: all 0.25s ease;
+    z-index: 1;
+}
+
+/* Mục đầu tiên: bắt đầu từ đỉnh */
+.sidebar-submenu > li:first-child::after {
+    top: 0;
+}
+
+/* Mục DƯỚI CÙNG: Dừng lại đúng 50% ngay tại nhánh ngang, TUYỆT ĐỐI KHÔNG NỐI THÒ XUỐNG DƯỚI */
+.sidebar-submenu > li:last-child::after {
+    bottom: 50%;
+}
+
+/* ==========================================================================
+   ĐI ĐẾN ĐÂU SÁNG ĐẾN ĐÓ - ĐẬM VÀ SÁNG NỔI BẬT NỐI VÀO MỤC ĐANG MỞ
+   ========================================================================== */
+
+/* 1. Các mục nằm TRƯỚC mục active: Trục dọc phát sáng đậm 3px xuyên suốt từ trên xuống */
+.sidebar-submenu > li.path-active::after,
+.sidebar-submenu > li:has(~ li.active)::after,
+.sidebar-submenu > li:has(+ li.active)::after,
+.sidebar-submenu > li:has(~ .active)::after,
+.sidebar-submenu > li:has(+ .active)::after {
+    width: 3px !important;
+    left: -18.5px !important;
+    bottom: -4px !important;
+    background: #c084fc !important;
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.95), 0 0 4px #ffffff !important;
+    z-index: 3 !important;
+}
+
+.sidebar-submenu > li:first-child.path-active::after,
+.sidebar-submenu > li:first-child:has(~ li.active)::after,
+.sidebar-submenu > li:first-child:has(+ li.active)::after,
+.sidebar-submenu > li:first-child:has(~ .active)::after,
+.sidebar-submenu > li:first-child:has(+ .active)::after {
+    top: 0 !important;
+}
+
+/* 2. Mục ĐANG ACTIVE:
+      - Trục dọc đậm 3px, sáng từ trên đến đúng 50% (ngay nhánh rẽ) rồi DỪNG LẠI, TUYỆT ĐỐI KHÔNG CHẠY XUỐNG DƯỚI
+      - Rực rỡ neon, nhìn thấy ngay nối từ trên vào menu đang mở */
+.sidebar-submenu > li.active::after,
+.sidebar-submenu > li:has(.sidebar-subitem.active)::after {
+    width: 3px !important;
+    left: -18.5px !important;
+    bottom: 50% !important; /* Dừng chuẩn xác ở 50%, đi đến đâu sáng đến đó */
+    background: #c084fc !important;
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.95), 0 0 4px #ffffff !important;
+    border-bottom-left-radius: 2px !important;
+    z-index: 3 !important;
+}
+
+/* Nhánh ngang của mục đang ACTIVE: Đậm 3px, dài 15px, sáng nổi rực rỡ nối thẳng vào mục */
+.sidebar-submenu > li.active::before,
+.sidebar-submenu > li:has(.sidebar-subitem.active)::before {
+    width: 15px !important;
+    height: 3px !important;
+    top: calc(50% - 1.5px) !important;
+    background: #c084fc !important;
+    box-shadow: 0 0 12px rgba(192, 132, 252, 1), 0 0 4px #ffffff !important;
+    border-radius: 1.5px !important;
+    z-index: 3 !important;
+}
+
+/* Hover trên PC: Khi rê chuột vào mục con */
+.sidebar-submenu > li:hover::before {
+    width: 14px;
+    height: 2.5px;
+    top: calc(50% - 1px);
+    background: #c084fc;
+    box-shadow: 0 0 8px rgba(192, 132, 252, 0.8);
+    z-index: 2;
+}
+
+.sidebar-submenu > li:hover::after {
+    background: #c084fc;
+    box-shadow: 0 0 6px rgba(192, 132, 252, 0.5);
+}
+
+.sidebar-subitem {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.45rem 0.65rem !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    border: 1px solid transparent !important;
+    background: transparent !important;
+}
+
+.sidebar-subitem:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    transform: translateX(2px);
+}
+
+.sidebar-subitem.active {
+    color: #ffffff !important;
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.18), rgba(168, 85, 247, 0.04)) !important;
+    border-color: rgba(168, 85, 247, 0.35) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.12) !important;
+}
+
+.sidebar-subitem i {
+    width: 16px !important;
+    min-width: 16px !important;
+    font-size: 0.78rem !important;
+    margin-right: 8px !important;
+    text-align: center !important;
+    color: #94a3b8 !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0;
+}
+
+.sidebar-subitem:hover i {
+    color: #c084fc !important;
+    transform: scale(1.1) !important;
+}
+
+.sidebar-subitem.active i {
+    color: #c084fc !important;
+    filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.5));
+}
+
+.sidebar-subitem .sub-badge {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   LIQUID GLASS DATA TABLES (Phong cách giọt nước mờ nhẹ, đồng bộ toàn hệ thống)
+   ========================================================================== */
+.dalymmo-table,
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+/* Tiêu đề bảng: Kính mờ giọt nước nhẹ nhàng, trong suốt, viền mảnh thanh lịch */
+.dalymmo-table thead tr,
+.data-table thead tr,
+.liquid-glass-thead tr {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.dalymmo-table thead th,
+.data-table thead th,
+.liquid-glass-thead th {
+    background: transparent !important;
+    color: #94a3b8 !important;
+    font-weight: 700 !important;
+    font-size: 0.76rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.7px !important;
+    padding: 0.85rem 1rem !important;
+    white-space: nowrap !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.dalymmo-table thead th:hover,
+.data-table thead th:hover {
+    color: #cbd5e1 !important;
+}
+
+/* Dòng dữ liệu */
+.dalymmo-table tbody tr,
+.data-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+    transition: background 0.15s ease;
+}
+
+.dalymmo-table tbody tr:hover,
+.data-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.dalymmo-table td,
+.data-table td {
+    padding: 0.85rem 1rem;
+    vertical-align: middle;
+}
+
+/* Cột Nội dung giao dịch: Tránh tràn chữ / chồng chéo */
+.td-description {
+    min-width: 220px !important;
+    max-width: 320px !important;
+    white-space: normal !important;
+}
+
+.td-description .desc-box {
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    line-height: 1.45;
+}
+
+/* Cột Ghi chú */
+.td-note {
+    min-width: 175px !important;
+    white-space: nowrap !important;
+}
+
+/* Ghi chú ACB Auto Bank: Badge xanh ngọc giọt nước nhẹ nhàng */
+.badge-note-acb {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Ghi chú thủ công / ghi chú khác */
+.badge-note-manual {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(168, 85, 247, 0.1);
+    color: #d8b4fe;
+    border: 1px solid rgba(168, 85, 247, 0.22);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Header Frosted Purple Glass (Chống che đè nội dung khi cuộn)
+   ========================================================================== */
+.app-header {
+    background: linear-gradient(180deg, rgba(20, 12, 38, 0.97) 0%, rgba(15, 9, 30, 0.95) 100%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.22) !important;
+    box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.6), inset 0 -1px 0 rgba(168, 85, 247, 0.15) !important;
+    z-index: 100 !important;
+}
+
+/* ==========================================================================
+   User Service Index Responsive Enhancements
+   ========================================================================== */
+.user-service-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .user-service-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+        margin-bottom: 1.25rem;
+    }
+    .user-service-stats-grid > div:last-child {
+        grid-column: span 2;
+    }
+    .user-service-stats-grid .dalymmo-block {
+        padding: 0.85rem !important;
+        gap: 0.75rem !important;
+    }
+    .user-service-stats-grid .stat-icon {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.15rem !important;
+        border-radius: 10px !important;
+    }
+    .user-service-stats-grid .stat-title {
+        font-size: 0.72rem !important;
+    }
+    .user-service-stats-grid .stat-val {
+        font-size: 1.15rem !important;
+    }
+    
+    .filter-actions {
+        width: 100% !important;
+    }
+    .filter-actions .btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .service-card-item {
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .service-card-item:active {
+        transform: scale(0.99);
+    }
+}
+
+/* ==========================================================================
+   DALYMMO SAAS LUXURY CUSTOM SELECT
+   Biến các thẻ <select> thành dropdown sang trọng, hỗ trợ icon và tìm kiếm
+   ========================================================================== */
+.dalymmo-select-wrapper {
+    position: relative;
+    width: 100%;
+    user-select: none;
+    font-family: inherit;
+}
+
+.dalymmo-select-trigger {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    text-align: left;
+}
+
+.dalymmo-select-wrapper.open .dalymmo-select-trigger,
+.dalymmo-select-trigger:focus-visible {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25), 0 4px 12px rgba(168, 85, 247, 0.15);
+    background: rgba(15, 12, 25, 0.7);
+}
+
+.dalymmo-select-value {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dalymmo-select-value .opt-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dalymmo-select-value.placeholder {
+    color: var(--text-muted, #94a3b8);
+}
+
+.dalymmo-select-arrow {
+    font-size: 0.75rem;
+    color: var(--text-muted, #94a3b8);
+    transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.dalymmo-select-wrapper.open .dalymmo-select-arrow {
+    transform: rotate(180deg);
+    color: #c084fc;
+}
+
+/* Dropdown Panel */
+.dalymmo-select-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background: rgba(18, 14, 30, 0.97);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.85), 0 0 25px rgba(168, 85, 247, 0.25);
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.dalymmo-select-wrapper.open .dalymmo-select-dropdown {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Dropup position khi ở gần mép dưới */
+.dalymmo-select-dropdown.dropup {
+    top: auto;
+    bottom: calc(100% + 6px);
+    transform: translateY(8px) scale(0.98);
+}
+
+.dalymmo-select-wrapper.open .dalymmo-select-dropdown.dropup {
+    transform: translateY(0) scale(1);
+}
+
+/* Search input inside dropdown */
+.dalymmo-select-search {
+    position: relative;
+    padding: 4px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dalymmo-select-search i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: var(--text-muted, #94a3b8);
+}
+
+.dalymmo-select-search-input {
+    width: 100%;
+    padding: 0.45rem 0.75rem 0.45rem 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.82rem;
+    outline: none;
+}
+
+.dalymmo-select-search-input:focus {
+    border-color: #a855f7;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Options Container */
+.dalymmo-select-options {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 2px 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168, 85, 247, 0.4) transparent;
+}
+
+.dalymmo-select-options::-webkit-scrollbar {
+    width: 4px;
+}
+.dalymmo-select-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+.dalymmo-select-options::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.4);
+    border-radius: 10px;
+}
+
+/* Option Item */
+.dalymmo-select-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 8px;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.dalymmo-select-option:hover {
+    background: rgba(168, 85, 247, 0.18);
+    color: #fff;
+}
+
+.dalymmo-select-option.selected {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(124, 58, 237, 0.22));
+    color: #d8b4fe;
+    font-weight: 600;
+}
+
+.dalymmo-select-option.hidden {
+    display: none !important;
+}
+
+.dalymmo-select-option .opt-check {
+    margin-left: auto;
+    color: #c084fc;
+    font-size: 0.75rem;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.2s ease;
+}
+
+.dalymmo-select-option.selected .opt-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Option Icon Bad/* Responsive Settlement & Payment Modals (PC rộng rãi cao thoáng, Mobile chuẩn Bottom Sheet 82vh) */
+.smart-pay-modal-content {
+    max-width: 660px !important;
+    width: 100% !important;
+}
+.req-modal-content {
+    max-width: 720px !important;
+    width: 100% !important;
+    border-radius: 20px !important;
+}
+.req-modal-header {
+    padding: 1.35rem 1.75rem !important;
+    min-height: 56px;
+}
+.req-header-icon {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.25rem !important;
+    border-radius: 12px !important;
+}
+.req-header-title {
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+}
+.req-header-subtitle {
+    font-size: 0.88rem !important;
+    margin-top: 4px !important;
+}
+.req-modal-body {
+    padding: 1.4rem 1.75rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+#reqPanelQr {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+}
+.req-tabs {
+    padding: 5px !important;
+    margin-bottom: 1.25rem !important;
+}
+.req-tab-btn {
+    padding: 0.7rem 1rem !important;
+    font-size: 0.88rem !important;
+}
+.req-layout-horizontal {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 1.25rem;
+}
+.req-qr-col {
+    flex: 0 0 210px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.req-qr-box {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+    position: relative;
+    width: 210px !important;
+    height: 210px !important;
+    min-height: unset !important;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.req-qr-tools {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+}
+.req-qr-tool-btn {
+    flex: 1;
+    padding: 7px 6px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+.req-qr-tool-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+.req-qr-tool-zoom {
+    flex: 0 0 36px;
+    width: 36px;
+}
+.req-info-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+.req-syntax-box {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(37, 99, 235, 0.09));
+    border: 1px solid rgba(59, 130, 246, 0.38);
+    border-radius: 13px;
+    padding: 11px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.req-label-syntax {
+    color: #93c5fd;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.req-syntax-code {
+    color: #ffffff;
+    font-family: monospace;
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 3px;
+}
+.req-syntax-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.req-bank-box {
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 13px;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.req-label-bank {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+.req-bank-num {
+    font-weight: 700;
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 1.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 3px;
+}
+.req-bank-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+.req-amount-box {
+    padding: 10px 16px;
+    background: rgba(16, 185, 129, 0.08);
+    border-radius: 13px;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.req-label-amount {
+    font-size: 0.82rem;
+    color: #6ee7b7;
+    font-weight: 600;
+}
+.req-amount-val {
+    font-size: 1.25rem;
+    color: #34d399;
+    font-weight: 800;
+}
+.req-msg-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+.req-msg-label {
+    font-size: 0.85rem;
+}
+.req-zalo-link {
+    font-size: 0.82rem;
+}
+.req-msg-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 11px;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    resize: none;
+    line-height: 1.5;
+    min-height: 120px !important;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+}
+.req-modal-footer {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.75rem !important;
+}
+.req-footer-btn {
+    padding: 0.75rem 1.4rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 10px !important;
+    min-height: 44px;
+}
+
+/* Mobile: Đồng bộ ngăn kéo Bottom Sheet 82vh & Chừa khoảng cách Dock Navigation chuẩn 74px */
+@media (max-width: 768px) {
+    .smart-pay-modal-content,
+    .req-modal-content {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 82vh !important;
+        max-height: 82vh !important;
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border: 1px solid var(--glass-border) !important;
+        border-bottom: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        background: rgb(15, 12, 25) !important;
+        background: linear-gradient(180deg, rgba(20, 16, 35, 0.98) 0%, rgba(12, 10, 22, 0.99) 100%) !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(168, 85, 247, 0.15) !important;
+        margin: 0 !important;
+        z-index: 1000 !important;
+    }
+    .req-modal-header {
+        padding: 0.65rem 1rem !important;
+        min-height: 42px !important;
+        flex-shrink: 0 !important;
+    }
+    .req-header-icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.95rem !important;
+        border-radius: 9px !important;
+    }
+    .req-header-title {
+        font-size: 0.96rem !important;
+    }
+    .req-header-subtitle {
+        font-size: 0.74rem !important;
+        margin-top: 2px !important;
+    }
+    .req-modal-body {
+        padding: 0.75rem 1rem !important;
+        flex: 1 1 auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        min-height: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    #reqPanelQr {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+    }
+    .req-tabs {
+        padding: 3px !important;
+        margin-bottom: 0.65rem !important;
+    }
+    .req-tab-btn {
+        padding: 0.48rem 0.6rem !important;
+        font-size: 0.8rem !important;
+    }
+    .req-layout-horizontal {
+        gap: 12px !important;
+        margin-bottom: 0.65rem !important;
+    }
+    .req-qr-col {
+        flex: 0 0 132px !important;
+        width: 132px !important;
+    }
+    .req-qr-box {
+        width: 132px !important;
+        height: 132px !important;
+        padding: 6px !important;
+        border-radius: 12px !important;
+    }
+    .req-qr-tools {
+        gap: 5px !important;
+        margin-top: 6px !important;
+    }
+    .req-qr-tool-btn {
+        padding: 5px 3px !important;
+        font-size: 0.68rem !important;
+        border-radius: 7px !important;
+    }
+    .req-qr-tool-zoom {
+        flex: 0 0 26px !important;
+        width: 26px !important;
+    }
+    .req-info-col {
+        gap: 6px !important;
+    }
+    .req-syntax-box {
+        padding: 6px 10px !important;
+        border-radius: 9px !important;
+    }
+    .req-label-syntax {
+        font-size: 0.65rem !important;
+    }
+    .req-syntax-code {
+        font-size: 1rem !important;
+        letter-spacing: 0.5px !important;
+        margin-top: 1px !important;
+    }
+    .req-syntax-btn {
+        padding: 5px 9px !important;
+        font-size: 0.72rem !important;
+        border-radius: 7px !important;
+    }
+    .req-bank-box {
+        padding: 6px 10px !important;
+        border-radius: 9px !important;
+    }
+    .req-label-bank {
+        font-size: 0.65rem !important;
+    }
+    .req-bank-num {
+        font-size: 0.92rem !important;
+        margin-top: 1px !important;
+    }
+    .req-bank-btn {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 0.75rem !important;
+        border-radius: 7px !important;
+    }
+    .req-amount-box {
+        padding: 6px 10px !important;
+        border-radius: 9px !important;
+    }
+    .req-label-amount {
+        font-size: 0.68rem !important;
+    }
+    .req-amount-val {
+        font-size: 0.95rem !important;
+    }
+    .req-msg-wrapper {
+        flex: 1 1 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 0 !important;
+        margin-top: 0.35rem !important;
+        margin-bottom: 0.45rem !important;
+    }
+    .req-msg-label {
+        font-size: 0.74rem !important;
+    }
+    .req-zalo-link {
+        font-size: 0.72rem !important;
+    }
+    .req-msg-textarea {
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+        border-radius: 10px !important;
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-height: 185px !important;
+        box-sizing: border-box !important;
+    }
+    /* Mép dưới cụm nút: Đưa sát lại gần dock menu (xuống 74px thay vì 105px) */
+    .req-modal-footer,
+    .dalymmo-modal-footer {
+        flex-shrink: 0 !important;
+        padding: 0.6rem 1rem !important;
+        padding-bottom: calc(74px + env(safe-area-inset-bottom, 8px)) !important;
+        background: rgba(15, 12, 25, 0.98) !important;
+        border-top: 1px solid var(--glass-border) !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        z-index: 10 !important;
+    }
+    .req-footer-btn {
+        padding: 0.6rem 0.5rem !important;
+        font-size: 0.8rem !important;
+        border-radius: 9px !important;
+    }
+}

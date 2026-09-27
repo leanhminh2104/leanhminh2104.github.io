@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
+    <meta name="description" content="Cuộc sống của một dev — Cân bằng công việc và cuộc sống cá nhân. Tránh kiệt sức (burnout) và duy trì đam mê dài hạn.">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cuộc sống của một dev — Cân bằng công việc và cuộc sống">
+    <meta property="og:description" content="Những bài học và thói quen thực tế giúp duy trì năng lượng và sức khỏe tinh thần khi làm lập trình viên.">
+    <title>Cuộc sống của một dev — Lê Anh Minh Blog</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../../assets/css/blog.css">
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Stars Background -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<!-- TOPBAR / HEADER -->
+<header class="blog-topbar">
+    <div class="blog-header-inner">
+        <a href="../../" class="blog-logo">
+            <div class="blog-logo-icon">
+                <i class="fas fa-pen-nib"></i>
+            </div>
+            <span>leanhminh</span>
+        </a>
+
+        <nav class="blog-nav">
+            <a href="../../">Trang chủ</a>
+            <a href="../../tech/">Công nghệ</a>
+            <a href="../" class="active">Cuộc sống</a>
+        </nav>
+
+        <div class="topbar-actions">
+            <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub" aria-label="GitHub Profile">
+                <i class="fab fa-github"></i>
+            </a>
+            <button type="button" class="icon-btn hamburger-mobile" id="hamburger-btn" aria-label="Mở menu" style="display:none;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="blog-main">
+    <div class="blog-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../">Cuộc sống</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Cân bằng công việc</span>
+        </nav>
+
+        <div class="article-layout">
+
+            <!-- Left: Article Content -->
+            <article class="article-body">
+
+                <!-- Article Header -->
+                <header class="article-header animate-up">
+                    <h1 class="article-title">
+                        Cuộc sống của một dev — Cân bằng công việc và cuộc sống 🌱
+                    </h1>
+
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 25 tháng 9, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">3 phút đọc</span></span>
+                    </div>
+
+                    <div class="article-tags">
+                        <span class="badge badge-success"><i class="fas fa-heart"></i> Life</span>
+                        <span class="badge badge-success"><i class="fas fa-brain"></i> Mindset</span>
+                        <span class="badge badge-primary"><i class="fas fa-battery-half"></i> Productivity</span>
+                    </div>
+                </header>
+
+                <p>
+                    Làm developer thường mang lại cảm giác phấn khích tột độ khi giải quyết được một bug khó hay release thành công một tính năng mới. Nhưng đồng thời, áp lực deadline, hội chứng impostor syndrome và việc nhìn vào màn hình liên tục dễ dẫn đến trạng thái kiệt sức (burnout).
+                </p>
+
+                <blockquote>
+                    "Sự nghiệp lập trình là một cuộc chạy marathon đường dài, không phải là cuộc đua nước rút 100m. Biết cách nghỉ ngơi cũng là một kỹ năng kỹ thuật."
+                </blockquote>
+
+                <h2>1. Ranh giới rõ ràng giữa giờ làm và giờ sống</h2>
+                <p>
+                    Khi làm việc từ xa (remote) hoặc mang việc về nhà, ranh giới giữa bàn làm việc và không gian nghỉ ngơi rất dễ bị xóa nhòa. Một số quy tắc nhỏ mình luôn áp dụng:
+                </p>
+                <ul>
+                    <li>Tắt toàn bộ thông báo Slack / Teams sau 18:30 nếu không có ca trực (on-call).</li>
+                    <li>Có một góc làm việc riêng, không bao giờ mang laptop lên giường ngủ.</li>
+                    <li>Dành ít nhất 30 phút sau giờ làm để chuyển tiếp trạng thái: đi bộ, tập thể dục hoặc nấu ăn.</li>
+                </ul>
+
+                <h2>2. Nguyên tắc 20-20-20 bảo vệ đôi mắt và cột sống</h2>
+                <p>
+                    Cứ sau 20 phút nhìn vào màn hình, hãy nhìn vào một vật thể ở xa khoảng 20 feet (6 mét) trong ít nhất 20 giây. Đứng dậy vươn vai, uống một ngụm nước ấm. Thói quen nhỏ này giúp giảm mỏi mắt và đau mỏi vai gáy đáng kể sau nhiều năm gắn bó với nghề.
+                </p>
+
+                <h2>3. Học cách nói "Không" một cách tử tế</h2>
+                <p>
+                    Không phải tính năng nào cũng cần release ngay hôm nay. Học cách ước lượng thời gian (estimate) có đệm an toàn (buffer) và giao tiếp rõ ràng với Project Manager hoặc khách hàng về những đánh đổi (trade-offs) giữa tốc độ và chất lượng mã nguồn.
+                </p>
+
+                <h2>4. Bảng thói quen duy trì năng lượng mỗi tuần</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hoạt động</th>
+                            <th>Tần suất</th>
+                            <th>Tác động tích cực</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chạy bộ / Đạp xe</td>
+                            <td>3 buổi / tuần</td>
+                            <td>Tăng sức bền, giải tỏa căng thẳng thần kinh</td>
+                        </tr>
+                        <tr>
+                            <td>Đọc sách phi công nghệ</td>
+                            <td>Mỗi tối 20 phút</td>
+                            <td>Mở rộng góc nhìn xã hội, ngủ ngon hơn</td>
+                        </tr>
+                        <tr>
+                            <td>Offline hoàn toàn (Digital Detox)</td>
+                            <td>Nửa ngày Chủ nhật</td>
+                            <td>Tái tạo năng lượng sáng tạo cho tuần mới</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>5. Lời kết</h2>
+                <p>
+                    Hãy nhớ rằng code tốt nhất được viết ra từ một cái đầu minh mẫn và một cơ thể khỏe mạnh. Chúc bạn luôn giữ vững ngọn lửa đam mê với công nghệ mà vẫn tận hưởng trọn vẹn từng khoảnh khắc tươi đẹp của cuộc sống!
+                </p>
+
+                <hr>
+
+                <!-- Next post card -->
+                <div class="glass-card" style="margin-top:2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+                    <div>
+                        <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; letter-spacing:0.06em;">Bài viết công nghệ</div>
+                        <a href="../../tech/laravel-tips/" style="color:#fff; font-weight:700; text-decoration:none; font-size:1rem; margin-top:0.2rem; display:block;">
+                            Laravel Tips — Những trick hay mình hay dùng 💡
+                        </a>
+                    </div>
+                    <a href="../../tech/laravel-tips/" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;">
+                        Xem bài viết <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </article>
+
+            <!-- Right: Sticky Sidebar (TOC + Author) -->
+            <aside class="article-sidebar">
+
+                <!-- Table of Contents -->
+                <div class="glass-card toc-card" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Auto generated by core.js -->
+                    </ul>
+                </div>
+
+                <!-- Author Card -->
+                <div class="glass-card author-card">
+                    <div class="author-avatar">🌱</div>
+                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Lê Anh Minh</div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Developer & Life Explorer</div>
+                    <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.6; margin-top:0.6rem;">
+                        Chia sẻ những suy ngẫm chân thành về công việc, cuộc sống và con đường phát triển bản thân.
+                    </p>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
+                        <i class="fab fa-github"></i> Theo dõi GitHub
+                    </a>
+                </div>
+
+            </aside>
+
+        </div><!-- /article-layout -->
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Footer -->
+<footer class="blog-footer">
+    <div class="blog-container">
+        Made with <span style="color:#ef4444;">♥</span> by <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer">Lê Anh Minh</a>
+        <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.35rem;">© 2026 leanhminh2104 · Chúc bạn một ngày tràn đầy cảm hứng!</div>
+    </div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Lên đầu trang">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- MOBILE BOTTOM NAV -->
+<div class="bottom-nav-wrapper">
+    <div class="bottom-nav-inner">
+        <div class="bottom-nav-glass">
+            <div class="bottom-nav-gradients"></div>
+            <nav class="bottom-nav-menu">
+                <a href="../../" class="nav-item">
+                    <i class="fas fa-house nav-icon"></i>
+                    <span class="nav-text">Trang chủ</span>
+                </a>
+                <a href="../../tech/" class="nav-item">
+                    <i class="fas fa-code nav-icon"></i>
+                    <span class="nav-text">Công nghệ</span>
+                </a>
+
+                <div class="fab-container">
+                    <div class="fab-ping"></div>
+                    <a href="../../tech/laravel-tips/" class="fab-btn" title="Đọc bài Tech" aria-label="Đọc bài Tech">
+                        <i class="fas fa-code"></i>
+                    </a>
+                    <div class="fab-placeholder"></div>
+                    <span class="fab-text">Tech</span>
+                </div>
+
+                <a href="../" class="nav-item active">
+                    <i class="fas fa-heart nav-icon"></i>
+                    <span class="nav-text">Cuộc sống</span>
+                </a>
+                <button type="button" class="nav-item" id="open-drawer-btn" aria-label="Mở menu">
+                    <i class="fas fa-bars nav-icon"></i>
+                    <span class="nav-text">Menu</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer-overlay" id="mobile-drawer-overlay"></div>
+<div class="drawer-sheet" id="mobile-drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-head">
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+            <div class="blog-logo-icon" style="width:30px; height:30px; font-size:0.8rem;">
+                <i class="fas fa-pen-nib"></i>
+            </div>
+            <span style="font-weight:700; font-size:0.95rem; color:#fff;">leanhminh</span>
+        </div>
+        <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Đóng menu">
+            <i class="fas fa-xmark"></i>
+        </button>
+    </div>
+    <div class="drawer-body">
+        <div class="drawer-section-label">Điều hướng</div>
+        <a href="../../" class="drawer-item">
+            <div class="drawer-item-icon" style="background:rgba(168,85,247,0.15); color:#c084fc;">
+                <i class="fas fa-house"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">Trang chủ</div>
+                <div class="drawer-item-desc">Tất cả bài viết mới nhất</div>
+            </div>
+        </a>
+        <a href="../../tech/" class="drawer-item">
+            <div class="drawer-item-icon" style="background:rgba(56,189,248,0.15); color:#38bdf8;">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">Công nghệ</div>
+                <div class="drawer-item-desc">Laravel, PHP, JavaScript, DevOps</div>
+            </div>
+        </a>
+        <a href="../" class="drawer-item active">
+            <div class="drawer-item-icon" style="background:rgba(52,211,153,0.15); color:#34d399;">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">Cuộc sống</div>
+                <div class="drawer-item-desc">Tâm sự nghề nghiệp, mindset, cân bằng</div>
+            </div>
+        </a>
+
+        <div class="drawer-divider"></div>
+        <div class="drawer-section-label">Liên kết ngoài</div>
+        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="drawer-item">
+            <div class="drawer-item-icon" style="background:rgba(255,255,255,0.08); color:#94a3b8;">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">GitHub</div>
+                <div class="drawer-item-desc">@leanhminh2104</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script src="../../assets/js/core.js"></script>
+</body>
+</html>

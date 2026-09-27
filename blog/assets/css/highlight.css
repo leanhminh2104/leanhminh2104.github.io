@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Code Syntax Highlight — DaLyMMO Dark Theme
+   ========================================================================== */
+
+/* Dựa trên One Dark / Atom Dark */
+.article-content pre {
+    background: #0d0d14 !important;
+    border: 1px solid rgba(168, 85, 247, 0.15) !important;
+    position: relative;
+}
+
+/* Language label */
+.code-block-wrapper {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+.code-lang-label {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(168, 85, 247, 0.6);
+    background: rgba(168, 85, 247, 0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 3.5rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.code-copy-btn:hover {
+    background: rgba(168, 85, 247, 0.12);
+    color: var(--primary-hover);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.code-copy-btn.copied {
+    color: var(--success-light);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Token colors */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: #6b7a90; font-style: italic; }
+
+.token.punctuation { color: #c0ccd8; }
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol { color: #e06c75; }
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin { color: #98c379; }
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string { color: #56b6c2; }
+
+.token.atrule,
+.token.attr-value,
+.token.keyword { color: #c678dd; }
+
+.token.function { color: #61afef; }
+
+.token.regex,
+.token.important,
+.token.variable { color: #e5c07b; }
+
+.token.important,
+.token.bold { font-weight: bold; }
+.token.italic { font-style: italic; }

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
+    <meta name="description" content="Laravel Tips — Những trick hay mình hay dùng trong quá trình làm việc thực tế. Từ Query Builder, Eloquent đến tối ưu bộ nhớ.">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Laravel Tips — Những trick hay mình hay dùng">
+    <meta property="og:description" content="Tổng hợp những tip, trick và best practice trong Laravel được đúc kết qua các dự án thực tế.">
+    <title>Laravel Tips — Lê Anh Minh Blog</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../../assets/css/blog.css">
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Stars Background -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<!-- TOPBAR / HEADER -->
+<header class="blog-topbar">
+    <div class="blog-header-inner">
+        <a href="../../" class="blog-logo">
+            <div class="blog-logo-icon">
+                <i class="fas fa-pen-nib"></i>
+            </div>
+            <span>leanhminh</span>
+        </a>
+
+        <nav class="blog-nav">
+            <a href="../../">Trang chủ</a>
+            <a href="../" class="active">Công nghệ</a>
+            <a href="../../life/">Cuộc sống</a>
+        </nav>
+
+        <div class="topbar-actions">
+            <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub" aria-label="GitHub Profile">
+                <i class="fab fa-github"></i>
+            </a>
+            <button type="button" class="icon-btn hamburger-mobile" id="hamburger-btn" aria-label="Mở menu" style="display:none;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="blog-main">
+    <div class="blog-container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../">Công nghệ</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Laravel Tips</span>
+        </nav>
+
+        <div class="article-layout">
+
+            <!-- Left: Article Content -->
+            <article class="article-body">
+
+                <!-- Article Header -->
+                <header class="article-header animate-up">
+                    <h1 class="article-title">
+                        Laravel Tips — Những trick hay mình hay dùng 💡
+                    </h1>
+
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 27 tháng 9, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">5 phút đọc</span></span>
+                    </div>
+
+                    <div class="article-tags">
+                        <span class="badge badge-primary"><i class="fab fa-laravel"></i> Laravel</span>
+                        <span class="badge badge-primary"><i class="fab fa-php"></i> PHP</span>
+                        <span class="badge badge-info"><i class="fas fa-bolt"></i> Backend</span>
+                    </div>
+                </header>
+
+                <!-- Introduction -->
+                <p>
+                    Laravel là một framework rất tuyệt vời với hệ sinh thái phong phú và syntax cực kỳ tao nhã (expressive). Tuy nhiên, có rất nhiều helper và tính năng ẩn mà ít người chú ý tới, nhưng lại giúp code của bạn ngắn gọn, dễ đọc và tối ưu hiệu năng hơn rất nhiều.
+                </p>
+
+                <blockquote>
+                    "Viết code không chỉ là để máy tính hiểu, mà quan trọng hơn là để đồng nghiệp và chính bạn 6 tháng sau đọc lại vẫn thấy dễ chịu."
+                </blockquote>
+
+                <!-- Section 1 -->
+                <h2>1. Dùng cursor() thay vì chunk() khi duyệt lượng dữ liệu lớn</h2>
+                <p>
+                    Khi cần duyệt qua hàng ngàn hay hàng chục ngàn record trong database, nhiều dev thường dùng <code>chunk()</code>. Nhưng <code>chunk()</code> thực chất chạy nhiều câu query phân trang với <code>LIMIT</code> và <code>OFFSET</code>. Với bảng lớn, query offset càng về sau càng chậm.
+                </p>
+                <p>
+                    Thay vào đó, bạn có thể dùng <code>cursor()</code>. Phương thức này tận dụng <strong>PHP Generators</strong> (hàm <code>yield</code>), chỉ chạy 1 câu query duy nhất và nạp từng model vào RAM tại một thời điểm, giữ bộ nhớ luôn ở mức tối thiểu:
+                </p>
+
+                <pre><code class="language-php">// Tiết kiệm RAM vượt trội với cursor()
+use App\Models\Order;
+
+foreach (Order::where('status', 'pending')->cursor() as $order) {
+    $order->processPayment();
+}</code></pre>
+
+                <!-- Section 2 -->
+                <h2>2. Tận dụng when() và unless() trong Query Builder</h2>
+                <p>
+                    Thay vì viết các khối <code>if...else</code> rời rạc để ghép query tìm kiếm hay lọc dữ liệu, bạn hãy sử dụng method <code>when()</code>:
+                </p>
+
+                <pre><code class="language-php">$users = User::query()
+    ->when($request->filled('search'), function ($query) use ($request) {
+        $query->where('name', 'like', "%{$request->search}%");
+    })
+    ->when($request->role, function ($query, $role) {
+        $query->where('role', $role);
+    })
+    ->get();</code></pre>
+
+                <p>
+                    Cách viết này giúp chuỗi query liền mạch, dễ đọc và rất dễ bảo trì.
+                </p>
+
+                <!-- Section 3 -->
+                <h2>3. Tạo Custom Eloquent Collection</h2>
+                <p>
+                    Nếu bạn thường xuyên phải thực hiện các phép tính toán nghiệp vụ trên tập hợp model (như tính tổng doanh thu sau thuế, phân loại đơn hàng), đừng nhồi nhét logic đó vào Controller. Hãy tạo một Custom Collection:
+                </p>
+
+                <pre><code class="language-php">// Trong Model Order.php
+public function newCollection(array $models = [])
+{
+    return new OrderCollection($models);
+}
+
+// Trong app/Collections/OrderCollection.php
+class OrderCollection extends \Illuminate\Database\Eloquent\Collection
+{
+    public function totalRevenue(): float
+    {
+        return $this->sum(fn ($order) => $order->subtotal - $order->discount);
+    }
+}
+
+// Gọi cực kỳ thanh lịch ở bất cứ đâu:
+$orders = Order::whereDate('created_at', today())->get();
+echo $orders->totalRevenue();</code></pre>
+
+                <!-- Section 4 -->
+                <h2>4. Dùng helper tap() để giữ method chaining liền mạch</h2>
+                <p>
+                    Helper <code>tap()</code> cho phép bạn thực hiện hành động trên một đối tượng và sau đó trả về chính đối tượng đó:
+                </p>
+
+                <pre><code class="language-php">// Cập nhật model và trả về model đã update trong 1 dòng:
+return tap($user)->update([
+    'last_login_at' => now(),
+]);</code></pre>
+
+                <!-- Section 5 -->
+                <h2>5. Đo đạc tốc độ thực thi với Benchmark::measure()</h2>
+                <p>
+                    Từ Laravel 9.32+, Laravel tích hợp sẵn class <code>Benchmark</code> cực kỳ tiện dụng để test hiệu năng mà không cần cài thêm extension phức tạp:
+                </p>
+
+                <pre><code class="language-php">use Illuminate\Support\Benchmark;
+
+Benchmark::dd([
+    'Method A' => fn () => User::with('posts')->get(),
+    'Method B' => fn () => User::all()->load('posts'),
+]);</code></pre>
+
+                <hr>
+
+                <!-- Next post card -->
+                <div class="glass-card" style="margin-top:2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+                    <div>
+                        <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; letter-spacing:0.06em;">Bài tiếp theo</div>
+                        <a href="../../life/cuoc-song-dev/" style="color:#fff; font-weight:700; text-decoration:none; font-size:1rem; margin-top:0.2rem; display:block;">
+                            Cuộc sống của một dev — Cân bằng công việc & cuộc sống 🌱
+                        </a>
+                    </div>
+                    <a href="../../life/cuoc-song-dev/" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;">
+                        Đọc tiếp <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </article>
+
+            <!-- Right: Sticky Sidebar (TOC + Author) -->
+            <aside class="article-sidebar">
+
+                <!-- Table of Contents -->
+                <div class="glass-card toc-card" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Auto generated by core.js -->
+                    </ul>
+                </div>
+
+                <!-- Author Card -->
+                <div class="glass-card author-card">
+                    <div class="author-avatar">👨‍💻</div>
+                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Lê Anh Minh</div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Full-stack Developer</div>
+                    <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.6; margin-top:0.6rem;">
+                        Đam mê xây dựng sản phẩm chất lượng cao với trải nghiệm người dùng tinh tế.
+                    </p>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
+                        <i class="fab fa-github"></i> Theo dõi GitHub
+                    </a>
+                </div>
+
+            </aside>
+
+        </div><!-- /article-layout -->
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Footer -->
+<footer class="blog-footer">
+    <div class="blog-container">
+        Made with <span style="color:#ef4444;">♥</span> by <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer">Lê Anh Minh</a>
+        <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.35rem;">© 2026 leanhminh2104 · Chúc bạn một ngày tràn đầy cảm hứng!</div>
+    </div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Lên đầu trang">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- MOBILE BOTTOM NAV -->
+<div class="bottom-nav-wrapper">
+    <div class="bottom-nav-inner">
+        <div class="bottom-nav-glass">
+            <div class="bottom-nav-gradients"></div>
+            <nav class="bottom-nav-menu">
+                <a href="../../" class="nav-item">
+                    <i class="fas fa-house nav-icon"></i>
+                    <span class="nav-text">Trang chủ</span>
+                </a>
+                <a href="../" class="nav-item active">
+                    <i class="fas fa-code nav-icon"></i>
+                    <span class="nav-text">Công nghệ</span>
+                </a>
+
+                <div class="fab-container">
+                    <div class="fab-ping"></div>
+                    <a href="../../life/cuoc-song-dev/" class="fab-btn" title="Bài tiếp theo" aria-label="Bài tiếp theo">
+                        <i class="fas fa-forward"></i>
+                    </a>
+                    <div class="fab-placeholder"></div>
+                    <span class="fab-text">Tiếp theo</span>
+                </div>
+
+                <a href="../../life/" class="nav-item">
+                    <i class="fas fa-heart nav-icon"></i>
+                    <span class="nav-text">Cuộc sống</span>
+                </a>
+                <button type="button" class="nav-item" id="open-drawer-btn" aria-label="Mở menu">
+                    <i class="fas fa-bars nav-icon"></i>
+                    <span class="nav-text">Menu</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer-overlay" id="mobile-drawer-overlay"></div>
+<div class="drawer-sheet" id="mobile-drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-head">
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+            <div class="blog-logo-icon" style="width:30px; height:30px; font-size:0.8rem;">
+                <i class="fas fa-pen-nib"></i>
+            </div>
+            <span style="font-weight:700; font-size:0.95rem; color:#fff;">leanhminh</span>
+        </div>
+        <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Đóng menu">
+            <i class="fas fa-xmark"></i>
+        </button>
+    </div>
+    <div class="drawer-body">
+        <div class="drawer-section-label">Điều hướng</div>
+        <a href="../../" class="drawer-item">
+            <div class="drawer-item-icon" style="background:rgba(168,85,247,0.15); color:#c084fc;">
+                <i class="fas fa-house"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">Trang chủ</div>
+                <div class="drawer-item-desc">Tất cả bài viết mới nhất</div>
+            </div>
+        </a>
+        <a href="../" class="drawer-item active">
+            <div class="drawer-item-icon" style="background:rgba(56,189,248,0.15); color:#38bdf8;">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">Công nghệ</div>
+                <div class="drawer-item-desc">Laravel, PHP, JavaScript, DevOps</div>
+            </div>
+        </a>
+        <a href="../../life/" class="drawer-item">
+            <div class="drawer-item-icon" style="background:rgba(52,211,153,0.15); color:#34d399;">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">Cuộc sống</div>
+                <div class="drawer-item-desc">Tâm sự nghề nghiệp, mindset, cân bằng</div>
+            </div>
+        </a>
+
+        <div class="drawer-divider"></div>
+        <div class="drawer-section-label">Liên kết ngoài</div>
+        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="drawer-item">
+            <div class="drawer-item-icon" style="background:rgba(255,255,255,0.08); color:#94a3b8;">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="drawer-item-text">
+                <div class="drawer-item-title">GitHub</div>
+                <div class="drawer-item-desc">@leanhminh2104</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script src="../../assets/js/core.js"></script>
+</body>
+</html>
