@@ -39,7 +39,6 @@ function updateReadmeFile(targetPath) {
     console.log(`[README Updater] Đã cập nhật: ${targetPath}`);
 }
 
-// Cập nhật cả ở blog README và root repo README (nếu có)
-updateReadmeFile(path.join(__dirname, '..', 'README.md'));
+// Cập nhật root portfolio / profile repo README (không chèn danh sách bài vào blog/README.md)
 updateReadmeFile(path.join(__dirname, '..', '..', 'README.md'));
 updateReadmeFile(path.join(__dirname, '..', '..', 'leanhminh2104.github.io', 'README.md'));

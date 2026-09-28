@@ -80,22 +80,29 @@ D:\code\laragon\www\blog\
 │   │   └── core.js                         # JavaScript chính: Scroll Reveal, Copy Code, Hit Counter
 │   └── fonts/                              # Local fonts dự phòng (nếu cần offline)
 │
-├── tech/                                   # 💻 Danh mục: Công nghệ & Lập trình
-│   ├── index.html                          # Trang danh sách bài viết chuyên mục Tech
-│   └── laravel-tips/                       # Bài viết mẫu: Laravel tips & tricks
-│       └── index.html
+├── tech/                                   # 💻 Chuyên mục: Công nghệ & Lập trình
+│   ├── index.html                          # Trang danh mục Công nghệ
+│   └── <slug-bai-viet>/                    # Thư mục từng bài viết chi tiết
+│       └── index.html                      # Nội dung bài viết
 │
-├── life/                                   # 🌿 Danh mục: Đời sống & Sự nghiệp Dev
-│   ├── index.html                          # Trang danh sách bài viết chuyên mục Life
-│   └── cuoc-song-dev/                      # Bài viết mẫu: Tâm sự đời sống lập trình viên
-│       └── index.html
+├── life/                                   # 🌿 Chuyên mục: Đời sống & Sự nghiệp Dev
+│   ├── index.html                          # Trang danh mục Cuộc sống
+│   └── <slug-bai-viet>/                    # Thư mục từng bài viết chi tiết
+│       └── index.html                      # Nội dung bài viết
 │
-├── _template/                              # 📐 Khuôn mẫu chuẩn cho bài viết mới
-│   └── post-template.html                  # Template đầy đủ cấu trúc Breadcrumb, Tag, Meta, View counter
+├── scripts/                                # ⚡ Bộ công cụ tự động hóa Blog (Node.js)
+│   ├── master-build.js                     # Kịch bản tổng điều phối build & SEO
+│   ├── build-blog.js                       # Tự động cập nhật thẻ bài viết & điều hướng trước/sau
+│   ├── generate-sitemap.js                 # Tự động xuất sitemap.xml & robots.txt
+│   ├── generate-rss.js                     # Tự động xuất feed.xml (RSS 2.0)
+│   └── update-readme.js                    # Tự động đồng bộ bài viết vào hồ sơ GitHub
 │
-├── index.html                              # 🏠 Trang chủ Blog (Hero section, Featured Posts, Category grid)
-├── deploy.bat                              # 🚀 Script deploy 1-click tích hợp quét bảo mật
-└── README.md                               # 📖 Tài liệu hướng dẫn dự án (File hiện tại)
+├── _template/                              # 📐 Khuôn mẫu chuẩn 100% cho bài viết mới
+│   └── post-template.html                  # Blueprint chuẩn cấu trúc bài viết mới
+│
+├── index.html                              # 🏠 Trang chủ Blog (Hero, Category grid, Posts grid)
+├── deploy.bat                              # 🚀 Script deploy an toàn kết hợp quét bảo mật
+└── README.md                               # 📖 Cẩm nang kiến trúc dự án (File hiện tại)
 ```
 
 ---
@@ -268,14 +275,3 @@ Dự án tích hợp bộ Skills chuẩn hóa cho trợ lý AI (Antigravity IDE 
 <p align="center">
   Made with 💜 by <b>Lê Anh Minh</b> • Hosted with GitHub Pages
 </p>
-
-
-### 📝 Bài viết mới nhất trên Blog
-
-<!-- BLOG-POSTS-START -->
-- [Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family](https://leanhminh2104.github.io/blog/tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/) — *2026-09-28* `Công nghệ` (6 phút)
-- [Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng](https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/) — *2026-03-26* `Công nghệ` (7 phút)
-- [Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer](https://leanhminh2104.github.io/blog/tech/lay-app-password-google/) — *2026-03-25* `Công nghệ` (5 phút)
-- [10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn](https://leanhminh2104.github.io/blog/tech/laravel-tips/) — *2026-03-24* `Công nghệ` (5 phút)
-- [Một Ngày Của Developer: Cân Bằng Giữa Code Và Cuộc Sống](https://leanhminh2104.github.io/blog/life/cuoc-song-dev/) — *2026-03-20* `Cuộc sống` (4 phút)
-<!-- BLOG-POSTS-END -->
