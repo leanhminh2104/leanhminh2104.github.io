@@ -399,6 +399,13 @@
         let activeCat = 'all';
 
         function openSearch() {
+            const drawer = document.getElementById('mobile-drawer');
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            const drawerBtn = document.getElementById('open-drawer-btn');
+            if (drawer) drawer.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            if (drawerBtn) drawerBtn.classList.remove('active');
+
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
             setTimeout(() => input.focus(), 80);
@@ -707,9 +714,9 @@
     // ────────────────────────────────────────────────────────────
     function initBlogComponents() {
         renderHeader();
-        renderMobileDock();
         renderMobileDrawer();
         renderSearchModal();
+        renderMobileDock();
         renderFooter();
         window.renderBlogAds();
         setupDrawerDelegation();
@@ -719,20 +726,37 @@
 
     function setupDrawerDelegation() {
         document.addEventListener('click', (e) => {
-            if (e.target.closest('#hamburger-btn, #open-drawer-btn')) {
+            const openTrigger = e.target.closest('#hamburger-btn, #open-drawer-btn');
+            if (openTrigger) {
                 e.preventDefault();
                 const overlay = document.getElementById('mobile-drawer-overlay');
                 const drawer = document.getElementById('mobile-drawer');
-                if (overlay) overlay.classList.add('open');
-                if (drawer) drawer.classList.add('open');
-                document.body.style.overflow = 'hidden';
+                const isOpen = drawer && drawer.classList.contains('open');
+
+                if (isOpen && openTrigger.id === 'open-drawer-btn') {
+                    // Nếu đang mở mà nhấn lại nút Menu ở bottom dock thì đóng lại
+                    overlay.classList.remove('open');
+                    drawer.classList.remove('open');
+                    openTrigger.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else {
+                    if (overlay) overlay.classList.add('open');
+                    if (drawer) drawer.classList.add('open');
+                    if (openTrigger.id === 'open-drawer-btn') {
+                        openTrigger.classList.add('active');
+                    }
+                    document.body.style.overflow = 'hidden';
+                }
+                return;
             }
 
             if (e.target.closest('#close-drawer-btn, #mobile-drawer-overlay, .drawer-item')) {
                 const overlay = document.getElementById('mobile-drawer-overlay');
                 const drawer = document.getElementById('mobile-drawer');
+                const drawerBtn = document.getElementById('open-drawer-btn');
                 if (overlay) overlay.classList.remove('open');
                 if (drawer) drawer.classList.remove('open');
+                if (drawerBtn) drawerBtn.classList.remove('active');
                 document.body.style.overflow = '';
             }
         });
@@ -741,8 +765,10 @@
             if (e.key === 'Escape') {
                 const overlay = document.getElementById('mobile-drawer-overlay');
                 const drawer = document.getElementById('mobile-drawer');
+                const drawerBtn = document.getElementById('open-drawer-btn');
                 if (overlay) overlay.classList.remove('open');
                 if (drawer) drawer.classList.remove('open');
+                if (drawerBtn) drawerBtn.classList.remove('active');
                 document.body.style.overflow = '';
             }
         });
