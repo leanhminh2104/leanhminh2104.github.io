@@ -2026,6 +2026,50 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
+/* Platform Shopee Affiliate */
+.blog-ad-card.platform-shopee {
+    background: linear-gradient(135deg, rgba(238, 77, 45, 0.08) 0%, rgba(20, 10, 24, 0.85) 100%);
+    border: 1px solid rgba(238, 77, 45, 0.4);
+}
+.blog-ad-card.platform-shopee:hover {
+    border-color: #ee4d2d;
+    box-shadow: 0 12px 35px rgba(238, 77, 45, 0.25);
+}
+.blog-ad-card.platform-shopee .ad-card-badge {
+    background: rgba(238, 77, 45, 0.15);
+    border-color: rgba(238, 77, 45, 0.4);
+    color: #ff6e54;
+}
+.blog-ad-card.platform-shopee .ad-card-cta {
+    background: linear-gradient(135deg, #ee4d2d 0%, #ff7337 100%);
+    box-shadow: 0 4px 14px rgba(238, 77, 45, 0.45);
+}
+.blog-ad-card.platform-shopee .ad-card-cta:hover {
+    box-shadow: 0 6px 20px rgba(238, 77, 45, 0.7);
+}
+
+/* Platform TikTok Shop / Affiliate */
+.blog-ad-card.platform-tiktok {
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.07) 0%, rgba(0, 242, 254, 0.05) 50%, rgba(13, 8, 22, 0.9) 100%);
+    border: 1px solid rgba(255, 0, 80, 0.35);
+}
+.blog-ad-card.platform-tiktok:hover {
+    border-color: #00f2fe;
+    box-shadow: 0 12px 35px rgba(255, 0, 80, 0.25), 0 0 20px rgba(0, 242, 254, 0.15);
+}
+.blog-ad-card.platform-tiktok .ad-card-badge {
+    background: rgba(255, 0, 80, 0.15);
+    border-color: rgba(0, 242, 254, 0.4);
+    color: #00f2fe;
+}
+.blog-ad-card.platform-tiktok .ad-card-cta {
+    background: linear-gradient(135deg, #ff0050 0%, #000000 50%, #00f2fe 100%);
+    box-shadow: 0 4px 14px rgba(255, 0, 80, 0.4);
+}
+.blog-ad-card.platform-tiktok .ad-card-cta:hover {
+    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+}
+
 .ad-card-badge {
     position: absolute;
     top: 0.65rem;
@@ -2037,7 +2081,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-dim);
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.12rem 0.45rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 4px;
 }
 
@@ -2053,8 +2097,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .ad-card-icon {
     font-size: 1.75rem;
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
     border-radius: var(--radius-md);
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--glass-border);
@@ -2066,6 +2110,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ad-card-content {
     flex: 1;
+    min-width: 0;
 }
 
 .ad-card-title {
@@ -2073,12 +2118,47 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: #fff;
     margin-bottom: 0.25rem;
+    line-height: 1.35;
 }
 
 .ad-card-desc {
     font-size: 0.82rem;
     color: var(--text-muted);
     line-height: 1.5;
+    margin-bottom: 0.4rem;
+}
+
+/* Pricing Section */
+.ad-card-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+}
+
+.ad-price-sale {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #f59e0b;
+}
+
+.blog-ad-card.platform-shopee .ad-price-sale { color: #ff5722; }
+.blog-ad-card.platform-tiktok .ad-price-sale { color: #00f2fe; }
+
+.ad-price-old {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-decoration: line-through;
+}
+
+.ad-discount-tag {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background: rgba(239, 68, 68, 0.18);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .ad-card-cta {
@@ -2100,5 +2180,16 @@ h1, h2, h3, h4, h5, h6 {
 .ad-card-cta:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Compact layout for sidebar ads */
+.sidebar-ad-card .ad-card-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+.sidebar-ad-card .ad-card-cta {
+    width: 100%;
+    justify-content: center;
 }
 

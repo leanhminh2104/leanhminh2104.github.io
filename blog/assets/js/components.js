@@ -631,35 +631,75 @@
     }
 
     // ────────────────────────────────────────────────────────────
-    // 7. RENDER QUẢNG CÁO & SPONSOR BANNERS
+    // 7. RENDER QUẢNG CÁO & MULTI-PLATFORM AFFILIATE (Shopee, TikTok, Sponsor)
     // ────────────────────────────────────────────────────────────
     window.renderBlogAds = function () {
-        if (!DATA.ads || !DATA.ads.enabled) return;
+        if (!DATA.ads || !DATA.ads.enabled || !DATA.ads.banners) return;
 
-        document.querySelectorAll('.ad-slot-container').forEach(container => {
-            const slot = container.dataset.slot || 'feed';
-            const banner = DATA.ads.banners.find(b => b.slot === slot) || DATA.ads.banners[0];
-            if (!banner) return;
+        function buildAdCardHtml(banner, isSidebar = false) {
+            const platform = banner.platform || 'sponsor';
+            const defaultIcon = platform === 'shopee' ? 'fa-bag-shopping' : (platform === 'tiktok' ? 'fa-tiktok' : (banner.icon || 'fa-star'));
+            const isBrandIcon = platform === 'tiktok';
+            const iconPrefix = isBrandIcon ? 'fab' : 'fas';
 
-            container.innerHTML = `
-                <div class="blog-ad-card slot-${slot}">
-                    <div class="ad-card-badge">${banner.badge || 'Tài trợ'}</div>
+            const pricingHtml = banner.price ? `
+                <div class="ad-card-pricing">
+                    <span class="ad-price-sale">${banner.price}</span>
+                    ${banner.originalPrice ? `<span class="ad-price-old">${banner.originalPrice}</span>` : ''}
+                    ${banner.discount ? `<span class="ad-discount-tag">${banner.discount}</span>` : ''}
+                </div>
+            ` : '';
+
+            const iconHtml = banner.imageUrl 
+                ? `<img src="${banner.imageUrl}" alt="${banner.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
+                : `<i class="${iconPrefix} ${banner.icon || defaultIcon}"></i>`;
+
+            return `
+                <div class="blog-ad-card platform-${platform} ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
+                    <div class="ad-card-badge">${banner.badge || (platform === 'shopee' ? 'Shopee Deal' : (platform === 'tiktok' ? 'TikTok Shop' : 'Tài trợ'))}</div>
                     <div class="ad-card-inner">
                         <div class="ad-card-icon" style="color:${banner.accentColor || 'var(--primary)'};">
-                            <i class="fas ${banner.icon || 'fa-star'}"></i>
+                            ${iconHtml}
                         </div>
                         <div class="ad-card-content">
                             <h4 class="ad-card-title">${banner.title}</h4>
-                            <p class="ad-card-desc">${banner.desc}</p>
+                            <p class="ad-card-desc">${banner.desc || ''}</p>
+                            ${pricingHtml}
                         </div>
                         <a href="${banner.link}" target="_blank" rel="noopener noreferrer sponsored" class="ad-card-cta">
-                            <span>${banner.ctaText || 'Xem ngay'}</span>
+                            <span>${banner.ctaText || (platform === 'shopee' ? 'Mua trên Shopee' : (platform === 'tiktok' ? 'Săn trên TikTok' : 'Xem ngay'))}</span>
                             <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
                 </div>
             `;
+        }
+
+        // 1. Render vào các thẻ .ad-slot-container trong trang
+        document.querySelectorAll('.ad-slot-container').forEach(container => {
+            const adId = container.dataset.adId;
+            const slot = container.dataset.slot || 'feed';
+            
+            let banner = null;
+            if (adId) {
+                banner = DATA.ads.banners.find(b => b.id === adId);
+            }
+            if (!banner) {
+                banner = DATA.ads.banners.find(b => b.slot === slot) || DATA.ads.banners[0];
+            }
+            if (!banner) return;
+
+            container.innerHTML = buildAdCardHtml(banner, slot === 'sidebar');
         });
+
+        // 2. Render vào vị trí Sidebar mặc định trong bài viết
+        const sidebarSlot = document.getElementById('sidebar-ad-slot');
+        if (sidebarSlot && !sidebarSlot.hasChildNodes()) {
+            const sidebarBanner = DATA.ads.banners.find(b => b.slot === 'sidebar') || DATA.ads.banners.find(b => b.platform === 'shopee' || b.platform === 'tiktok') || DATA.ads.banners[0];
+            if (sidebarBanner) {
+                sidebarSlot.innerHTML = buildAdCardHtml(sidebarBanner, true);
+            }
+        }
     };
 
     // ────────────────────────────────────────────────────────────

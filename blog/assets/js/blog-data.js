@@ -137,30 +137,67 @@ window.BLOG_DATA = {
         }
     ],
 
-    // 4. Cấu hình Quảng cáo & Mạng liên kết (AdSense, Sponsor, Affiliate)
+    // 4. Cấu hình Quảng cáo & Mạng liên kết Đa Nguồn (Shopee, TikTok, AdSense, Sponsor)
     ads: {
         enabled: true,
-        // Google AdSense Publisher ID (thay thế khi tài khoản được duyệt)
-        adsensePublisherId: "ca-pub-1234567890123456",
-        // Mẫu Banner tài trợ hiển thị đẹp mắt (Fallback hoặc Sponsor trực tiếp)
+        // Google AdSense Publisher ID (khi có thì điền vào đây)
+        adsensePublisherId: "",
+        
+        // Danh sách quảng cáo & thẻ Affiliate tự động theo slot hoặc ID
         banners: [
+            // 1. Banner tài trợ trang chủ (Feed)
             {
                 id: "banner-hosting",
+                platform: "sponsor",
                 slot: "feed",
                 badge: "Tài trợ",
-                title: "Cloud VPS & Máy Chủ Tốc Độ Cao Cho Lập Trình Viên",
+                title: "Cloud VPS & Server Tốc Độ Cao Cho Lập Trình Viên",
                 desc: "Hạ tầng NVMe SSD siêu tốc, băng thông không giới hạn, tối ưu hóa cho Laravel, NodeJS & Docker.",
                 ctaText: "Xem Ưu Đãi 50%",
                 link: "https://github.com/leanhminh2104",
                 icon: "fa-server",
                 accentColor: "#38bdf8"
             },
+            // 2. Affiliate Shopee (Phụ kiện / Đồ công nghệ)
+            {
+                id: "shopee-keychron",
+                platform: "shopee",
+                slot: "article-bottom",
+                badge: "Shopee Deal",
+                title: "Bàn Phím Cơ Không Dây Keychron K2 Pro QMK/VIA",
+                desc: "Layout 75%, Switch Gateron Pro hot-swap, kết nối Bluetooth 5.1 & Type-C, gõ êm mượt tối ưu cho Developer.",
+                price: "1.890.000₫",
+                originalPrice: "2.350.000₫",
+                discount: "-20%",
+                ctaText: "Săn Deal Trên Shopee",
+                link: "https://shopee.vn/",
+                icon: "fa-bag-shopping",
+                accentColor: "#ee4d2d"
+            },
+            // 3. Affiliate TikTok Shop (Góc Setup / Đồ công nghệ)
+            {
+                id: "tiktok-desklight",
+                platform: "tiktok",
+                slot: "sidebar",
+                badge: "TikTok Shop",
+                title: "Đèn Treo Màn Hình Chống Mỏi Mắt Xiaomi Mijia",
+                desc: "Chiếu sáng góc hẹp không gây lóa màn hình, điều khiển núm xoay không dây 2.4GHz sang trọng.",
+                price: "689.000₫",
+                originalPrice: "890.000₫",
+                discount: "-22%",
+                ctaText: "Mua Trên TikTok Shop",
+                link: "https://www.tiktok.com/",
+                icon: "fa-tiktok",
+                accentColor: "#00f2fe"
+            },
+            // 4. Khóa học / Dịch vụ Dev (Giữa bài viết)
             {
                 id: "banner-course",
-                slot: "article",
-                badge: "Gợi ý",
-                title: "Khóa Học Clean Architecture & Microservices",
-                desc: "Nâng cao tư duy thiết kế hệ thống, tối ưu SQL Query và xây dựng API triệu người dùng.",
+                platform: "sponsor",
+                slot: "article-mid",
+                badge: "Đề xuất",
+                title: "Khóa Học Thiết Kế Hệ Thống & Microservices Thực Chiến",
+                desc: "Nâng cao tư duy kiến trúc, tối ưu SQL Query và xây dựng hệ thống chịu tải hàng triệu request.",
                 ctaText: "Khám Phá Ngay",
                 link: "https://github.com/leanhminh2104",
                 icon: "fa-graduation-cap",
