@@ -8,36 +8,8 @@
 // 1. Mobile Navigation & Drawer (Sheet)
 // ============================================================
 function initMobileNav() {
-    const hamburger = document.getElementById('hamburger-btn');
-    const bottomMenuBtn = document.getElementById('open-drawer-btn') || document.getElementById('hamburger-btn-mobile');
-    const overlay = document.getElementById('mobile-drawer-overlay') || document.getElementById('mobile-nav-overlay');
-    const drawer = document.getElementById('mobile-drawer') || document.getElementById('mobile-nav-drawer');
-    const closeBtn = document.getElementById('close-drawer-btn');
-
-    function openDrawer() {
-        if (overlay) overlay.classList.add('open');
-        if (drawer) drawer.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-        if (overlay) overlay.classList.remove('open');
-        if (drawer) drawer.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    if (hamburger) hamburger.addEventListener('click', openDrawer);
-    if (bottomMenuBtn) bottomMenuBtn.addEventListener('click', openDrawer);
-    if (overlay) overlay.addEventListener('click', closeDrawer);
-    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-
-    document.querySelectorAll('.drawer-item, .drawer-menu-item').forEach(item => {
-        item.addEventListener('click', closeDrawer);
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeDrawer();
-    });
+    // Đã được quản lý tập trung và toàn diện bởi components.js (setupDrawerDelegation)
+    // Không đăng ký trùng lặp ở đây để tránh xung đột sự kiện đóng/mở
 }
 
 // ============================================================

@@ -729,19 +729,21 @@
             const openTrigger = e.target.closest('#hamburger-btn, #open-drawer-btn');
             if (openTrigger) {
                 e.preventDefault();
+                e.stopPropagation();
                 const overlay = document.getElementById('mobile-drawer-overlay');
                 const drawer = document.getElementById('mobile-drawer');
-                const isOpen = drawer && drawer.classList.contains('open');
+                if (!drawer) return;
+                const isOpen = drawer.classList.contains('open');
 
                 if (isOpen && openTrigger.id === 'open-drawer-btn') {
                     // Nếu đang mở mà nhấn lại nút Menu ở bottom dock thì đóng lại
-                    overlay.classList.remove('open');
+                    if (overlay) overlay.classList.remove('open');
                     drawer.classList.remove('open');
                     openTrigger.classList.remove('active');
                     document.body.style.overflow = '';
                 } else {
                     if (overlay) overlay.classList.add('open');
-                    if (drawer) drawer.classList.add('open');
+                    drawer.classList.add('open');
                     if (openTrigger.id === 'open-drawer-btn') {
                         openTrigger.classList.add('active');
                     }
