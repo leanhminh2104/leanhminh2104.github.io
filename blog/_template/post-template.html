@@ -9,20 +9,20 @@
     <!-- ============================================================
          1. CHỈNH SỬA THÔNG TIN BÀI VIẾT TẠI ĐÂY (SEO & META)
          ============================================================ -->
-    <meta name="description" content="[Mô tả ngắn gọn 1-2 câu về bài viết để hiển thị trên Google và mạng xã hội]">
+    <meta name="description" content="[Mô tả ngắn gọn 1-2 câu về bài viết để hiển thị trên Google và mạng xã hội (khoảng 120-160 ký tự)]">
     <meta name="author" content="Lê Anh Minh">
     <meta property="og:type" content="article">
     <meta property="og:title" content="[Tiêu đề bài viết]">
     <meta property="og:description" content="[Mô tả ngắn]">
     <title>[Tiêu đề bài viết] — Lê Anh Minh Blog</title>
 
-    <!-- Google Fonts & FontAwesome (tự động kế thừa) -->
+    <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- CSS dùng chung (không cần sửa đường dẫn) -->
+    <!-- CSS dùng chung cho toàn bộ Blog -->
     <link rel="stylesheet" href="../../assets/css/blog.css">
 </head>
 <body>
@@ -30,14 +30,14 @@
 <!-- Reading Progress Bar -->
 <div class="reading-progress" id="reading-progress"></div>
 
-<!-- Stars Background (copy từ qlct) -->
+<!-- Stars Background -->
 <div class="stars-bg-container">
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
 </div>
 
-<!-- TOPBAR / HEADER (Tự động tạo bởi components.js) -->
+<!-- TOPBAR / HEADER (Tự động nạp từ components.js) -->
 <div id="site-header"></div>
 
 <!-- MAIN CONTENT -->
@@ -45,13 +45,12 @@
     <div class="blog-container">
 
         <!-- ========================================================
-             2. BREADCRUMB (Điều chỉnh link danh mục tại đây)
+             2. BREADCRUMB
              ======================================================== -->
         <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
             <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
             <i class="fas fa-chevron-right"></i>
-            <!-- Đổi "tech" thành danh mục phù hợp (tech, life, ...) -->
-            <a href="../">[Tên danh mục]</a>
+            <a href="../">[Tên chuyên mục: Công nghệ hoặc Cuộc sống]</a>
             <i class="fas fa-chevron-right"></i>
             <span>[Tên rút gọn bài viết]</span>
         </nav>
@@ -64,76 +63,98 @@
                 <!-- Article Header -->
                 <header class="article-header animate-up">
                     <h1 class="article-title">
-                        <!-- Tiêu đề bài viết -->
-                        Tiêu đề bài viết của bạn 🚀
+                        [Tiêu đề bài viết đầy đủ] 🚀
                     </h1>
 
                     <div class="article-meta">
                         <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
-                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 27 tháng 9, 2026</span>
-                        <!-- Tự động tính thời gian đọc dựa trên số lượng từ -->
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> [Ngày đăng: VD 28 tháng 9, 2026]</span>
+                        <!-- Tự động tính thời gian đọc dựa trên số lượng từ bởi core.js -->
                         <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">đang tính...</span></span>
                     </div>
 
                     <div class="article-tags">
-                        <!-- Gắn các thẻ badge tag tại đây -->
+                        <!-- Thẻ badge chuyên mục: badge-info (Tech) hoặc badge-success (Life) -->
+                        <span class="badge badge-info"><i class="fas fa-code"></i> [Chuyên mục]</span>
                         <span class="badge badge-primary">Tag 1</span>
-                        <span class="badge badge-info">Tag 2</span>
+                        <span class="badge badge-primary">Tag 2</span>
+                        <span class="badge badge-primary">Tag 3</span>
                     </div>
                 </header>
 
                 <!-- ====================================================
-                     3. NỘI DUNG CHÍNH (Viết nội dung HTML của bạn tại đây)
+                     3. NỘI DUNG CHÍNH (FORM CHUẨN CỦA BLOG)
                      ==================================================== -->
+                
+                <!-- Đoạn mở đầu (Lead Hook) -->
                 <p>
-                    Đoạn mở đầu giới thiệu về chủ đề bài viết. Nêu rõ vấn đề bạn muốn giải quyết hoặc thông điệp bạn muốn truyền tải đến người đọc.
+                    [Đoạn mở đầu giới thiệu bối cảnh vấn đề. Tại sao vấn đề này quan trọng và bài viết này sẽ giải quyết nó như thế nào].
                 </p>
 
+                <!-- Hộp Tóm tắt Nhanh / Điểm cốt lõi (Callout Box) -->
                 <blockquote>
-                    "Một câu trích dẫn hoặc tóm tắt nổi bật để gây ấn tượng với người đọc."
+                    💡 <b>Tóm tắt nhanh:</b> [1-2 câu ngắn gọn nêu giải pháp cốt lõi hoặc bài học chính mà độc giả sẽ nắm được sau bài viết này].
                 </blockquote>
 
-                <!-- Các thẻ Heading <h2> và <h3> sẽ tự động xuất hiện trong Mục lục (TOC) -->
-                <h2>1. Tiêu đề mục chính thứ nhất</h2>
+                <!-- MỤC 1 -->
+                <h2>1. [Tiêu đề mục 1: Vấn đề hoặc Khái niệm]</h2>
                 <p>
-                    Nội dung giải thích chi tiết cho mục 1. Bạn có thể chèn code inline như <code>console.log()</code> hoặc các liên kết.
+                    [Nội dung giải thích chi tiết mục 1. Phân tích nguyên nhân, cơ chế hoặc ngữ cảnh thực tế].
                 </p>
 
-                <!-- Khối code: Tự động có nút Copy và nhãn ngôn ngữ -->
-                <pre><code class="language-javascript">// Ví dụ mã nguồn JavaScript
-function helloWorld() {
-    console.log("Xin chào từ Lê Anh Minh Blog!");
-}
-helloWorld();</code></pre>
+                <!-- Ví dụ Code chuẩn (Tự động có nút Copy và nhãn ngôn ngữ) -->
+                <pre><code class="language-php">// [Ví dụ mã nguồn minh họa]
+namespace App\Services;
 
-                <h2>2. Tiêu đề mục chính thứ hai</h2>
+class ExampleService {
+    public function handle(): void {
+        // Thực thi logic xử lý
+    }
+}</code></pre>
+
+                <!-- MỤC 2 -->
+                <h2>2. [Tiêu đề mục 2: Các bước giải quyết & Thực hành]</h2>
                 <p>
-                    Nội dung giải thích tiếp theo. Bạn có thể sử dụng danh sách gạch đầu dòng:
+                    [Hướng dẫn từng bước thực hiện rõ ràng. Có thể dùng danh sách các bước hoặc gạch đầu dòng].
                 </p>
                 <ul>
-                    <li>Điểm quan trọng thứ nhất cần lưu ý.</li>
-                    <li>Điểm quan trọng thứ hai.</li>
-                    <li>Điểm quan trọng thứ ba.</li>
+                    <li><b>Bước 1:</b> [Mô tả chi tiết bước 1].</li>
+                    <li><b>Bước 2:</b> [Mô tả chi tiết bước 2 kèm lưu ý quan trọng].</li>
+                    <li><b>Bước 3:</b> [Mô tả chi tiết bước 3 và cách kiểm tra kết quả].</li>
                 </ul>
 
-                <h2>3. Tổng kết</h2>
+                <!-- MỤC 3 -->
+                <h2>3. [Tiêu đề mục 3: Những lưu ý & Best Practices]</h2>
                 <p>
-                    Tóm lược các ý chính và đưa ra lời khuyên hoặc hướng phát triển tiếp theo cho độc giả.
+                    [Tổng hợp kinh nghiệm thực tế, những cạm bẫy (pitfalls) cần tránh khi triển khai trong dự án thật].
+                </p>
+
+                <!-- MỤC TỔNG KẾT -->
+                <h2>4. Tổng kết</h2>
+                <p>
+                    [Đoạn kết bài ngắn gọn, nhấn mạnh lại giá trị cốt lõi và gửi gắm lời nhắn hoặc mở rộng cho độc giả].
                 </p>
 
                 <hr>
 
-                <!-- Next post navigation -->
-                <div class="glass-card" style="margin-top:2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;">
-                    <div>
-                        <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; letter-spacing:0.06em;">Bài viết tiếp theo</div>
-                        <a href="../../" style="color:#fff; font-weight:700; text-decoration:none; font-size:1rem; margin-top:0.2rem; display:block;">
-                            Quay lại trang chủ xem các bài viết mới
-                        </a>
-                    </div>
-                    <a href="../../" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;">
-                        Trang chủ <i class="fas fa-arrow-right"></i>
+                <!-- ====================================================
+                     4. ĐIỀU HƯỚNG BÀI VIẾT (Tự động cập nhật bởi build-blog.js)
+                     ==================================================== -->
+                <div class="post-nav animate-up">
+                    <a href="../../" class="post-nav-card next">
+                        <span class="post-nav-label">Khám phá thêm <i class="fas fa-house"></i></span>
+                        <span class="post-nav-title">Về trang chủ Blog xem bài viết mới</span>
                     </a>
+                </div>
+
+                <!-- ====================================================
+                     5. BÌNH LUẬN & THẢO LUẬN (Tự động nạp Giscus GitHub)
+                     ==================================================== -->
+                <div class="article-comments-section" style="margin-top: 3rem;">
+                    <h3 style="font-size:1.15rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                        <i class="fas fa-comments" style="color:var(--primary);"></i> Bình luận & Thảo luận
+                    </h3>
+                    <div id="comments"></div>
                 </div>
 
             </article>
@@ -141,7 +162,7 @@ helloWorld();</code></pre>
             <!-- Right: Sticky Sidebar (Tự động tạo Mục lục TOC & Thẻ tác giả) -->
             <aside class="article-sidebar">
 
-                <!-- Table of Contents (Tự động tạo từ các thẻ h2, h3) -->
+                <!-- Table of Contents (Tự động lấy từ các thẻ h2, h3) -->
                 <div class="glass-card toc-card" id="toc-card">
                     <div class="toc-title">
                         <i class="fas fa-list-ul"></i> Mục lục bài viết
@@ -168,7 +189,7 @@ helloWorld();</code></pre>
 
         </div><!-- /article-layout -->
 
-        <!-- Vị trí Quảng Cáo / Gợi Ý Khóa Học -->
+        <!-- Vị trí Quảng Cáo / Tài Trợ (Tự động render từ components.js) -->
         <div class="ad-slot-container" data-slot="article"></div>
 
     </div><!-- /blog-container -->
