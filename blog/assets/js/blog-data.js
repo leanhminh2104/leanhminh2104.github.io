@@ -61,6 +61,21 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "co-che-duy-tri-youtube-premium-va-fix-loi-family",
+            title: "Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family",
+            slug: "co-che-duy-tri-youtube-premium-va-fix-loi-family",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/",
+            date: "2026-09-28",
+            formattedDate: "28 Th09, 2026",
+            readTime: "6 phút",
+            excerpt: "Nắm rõ cơ chế luân chuyển nhóm YouTube Premium tránh quét Household và cách fix triệt để lỗi không cùng quốc gia, không nhận được lời mời Family.",
+            tags: ["YouTube Premium", "Google Family", "Thủ thuật", "Fix lỗi", "Google Payments"],
+            isNew: true,
+            icon: "fa-brands fa-youtube"
+        },
+        {
             id: "cau-hinh-thong-bao-acb-email",
             title: "Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng",
             slug: "cau-hinh-thong-bao-acb-email",

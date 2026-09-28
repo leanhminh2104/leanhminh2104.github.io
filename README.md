@@ -66,6 +66,7 @@ Repository áp dụng các nguyên tắc bảo mật nghiêm ngặt:
 ### 📝 Bài viết mới nhất trên Blog
 
 <!-- BLOG-POSTS-START -->
+- [Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family](https://leanhminh2104.github.io/blog/tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/) — *2026-09-28* `Công nghệ` (6 phút)
 - [Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng](https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/) — *2026-03-26* `Công nghệ` (7 phút)
 - [Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer](https://leanhminh2104.github.io/blog/tech/lay-app-password-google/) — *2026-03-25* `Công nghệ` (5 phút)
 - [10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn](https://leanhminh2104.github.io/blog/tech/laravel-tips/) — *2026-03-24* `Công nghệ` (5 phút)

@@ -5,8 +5,16 @@
     <link>https://leanhminh2104.github.io/blog/</link>
     <description><![CDATA[Chia sẻ về Lập trình, Công nghệ & Cuộc sống]]></description>
     <language>vi</language>
-    <lastBuildDate>Mon, 28 Sep 2026 12:34:14 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 12:37:43 GMT</lastBuildDate>
     <atom:link href="https://leanhminh2104.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family]]></title>
+      <link>https://leanhminh2104.github.io/blog/tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/</link>
+      <guid isPermaLink="true">https://leanhminh2104.github.io/blog/tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Công nghệ]]></category>
+      <description><![CDATA[Nắm rõ cơ chế luân chuyển nhóm YouTube Premium tránh quét Household và cách fix triệt để lỗi không cùng quốc gia, không nhận được lời mời Family.]]></description>
+    </item>
     <item>
       <title><![CDATA[Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng]]></title>
       <link>https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/</link>
