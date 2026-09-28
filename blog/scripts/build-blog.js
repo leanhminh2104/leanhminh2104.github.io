@@ -87,10 +87,10 @@ function updatePostsGridInFile(filePath, filterCat = null, relativeRoot = './') 
 updatePostsGridInFile(path.join(ROOT_DIR, 'index.html'), null, './');
 
 // Cập nhật Trang Tech (Chỉ bài viết công nghệ)
-updatePostsGridInFile(path.join(ROOT_DIR, 'tech', 'index.html'), 'tech', './');
+updatePostsGridInFile(path.join(ROOT_DIR, 'tech', 'index.html'), 'tech', '../');
 
 // Cập nhật Trang Life (Chỉ bài viết cuộc sống)
-updatePostsGridInFile(path.join(ROOT_DIR, 'life', 'index.html'), 'life', './');
+updatePostsGridInFile(path.join(ROOT_DIR, 'life', 'index.html'), 'life', '../');
 
 // 4. Cập nhật "Bài viết trước / Bài viết tiếp theo" trong các trang chi tiết bài viết
 DATA.posts.forEach((post, idx) => {
