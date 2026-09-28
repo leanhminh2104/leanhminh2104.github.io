@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leanhminh2104.github.io/blog/sitemap.xml

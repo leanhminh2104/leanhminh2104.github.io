@@ -61,3 +61,13 @@ Repository áp dụng các nguyên tắc bảo mật nghiêm ngặt:
 <p align="center">
   © 2026 <b>Lê Anh Minh</b> (leanhminh2104). Mọi quyền được bảo lưu.
 </p>
+
+
+### 📝 Bài viết mới nhất trên Blog
+
+<!-- BLOG-POSTS-START -->
+- [Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng](https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/) — *2026-03-26* `Công nghệ` (7 phút)
+- [Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer](https://leanhminh2104.github.io/blog/tech/lay-app-password-google/) — *2026-03-25* `Công nghệ` (5 phút)
+- [10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn](https://leanhminh2104.github.io/blog/tech/laravel-tips/) — *2026-03-24* `Công nghệ` (5 phút)
+- [Một Ngày Của Developer: Cân Bằng Giữa Code Và Cuộc Sống](https://leanhminh2104.github.io/blog/life/cuoc-song-dev/) — *2026-03-20* `Cuộc sống` (4 phút)
+<!-- BLOG-POSTS-END -->

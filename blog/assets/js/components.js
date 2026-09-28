@@ -596,6 +596,9 @@
                         <div class="footer-stats-chips">
                             <span class="stat-chip"><i class="fas fa-file-lines"></i> ${DATA.posts.length} Bài viết</span>
                             <span class="stat-chip"><i class="fas fa-folder"></i> ${DATA.categories.length - 1} Chuyên mục</span>
+                            <a href="${DATA.site.github || 'https://github.com/leanhminh2104'}" target="_blank" rel="noopener noreferrer" class="stat-chip" title="Xem GitHub của leanhminh2104" style="text-decoration:none; color:inherit;">
+                                <i class="fab fa-github"></i> <span id="gh-stats-val">GitHub</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -653,7 +656,54 @@
     };
 
     // ────────────────────────────────────────────────────────────
-    // 8. TỰ ĐỘNG KHỞI TẠO TẤT CẢ COMPONENT KHI TRANG TẢI XONG
+    // 8. TỰ ĐỘNG LẤY THỐNG KÊ GITHUB & BÌNH LUẬN GISCUS
+    // ────────────────────────────────────────────────────────────
+    function fetchGitHubStats() {
+        const el = document.getElementById('gh-stats-val');
+        if (!el) return;
+        try {
+            const cached = sessionStorage.getItem('gh_repos_count');
+            if (cached) {
+                el.textContent = `${cached} Repos`;
+                return;
+            }
+            fetch('https://api.github.com/users/leanhminh2104')
+                .then(res => res.json())
+                .then(d => {
+                    if (d && typeof d.public_repos === 'number') {
+                        el.textContent = `${d.public_repos} Repos`;
+                        sessionStorage.setItem('gh_repos_count', d.public_repos);
+                    }
+                })
+                .catch(() => {});
+        } catch (_) {}
+    }
+
+    function initGiscusComments() {
+        const el = document.getElementById('comments');
+        if (!el || document.getElementById('giscus-client-script')) return;
+
+        const script = document.createElement('script');
+        script.id = 'giscus-client-script';
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', 'leanhminh2104/leanhminh2104.github.io');
+        script.setAttribute('data-repo-id', 'R_kgDONn5Riw');
+        script.setAttribute('data-category', 'General');
+        script.setAttribute('data-category-id', 'DIC_kwDONn5Ri84Clq_O');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-strict', '0');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '0');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'dark_dimmed');
+        script.setAttribute('data-lang', 'vi');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        el.appendChild(script);
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // 9. TỰ ĐỘNG KHỞI TẠO TẤT CẢ COMPONENT KHI TRANG TẢI XONG
     // ────────────────────────────────────────────────────────────
     function initBlogComponents() {
         renderHeader();
@@ -663,6 +713,8 @@
         renderFooter();
         window.renderBlogAds();
         setupDrawerDelegation();
+        fetchGitHubStats();
+        initGiscusComments();
     }
 
     function setupDrawerDelegation() {

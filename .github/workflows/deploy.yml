@@ -1,0 +1,89 @@
+﻿name: Blog CI/CD & GitHub Pages Deployment
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # ────────────────────────────────────────────────────────────
+  # 1. BẢO MẬT: QUÉT TỰ ĐỘNG KHÔNG ĐỂ LỘ KEY / TOKEN / SECRET
+  # ────────────────────────────────────────────────────────────
+  security-scan:
+    name: 🛡️ Security & Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Kiểm tra API Key & Secret Leaks
+        run: |
+          echo "Bắt đầu quét file nhạy cảm trong repository..."
+          if grep -rnE "(ghp_[a-zA-Z0-9]{36}|gho_[a-zA-Z0-9]{36}|sk-[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16})" blog/ --exclude-dir=".git" 2>/dev/null; then
+            echo "::error::PHÁT HIỆN API KEY HOẶC TOKEN TRONG CODE! Hãy xóa ngay lập tức!"
+            exit 1
+          fi
+          echo "✅ Quét an toàn! Không có API key nhạy cảm nào bị lộ."
+
+      - name: Kiểm tra File Cấm (.env, *.pem, *.key)
+        run: |
+          FORBIDDEN_FILES=$(find . -type f \( -name "*.env" -o -name ".env.*" -o -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "*.pfx" \) 2>/dev/null)
+          if [ -n "$FORBIDDEN_FILES" ]; then
+            echo "::error::PHÁT HIỆN FILE CẤM TRONG REPO: $FORBIDDEN_FILES"
+            exit 1
+          fi
+          echo "✅ Không có file môi trường hay khóa riêng tư trong repo."
+
+  # ────────────────────────────────────────────────────────────
+  # 2. XỬ LÝ SEO TỰ ĐỘNG & DEPLOY LÊN GITHUB PAGES
+  # ────────────────────────────────────────────────────────────
+  build-and-deploy:
+    name: 🚀 Build, SEO & Deploy to GitHub Pages
+    needs: security-scan
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🗺️ Tự động tạo Sitemap.xml & Robots.txt
+        run: |
+          if [ -f "blog/scripts/generate-sitemap.js" ]; then
+            node blog/scripts/generate-sitemap.js
+          fi
+
+      - name: 📝 Tự động đồng bộ Bài viết vào README.md
+        run: |
+          if [ -f "blog/scripts/update-readme.js" ]; then
+            node blog/scripts/update-readme.js
+          fi
+
+      - name: Cấu hình GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Đóng gói Artifact GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Triển khai lên GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
