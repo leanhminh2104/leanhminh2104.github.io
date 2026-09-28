@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title><![CDATA[leanhminh2104 — Blog]]></title>
+    <link>https://leanhminh2104.github.io/blog/</link>
+    <description><![CDATA[Chia sẻ về Lập trình, Công nghệ & Cuộc sống]]></description>
+    <language>vi</language>
+    <lastBuildDate>Mon, 28 Sep 2026 12:16:26 GMT</lastBuildDate>
+    <atom:link href="https://leanhminh2104.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng]]></title>
+      <link>https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/</link>
+      <guid isPermaLink="true">https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/</guid>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Công nghệ]]></category>
+      <description><![CDATA[Từng bước thiết lập nhận thông báo biến động số dư ACB ONE về Gmail và kết nối webhook xử lý nạp tiền tự động 24/7.]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer]]></title>
+      <link>https://leanhminh2104.github.io/blog/tech/lay-app-password-google/</link>
+      <guid isPermaLink="true">https://leanhminh2104.github.io/blog/tech/lay-app-password-google/</guid>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Công nghệ]]></category>
+      <description><![CDATA[Cách tạo App Password 16 ký tự của Gmail để gửi nhận email qua SMTP/IMAP trong Laravel, WordPress, NodeJS.]]></description>
+    </item>
+    <item>
+      <title><![CDATA[10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn]]></title>
+      <link>https://leanhminh2104.github.io/blog/tech/laravel-tips/</link>
+      <guid isPermaLink="true">https://leanhminh2104.github.io/blog/tech/laravel-tips/</guid>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Công nghệ]]></category>
+      <description><![CDATA[Tổng hợp 10 mẹo hữu ích trong Laravel giúp code gọn gàng hơn, tối ưu query database và tăng hiệu suất ứng dụng PHP trong thực tế.]]></description>
+    </item>
+    <item>
+      <title><![CDATA[Một Ngày Của Developer: Cân Bằng Giữa Code Và Cuộc Sống]]></title>
+      <link>https://leanhminh2104.github.io/blog/life/cuoc-song-dev/</link>
+      <guid isPermaLink="true">https://leanhminh2104.github.io/blog/life/cuoc-song-dev/</guid>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Cuộc sống]]></category>
+      <description><![CDATA[Chia sẻ chân thực về hành trình làm dev, cách quản lý năng lượng, phòng tránh burnout và nuôi dưỡng niềm vui lập trình dài hạn.]]></description>
+    </item>
+  </channel>
+</rss>

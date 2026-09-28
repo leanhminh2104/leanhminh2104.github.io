@@ -1,8 +1,12 @@
-name: Blog CI/CD & GitHub Pages Deployment
+name: 🚀 Blog CI/CD & Deep GitHub Automation
 
+# Tự động kích hoạt khi có commit đẩy lên nhánh main hoặc kích hoạt thủ công từ giao diện
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - '**/*.md'
+      - '.gitignore'
   workflow_dispatch:
 
 permissions:
@@ -18,86 +22,87 @@ jobs:
   # ────────────────────────────────────────────────────────────
   # 1. BẢO MẬT: QUÉT TỰ ĐỘNG KHÔNG ĐỂ LỘ KEY / TOKEN / SECRET
   # ────────────────────────────────────────────────────────────
-  security-scan:
-    name: 🛡️ Security & Secret Scan
+  security-audit:
+    name: 🛡️ Quét Bảo Mật & Rò Rỉ Secret
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: 📥 Tải mã nguồn
         uses: actions/checkout@v4
 
-      - name: Kiểm tra API Key & Secret Leaks
+      - name: 🔍 Rà soát API Key & Token nhạy cảm
         run: |
-          echo "Bắt đầu quét file nhạy cảm trong repository..."
+          echo "Bắt đầu rà soát toàn bộ tệp tin trong blog..."
           if grep -rnE "(ghp_[a-zA-Z0-9]{36}|gho_[a-zA-Z0-9]{36}|sk-[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16})" blog/ --exclude-dir=".git" 2>/dev/null; then
-            echo "::error::PHÁT HIỆN API KEY HOẶC TOKEN TRONG CODE! Hãy xóa ngay lập tức!"
+            echo "::error title=Bảo mật thất bại::Phát hiện API Key hoặc Token trong mã nguồn! Hãy xóa ngay."
             exit 1
           fi
-          echo "✅ Quét an toàn! Không có API key nhạy cảm nào bị lộ."
+          echo "✅ Mã nguồn an toàn! Không có API Key công khai nào bị lộ."
 
-      - name: Kiểm tra File Cấm (.env, *.pem, *.key)
+      - name: 🛑 Ngăn chặn tệp cấm (.env, *.key, *.pem)
         run: |
-          FORBIDDEN_FILES=$(find . -type f \( -name "*.env" -o -name ".env.*" -o -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "*.pfx" \) 2>/dev/null)
-          if [ -n "$FORBIDDEN_FILES" ]; then
-            echo "::error::PHÁT HIỆN FILE CẤM TRONG REPO: $FORBIDDEN_FILES"
+          FORBIDDEN=$(find . -type f \( -name "*.env" -o -name ".env.*" -o -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "*.pfx" \) 2>/dev/null)
+          if [ -n "$FORBIDDEN" ]; then
+            echo "::error title=Tệp nhạy cảm::Phát hiện tệp tin cấm đẩy lên kho lưu trữ: $FORBIDDEN"
             exit 1
           fi
-          echo "✅ Không có file môi trường hay khóa riêng tư trong repo."
+          echo "✅ Không phát hiện tệp tin môi trường hoặc khóa bí mật."
 
   # ────────────────────────────────────────────────────────────
-  # 2. XỬ LÝ SEO TỰ ĐỘNG & DEPLOY LÊN GITHUB PAGES
+  # 2. TỰ ĐỘNG HÓA SÂU: ĐỒNG BỘ NỘI DUNG, SEO & TRIỂN KHAI
   # ────────────────────────────────────────────────────────────
-  build-and-deploy:
-    name: 🚀 Build, SEO & Deploy to GitHub Pages
-    needs: security-scan
+  master-build-and-deploy:
+    name: ⚡ Tự Động Hóa Blog & Triển Khai GitHub Pages
+    needs: security-audit
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout Repository
+      - name: 📥 Tải mã nguồn đầy đủ
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js Environment
+      - name: 🟢 Thiết lập môi trường Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: ⚡ Tự động cập nhật toàn bộ HTML (Trang chủ, Chuyên mục & Bài viết chi tiết)
+      - name: ⚙️ Chạy Quy Trình Master Automation (Đồng bộ HTML, SEO, RSS, README)
         run: |
-          if [ -f "blog/scripts/build-blog.js" ]; then
-            node blog/scripts/build-blog.js
-          fi
+          echo "Đang thực thi master-build.js..."
+          node blog/scripts/master-build.js
 
-      - name: 🗺️ Tự động tạo Sitemap.xml & Robots.txt
+      - name: 📊 Tạo Báo Cáo Triển Khai (GitHub Action Step Summary)
         run: |
-          if [ -f "blog/scripts/generate-sitemap.js" ]; then
-            node blog/scripts/generate-sitemap.js
-          fi
+          echo "### 🚀 Kết Quả Tự Động Hóa Blog leanhminh2104" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Hạng mục | Trạng thái | Chi tiết |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🛡️ Bảo mật | ✅ Đã vượt qua | Quét sạch API key & file .env |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📄 HTML Đồng bộ | ✅ Thành công | Cập nhật index.html, tech, life & bài viết chi tiết |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🗺️ Sitemap XML | ✅ Đã tạo mới | Hỗ trợ Google Search Console |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📡 RSS Feed 2.0 | ✅ Đã tạo mới | Độc giả theo dõi qua feed.xml |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📝 GitHub README | ✅ Đã đồng bộ | Danh sách bài viết mới nhất trên Profile |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 **Website Trực Tiếp:** [https://leanhminh2104.github.io/blog/](https://leanhminh2104.github.io/blog/)" >> $GITHUB_STEP_SUMMARY
 
-      - name: 📝 Tự động đồng bộ Bài viết vào README.md
-        run: |
-          if [ -f "blog/scripts/update-readme.js" ]; then
-            node blog/scripts/update-readme.js
-          fi
-
-      - name: 💾 Tự động commit các file HTML, Sitemap & README đã cập nhật
+      - name: 💾 Tự động lưu & Commit các tệp đã đồng bộ trở lại Kho lưu trữ
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add blog/*.html blog/**/*.html blog/sitemap.xml blog/robots.txt README.md || true
-          git diff --staged --quiet || git commit -m "chore(auto): update HTML post grids, article navigation & SEO [skip ci]"
+          git add blog/*.html blog/**/*.html blog/sitemap.xml blog/robots.txt blog/feed.xml README.md || true
+          git diff --staged --quiet || git commit -m "chore(auto): deep sync HTML post grids, SEO sitemap & RSS [skip ci]"
           git push origin main || true
 
-      - name: Cấu hình GitHub Pages
+      - name: 🔧 Thiết lập GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Đóng gói Artifact GitHub Pages
+      - name: 📦 Đóng gói gói xuất bản (Pages Artifact)
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Triển khai lên GitHub Pages
+      - name: 🚀 Triển khai lên GitHub Pages (Zero-Downtime)
         id: deployment
         uses: actions/deploy-pages@v4
