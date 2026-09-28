@@ -26,7 +26,7 @@
 1. [Tổng quan & Kiến trúc Môi trường](#-tổng-quan--kiến-trúc-môi-trường)
 2. [Cấu trúc Thư mục Toàn diện](#-cấu-trúc-thư-mục-toàn-diện)
 3. [Design System & Hiệu ứng Giao diện](#-design-system--hiệu-ứng-giao-diện)
-4. [Hướng dẫn Viết Bài Mới Chuẩn SEO](#-hướng-dẫn-viết-bài-mới-chuẩn-seo)
+4. [Hướng dẫn Viết Bài Mới & Tự Động Hóa](#-hướng-dẫn-viết-bài-mới--tự-động-hóa)
 5. [Quy trình Deploy & Cơ chế Bảo mật 2 Lớp](#-quy-trình-deploy--cơ-chế-bảo-mật-2-lớp)
 6. [Hệ thống AI Skills Tích hợp (.agents)](#-hệ-thống-ai-skills-tích-hợp-agents)
 7. [Tối ưu SEO & Hiệu năng](#-tối-ưu-seo--hiệu-năng)
@@ -146,48 +146,27 @@ Toàn bộ Blog được bao phủ bởi giao diện **Dark Cyberpunk Glassmorph
 
 ---
 
-## ✍️ Hướng dẫn Viết Bài Mới Chuẩn SEO
+## ✍️ Hướng dẫn Viết Bài Mới & Tự Động Hóa
 
-Để tạo một bài viết mới với chuẩn SEO cao nhất và giao diện đồng nhất:
+Quy trình xuất bản bài viết mới diễn ra nhanh gọn và tự động hóa 100% nhờ bộ công cụ sẵn có:
 
-### Bước 1: Nhân bản Template
-Tạo thư mục slug mới trong thư mục danh mục tương ứng (`tech/` hoặc `life/`):
-```powershell
-# Ví dụ tạo bài viết về Docker trong thư mục tech:
-New-Item -ItemType Directory -Path "d:\code\laragon\www\blog\tech\docker-co-ban"
-Copy-Item "d:\code\laragon\www\blog\_template\post-template.html" "d:\code\laragon\www\blog\tech\docker-co-ban\index.html"
-```
+### 1. Khởi tạo bài viết từ Template
+Nhân bản cấu trúc từ khuôn mẫu chuẩn `_template/post-template.html` vào chuyên mục tương ứng:
+- Đường dẫn: `[chuyên_mục]/[slug-bài-viết]/index.html` (trong đó chuyên mục là `tech/` hoặc `life/`).
 
-### Bước 2: Chỉnh sửa nội dung & Meta Tags
-Mở file `index.html` vừa tạo và cập nhật các trường:
-1. `<title>`: Tiêu đề bài viết — Tên Blog
-2. `<meta name="description">`: Đoạn mô tả bài viết từ 140 - 160 ký tự
-3. OpenGraph Tags (`og:title`, `og:description`, `og:url`, `og:image`)
-4. Đường dẫn tương đối cho assets:
-   - Vì bài viết nằm ở cấp `tech/<slug>/index.html`, đường dẫn tới assets luôn là:
-     ```html
-     <link rel="stylesheet" href="../../assets/css/blog.css">
-     <script src="../../assets/js/core.js"></script>
-     ```
-5. Breadcrumb:
-   ```html
-   <nav class="breadcrumb">
-     <a href="../../">Home</a> /
-     <a href="../">Tech</a> /
-     <span>Docker cơ bản</span>
-   </nav>
-   ```
+### 2. Khai báo bài viết vào `assets/js/blog-data.js`
+Thêm thông tin bài viết mới vào đầu mảng `posts` trong file `assets/js/blog-data.js`:
+- Các trường cần khai báo: `id`, `title`, `slug`, `category`, `categoryName`, `path`, `date`, `formattedDate`, `readTime`, `excerpt`, `tags`, `icon`.
 
-### Bước 3: Cập nhật danh sách hiển thị
-Thêm bài viết mới vào:
-- Trang chủ `blog/index.html` (Mục Bài viết Mới Nhất)
-- Trang chuyên mục `blog/tech/index.html` (hoặc `blog/life/index.html`)
+### 3. Soạn thảo nội dung theo Form chuẩn
+Mở file `index.html` của bài viết và biên soạn nội dung theo các khối thành phần có sẵn:
+- **Tiêu đề & SEO Meta**: Cập nhật thẻ `<title>`, `<meta name="description">` và OpenGraph.
+- **Nội dung chính**: Mở đầu (Lead hook), Hộp tóm tắt (Callout), các mục `<h2>`, `<h3>`, khối code `<pre><code>` (tự động có nút Copy).
+- **Mục lục & Điều hướng**: Tự động sinh mục lục (TOC) và điều hướng bài trước/sau mà không cần làm thủ công.
 
-### Bước 4: Deploy lên Live
-Chỉ cần nhấp đúp file `deploy.bat` hoặc gõ lệnh trong terminal:
-```bat
-deploy.bat
-```
+### 4. Đồng bộ & Deploy 1-Click
+Chạy file `deploy.bat` (hoặc gõ lệnh `node scripts/master-build.js`):
+- Hệ thống sẽ tự động quét bảo mật, đồng bộ bài viết vào Trang chủ, Trang chuyên mục, cập nhật Sitemap SEO, RSS Feed và đẩy bản cập nhật lên GitHub Pages.
 
 ---
 
