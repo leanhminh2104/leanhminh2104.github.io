@@ -49,6 +49,73 @@
     const DATA = window.BLOG_DATA || { site: {}, categories: [], posts: [], ads: {} };
 
     // ────────────────────────────────────────────────────────────
+    // 1.1 HÀM TẠO LOGO SVG ĐỘNG CHO leanhminh2104
+    // ────────────────────────────────────────────────────────────
+    function getLogoSvg(height = 36) {
+        const width = Math.round(height * (268 / 42));
+        return `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 42" height="${height}" width="${width}" class="logo-svg-brand" aria-label="LEANHMINH2104" style="display:block; max-width:100%; height:auto; max-height:${height}px;">
+          <defs>
+            <filter id="c-lm-aura" x="-25%" y="-25%" width="150%" height="150%">
+              <feGaussianBlur stdDeviation="2.4" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+            <filter id="c-lm-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="1.6" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+            <linearGradient id="c-lm-border" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="50%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#f472b6"/>
+            </linearGradient>
+            <linearGradient id="c-ribbon-l" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="100%" stop-color="#818cf8"/>
+            </linearGradient>
+            <linearGradient id="c-ribbon-m" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c084fc">
+                <animate attributeName="stop-color" values="#c084fc;#38bdf8;#f472b6;#c084fc" dur="6s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stop-color="#a855f7">
+                <animate attributeName="stop-color" values="#a855f7;#818cf8;#c084fc;#a855f7" dur="6s" repeatCount="indefinite"/>
+              </stop>
+            </linearGradient>
+            <linearGradient id="c-full-wordmark" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#38bdf8">
+                <animate attributeName="stop-color" values="#38bdf8;#c084fc;#f472b6;#38bdf8" dur="7s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="35%" stop-color="#818cf8">
+                <animate attributeName="stop-color" values="#818cf8;#38bdf8;#c084fc;#818cf8" dur="7s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="70%" stop-color="#c084fc">
+                <animate attributeName="stop-color" values="#c084fc;#f472b6;#38bdf8;#c084fc" dur="7s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stop-color="#f472b6">
+                <animate attributeName="stop-color" values="#f472b6;#a855f7;#38bdf8;#f472b6" dur="7s" repeatCount="indefinite"/>
+              </stop>
+            </linearGradient>
+          </defs>
+          <g transform="translate(3, 3)" class="brand-monogram">
+            <rect x="0" y="0" width="36" height="36" rx="10" fill="#a855f7" opacity="0.35" filter="url(#c-lm-aura)"/>
+            <rect x="0" y="0" width="36" height="36" rx="10" fill="#0d0f1f"/>
+            <rect x="0" y="0" width="36" height="36" rx="10" fill="none" stroke="url(#c-lm-border)" stroke-width="1.5"/>
+            <rect x="1.5" y="1.5" width="33" height="33" rx="8.5" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <g transform="translate(1, 0)">
+              <path d="M 10 11.5 L 10 24.5 L 17 24.5" fill="none" stroke="url(#c-ribbon-l)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 16.5 24.5 L 20 15 L 23.5 21.5 L 27 15 L 27 24.5" fill="none" stroke="url(#c-ribbon-m)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="23.5" cy="21.5" r="1.3" fill="#ffffff" opacity="0.95"/>
+            </g>
+          </g>
+          <g transform="translate(48, 28)" class="brand-wordmark">
+            <path d="M16.32 0L1.20 0L1.20-15.14L4.45-15.14L4.45-3.28L16.32-3.28L16.32 0M32.38 0L18.42 0L18.42-15.12L32.38-15.12L32.38-11.84L21.71-11.84L21.71-9.20L30.30-9.20L30.30-5.92L21.71-5.92L21.71-3.28L32.38-3.28L32.38 0M35.34 0L35.34-12.01Q35.34-12.87 35.76-13.58Q36.18-14.28 36.90-14.70Q37.61-15.12 38.45-15.12L47.33-15.12Q48.20-15.12 48.90-14.70Q49.60-14.28 50.03-13.58Q50.46-12.87 50.46-12.01L50.46 0L47.17 0L47.17-4.87L38.60-4.87L38.60 0L35.34 0M38.60-8.15L47.17-8.15L47.17-11.84Q47.17-11.84 47.17-11.84Q47.17-11.84 47.17-11.84L38.60-11.84Q38.60-11.84 38.60-11.84Q38.60-11.84 38.60-11.84L38.60-8.15M56.95 0L53.70 0L53.70-15.12L57.06-15.12L65.52-5.04L65.52-15.12L68.82-15.12L68.82 0L65.46 0L56.95-10.12L56.95 0M75.29 0L72.03 0L72.03-15.12L75.29-15.12L75.29-9.20L84.21-9.20L84.21-15.12L87.47-15.12L87.47 0L84.21 0L84.21-5.92L75.29-5.92L75.29 0M93.98 0L90.72 0L90.72-15.12L94.08-15.12L99.20-9.01L104.31-15.12L107.69-15.12L107.69 0L104.41 0L104.41-10.14L99.20-3.93L93.98-10.12L93.98 0M113.74 0L110.52 0L110.52-15.12L113.74-15.12L113.74 0M119.64 0L116.38 0L116.38-15.12L119.74-15.12L128.21-5.04L128.21-15.12L131.50-15.12L131.50 0L128.14 0L119.64-10.12L119.64 0M137.97 0L134.72 0L134.72-15.12L137.97-15.12L137.97-9.20L146.90-9.20L146.90-15.12L150.15-15.12L150.15 0L146.90 0L146.90-5.92L137.97-5.92L137.97 0M168.27 0L153.43 0L153.43-5.86Q153.43-6.70 153.85-7.39Q154.27-8.09 154.96-8.49Q155.65-8.90 156.49-8.90L165.06-8.90Q165.06-8.90 165.06-8.90Q165.06-8.90 165.06-8.90L165.06-11.91Q165.06-11.91 165.06-11.91Q165.06-11.91 165.06-11.91L156.64-11.91Q156.64-11.91 156.64-11.91Q156.64-11.91 156.64-11.91L156.64-10.69L153.43-10.69L153.43-12.08Q153.43-12.92 153.85-13.61Q154.27-14.30 154.96-14.71Q155.65-15.12 156.49-15.12L165.21-15.12Q166.05-15.12 166.74-14.71Q167.43-14.30 167.85-13.61Q168.27-12.92 168.27-12.08L168.27-8.74Q168.27-7.90 167.85-7.20Q167.43-6.51 166.74-6.09Q166.05-5.67 165.21-5.67L156.64-5.67Q156.64-5.67 156.64-5.67Q156.64-5.67 156.64-5.67L156.64-3.21Q156.64-3.21 156.64-3.21Q156.64-3.21 156.64-3.21L168.27-3.21L168.27 0M178.69 0L175.48 0L175.48-10.23L174.78-9.37L170.52-9.37L175.35-15.12L178.69-15.12L178.69 0M183.81 0Q182.97 0 182.28-0.47Q181.59-0.95 181.17-1.69Q180.75-2.44 180.75-3.26L180.75-11.99Q180.75-12.83 181.17-13.55Q181.59-14.26 182.28-14.69Q182.97-15.12 183.81-15.12L192.53-15.12Q193.37-15.12 194.06-14.69Q194.75-14.26 195.17-13.55Q195.59-12.83 195.59-11.99L195.59-3.26Q195.59-2.44 195.17-1.69Q194.75-0.95 194.06-0.47Q193.37 0 192.53 0L183.81 0M192.38-9.05L185.68-3.42L192.38-3.42Q192.38-3.42 192.38-3.42Q192.38-3.42 192.38-3.42L192.38-9.05M183.96-11.82L183.96-6.20L190.66-11.82L183.96-11.82Q183.96-11.82 183.96-11.82Q183.96-11.82 183.96-11.82M210.29 0L207.08 0L207.08-3.76L198.03-3.76L198.03-6.64L207.42-15.12L210.29-15.12L210.29-6.99L212.31-6.99L212.31-3.76L210.29-3.76L210.29 0M207.08-10.10L203.26-6.99L207.08-6.99" fill="url(#c-full-wordmark)" opacity="0.45" filter="url(#c-lm-glow)"/>
+            <path d="M16.32 0L1.20 0L1.20-15.14L4.45-15.14L4.45-3.28L16.32-3.28L16.32 0M32.38 0L18.42 0L18.42-15.12L32.38-15.12L32.38-11.84L21.71-11.84L21.71-9.20L30.30-9.20L30.30-5.92L21.71-5.92L21.71-3.28L32.38-3.28L32.38 0M35.34 0L35.34-12.01Q35.34-12.87 35.76-13.58Q36.18-14.28 36.90-14.70Q37.61-15.12 38.45-15.12L47.33-15.12Q48.20-15.12 48.90-14.70Q49.60-14.28 50.03-13.58Q50.46-12.87 50.46-12.01L50.46 0L47.17 0L47.17-4.87L38.60-4.87L38.60 0L35.34 0M38.60-8.15L47.17-8.15L47.17-11.84Q47.17-11.84 47.17-11.84Q47.17-11.84 47.17-11.84L38.60-11.84Q38.60-11.84 38.60-11.84Q38.60-11.84 38.60-11.84L38.60-8.15M56.95 0L53.70 0L53.70-15.12L57.06-15.12L65.52-5.04L65.52-15.12L68.82-15.12L68.82 0L65.46 0L56.95-10.12L56.95 0M75.29 0L72.03 0L72.03-15.12L75.29-15.12L75.29-9.20L84.21-9.20L84.21-15.12L87.47-15.12L87.47 0L84.21 0L84.21-5.92L75.29-5.92L75.29 0M93.98 0L90.72 0L90.72-15.12L94.08-15.12L99.20-9.01L104.31-15.12L107.69-15.12L107.69 0L104.41 0L104.41-10.14L99.20-3.93L93.98-10.12L93.98 0M113.74 0L110.52 0L110.52-15.12L113.74-15.12L113.74 0M119.64 0L116.38 0L116.38-15.12L119.74-15.12L128.21-5.04L128.21-15.12L131.50-15.12L131.50 0L128.14 0L119.64-10.12L119.64 0M137.97 0L134.72 0L134.72-15.12L137.97-15.12L137.97-9.20L146.90-9.20L146.90-15.12L150.15-15.12L150.15 0L146.90 0L146.90-5.92L137.97-5.92L137.97 0M168.27 0L153.43 0L153.43-5.86Q153.43-6.70 153.85-7.39Q154.27-8.09 154.96-8.49Q155.65-8.90 156.49-8.90L165.06-8.90Q165.06-8.90 165.06-8.90Q165.06-8.90 165.06-8.90L165.06-11.91Q165.06-11.91 165.06-11.91Q165.06-11.91 165.06-11.91L156.64-11.91Q156.64-11.91 156.64-11.91Q156.64-11.91 156.64-11.91L156.64-10.69L153.43-10.69L153.43-12.08Q153.43-12.92 153.85-13.61Q154.27-14.30 154.96-14.71Q155.65-15.12 156.49-15.12L165.21-15.12Q166.05-15.12 166.74-14.71Q167.43-14.30 167.85-13.61Q168.27-12.92 168.27-12.08L168.27-8.74Q168.27-7.90 167.85-7.20Q167.43-6.51 166.74-6.09Q166.05-5.67 165.21-5.67L156.64-5.67Q156.64-5.67 156.64-5.67Q156.64-5.67 156.64-5.67L156.64-3.21Q156.64-3.21 156.64-3.21Q156.64-3.21 156.64-3.21L168.27-3.21L168.27 0M178.69 0L175.48 0L175.48-10.23L174.78-9.37L170.52-9.37L175.35-15.12L178.69-15.12L178.69 0M183.81 0Q182.97 0 182.28-0.47Q181.59-0.95 181.17-1.69Q180.75-2.44 180.75-3.26L180.75-11.99Q180.75-12.83 181.17-13.55Q181.59-14.26 182.28-14.69Q182.97-15.12 183.81-15.12L192.53-15.12Q193.37-15.12 194.06-14.69Q194.75-14.26 195.17-13.55Q195.59-12.83 195.59-11.99L195.59-3.26Q195.59-2.44 195.17-1.69Q194.75-0.95 194.06-0.47Q193.37 0 192.53 0L183.81 0M192.38-9.05L185.68-3.42L192.38-3.42Q192.38-3.42 192.38-3.42Q192.38-3.42 192.38-3.42L192.38-9.05M183.96-11.82L183.96-6.20L190.66-11.82L183.96-11.82Q183.96-11.82 183.96-11.82Q183.96-11.82 183.96-11.82M210.29 0L207.08 0L207.08-3.76L198.03-3.76L198.03-6.64L207.42-15.12L210.29-15.12L210.29-6.99L212.31-6.99L212.31-3.76L210.29-3.76L210.29 0M207.08-10.10L203.26-6.99L207.08-6.99" fill="url(#c-full-wordmark)"/>
+          </g>
+        </svg>
+        `;
+    }
+
+    // ────────────────────────────────────────────────────────────
     // 2. RENDER HEADER (PC & MOBILE TOPBAR)
     // ────────────────────────────────────────────────────────────
     function renderHeader() {
@@ -79,12 +146,9 @@
 
         container.innerHTML = `
             <div class="blog-header-inner">
-                <!-- Logo -->
-                <a href="${ROOT}" class="blog-logo">
-                    <div class="blog-logo-icon">
-                        <i class="fas fa-pen-nib"></i>
-                    </div>
-                    <span>${DATA.site.name || 'leanhminh'}</span>
+                <!-- Logo leanhminh2104 (SVG Animated) -->
+                <a href="${ROOT}" class="blog-logo" aria-label="leanhminh2104">
+                    ${getLogoSvg(36)}
                 </a>
 
                 <!-- Desktop Navigation (Tự động từ dữ liệu) -->
@@ -232,12 +296,9 @@
         drawer.innerHTML = `
             <div class="drawer-handle"></div>
             <div class="drawer-head">
-                <div style="display:flex; align-items:center; gap:0.6rem;">
-                    <div class="blog-logo-icon" style="width:30px; height:30px; font-size:0.8rem;">
-                        <i class="fas fa-pen-nib"></i>
-                    </div>
-                    <span style="font-weight:700; font-size:0.95rem; color:#fff;">${DATA.site.name || 'leanhminh'}</span>
-                </div>
+                <a href="${ROOT}" class="blog-logo" aria-label="leanhminh2104" style="text-decoration:none;">
+                    ${getLogoSvg(28)}
+                </a>
                 <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Đóng menu">
                     <i class="fas fa-xmark"></i>
                 </button>
@@ -490,12 +551,9 @@
                 <div class="footer-grid">
                     <!-- Cột 1: Thông tin Blog -->
                     <div class="footer-col brand-col">
-                        <div class="blog-logo" style="margin-bottom:0.8rem;">
-                            <div class="blog-logo-icon">
-                                <i class="fas fa-pen-nib"></i>
-                            </div>
-                            <span>${DATA.site.name || 'leanhminh'}</span>
-                        </div>
+                        <a href="${ROOT}" class="blog-logo" aria-label="leanhminh2104" style="margin-bottom:0.8rem; text-decoration:none;">
+                            ${getLogoSvg(32)}
+                        </a>
                         <p class="footer-desc">
                             ${DATA.site.tagline || 'Chia sẻ kinh nghiệm lập trình, kiến trúc hệ thống và cuộc sống của Developer.'}
                         </p>

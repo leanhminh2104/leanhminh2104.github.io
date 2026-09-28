@@ -16,13 +16,14 @@
 window.BLOG_DATA = {
     // 1. Cấu hình trang & tác giả
     site: {
-        name: "leanhminh",
-        title: "Lê Anh Minh — Blog",
+        name: "leanhminh2104",
+        title: "leanhminh2104 — Blog",
         tagline: "Chia sẻ về Lập trình, Công nghệ & Cuộc sống",
         author: "Lê Anh Minh",
         github: "https://github.com/leanhminh2104",
         facebook: "https://facebook.com/",
         email: "contact@leanhminh.dev",
+        logo: "assets/images/logo/logo.svg",
         year: 2026
     },
 
