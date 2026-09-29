@@ -790,11 +790,13 @@
                 return activeBanners.find(b => b.id === adId) || null;
             }
 
-            // Lọc các banner khớp slot (hỗ trợ tương thích cả 'article' và 'article-bottom')
+            // Lọc các banner khớp slot (hỗ trợ cả mảng các slot hoặc slot chuỗi)
             const matches = activeBanners.filter(b => {
-                if (b.slot === slotName) return true;
-                if (slotName === 'article' && (b.slot === 'article-bottom' || b.slot === 'article')) return true;
-                if (slotName === 'article-bottom' && b.slot === 'article') return true;
+                const slots = Array.isArray(b.slot) ? b.slot : [b.slot];
+                if (slots.includes(slotName) || slots.includes('all')) return true;
+                if (slotName === 'article-bottom' && (slots.includes('article') || slots.includes('sidebar'))) return true;
+                if (slotName === 'article' && (slots.includes('article-bottom') || slots.includes('article'))) return true;
+                if (slotName === 'article-mid' && (slots.includes('article') || slots.includes('all'))) return true;
                 return false;
             });
 

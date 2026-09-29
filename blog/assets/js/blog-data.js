@@ -150,7 +150,7 @@ window.BLOG_DATA = {
             {
                 id: "shopee-keychron",
                 platform: "shopee",             // Tự động áp dụng theme Cam Shopee chuẩn nhận diện
-                slot: "article-bottom",         // Vị trí: Cuối bài viết (trước bình luận)
+                slot: ["article-bottom", "sidebar"], // Vị trí: Cuối bài viết & Sidebar PC
                 badge: "Shopee Deal",
                 title: "Bàn Phím Cơ Không Dây Keychron K2 Pro QMK/VIA",
                 desc: "Layout 75%, Switch Gateron Pro hot-swap, kết nối Bluetooth 5.1 & Type-C, gõ êm mượt tối ưu cho Developer.",
@@ -166,7 +166,7 @@ window.BLOG_DATA = {
             {
                 id: "tiktok-desklight",
                 platform: "tiktok",             // Tự động áp dụng viền Neon Cyberpunk Hồng / Cyan
-                slot: "sidebar",                // Vị trí: Cột phải Sidebar bài viết trên PC
+                slot: ["sidebar", "article-bottom"], // Vị trí: Sidebar PC và Cuối bài viết Mobile/PC
                 badge: "TikTok Shop",
                 title: "Đèn Treo Màn Hình Chống Mỏi Mắt Xiaomi Mijia",
                 desc: "Chiếu sáng góc hẹp không gây lóa màn hình, điều khiển núm xoay không dây 2.4GHz sang trọng.",

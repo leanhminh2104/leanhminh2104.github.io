@@ -385,11 +385,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blog-main {
-    padding: 2rem 0 6rem;
+    padding: 2rem 0 4rem;
 }
 
 @media (max-width: 768px) {
-    .blog-main { padding: 1.5rem 0 8rem; }
+    .blog-main { padding: 1.25rem 0 2.5rem; }
     .blog-container { padding: 0 1rem; }
 }
 
@@ -720,7 +720,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 960px) {
     .article-layout { grid-template-columns: 1fr; }
-    .article-sidebar { display: none; }
+    .article-sidebar { display: none !important; }
 }
 
 /* Breadcrumb */
@@ -968,6 +968,12 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+@media (max-width: 960px) {
+    .article-sidebar {
+        display: none !important;
+    }
 }
 
 .toc-card { padding: 1.1rem 1.2rem; }
@@ -1869,10 +1875,17 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer {
     background: linear-gradient(180deg, transparent 0%, rgba(10, 6, 20, 0.85) 40%, rgba(6, 4, 14, 0.98) 100%);
     border-top: 1px solid rgba(168, 85, 247, 0.15);
-    padding: 4rem 0 7rem; /* khoảng trống 7rem cho mobile bottom dock */
-    margin-top: 4rem;
+    padding: 3.5rem 0 6.5rem;
+    margin-top: 2rem;
     position: relative;
     z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .blog-footer {
+        padding: 2.25rem 0 5.5rem;
+        margin-top: 1.25rem;
+    }
 }
 
 @media (min-width: 769px) {
@@ -1883,15 +1896,15 @@ h1, h2, h3, h4, h5, h6 {
     display: grid;
     grid-template-columns: 2fr 1fr 1.5fr 1.2fr;
     gap: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 @media (max-width: 900px) {
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
 }
 
 @media (max-width: 600px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
 }
 
 .footer-col .footer-heading {
@@ -2155,7 +2168,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 650px) {
+    .blog-ad-card { padding: 1.15rem 1.15rem; }
     .ad-card-inner { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+    .ad-card-cta { width: 100%; justify-content: center; padding: 0.65rem 1.25rem; }
 }
 
 .ad-card-icon {
