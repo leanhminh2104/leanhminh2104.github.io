@@ -26,11 +26,11 @@
     --glass-bg:           rgba(147, 51, 234, 0.010);
     --glass-bg-2:         rgba(168, 85, 247, 0.025);
     --glass-bg-3:         rgba(168, 85, 247, 0.045);
-    --glass-border:       rgba(168, 85, 247, 0.12);
+    --glass-border:       rgba(168, 85, 247, 0.11);
     --glass-border-inner: rgba(216, 180, 254, 0.22);
-    --glass-shadow:       0 12px 40px rgba(0,0,0,0.35), inset 0 1.5px 1px rgba(216,180,254,0.20), inset 0 -1px 2px rgba(139,92,246,0.08);
-    --glass-blur:         blur(20px);
-    --glass-specular:     linear-gradient(135deg, rgba(192,132,252,0.06) 0%, rgba(147,51,234,0.01) 40%, rgba(168,85,247,0) 100%);
+    --glass-shadow:       0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1.5px 1px rgba(216, 180, 254, 0.20), inset 0 -1px 2px rgba(139, 92, 246, 0.08);
+    --glass-blur:         none;
+    --glass-specular:     linear-gradient(135deg, rgba(192, 132, 252, 0.06) 0%, rgba(147, 51, 234, 0.01) 40%, rgba(168, 85, 247, 0) 100%);
 
     --radius-sm:   8px;
     --radius-md:   14px;
@@ -254,11 +254,11 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem;
-    background: rgba(10, 6, 20, 0.28) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(168, 85, 247, 0.18) !important;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(168, 85, 247, 0.15);
+    background: rgba(147, 51, 234, 0.008) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(216, 180, 254, 0.15);
     transition: background 0.3s ease, border-color 0.3s ease;
     gap: 1rem;
 }
@@ -2045,13 +2045,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-ad-card {
     position: relative;
-    background: rgba(15, 10, 30, 0.2) !important;
-    border: 1px solid rgba(168, 85, 247, 0.22);
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     padding: 1.25rem 1.5rem;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: var(--glass-shadow);
     transition: var(--transition);
     overflow: hidden;
 }
@@ -2148,10 +2148,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Platform Contextual Recommendation (Đề xuất bài viết mới & liên quan thông minh) */
 .blog-ad-card.platform-recommend {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(56, 189, 248, 0.08) 50%, rgba(15, 10, 30, 0.88) 100%);
-    border: 1px solid rgba(168, 85, 247, 0.38);
+    background: var(--glass-bg) !important;
+    border: 1px solid rgba(56, 189, 248, 0.35);
     position: relative;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--glass-shadow);
 }
 
 .blog-ad-card.platform-recommend:hover {
@@ -2194,8 +2194,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Platform Sponsor / Dịch vụ số độc quyền */
 .blog-ad-card.platform-sponsor {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(239, 68, 68, 0.05) 50%, rgba(15, 10, 30, 0.85) 100%);
-    border: 1px solid rgba(168, 85, 247, 0.32);
+    background: var(--glass-bg) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    box-shadow: var(--glass-shadow);
 }
 
 .blog-ad-card.platform-sponsor:hover {
@@ -3199,13 +3200,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   ULTRA LIQUID GLASSMORPHISM — TOÀN TRANG TRONG SUỐT XUYÊN THẤU SAO TRỜI
-   "ALL TRỪ ẢNH CÒN LẠI LÀ TRONG SUỐT HẾT" (CYBERPUNK LIQUID GLASS AESTHETIC)
+   ULTRA LIQUID GLASSMORPHISM — ĐỒNG BỘ 100% CHUẨN DESIGN Y CHANG CODE QLCT
+   (Liquid Glass iOS 26/27 Purple Water Drop — Siêu trong suốt 0.010, không đục)
    ========================================================================== */
 
-/* 1. KHUNG CHÍNH, BÀI VIẾT & SIDEBAR (Glass Cards) */
+/* 1. KHUNG CHÍNH, BÀI VIẾT & SIDEBAR (Glass Cards chuẩn qlct) */
 .glass-card, 
 .article-content, 
+.article-body,
 .toc-card, 
 .author-card,
 .post-nav-card,
@@ -3213,146 +3215,191 @@ h1, h2, h3, h4, h5, h6 {
 .feed-card,
 .cat-card,
 .category-card {
-    background: rgba(14, 9, 28, 0.22) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border: 1px solid rgba(168, 85, 247, 0.18) !important;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(216, 180, 254, 0.2) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+.article-layout,
+.blog-container,
+.blog-main {
+    background: transparent !important;
 }
 
 .glass-card:hover,
 .post-card:hover,
 .post-nav-card:hover {
-    background: rgba(168, 85, 247, 0.06) !important;
-    border-color: rgba(216, 180, 254, 0.35) !important;
+    background: var(--glass-bg-2) !important;
+    border-color: rgba(216, 180, 254, 0.25) !important;
 }
 
-/* 2. BẢNG BIỂU & SO SÁNH (Tables) */
+/* 2. BẢNG BIỂU & SO SÁNH (Tables chuẩn liquid glass qlct) */
 .article-body table,
-.article-content table {
+.article-content table,
+.glass-card table,
+table {
     background: transparent !important;
     border-collapse: collapse !important;
-    border: 1px solid rgba(168, 85, 247, 0.2) !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.article-body thead tr,
+.article-content thead tr,
+.glass-card thead tr,
+thead tr {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
 }
 
 .article-body th,
-.article-content th {
-    background: rgba(168, 85, 247, 0.08) !important;
-    backdrop-filter: blur(8px) !important;
-    border-bottom: 1px solid rgba(168, 85, 247, 0.25) !important;
+.article-content th,
+.glass-card th,
+th {
+    background: transparent !important;
+    color: #94a3b8 !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+}
+
+.article-body tbody tr,
+.article-content tbody tr,
+.glass-card tbody tr,
+tbody tr {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.035) !important;
 }
 
 .article-body td,
-.article-content td {
+.article-content td,
+.glass-card td,
+td {
     background: transparent !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
 .article-body tr:hover td,
-.article-content tr:hover td {
-    background: rgba(168, 85, 247, 0.05) !important;
+.article-content tr:hover td,
+.glass-card tr:hover td,
+tbody tr:hover {
+    background: rgba(168, 85, 247, 0.03) !important;
 }
 
 /* 3. CÁC HỘP ĐẶC BIỆT TRONG BÀI VIẾT (Price Hero, Features, Warranty, Callout, Steps) */
 .price-hero {
-    background: rgba(168, 85, 247, 0.06) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.3) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
 }
 
 .feature-card {
-    background: rgba(255, 255, 255, 0.02) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.18) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
 .feature-card:hover {
-    background: rgba(168, 85, 247, 0.06) !important;
-    border-color: rgba(168, 85, 247, 0.45) !important;
+    background: var(--glass-bg-2) !important;
+    border-color: rgba(168, 85, 247, 0.3) !important;
 }
 
 .warranty-box {
-    background: rgba(52, 211, 153, 0.05) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(52, 211, 153, 0.25) !important;
+    background: rgba(52, 211, 153, 0.02) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(52, 211, 153, 0.18) !important;
 }
 
 blockquote,
 .article-body blockquote,
 .article-content blockquote {
-    background: rgba(168, 85, 247, 0.04) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     border-left: 3px solid var(--primary) !important;
 }
 
 .article-body pre,
 .article-content pre {
-    background: rgba(0, 0, 0, 0.28) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.2) !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
 .article-body :not(pre) > code,
 .article-content :not(pre) > code {
-    background: rgba(168, 85, 247, 0.12) !important;
-    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    background: rgba(168, 85, 247, 0.08) !important;
+    border: 1px solid rgba(168, 85, 247, 0.18) !important;
 }
 
+.steps-list,
 .steps-list li {
     background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
 }
 
 .price-badge-old,
 .highlight-chip {
-    background: rgba(255, 255, 255, 0.06) !important;
-    backdrop-filter: blur(8px) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
-/* 4. CÁC THẺ QUẢNG CÁO & ĐỀ XUẤT (Contextual Ad Cards) */
+/* 4. CÁC THẺ QUẢNG CÁO & ĐỀ XUẤT (Contextual Ad Cards chuẩn qlct) */
 .blog-ad-card {
-    background: rgba(15, 10, 30, 0.18) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
 }
 
 .blog-ad-card.platform-recommend {
-    background: rgba(124, 58, 237, 0.08) !important;
-    border-color: rgba(56, 189, 248, 0.35) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    box-shadow: var(--glass-shadow) !important;
 }
 
 .blog-ad-card.platform-sponsor {
-    background: rgba(225, 29, 72, 0.06) !important;
-    border-color: rgba(225, 29, 72, 0.3) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(168, 85, 247, 0.2) !important;
+    box-shadow: var(--glass-shadow) !important;
 }
 
 .blog-ad-card.platform-shopee {
-    background: rgba(238, 77, 45, 0.06) !important;
-    border-color: rgba(238, 77, 45, 0.35) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(238, 77, 45, 0.25) !important;
 }
 
 .blog-ad-card.platform-tiktok {
-    background: rgba(0, 242, 254, 0.05) !important;
-    border-color: rgba(0, 242, 254, 0.3) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(0, 242, 254, 0.25) !important;
 }
 
-/* 5. GIAO DIỆN BÌNH LUẬN & ĐIỀU KHOẢN (Comments Glass) */
+/* 5. GIAO DIỆN BÌNH LUẬN & ĐIỀU KHOẢN (Comments Glass chuẩn qlct) */
 .comments-glass-panel {
-    background: rgba(15, 10, 30, 0.15) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.2) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
 }
 
 .comments-policy-box {
-    background: rgba(168, 85, 247, 0.04) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.2) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
 .utterances-frame {
@@ -3362,41 +3409,38 @@ blockquote,
 
 /* 6. THANH ĐIỀU HƯỚNG MOBILE DOCK, DRAWER & MODAL */
 .mobile-dock-inner {
-    background: rgba(8, 5, 18, 0.35) !important;
-    backdrop-filter: blur(18px) !important;
-    -webkit-backdrop-filter: blur(18px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.22) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
 }
 
 .mobile-drawer {
-    background: rgba(10, 6, 22, 0.5) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    background: rgba(6, 7, 10, 0.75) !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
 .search-modal-container {
-    background: rgba(10, 6, 22, 0.6) !important;
-    backdrop-filter: blur(24px) !important;
-    -webkit-backdrop-filter: blur(24px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.3) !important;
+    background: rgba(6, 7, 10, 0.8) !important;
+    border: 1px solid var(--glass-border) !important;
 }
 
 .search-modal-header {
-    background: rgba(255, 255, 255, 0.02) !important;
+    background: transparent !important;
+    border-bottom: 1px solid var(--glass-border) !important;
 }
 
 /* 7. CHÂN TRANG FOOTER SIÊU TRONG SUỐT */
 .blog-footer {
     background: transparent !important;
-    border-top: 1px solid rgba(168, 85, 247, 0.18) !important;
+    border-top: 1px solid var(--glass-border) !important;
 }
 
 .footer-blog-card {
-    background: rgba(15, 10, 30, 0.2) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(168, 85, 247, 0.18) !important;
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
 }
 
 /* 8. QUY TẮC BẢO VỆ ẢNH (ALL TRỪ ẢNH — ẢNH LUÔN GIỮ ĐỘ SẮC NÉT 100%) */
