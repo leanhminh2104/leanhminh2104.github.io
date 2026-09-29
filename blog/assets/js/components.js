@@ -1010,7 +1010,9 @@
                     <i class="fas fa-user-shield"></i> Quản lý bình luận trên GitHub (Admin) <i class="fas fa-arrow-up-right-from-square"></i>
                 </a>
             </div>` : ''}
-            <div id="github-comments-embed"></div>
+            <div class="comments-glass-panel">
+                <div id="github-comments-embed"></div>
+            </div>
         `;
 
         const embedContainer = el.querySelector('#github-comments-embed');
@@ -1031,13 +1033,13 @@
             script.setAttribute('data-reactions-enabled', config.reactionsEnabled || '1');
             script.setAttribute('data-emit-metadata', config.emitMetadata || '0');
             script.setAttribute('data-input-position', config.inputPosition || 'top');
-            script.setAttribute('data-theme', config.theme || 'dark_dimmed');
+            script.setAttribute('data-theme', config.theme || 'transparent_dark');
             script.setAttribute('data-lang', config.lang || 'vi');
             script.setAttribute('crossorigin', 'anonymous');
             script.async = true;
             embedContainer.appendChild(script);
         } else {
-            // Nạp Utterances qua GitHub Issues (chỉ cần repo GitHub, bắt buộc login GitHub, rep & admin xóa thoải mái)
+            // Nạp Utterances qua GitHub Issues (dùng theme icy-dark đồng bộ tông màu xanh cyan & không gian tối)
             if (document.getElementById('utterances-client-script')) return;
             const script = document.createElement('script');
             script.id = 'utterances-client-script';
@@ -1045,7 +1047,7 @@
             script.setAttribute('repo', repo);
             script.setAttribute('issue-term', config.mapping || 'pathname');
             script.setAttribute('label', '💬 blog-comment');
-            script.setAttribute('theme', 'github-dark');
+            script.setAttribute('theme', 'icy-dark');
             script.setAttribute('crossorigin', 'anonymous');
             script.async = true;
             embedContainer.appendChild(script);

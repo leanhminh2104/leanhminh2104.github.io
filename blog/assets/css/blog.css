@@ -3016,9 +3016,44 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: underline;
 }
 
-.giscus, .utterances {
-    min-height: 240px;
+/* ==========================================================================
+   CYBERPUNK GLASS COMMENTS CONTAINER (ĐỒNG BỘ 100% THEO GIAO DIỆN BLOG)
+   ========================================================================== */
+.comments-glass-panel {
+    background: linear-gradient(180deg, rgba(16, 11, 30, 0.75) 0%, rgba(9, 6, 18, 0.88) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.35rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(168, 85, 247, 0.1);
+    position: relative;
+    overflow: hidden;
     margin-top: 1rem;
+}
+
+.comments-glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+.utterances {
+    max-width: 100% !important;
+    margin: 0 !important;
+}
+
+.utterances-frame {
+    border-radius: var(--radius-md) !important;
+    overflow: hidden !important;
+}
+
+.giscus, .utterances {
+    min-height: 220px;
 }
 
 /* ==========================================================================
