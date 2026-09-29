@@ -28,21 +28,23 @@
     <style>
         /* === Styles chuyên biệt: Price Hero & Feature Grid === */
         .price-hero {
-            background: linear-gradient(135deg, rgba(168,85,247,0.18) 0%, rgba(56,189,248,0.12) 100%);
-            border: 1px solid rgba(168,85,247,0.35);
+            background: rgba(168,85,247,0.06);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(168,85,247,0.3);
             border-radius: 1.25rem;
             padding: 2.25rem 1.5rem;
             text-align: center;
             margin: 2rem 0;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(168,85,247,0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
         }
         .price-hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 50% -20%, rgba(168,85,247,0.3) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 50% -20%, rgba(168,85,247,0.15) 0%, transparent 70%);
             pointer-events: none;
         }
         .price-badge-old {
@@ -170,8 +172,10 @@
             color: #f87171;
         }
         .warranty-box {
-            background: linear-gradient(135deg, rgba(52,211,153,0.12), rgba(56,189,248,0.08));
-            border: 1px solid rgba(52,211,153,0.35);
+            background: rgba(52,211,153,0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(52,211,153,0.25);
             border-radius: 1rem;
             padding: 1.35rem 1.5rem;
             display: flex;
