@@ -627,13 +627,120 @@
     }
 
     // ────────────────────────────────────────────────────────────
-    // 7. RENDER QUẢNG CÁO & MULTI-PLATFORM AFFILIATE (Shopee, TikTok, Sponsor)
+    // 7. RENDER QUẢNG CÁO & TIẾP THỊ LIÊN KẾT ĐA NGUỒN TẬP TRUNG
+    // (Shopee, TikTok Shop, Google AdSense, Tài trợ & Custom HTML)
     // ────────────────────────────────────────────────────────────
     window.renderBlogAds = function () {
-        if (!DATA.ads || !DATA.ads.enabled || !DATA.ads.banners) return;
+        if (!DATA.ads || !DATA.ads.enabled || !DATA.ads.banners || !DATA.ads.banners.length) return;
 
+        // 1. Tự động nạp thư viện Google AdSense nếu có cấu hình Publisher ID
+        if (DATA.ads.adsensePublisherId && !document.getElementById('adsense-core-script')) {
+            const adScript = document.createElement('script');
+            adScript.id = 'adsense-core-script';
+            adScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${DATA.ads.adsensePublisherId}`;
+            adScript.async = true;
+            adScript.crossOrigin = 'anonymous';
+            document.head.appendChild(adScript);
+        }
+
+        // 2. Tự động chèn vị trí quảng cáo vào bài viết nếu bài chưa gắn thẻ (Auto-Inject)
+        if (DATA.ads.autoInjectInArticles !== false) {
+            const articleContent = document.querySelector('.article-content, article');
+            const aside = document.querySelector('.article-sidebar');
+
+            if (articleContent) {
+                // Tự động chèn slot cuối bài (trước bình luận)
+                if (!document.querySelector('.ad-slot-container[data-slot="article-bottom"], .ad-slot-container[data-slot="article"]')) {
+                    const commentsSection = document.querySelector('.article-comments-section');
+                    const postNav = document.querySelector('.post-nav');
+                    const bottomSlot = document.createElement('div');
+                    bottomSlot.className = 'ad-slot-container';
+                    bottomSlot.setAttribute('data-slot', 'article-bottom');
+                    bottomSlot.style.margin = '2.5rem 0 1.5rem';
+
+                    if (postNav) {
+                        postNav.parentNode.insertBefore(bottomSlot, postNav);
+                    } else if (commentsSection) {
+                        commentsSection.parentNode.insertBefore(bottomSlot, commentsSection);
+                    } else {
+                        articleContent.appendChild(bottomSlot);
+                    }
+                }
+
+                // Tự động chèn slot giữa bài (trước thẻ h2 thứ 3 nếu bài dài)
+                if (!document.querySelector('.ad-slot-container[data-slot="article-mid"]')) {
+                    const headings = articleContent.querySelectorAll('h2');
+                    if (headings.length >= 3) {
+                        const midSlot = document.createElement('div');
+                        midSlot.className = 'ad-slot-container';
+                        midSlot.setAttribute('data-slot', 'article-mid');
+                        midSlot.style.margin = '2.5rem 0';
+                        headings[2].parentNode.insertBefore(midSlot, headings[2]);
+                    }
+                }
+            }
+
+            // Tự động chèn slot sidebar nếu chưa có
+            if (aside && !document.getElementById('sidebar-ad-slot')) {
+                const sidebarSlot = document.createElement('div');
+                sidebarSlot.id = 'sidebar-ad-slot';
+                sidebarSlot.style.marginTop = '1.5rem';
+                aside.appendChild(sidebarSlot);
+            }
+        }
+
+        // 3. Hàm tạo HTML cho từng loại quảng cáo
         function buildAdCardHtml(banner, isSidebar = false) {
             const platform = banner.platform || 'sponsor';
+
+            // A. Quảng cáo Google AdSense
+            if (platform === 'adsense') {
+                if (DATA.ads.adsensePublisherId) {
+                    setTimeout(() => {
+                        try {
+                            (window.adsbygoogle = window.adsbygoogle || []).push({});
+                        } catch (_) {}
+                    }, 200);
+                    return `
+                        <div class="blog-ad-card platform-adsense ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
+                            <div class="ad-card-badge">${banner.badge || 'Quảng cáo Google'}</div>
+                            <ins class="adsbygoogle"
+                                style="display:block"
+                                data-ad-client="${DATA.ads.adsensePublisherId}"
+                                data-ad-slot="${banner.adSlot || ''}"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="blog-ad-card platform-adsense ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
+                            <div class="ad-card-badge">Google AdSense</div>
+                            <div class="adsense-placeholder">
+                                <i class="fab fa-google"></i>
+                                <div>
+                                    <div style="font-weight:700; color:#fff;">Vị trí Google AdSense Tự Động</div>
+                                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">
+                                        (Sẵn sàng hiển thị khi bạn điền adsensePublisherId vào blog-data.js)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // B. Mã nhúng HTML / Iframe tùy chỉnh (AccessTrade, MasOffer, Ezoic, ...)
+            if (platform === 'html' && banner.html) {
+                return `
+                    <div class="blog-ad-card platform-html ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
+                        ${banner.badge ? `<div class="ad-card-badge">${banner.badge}</div>` : ''}
+                        <div class="ad-html-content">${banner.html}</div>
+                    </div>
+                `;
+            }
+
+            // C. Thẻ tiếp thị liên kết (Shopee, TikTok Shop, Sponsor, Khóa học)
             const defaultIcon = platform === 'shopee' ? 'fa-bag-shopping' : (platform === 'tiktok' ? 'fa-tiktok' : (banner.icon || 'fa-star'));
             const isBrandIcon = platform === 'tiktok';
             const iconPrefix = isBrandIcon ? 'fab' : 'fas';
@@ -650,9 +757,12 @@
                 ? `<img src="${banner.imageUrl}" alt="${banner.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
                 : `<i class="${iconPrefix} ${banner.icon || defaultIcon}"></i>`;
 
+            const defaultBadge = platform === 'shopee' ? 'Shopee Deal' : (platform === 'tiktok' ? 'TikTok Shop' : 'Tài trợ');
+            const defaultCta = platform === 'shopee' ? 'Săn Deal Shopee' : (platform === 'tiktok' ? 'Mua Trên TikTok Shop' : 'Khám Phá Ngay');
+
             return `
                 <div class="blog-ad-card platform-${platform} ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
-                    <div class="ad-card-badge">${banner.badge || (platform === 'shopee' ? 'Shopee Deal' : (platform === 'tiktok' ? 'TikTok Shop' : 'Tài trợ'))}</div>
+                    <div class="ad-card-badge">${banner.badge || defaultBadge}</div>
                     <div class="ad-card-inner">
                         <div class="ad-card-icon" style="color:${banner.accentColor || 'var(--primary)'};">
                             ${iconHtml}
@@ -663,7 +773,7 @@
                             ${pricingHtml}
                         </div>
                         <a href="${banner.link}" target="_blank" rel="noopener noreferrer sponsored" class="ad-card-cta">
-                            <span>${banner.ctaText || (platform === 'shopee' ? 'Mua trên Shopee' : (platform === 'tiktok' ? 'Săn trên TikTok' : 'Xem ngay'))}</span>
+                            <span>${banner.ctaText || defaultCta}</span>
                             <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
@@ -671,27 +781,47 @@
             `;
         }
 
-        // 1. Render vào các thẻ .ad-slot-container trong trang
+        // 4. Lấy banner phù hợp theo Slot & Xoay vòng (Rotation) ngẫu nhiên nếu có nhiều deal
+        function pickBannerForSlot(slotName, adId = null) {
+            const activeBanners = DATA.ads.banners.filter(b => b.active !== false);
+            if (!activeBanners.length) return null;
+
+            if (adId) {
+                return activeBanners.find(b => b.id === adId) || null;
+            }
+
+            // Lọc các banner khớp slot (hỗ trợ tương thích cả 'article' và 'article-bottom')
+            const matches = activeBanners.filter(b => {
+                if (b.slot === slotName) return true;
+                if (slotName === 'article' && (b.slot === 'article-bottom' || b.slot === 'article')) return true;
+                if (slotName === 'article-bottom' && b.slot === 'article') return true;
+                return false;
+            });
+
+            if (matches.length > 0) {
+                // Xoay vòng ngẫu nhiên để độc giả xem các deal khác nhau
+                const randomIndex = Math.floor(Math.random() * matches.length);
+                return matches[randomIndex];
+            }
+
+            return activeBanners[0];
+        }
+
+        // 5. Render vào các thẻ .ad-slot-container trong trang
         document.querySelectorAll('.ad-slot-container').forEach(container => {
             const adId = container.dataset.adId;
             const slot = container.dataset.slot || 'feed';
-            
-            let banner = null;
-            if (adId) {
-                banner = DATA.ads.banners.find(b => b.id === adId);
-            }
-            if (!banner) {
-                banner = DATA.ads.banners.find(b => b.slot === slot) || DATA.ads.banners[0];
-            }
+            const banner = pickBannerForSlot(slot, adId);
             if (!banner) return;
-
             container.innerHTML = buildAdCardHtml(banner, slot === 'sidebar');
         });
 
-        // 2. Render vào vị trí Sidebar mặc định trong bài viết
+        // 6. Render vào vị trí Sidebar mặc định trong bài viết
         const sidebarSlot = document.getElementById('sidebar-ad-slot');
         if (sidebarSlot && !sidebarSlot.hasChildNodes()) {
-            const sidebarBanner = DATA.ads.banners.find(b => b.slot === 'sidebar') || DATA.ads.banners.find(b => b.platform === 'shopee' || b.platform === 'tiktok') || DATA.ads.banners[0];
+            const sidebarBanner = pickBannerForSlot('sidebar') || 
+                DATA.ads.banners.find(b => b.platform === 'tiktok' || b.platform === 'shopee') || 
+                DATA.ads.banners[0];
             if (sidebarBanner) {
                 sidebarSlot.innerHTML = buildAdCardHtml(sidebarBanner, true);
             }

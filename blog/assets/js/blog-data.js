@@ -137,32 +137,20 @@ window.BLOG_DATA = {
         }
     ],
 
-    // 4. Cấu hình Quảng cáo & Mạng liên kết Đa Nguồn (Shopee, TikTok, AdSense, Sponsor)
+    // 4. TRUNG TÂM QUẢN LÝ QUẢNG CÁO & AFFILIATE TẬP TRUNG (ALL-IN-ONE ADS ENGINE)
+    // Chỉ cần khai báo tại đây, toàn bộ bài viết, chuyên mục & trang chủ TỰ ĐỘNG nhận diện 100%!
     ads: {
-        enabled: true,
-        // Google AdSense Publisher ID (khi có thì điền vào đây)
-        adsensePublisherId: "",
+        enabled: true,                  // Bật/Tắt quảng cáo trên toàn bộ website (true / false)
+        autoInjectInArticles: true,     // Tự động chèn quảng cáo vào mọi bài viết (cuối bài & sidebar) nếu bài chưa gắn thẻ
+        adsensePublisherId: "",         // Google AdSense ID của bạn (ví dụ: "ca-pub-1234567890123456")
         
-        // Danh sách quảng cáo & thẻ Affiliate tự động theo slot hoặc ID
+        // Danh sách quảng cáo đa nguồn (Shopee, TikTok Shop, Google Ads, Nhà tài trợ, Custom HTML)
         banners: [
-            // 1. Banner tài trợ trang chủ (Feed)
-            {
-                id: "banner-hosting",
-                platform: "sponsor",
-                slot: "feed",
-                badge: "Tài trợ",
-                title: "Cloud VPS & Server Tốc Độ Cao Cho Lập Trình Viên",
-                desc: "Hạ tầng NVMe SSD siêu tốc, băng thông không giới hạn, tối ưu hóa cho Laravel, NodeJS & Docker.",
-                ctaText: "Xem Ưu Đãi 50%",
-                link: "https://github.com/leanhminh2104",
-                icon: "fa-server",
-                accentColor: "#38bdf8"
-            },
-            // 2. Affiliate Shopee (Phụ kiện / Đồ công nghệ)
+            // 1. TIẾP THỊ LIÊN KẾT SHOPEE AFFILIATE (Đồ công nghệ / Bàn phím / Phụ kiện)
             {
                 id: "shopee-keychron",
-                platform: "shopee",
-                slot: "article-bottom",
+                platform: "shopee",             // Tự động áp dụng theme Cam Shopee chuẩn nhận diện
+                slot: "article-bottom",         // Vị trí: Cuối bài viết (trước bình luận)
                 badge: "Shopee Deal",
                 title: "Bàn Phím Cơ Không Dây Keychron K2 Pro QMK/VIA",
                 desc: "Layout 75%, Switch Gateron Pro hot-swap, kết nối Bluetooth 5.1 & Type-C, gõ êm mượt tối ưu cho Developer.",
@@ -170,15 +158,15 @@ window.BLOG_DATA = {
                 originalPrice: "2.350.000₫",
                 discount: "-20%",
                 ctaText: "Săn Deal Trên Shopee",
-                link: "https://shopee.vn/",
+                link: "https://shopee.vn/",     // Link tiếp thị liên kết Shopee của bạn
                 icon: "fa-bag-shopping",
                 accentColor: "#ee4d2d"
             },
-            // 3. Affiliate TikTok Shop (Góc Setup / Đồ công nghệ)
+            // 2. TIẾP THỊ LIÊN KẾT TIKTOK SHOP (Góc Setup / Đồ công nghệ / Đèn màn hình)
             {
                 id: "tiktok-desklight",
-                platform: "tiktok",
-                slot: "sidebar",
+                platform: "tiktok",             // Tự động áp dụng viền Neon Cyberpunk Hồng / Cyan
+                slot: "sidebar",                // Vị trí: Cột phải Sidebar bài viết trên PC
                 badge: "TikTok Shop",
                 title: "Đèn Treo Màn Hình Chống Mỏi Mắt Xiaomi Mijia",
                 desc: "Chiếu sáng góc hẹp không gây lóa màn hình, điều khiển núm xoay không dây 2.4GHz sang trọng.",
@@ -186,15 +174,23 @@ window.BLOG_DATA = {
                 originalPrice: "890.000₫",
                 discount: "-22%",
                 ctaText: "Mua Trên TikTok Shop",
-                link: "https://www.tiktok.com/",
+                link: "https://www.tiktok.com/", // Link tiếp thị liên kết TikTok của bạn
                 icon: "fa-tiktok",
                 accentColor: "#00f2fe"
             },
-            // 4. Khóa học / Dịch vụ Dev (Giữa bài viết)
+            // 3. QUẢNG CÁO TỰ ĐỘNG GOOGLE ADSENSE
+            {
+                id: "adsense-responsive",
+                platform: "adsense",            // Tự động tải quảng cáo phản hồi của Google
+                slot: "article-bottom",
+                adSlot: "1234567890",            // Mã Slot trong Google AdSense của bạn
+                badge: "Quảng cáo Google"
+            },
+            // 4. KHÓA HỌC / DỊCH VỤ DEV (Tài trợ giữa bài viết)
             {
                 id: "banner-course",
                 platform: "sponsor",
-                slot: "article-mid",
+                slot: "article-mid",            // Vị trí: Giữa các mục trong bài viết
                 badge: "Đề xuất",
                 title: "Khóa Học Thiết Kế Hệ Thống & Microservices Thực Chiến",
                 desc: "Nâng cao tư duy kiến trúc, tối ưu SQL Query và xây dựng hệ thống chịu tải hàng triệu request.",
@@ -202,6 +198,19 @@ window.BLOG_DATA = {
                 link: "https://github.com/leanhminh2104",
                 icon: "fa-graduation-cap",
                 accentColor: "#c084fc"
+            },
+            // 5. BANNER TRANG CHỦ / FEED (Cloud VPS / Hosting)
+            {
+                id: "banner-hosting",
+                platform: "sponsor",
+                slot: "feed",                   // Vị trí: Giữa danh sách bài viết trang chủ
+                badge: "Tài trợ",
+                title: "Cloud VPS & Server Tốc Độ Cao Cho Lập Trình Viên",
+                desc: "Hạ tầng NVMe SSD siêu tốc, băng thông không giới hạn, tối ưu hóa cho Laravel, NodeJS & Docker.",
+                ctaText: "Xem Ưu Đãi 50%",
+                link: "https://github.com/leanhminh2104",
+                icon: "fa-server",
+                accentColor: "#38bdf8"
             }
         ]
     },

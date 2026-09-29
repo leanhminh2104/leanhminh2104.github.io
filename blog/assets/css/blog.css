@@ -2093,6 +2093,46 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
 }
 
+/* Platform Google AdSense */
+.blog-ad-card.platform-adsense {
+    background: linear-gradient(135deg, rgba(66, 133, 244, 0.05) 0%, rgba(52, 168, 83, 0.03) 50%, rgba(13, 8, 22, 0.9) 100%);
+    border: 1px solid rgba(66, 133, 244, 0.3);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.blog-ad-card.platform-adsense:hover {
+    border-color: rgba(66, 133, 244, 0.6);
+    box-shadow: 0 12px 35px rgba(66, 133, 244, 0.15);
+}
+.blog-ad-card.platform-adsense .ad-card-badge {
+    background: rgba(66, 133, 244, 0.15);
+    border-color: rgba(66, 133, 244, 0.35);
+    color: #60a5fa;
+}
+.adsense-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    padding: 1.25rem 1rem;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    text-align: center;
+}
+.adsense-placeholder i {
+    font-size: 1.5rem;
+    color: #4285f4;
+}
+
+/* Platform Custom HTML / Embed (AccessTrade, MasOffer, Ezoic, ...) */
+.blog-ad-card.platform-html {
+    background: rgba(14, 10, 26, 0.7);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+}
+
 .ad-card-badge {
     position: absolute;
     top: 0.65rem;
