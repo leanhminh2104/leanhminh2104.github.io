@@ -754,6 +754,13 @@
             const defaultBadge = platform === 'shopee' ? 'Shopee Deal' : (platform === 'tiktok' ? 'TikTok Shop' : 'Tài trợ');
             const defaultCta = platform === 'shopee' ? 'Săn Deal Shopee' : (platform === 'tiktok' ? 'Mua Trên TikTok Shop' : 'Khám Phá Ngay');
 
+            let finalLink = banner.link || '#';
+            const isExternal = finalLink.startsWith('http://') || finalLink.startsWith('https://');
+            if (!isExternal && !finalLink.startsWith('#')) {
+                finalLink = `${ROOT}${finalLink}`;
+            }
+            const targetAttr = isExternal ? 'target="_blank" rel="noopener noreferrer sponsored"' : '';
+
             return `
                 <div class="blog-ad-card platform-${platform} ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
                     <div class="ad-card-badge">${banner.badge || defaultBadge}</div>
@@ -766,7 +773,7 @@
                             <p class="ad-card-desc">${banner.desc || ''}</p>
                             ${pricingHtml}
                         </div>
-                        <a href="${banner.link}" target="_blank" rel="noopener noreferrer sponsored" class="ad-card-cta">
+                        <a href="${finalLink}" ${targetAttr} class="ad-card-cta">
                             <span>${banner.ctaText || defaultCta}</span>
                             <i class="fas fa-arrow-up-right-from-square"></i>
                         </a>
@@ -775,8 +782,64 @@
             `;
         }
 
-        // 4. Lấy banner phù hợp theo Slot & Xoay vòng (Rotation) ngẫu nhiên nếu có nhiều deal
-        function pickBannerForSlot(slotName, adId = null) {
+        // 3.1 Xây dựng thẻ Đề Xuất Bài Viết Liên Quan / Mới Nhất
+        function buildRelatedPostCardHtml(post, badge = 'Đề Xuất Cùng Chủ Đề 🔥') {
+            const postUrl = `${ROOT}${post.path}`;
+            return `
+                <div class="blog-ad-card platform-recommend slot-article-mid">
+                    <div class="ad-card-badge">${badge}</div>
+                    <div class="ad-card-inner">
+                        <div class="ad-card-icon" style="color:var(--primary-light);">
+                            <i class="${post.icon || 'fa-solid fa-newspaper'}"></i>
+                        </div>
+                        <div class="ad-card-content">
+                            <h4 class="ad-card-title">${post.title}</h4>
+                            <p class="ad-card-desc">${post.excerpt || ''}</p>
+                            <div class="ad-card-meta" style="font-size:0.75rem; color:var(--text-dim); display:flex; gap:0.85rem; align-items:center; margin-top:0.35rem;">
+                                <span><i class="far fa-clock"></i> ${post.readTime}</span>
+                                <span><i class="far fa-calendar"></i> ${post.formattedDate}</span>
+                            </div>
+                        </div>
+                        <a href="${postUrl}" class="ad-card-cta">
+                            <span>Đọc Tiếp</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 3.2 Thuật toán gợi ý bài viết liên quan hoặc mới nhất theo ngữ cảnh
+        function findBestRelatedPost(currentPost) {
+            if (!currentPost || !DATA.posts || DATA.posts.length <= 1) return null;
+            const otherPosts = DATA.posts.filter(p => p.id !== currentPost.id);
+            if (!otherPosts.length) return null;
+
+            const scored = otherPosts.map(p => {
+                let score = 0;
+                // 1. Trùng tags (+5 điểm)
+                if (Array.isArray(p.tags) && Array.isArray(currentPost.tags)) {
+                    p.tags.forEach(t => {
+                        if (currentPost.tags.some(ct => ct.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(ct.toLowerCase()))) {
+                            score += 5;
+                        }
+                    });
+                }
+                // 2. Cùng chuyên mục (+2 điểm)
+                if (p.category === currentPost.category) score += 2;
+                // 3. Bài mới (+3 điểm)
+                if (p.isNew) score += 3;
+                return { post: p, score };
+            });
+
+            scored.sort((a, b) => b.score - a.score);
+            const top = scored[0];
+            const badge = top.score >= 5 ? 'Bài Viết Liên Quan 🔥' : 'Đề Xuất Mới Nhất ✨';
+            return { post: top.post, badge };
+        }
+
+        // 4. Lấy banner phù hợp theo Slot & Contextual Matching
+        function pickBannerForSlot(slotName, adId = null, currentPost = null) {
             const activeBanners = DATA.ads.banners.filter(b => {
                 if (b.active === false) return false;
                 if (b.platform === 'adsense' && !DATA.ads.adsensePublisherId) return false;
@@ -788,8 +851,8 @@
                 return activeBanners.find(b => b.id === adId) || null;
             }
 
-            // Lọc các banner khớp slot (hỗ trợ cả mảng các slot hoặc slot chuỗi)
-            const matches = activeBanners.filter(b => {
+            // Lọc các banner khớp slot
+            let matches = activeBanners.filter(b => {
                 const slots = Array.isArray(b.slot) ? b.slot : [b.slot];
                 if (slots.includes(slotName) || slots.includes('all')) return true;
                 if (slotName === 'article-bottom' && (slots.includes('article') || slots.includes('sidebar'))) return true;
@@ -799,7 +862,16 @@
             });
 
             if (matches.length > 0) {
-                // Xoay vòng ngẫu nhiên để độc giả xem các deal khác nhau
+                // Nếu có currentPost, ưu tiên banner có tags liên quan
+                if (currentPost && Array.isArray(currentPost.tags)) {
+                    const matchedByTag = matches.filter(b => {
+                        if (!Array.isArray(b.tags)) return false;
+                        return b.tags.some(t => currentPost.tags.some(ct => ct.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(ct.toLowerCase())));
+                    });
+                    if (matchedByTag.length > 0) {
+                        return matchedByTag[Math.floor(Math.random() * matchedByTag.length)];
+                    }
+                }
                 const randomIndex = Math.floor(Math.random() * matches.length);
                 return matches[randomIndex];
             }
@@ -807,11 +879,25 @@
             return activeBanners[0];
         }
 
+        // Lấy bài viết hiện tại nếu đang ở trang chi tiết bài viết
+        const currentPath = window.location.pathname.replace(/\\/g, '/');
+        const currentPost = (DATA.posts || []).find(p => currentPath.includes(p.slug) || (p.path && currentPath.includes(p.path)));
+
         // 5. Render vào các thẻ .ad-slot-container trong trang
         document.querySelectorAll('.ad-slot-container').forEach(container => {
             const adId = container.dataset.adId;
             const slot = container.dataset.slot || 'feed';
-            const banner = pickBannerForSlot(slot, adId);
+
+            // ĐẶC BIỆT: Ở vị trí giữa bài viết (article-mid), ƯU TIÊN ĐỀ XUẤT BÀI VIẾT LIÊN QUAN / MỚI NHẤT
+            if (slot === 'article-mid' && currentPost) {
+                const related = findBestRelatedPost(currentPost);
+                if (related) {
+                    container.innerHTML = buildRelatedPostCardHtml(related.post, related.badge);
+                    return;
+                }
+            }
+
+            const banner = pickBannerForSlot(slot, adId, currentPost);
             if (!banner) return;
             container.innerHTML = buildAdCardHtml(banner, slot === 'sidebar');
         });
@@ -819,8 +905,8 @@
         // 6. Render vào vị trí Sidebar mặc định trong bài viết
         const sidebarSlot = document.getElementById('sidebar-ad-slot');
         if (sidebarSlot && !sidebarSlot.hasChildNodes()) {
-            const sidebarBanner = pickBannerForSlot('sidebar') || 
-                DATA.ads.banners.find(b => b.platform === 'tiktok' || b.platform === 'shopee') || 
+            const sidebarBanner = pickBannerForSlot('sidebar', null, currentPost) || 
+                DATA.ads.banners.find(b => b.platform === 'sponsor' || b.platform === 'tiktok' || b.platform === 'shopee') || 
                 DATA.ads.banners[0];
             if (sidebarBanner) {
                 sidebarSlot.innerHTML = buildAdCardHtml(sidebarBanner, true);

@@ -2146,6 +2146,63 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1rem;
 }
 
+/* Platform Contextual Recommendation (Đề xuất bài viết mới & liên quan thông minh) */
+.blog-ad-card.platform-recommend {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(56, 189, 248, 0.08) 50%, rgba(15, 10, 30, 0.88) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.38);
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.blog-ad-card.platform-recommend:hover {
+    border-color: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 12px 35px rgba(168, 85, 247, 0.25), 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.blog-ad-card.platform-recommend .ad-card-badge {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(56, 189, 248, 0.25));
+    border-color: rgba(168, 85, 247, 0.45);
+    color: #e0e7ff;
+    font-weight: 700;
+}
+
+.blog-ad-card.platform-recommend .ad-card-cta {
+    background: linear-gradient(135deg, var(--primary) 0%, #38bdf8 100%);
+    box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+    font-weight: 700;
+}
+
+.blog-ad-card.platform-recommend .ad-card-cta:hover {
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Platform Sponsor / Dịch vụ số độc quyền */
+.blog-ad-card.platform-sponsor {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(239, 68, 68, 0.05) 50%, rgba(15, 10, 30, 0.85) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.32);
+}
+
+.blog-ad-card.platform-sponsor:hover {
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 12px 35px rgba(168, 85, 247, 0.2);
+}
+
+.blog-ad-card.platform-sponsor .ad-card-badge {
+    background: rgba(168, 85, 247, 0.18);
+    border-color: rgba(168, 85, 247, 0.38);
+    color: var(--primary-light);
+}
+
+.blog-ad-card.platform-sponsor .ad-card-cta {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+}
+
+.blog-ad-card.platform-sponsor .ad-card-cta:hover {
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.65);
+}
+
 .ad-card-badge {
     position: absolute;
     top: 0.65rem;

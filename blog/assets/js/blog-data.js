@@ -167,73 +167,84 @@ window.BLOG_DATA = {
             bannerId: null              // null = Tự động xoay vòng ngẫu nhiên từ banners; Hoặc điền id cụ thể
         },
         
-        // Danh sách quảng cáo đa nguồn (Shopee, TikTok Shop, Google Ads, Nhà tài trợ, Custom HTML)
+        // Danh sách ưu đãi & đề xuất dịch vụ chuẩn xác theo hệ sinh thái công nghệ
         banners: [
-            // 1. TIẾP THỊ LIÊN KẾT SHOPEE AFFILIATE (Đồ công nghệ / Bàn phím / Phụ kiện)
+            // 1. DỊCH VỤ YOUTUBE PREMIUM & GOOGLE FAMILY (Rất liên quan đến các bài viết Google & giải trí)
             {
-                id: "shopee-keychron",
-                platform: "shopee",             // Tự động áp dụng theme Cam Shopee chuẩn nhận diện
-                slot: ["article-bottom", "sidebar"], // Vị trí: Cuối bài viết & Sidebar PC
-                badge: "Shopee Deal",
-                title: "Bàn Phím Cơ Không Dây Keychron K2 Pro QMK/VIA",
-                desc: "Layout 75%, Switch Gateron Pro hot-swap, kết nối Bluetooth 5.1 & Type-C, gõ êm mượt tối ưu cho Developer.",
-                price: "1.890.000₫",
-                originalPrice: "2.350.000₫",
-                discount: "-20%",
-                ctaText: "Săn Deal Trên Shopee",
-                link: "https://shopee.vn/",     // Link tiếp thị liên kết Shopee của bạn
-                icon: "fa-bag-shopping",
-                accentColor: "#ee4d2d"
+                id: "service-youtube-family",
+                platform: "sponsor",
+                slot: ["article-mid", "article-bottom", "sidebar"],
+                badge: "Ưu Đãi Hot",
+                title: "Gói YouTube Premium Chính Chủ & Hỗ Trợ Nhóm Gia Đình",
+                desc: "Xem video không quảng cáo, nghe nhạc tắt màn hình, xử lý triệt để lỗi không cùng quốc gia và bảo hành 24/7.",
+                price: "Từ 25.000₫/tháng",
+                ctaText: "Xem Chi Tiết & Hỗ Trợ",
+                link: "tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/",
+                icon: "fa-youtube",
+                accentColor: "#ef4444",
+                tags: ["youtube", "google", "tech", "entertainment"]
             },
-            // 2. TIẾP THỊ LIÊN KẾT TIKTOK SHOP (Góc Setup / Đồ công nghệ / Đèn màn hình)
+            // 2. DỊCH VỤ CAPCUT PRO & CANVA PRO (Công cụ đồ họa & video AI hot nhất)
+            {
+                id: "service-capcut-canva",
+                platform: "sponsor",
+                slot: ["article-mid", "sidebar", "article-bottom"],
+                badge: "Công Cụ AI Hot",
+                title: "Tài Khoản CapCut Pro & Canva Pro Bản Quyền",
+                desc: "Mở khóa toàn bộ template VIP, hiệu ứng AI thông minh, xóa phông 1 chạm và xuất video 4K 60fps siêu nét.",
+                price: "Chỉ từ 45.000₫",
+                ctaText: "Nhận Ưu Đãi Ngay",
+                link: "https://zalo.me/", // Hoặc kênh liên hệ của Admin
+                icon: "fa-wand-magic-sparkles",
+                accentColor: "#00f2fe",
+                tags: ["ai", "video", "design", "tech"]
+            },
+            // 3. ĐẶC QUYỀN GEMINI ADVANCED & GOOGLE ONE 18 THÁNG
+            {
+                id: "service-gemini-pro",
+                platform: "sponsor",
+                slot: ["feed", "sidebar", "article-bottom"],
+                badge: "Deal Độc Quyền",
+                title: "Gemini Advanced 18 Tháng — Trọn Bộ Đặc Quyền Google One Pro",
+                desc: "Bộ nhớ đám mây 2TB, context 1.000.000 tokens, tạo ảnh Imagen 3 không giới hạn và tặng kèm YouTube Premium Lite.",
+                price: "45.000₫ / 18 tháng",
+                ctaText: "Khám Phá Ngay",
+                link: "tech/gemini-pro-18-thang-jio/",
+                icon: "fa-robot",
+                accentColor: "#a855f7",
+                tags: ["google", "ai", "gemini", "tech"]
+            },
+            // 4. TIẾP THỊ LIÊN KẾT: ĐÈN TREO MÀN HÌNH CHỐNG MỎI MẮT
             {
                 id: "tiktok-desklight",
-                platform: "tiktok",             // Tự động áp dụng viền Neon Cyberpunk Hồng / Cyan
-                slot: ["sidebar", "article-bottom"], // Vị trí: Sidebar PC và Cuối bài viết Mobile/PC
-                badge: "TikTok Shop",
+                platform: "tiktok",
+                slot: ["sidebar", "article-bottom"],
+                badge: "Góc Setup Dev",
                 title: "Đèn Treo Màn Hình Chống Mỏi Mắt Xiaomi Mijia",
-                desc: "Chiếu sáng góc hẹp không gây lóa màn hình, điều khiển núm xoay không dây 2.4GHz sang trọng.",
+                desc: "Chiếu sáng góc hẹp chống chói màn hình, điều khiển núm xoay không dây 2.4GHz sang trọng cho góc làm việc.",
                 price: "689.000₫",
                 originalPrice: "890.000₫",
                 discount: "-22%",
                 ctaText: "Mua Trên TikTok Shop",
-                link: "https://www.tiktok.com/", // Link tiếp thị liên kết TikTok của bạn
+                link: "https://www.tiktok.com/",
                 icon: "fa-tiktok",
                 accentColor: "#00f2fe"
             },
-            // 3. QUẢNG CÁO TỰ ĐỘNG GOOGLE ADSENSE
+            // 5. TIẾP THỊ LIÊN KẾT: BÀN PHÍM CƠ CHO DÂN LẬP TRÌNH & ĐỒ HỌA
             {
-                id: "adsense-responsive",
-                platform: "adsense",            // Tự động tải quảng cáo phản hồi của Google
-                slot: "article-bottom",
-                adSlot: "1234567890",            // Mã Slot trong Google AdSense của bạn
-                badge: "Quảng cáo Google"
-            },
-            // 4. KHÓA HỌC / DỊCH VỤ DEV (Tài trợ giữa bài viết)
-            {
-                id: "banner-course",
-                platform: "sponsor",
-                slot: "article-mid",            // Vị trí: Giữa các mục trong bài viết
-                badge: "Đề xuất",
-                title: "Khóa Học Thiết Kế Hệ Thống & Microservices Thực Chiến",
-                desc: "Nâng cao tư duy kiến trúc, tối ưu SQL Query và xây dựng hệ thống chịu tải hàng triệu request.",
-                ctaText: "Khám Phá Ngay",
-                link: "https://github.com/leanhminh2104",
-                icon: "fa-graduation-cap",
-                accentColor: "#c084fc"
-            },
-            // 5. BANNER TRANG CHỦ / FEED (Cloud VPS / Hosting)
-            {
-                id: "banner-hosting",
-                platform: "sponsor",
-                slot: "feed",                   // Vị trí: Giữa danh sách bài viết trang chủ
-                badge: "Tài trợ",
-                title: "Cloud VPS & Server Tốc Độ Cao Cho Lập Trình Viên",
-                desc: "Hạ tầng NVMe SSD siêu tốc, băng thông không giới hạn, tối ưu hóa cho Laravel, NodeJS & Docker.",
-                ctaText: "Xem Ưu Đãi 50%",
-                link: "https://github.com/leanhminh2104",
-                icon: "fa-server",
-                accentColor: "#38bdf8"
+                id: "shopee-keychron",
+                platform: "shopee",
+                slot: ["sidebar"],
+                badge: "Shopee Deal",
+                title: "Bàn Phím Cơ Không Dây Keychron K2 Pro QMK/VIA",
+                desc: "Layout 75%, Switch Gateron Pro hot-swap, gõ êm mượt tối ưu cho Developer & Content Creator.",
+                price: "1.890.000₫",
+                originalPrice: "2.350.000₫",
+                discount: "-20%",
+                ctaText: "Săn Deal Trên Shopee",
+                link: "https://shopee.vn/",
+                icon: "fa-bag-shopping",
+                accentColor: "#ee4d2d"
             }
         ]
     },
