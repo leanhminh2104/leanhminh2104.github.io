@@ -2583,3 +2583,377 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ==========================================================================
+   STANDARD BLOG FOOTER (CHUẨN BLOG CÁ NHÂN GỌN GÀNG, TINH TẾ)
+   ========================================================================== */
+.footer-blog-card {
+    background: rgba(18, 12, 32, 0.45);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius-xl);
+    padding: 2.25rem 2.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.footer-top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.5rem;
+}
+
+.footer-brand-info {
+    max-width: 520px;
+}
+
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 0.85rem;
+    text-decoration: none;
+}
+
+.footer-bio-text {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.footer-social-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.footer-social-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+}
+
+.footer-social-pills {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.social-pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.42rem 0.85rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.social-pill-link:hover {
+    background: rgba(168, 85, 247, 0.16);
+    border-color: rgba(168, 85, 247, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+}
+
+.footer-divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.25), transparent);
+    margin: 1.75rem 0;
+}
+
+.footer-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.footer-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-nav-menu a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.footer-nav-menu a:hover {
+    color: var(--primary-hover);
+}
+
+.footer-copyright {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+}
+
+@media (max-width: 820px) {
+    .footer-blog-card {
+        padding: 1.5rem 1.25rem;
+        border-radius: var(--radius-lg);
+    }
+    .footer-top-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+    .footer-social-wrap {
+        align-items: flex-start;
+        width: 100%;
+    }
+    .footer-social-pills {
+        justify-content: flex-start;
+    }
+    .footer-bottom-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .footer-nav-menu {
+        gap: 1.1rem;
+    }
+}
+
+/* ==========================================================================
+   NATIVE BLOG COMMENTS SECTION (BẢN ĐỊA & CHUẨN CYBERPUNK)
+   ========================================================================== */
+.native-comments-box {
+    margin-top: 1rem;
+}
+
+.native-comment-form {
+    background: rgba(18, 12, 32, 0.55);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    backdrop-filter: blur(12px);
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.comment-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    .comment-form-row { grid-template-columns: 1fr; gap: 0.65rem; }
+}
+
+.comment-input, .comment-textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(168, 85, 247, 0.22);
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-size: 0.88rem;
+    font-family: inherit;
+    padding: 0.65rem 0.95rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.comment-input:focus, .comment-textarea:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-hover);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+}
+
+.comment-textarea {
+    resize: vertical;
+    min-height: 85px;
+    margin-bottom: 0.85rem;
+    line-height: 1.6;
+}
+
+.comment-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+}
+
+.comment-form-note {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.comment-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.35rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
+    transition: var(--transition);
+}
+
+.comment-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(168, 85, 247, 0.6);
+}
+
+.native-comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.empty-comments-state {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed var(--glass-border);
+    border-radius: var(--radius-md);
+}
+
+.empty-comments-state i {
+    font-size: 2.2rem;
+    color: rgba(168, 85, 247, 0.4);
+    margin-bottom: 0.65rem;
+    display: block;
+}
+
+.comment-item-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(18, 12, 32, 0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.25rem;
+    transition: var(--transition);
+}
+
+.comment-item-card:hover {
+    border-color: rgba(168, 85, 247, 0.35);
+    background: rgba(18, 12, 32, 0.6);
+}
+
+.comment-author-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3));
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c084fc;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.comment-content-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.comment-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.comment-author-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.92rem;
+}
+
+.comment-item-time {
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.comment-item-text {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   FLOATING BACK TO TOP BUTTON (NỔI DƯỚI GÓC PHẢI MỌI MÀN HÌNH)
+   ========================================================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 18px rgba(168, 85, 247, 0.5);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    z-index: 100;
+}
+
+@media (min-width: 1024px) {
+    .back-to-top {
+        bottom: 2.25rem;
+        right: 2.25rem;
+        width: 48px;
+        height: 48px;
+        font-size: 1.05rem;
+    }
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 26px rgba(168, 85, 247, 0.7);
+}
+
+

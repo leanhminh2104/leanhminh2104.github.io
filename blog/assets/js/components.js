@@ -551,79 +551,86 @@
 
         footer.innerHTML = `
             <div class="blog-container">
-                <div class="footer-grid">
-                    <!-- Cột 1: Thông tin Blog -->
-                    <div class="footer-col brand-col">
-                        <a href="${ROOT}" class="blog-logo" aria-label="leanhminh2104" style="margin-bottom:0.8rem; text-decoration:none;">
-                            ${getLogoSvg(32)}
-                        </a>
-                        <p class="footer-desc">
-                            ${DATA.site.tagline || 'Chia sẻ kinh nghiệm lập trình, kiến trúc hệ thống và cuộc sống của Developer.'}
-                        </p>
-                        <div class="footer-socials">
-                            <a href="${DATA.site.github || 'https://github.com/leanhminh2104'}" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub Profile">
-                                <i class="fab fa-github"></i>
+                <div class="footer-blog-card">
+                    <!-- Top Section: Brand Info & Social Connect -->
+                    <div class="footer-top-section">
+                        <div class="footer-brand-info">
+                            <a href="${ROOT}" class="blog-logo footer-logo" aria-label="leanhminh2104">
+                                ${getLogoSvg(30)}
                             </a>
-                            <a href="${DATA.site.facebook || '#'}" target="_blank" rel="noopener noreferrer" class="social-icon" title="Facebook">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="mailto:${DATA.site.email || 'contact@leanhminh.dev'}" class="social-icon" title="Email Liên Hệ">
-                                <i class="fas fa-envelope"></i>
-                            </a>
+                            <p class="footer-bio-text">
+                                ${DATA.site.tagline || 'Blog cá nhân chia sẻ kiến thức chuyên sâu về lập trình, tối ưu hóa hệ thống và hành trình làm nghề của Developer.'}
+                            </p>
+                        </div>
+                        
+                        <div class="footer-social-wrap">
+                            <div class="footer-social-label">Kết nối cùng tác giả</div>
+                            <div class="footer-social-pills">
+                                <a href="${DATA.site.github || 'https://github.com/leanhminh2104'}" target="_blank" rel="noopener noreferrer" class="social-pill-link" title="GitHub Profile">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="${DATA.site.facebook || '#'}" target="_blank" rel="noopener noreferrer" class="social-pill-link" title="Facebook">
+                                    <i class="fab fa-facebook"></i>
+                                    <span>Facebook</span>
+                                </a>
+                                <a href="mailto:${DATA.site.email || 'contact@leanhminh.dev'}" class="social-pill-link" title="Email liên hệ">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email</span>
+                                </a>
+                                <a href="${ROOT}feed.xml" target="_blank" class="social-pill-link" title="RSS Feed 2.0">
+                                    <i class="fas fa-rss"></i>
+                                    <span>RSS</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Cột 2: Danh mục -->
-                    <div class="footer-col">
-                        <h4 class="footer-heading">Chuyên Mục</h4>
-                        <ul class="footer-links">
-                            <li><a href="${ROOT}"><i class="fas fa-house"></i> Trang chủ</a></li>
-                            ${catLinks}
-                        </ul>
-                    </div>
+                    <div class="footer-divider-line"></div>
 
-                    <!-- Cột 3: Bài viết mới -->
-                    <div class="footer-col">
-                        <h4 class="footer-heading">Bài Viết Mới</h4>
-                        <ul class="footer-links recent-posts-links">
-                            ${postLinks}
-                        </ul>
-                    </div>
-
-                    <!-- Cột 4: Thống kê & Công nghệ -->
-                    <div class="footer-col">
-                        <h4 class="footer-heading">Công Nghệ</h4>
-                        <p class="footer-desc" style="font-size:0.82rem;">
-                            100% Static HTML5, CSS3 Glassmorphism & Vanilla JavaScript. Host siêu tốc trên GitHub Pages.
-                        </p>
-                        <div class="footer-stats-chips">
-                            <span class="stat-chip"><i class="fas fa-file-lines"></i> ${DATA.posts.length} Bài viết</span>
-                            <span class="stat-chip"><i class="fas fa-folder"></i> ${DATA.categories.length - 1} Chuyên mục</span>
-                            <a href="${DATA.site.github || 'https://github.com/leanhminh2104'}" target="_blank" rel="noopener noreferrer" class="stat-chip" title="Xem GitHub của leanhminh2104" style="text-decoration:none; color:inherit;">
-                                <i class="fab fa-github"></i> <span id="gh-stats-val">GitHub</span>
-                            </a>
+                    <!-- Bottom Section: Nav Links & Copyright -->
+                    <div class="footer-bottom-section">
+                        <nav class="footer-nav-menu" aria-label="Footer Navigation">
+                            <a href="${ROOT}"><i class="fas fa-house"></i> Trang chủ</a>
+                            <a href="${ROOT}tech/"><i class="fas fa-code"></i> Công nghệ</a>
+                            <a href="${ROOT}life/"><i class="fas fa-heart"></i> Cuộc sống</a>
+                            <a href="${ROOT}sitemap.xml" target="_blank"><i class="fas fa-sitemap"></i> Sitemap</a>
+                        </nav>
+                        
+                        <div class="footer-copyright">
+                            © ${DATA.site.year || 2026} <b>${DATA.site.author || 'Lê Anh Minh'}</b>. Thiết kế chuẩn phong cách Cyberpunk Glassmorphism.
                         </div>
                     </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <div class="footer-copy">
-                        © ${DATA.site.year || 2026} <b>${DATA.site.author || 'Lê Anh Minh'}</b>. Thiết kế với phong cách Cyberpunk Glassmorphism.
-                    </div>
-                    <button type="button" class="footer-back-to-top" id="footer-back-to-top" title="Cuộn lên đầu trang">
-                        <span>Lên đầu trang</span>
-                        <i class="fas fa-arrow-up"></i>
-                    </button>
                 </div>
             </div>
         `;
+    }
 
-        const backTop = document.getElementById('footer-back-to-top');
-        if (backTop) {
-            backTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+    // Nút nổi Lên đầu trang (Floating Back-to-Top Button)
+    function renderBackToTop() {
+        let btn = document.getElementById('back-to-top');
+        if (!btn) {
+            btn = document.createElement('button');
+            btn.id = 'back-to-top';
+            btn.className = 'back-to-top';
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('title', 'Cuộn lên đầu trang');
+            btn.setAttribute('aria-label', 'Cuộn lên đầu trang');
+            btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            document.body.appendChild(btn);
         }
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 280) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
     // ────────────────────────────────────────────────────────────
@@ -713,20 +720,7 @@
                         </div>
                     `;
                 } else {
-                    return `
-                        <div class="blog-ad-card platform-adsense ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
-                            <div class="ad-card-badge">Google AdSense</div>
-                            <div class="adsense-placeholder">
-                                <i class="fab fa-google"></i>
-                                <div>
-                                    <div style="font-weight:700; color:#fff;">Vị trí Google AdSense Tự Động</div>
-                                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">
-                                        (Sẵn sàng hiển thị khi bạn điền adsensePublisherId vào blog-data.js)
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                    return ''; // Chưa điền Publisher ID thì không hiển thị placeholder
                 }
             }
 
@@ -783,7 +777,11 @@
 
         // 4. Lấy banner phù hợp theo Slot & Xoay vòng (Rotation) ngẫu nhiên nếu có nhiều deal
         function pickBannerForSlot(slotName, adId = null) {
-            const activeBanners = DATA.ads.banners.filter(b => b.active !== false);
+            const activeBanners = DATA.ads.banners.filter(b => {
+                if (b.active === false) return false;
+                if (b.platform === 'adsense' && !DATA.ads.adsensePublisherId) return false;
+                return true;
+            });
             if (!activeBanners.length) return null;
 
             if (adId) {
@@ -991,7 +989,7 @@
 
     function initGiscusComments() {
         const el = document.getElementById('comments');
-        if (!el || document.getElementById('giscus-client-script')) return;
+        if (!el) return;
 
         const config = (DATA && DATA.comments) || {};
         if (config.enabled === false) {
@@ -1000,25 +998,134 @@
             return;
         }
 
-        const script = document.createElement('script');
-        script.id = 'giscus-client-script';
-        script.src = 'https://giscus.app/client.js';
-        script.setAttribute('data-repo', config.repo || 'leanhminh2104/leanhminh2104.github.io');
-        script.setAttribute('data-repo-id', config.repoId || 'R_kgDOPJsGaQ');
-        script.setAttribute('data-category', config.category || 'General');
-        if (config.categoryId) {
+        // 1. Nếu đã cài Giscus App và có categoryId hợp lệ thì nạp Giscus chính thức
+        if (config.categoryId && config.categoryId.trim() !== '') {
+            if (document.getElementById('giscus-client-script')) return;
+            const script = document.createElement('script');
+            script.id = 'giscus-client-script';
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', config.repo || 'leanhminh2104/leanhminh2104.github.io');
+            script.setAttribute('data-repo-id', config.repoId || 'R_kgDOPJsGaQ');
+            script.setAttribute('data-category', config.category || 'General');
             script.setAttribute('data-category-id', config.categoryId);
+            script.setAttribute('data-mapping', config.mapping || 'pathname');
+            script.setAttribute('data-strict', config.strict || '0');
+            script.setAttribute('data-reactions-enabled', config.reactionsEnabled || '1');
+            script.setAttribute('data-emit-metadata', config.emitMetadata || '0');
+            script.setAttribute('data-input-position', config.inputPosition || 'top');
+            script.setAttribute('data-theme', config.theme || 'dark_dimmed');
+            script.setAttribute('data-lang', config.lang || 'vi');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            el.appendChild(script);
+            return;
         }
-        script.setAttribute('data-mapping', config.mapping || 'pathname');
-        script.setAttribute('data-strict', config.strict || '0');
-        script.setAttribute('data-reactions-enabled', config.reactionsEnabled || '1');
-        script.setAttribute('data-emit-metadata', config.emitMetadata || '0');
-        script.setAttribute('data-input-position', config.inputPosition || 'top');
-        script.setAttribute('data-theme', config.theme || 'dark_dimmed');
-        script.setAttribute('data-lang', config.lang || 'vi');
-        script.setAttribute('crossorigin', 'anonymous');
-        script.async = true;
-        el.appendChild(script);
+
+        // 2. KHUNG BÌNH LUẬN BẢN ĐỊA BLOG (Hoạt động 100% không lo lỗi Giscus chưa cài)
+        renderNativeBlogComments(el);
+    }
+
+    function renderNativeBlogComments(container) {
+        const pathKey = window.location.pathname.replace(/\/index\.html$/, '/');
+        const storageKey = 'blog_comments_' + pathKey;
+        let comments = [];
+        try {
+            comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        } catch (_) {}
+
+        function escapeHtml(str) {
+            return String(str || '').replace(/[&<>"']/g, m => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[m]);
+        }
+
+        function renderListHtml() {
+            if (comments.length === 0) {
+                return `
+                    <div class="empty-comments-state">
+                        <i class="far fa-comments"></i>
+                        <p>Chưa có bình luận nào. Hãy là người đầu tiên chia sẻ cảm nghĩ!</p>
+                    </div>
+                `;
+            }
+
+            return comments.map(c => `
+                <div class="comment-item-card">
+                    <div class="comment-author-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="comment-content-wrap">
+                        <div class="comment-item-header">
+                            <span class="comment-author-name">${escapeHtml(c.name)}</span>
+                            <span class="comment-item-time"><i class="far fa-clock"></i> ${escapeHtml(c.time)}</span>
+                        </div>
+                        <p class="comment-item-text">${escapeHtml(c.text)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        container.innerHTML = `
+            <div class="native-comments-box">
+                <!-- Form nhập bình luận -->
+                <form class="native-comment-form" id="native-comment-form">
+                    <div class="comment-form-row">
+                        <input type="text" id="comment-author-input" class="comment-input" placeholder="Tên hoặc biệt danh của bạn *" required maxlength="40">
+                        <input type="email" id="comment-email-input" class="comment-input" placeholder="Email (tùy chọn, bảo mật)" maxlength="60">
+                    </div>
+                    <textarea id="comment-text-input" class="comment-textarea" rows="3" placeholder="Viết câu hỏi hoặc chia sẻ góc nhìn của bạn về bài viết..." required maxlength="800"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="comment-form-note"><i class="fas fa-shield-halved"></i> Bình luận văn minh, tôn trọng độc giả</span>
+                        <button type="submit" class="comment-submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Gửi bình luận</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Danh sách bình luận -->
+                <div class="native-comments-list" id="native-comments-list">
+                    ${renderListHtml()}
+                </div>
+            </div>
+        `;
+
+        const form = container.querySelector('#native-comment-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = form.querySelector('#comment-author-input');
+                const textInput = form.querySelector('#comment-text-input');
+                const name = nameInput.value.trim();
+                const text = textInput.value.trim();
+                if (!name || !text) return;
+
+                const newComment = {
+                    name: name,
+                    text: text,
+                    time: new Date().toLocaleDateString('vi-VN', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    })
+                };
+
+                comments.unshift(newComment);
+                try {
+                    localStorage.setItem(storageKey, JSON.stringify(comments));
+                } catch (_) {}
+
+                textInput.value = '';
+                const listEl = container.querySelector('#native-comments-list');
+                if (listEl) listEl.innerHTML = renderListHtml();
+
+                const note = form.querySelector('.comment-form-note');
+                if (note) {
+                    const original = note.innerHTML;
+                    note.innerHTML = '<span style="color:#34d399; font-weight:600;"><i class="fas fa-check-circle"></i> Đã đăng bình luận thành công!</span>';
+                    setTimeout(() => { note.innerHTML = original; }, 4000);
+                }
+            });
+        }
     }
 
     // ────────────────────────────────────────────────────────────
@@ -1030,6 +1137,7 @@
         renderSearchModal();
         renderMobileDock();
         renderFooter();
+        renderBackToTop();
         window.renderBlogAds();
         setupDrawerDelegation();
         fetchGitHubStats();
