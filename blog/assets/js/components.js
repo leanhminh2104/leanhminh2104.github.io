@@ -771,6 +771,17 @@
             }
             const targetAttr = isExternal ? 'target="_blank" rel="noopener noreferrer sponsored"' : '';
 
+            let pricingHtml = '';
+            if (banner.price) {
+                pricingHtml = `
+                    <div class="ad-card-pricing" style="display:flex; align-items:baseline; gap:0.5rem; margin-top:0.4rem;">
+                        <span class="ad-card-price" style="font-weight:800; font-size:1rem; color:#f59e0b;">${banner.price}</span>
+                        ${banner.originalPrice ? `<span class="ad-card-old-price" style="font-size:0.78rem; color:var(--text-dim); text-decoration:line-through;">${banner.originalPrice}</span>` : ''}
+                        ${banner.discount ? `<span class="ad-card-discount" style="font-size:0.68rem; font-weight:800; padding:0.1rem 0.35rem; border-radius:4px; background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3);">${banner.discount}</span>` : ''}
+                    </div>
+                `;
+            }
+
             return `
                 <div class="blog-ad-card platform-${platform} ${isSidebar ? 'sidebar-ad-card' : ''} slot-${banner.slot || 'custom'}">
                     <div class="ad-card-badge">${banner.badge || defaultBadge}</div>
@@ -1154,68 +1165,94 @@
     // 9. TỰ ĐỘNG KHỞI TẠO TẤT CẢ COMPONENT KHI TRANG TẢI XONG
     // ────────────────────────────────────────────────────────────
     function initBlogComponents() {
-        renderHeader();
-        renderMobileDrawer();
-        renderSearchModal();
-        renderMobileDock();
-        renderFooter();
-        renderBackToTop();
-        window.renderBlogAds();
-        setupDrawerDelegation();
-        fetchGitHubStats();
-        initGiscusComments();
+        try { renderHeader(); } catch (e) { console.error('Error renderHeader:', e); }
+        try { renderMobileDrawer(); } catch (e) { console.error('Error renderMobileDrawer:', e); }
+        try { renderSearchModal(); } catch (e) { console.error('Error renderSearchModal:', e); }
+        try { renderMobileDock(); } catch (e) { console.error('Error renderMobileDock:', e); }
+        try { setupDrawerDelegation(); } catch (e) { console.error('Error setupDrawerDelegation:', e); }
+        try { renderFooter(); } catch (e) { console.error('Error renderFooter:', e); }
+        try { renderBackToTop(); } catch (e) { console.error('Error renderBackToTop:', e); }
+        try { window.renderBlogAds(); } catch (e) { console.error('Error renderBlogAds:', e); }
+        try { fetchGitHubStats(); } catch (e) { console.error('Error fetchGitHubStats:', e); }
+        try { initGiscusComments(); } catch (e) { console.error('Error initGiscusComments:', e); }
     }
 
     function setupDrawerDelegation() {
+        function openDrawer() {
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            const drawerBtn = document.getElementById('open-drawer-btn');
+            if (!drawer) return;
+            if (overlay) overlay.classList.add('open');
+            drawer.classList.add('open');
+            if (drawerBtn) drawerBtn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            const drawerBtn = document.getElementById('open-drawer-btn');
+            if (overlay) overlay.classList.remove('open');
+            if (drawer) drawer.classList.remove('open');
+            if (drawerBtn) drawerBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('mobile-drawer');
+            if (!drawer) return;
+            if (drawer.classList.contains('open')) {
+                closeDrawer();
+            } else {
+                openDrawer();
+            }
+        }
+
+        // 1. Gắn sự kiện trực tiếp lên nút Menu Drawer
+        const drawerBtn = document.getElementById('open-drawer-btn');
+        if (drawerBtn) {
+            drawerBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleDrawer();
+            });
+        }
+
+        // 2. Gắn sự kiện đóng khi nhấn vào Overlay
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeDrawer();
+            });
+        }
+
+        // 3. Delegation toàn cục trên document cho mọi trigger khác
         document.addEventListener('click', (e) => {
             const openTrigger = e.target.closest('#hamburger-btn, #open-drawer-btn');
             if (openTrigger) {
                 e.preventDefault();
                 e.stopPropagation();
-                const overlay = document.getElementById('mobile-drawer-overlay');
-                const drawer = document.getElementById('mobile-drawer');
-                if (!drawer) return;
-                const isOpen = drawer.classList.contains('open');
-
-                if (isOpen && openTrigger.id === 'open-drawer-btn') {
-                    // Nếu đang mở mà nhấn lại nút Menu ở bottom dock thì đóng lại
-                    if (overlay) overlay.classList.remove('open');
-                    drawer.classList.remove('open');
-                    openTrigger.classList.remove('active');
-                    document.body.style.overflow = '';
-                } else {
-                    if (overlay) overlay.classList.add('open');
-                    drawer.classList.add('open');
-                    if (openTrigger.id === 'open-drawer-btn') {
-                        openTrigger.classList.add('active');
-                    }
-                    document.body.style.overflow = 'hidden';
-                }
+                toggleDrawer();
                 return;
             }
 
             if (e.target.closest('#close-drawer-btn, #mobile-drawer-overlay, .drawer-item')) {
-                const overlay = document.getElementById('mobile-drawer-overlay');
-                const drawer = document.getElementById('mobile-drawer');
-                const drawerBtn = document.getElementById('open-drawer-btn');
-                if (overlay) overlay.classList.remove('open');
-                if (drawer) drawer.classList.remove('open');
-                if (drawerBtn) drawerBtn.classList.remove('active');
-                document.body.style.overflow = '';
+                closeDrawer();
             }
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                const overlay = document.getElementById('mobile-drawer-overlay');
-                const drawer = document.getElementById('mobile-drawer');
-                const drawerBtn = document.getElementById('open-drawer-btn');
-                if (overlay) overlay.classList.remove('open');
-                if (drawer) drawer.classList.remove('open');
-                if (drawerBtn) drawerBtn.classList.remove('active');
-                document.body.style.overflow = '';
+                closeDrawer();
             }
         });
+
+        // Xuất hàm mở/đóng drawer ra window
+        window.openBlogDrawer = openDrawer;
+        window.closeBlogDrawer = closeDrawer;
+        window.toggleBlogDrawer = toggleDrawer;
     }
 
     if (document.readyState === 'loading') {
