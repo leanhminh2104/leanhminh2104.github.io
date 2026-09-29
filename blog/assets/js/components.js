@@ -294,23 +294,19 @@
         });
 
         drawer.innerHTML = `
-            <div class="drawer-handle"></div>
-            <div class="drawer-head">
-                <a href="${ROOT}" class="blog-logo" aria-label="leanhminh2104" style="text-decoration:none;">
-                    ${getLogoSvg(28)}
-                </a>
-                <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Đóng menu">
-                    <i class="fas fa-xmark"></i>
-                </button>
+            <div class="drawer-header-sticky">
+                <div class="drawer-handle"></div>
+                <div class="drawer-head">
+                    <a href="${ROOT}" class="blog-logo" aria-label="leanhminh2104" style="text-decoration:none;">
+                        ${getLogoSvg(28)}
+                    </a>
+                    <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Đóng menu">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                </div>
             </div>
             <div class="drawer-body">
-                <!-- Search Button inside Drawer -->
-                <button type="button" class="drawer-search-trigger" id="drawer-search-btn">
-                    <i class="fas fa-search"></i>
-                    <span>Tìm kiếm toàn bộ bài viết...</span>
-                </button>
-
-                <div class="drawer-section-label">Chuyên mục</div>
+                <div class="drawer-section-label" style="padding-top: 0.2rem;">Chuyên mục</div>
                 ${catHtml}
 
                 <div class="drawer-divider"></div>
@@ -730,20 +726,29 @@
         const el = document.getElementById('comments');
         if (!el || document.getElementById('giscus-client-script')) return;
 
+        const config = (DATA && DATA.comments) || {};
+        if (config.enabled === false) {
+            const section = el.closest('.article-comments-section');
+            if (section) section.style.display = 'none';
+            return;
+        }
+
         const script = document.createElement('script');
         script.id = 'giscus-client-script';
         script.src = 'https://giscus.app/client.js';
-        script.setAttribute('data-repo', 'leanhminh2104/leanhminh2104.github.io');
-        script.setAttribute('data-repo-id', 'R_kgDONn5Riw');
-        script.setAttribute('data-category', 'General');
-        script.setAttribute('data-category-id', 'DIC_kwDONn5Ri84Clq_O');
-        script.setAttribute('data-mapping', 'pathname');
-        script.setAttribute('data-strict', '0');
-        script.setAttribute('data-reactions-enabled', '1');
-        script.setAttribute('data-emit-metadata', '0');
-        script.setAttribute('data-input-position', 'top');
-        script.setAttribute('data-theme', 'dark_dimmed');
-        script.setAttribute('data-lang', 'vi');
+        script.setAttribute('data-repo', config.repo || 'leanhminh2104/leanhminh2104.github.io');
+        script.setAttribute('data-repo-id', config.repoId || 'R_kgDOPJsGaQ');
+        script.setAttribute('data-category', config.category || 'General');
+        if (config.categoryId) {
+            script.setAttribute('data-category-id', config.categoryId);
+        }
+        script.setAttribute('data-mapping', config.mapping || 'pathname');
+        script.setAttribute('data-strict', config.strict || '0');
+        script.setAttribute('data-reactions-enabled', config.reactionsEnabled || '1');
+        script.setAttribute('data-emit-metadata', config.emitMetadata || '0');
+        script.setAttribute('data-input-position', config.inputPosition || 'top');
+        script.setAttribute('data-theme', config.theme || 'dark_dimmed');
+        script.setAttribute('data-lang', config.lang || 'vi');
         script.setAttribute('crossorigin', 'anonymous');
         script.async = true;
         el.appendChild(script);

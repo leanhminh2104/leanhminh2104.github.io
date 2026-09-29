@@ -204,5 +204,17 @@ window.BLOG_DATA = {
                 accentColor: "#c084fc"
             }
         ]
+    },
+
+    // 5. Cấu hình Bình luận Giscus (GitHub Discussions)
+    comments: {
+        enabled: true,
+        repo: "leanhminh2104/leanhminh2104.github.io",
+        repoId: "R_kgDOPJsGaQ",
+        category: "General",
+        categoryId: "", // Tự động nhận diện sau khi cài Giscus App
+        mapping: "pathname",
+        theme: "dark_dimmed",
+        lang: "vi"
     }
 };
