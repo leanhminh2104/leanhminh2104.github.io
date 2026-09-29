@@ -1001,42 +1001,15 @@
         const repo = config.repo || 'leanhminh2104/leanhminh2104.github.io';
         const hasGiscusCategory = Boolean(config.categoryId && config.categoryId.trim() !== '');
 
-        // 1. Render khung Tiêu chuẩn cộng đồng & Chống Spam chuẩn GitHub
+        // 1. Chỉ hiển thị liên kết kiểm duyệt khi có tham số ?admin trên URL, khách bình thường sẽ KHÔNG THẤY bất kỳ bảng nào
+        const isAdmin = new URLSearchParams(window.location.search).has('admin');
         el.innerHTML = `
-            <div class="comments-policy-box">
-                <div class="comments-policy-header">
-                    <span class="comments-policy-title">
-                        <i class="fab fa-github"></i> Hệ thống bình luận xác thực GitHub
-                    </span>
-                    <span class="comments-github-badge">
-                        <i class="fas fa-shield-halved"></i> Chống Spam & Nick ảo 100%
-                    </span>
-                </div>
-                <div class="comments-policy-grid">
-                    <div class="comments-policy-item verified">
-                        <i class="fas fa-user-check"></i>
-                        <div><strong>Tài khoản chính chủ:</strong> Bắt buộc đăng nhập GitHub để bình luận. Không hỗ trợ nặc danh.</div>
-                    </div>
-                    <div class="comments-policy-item reply">
-                        <i class="fas fa-reply-all"></i>
-                        <div><strong>Hỗ trợ Reply:</strong> Dễ dàng trả lời qua lại, nhận thông báo qua GitHub/Email khi được rep.</div>
-                    </div>
-                    <div class="comments-policy-item antispam">
-                        <i class="fas fa-ban"></i>
-                        <div><strong>Chống Spam & Từ cấm:</strong> Nghiêm cấm quảng cáo rác, lừa đảo, cờ bạc, ngôn từ xúc phạm hoặc vi phạm pháp luật.</div>
-                    </div>
-                    <div class="comments-policy-item admin">
-                        <i class="fas fa-gavel"></i>
-                        <div><strong>Toàn quyền Admin:</strong> Admin có quyền Xóa vĩnh viễn bình luận xấu, Ẩn spam và Block tài khoản vi phạm.</div>
-                    </div>
-                </div>
-                <div class="comments-admin-tools">
-                    <span><i class="fas fa-info-circle"></i> Đăng nhập tài khoản GitHub bên dưới để thảo luận và nhận phản hồi từ tác giả.</span>
-                    <a href="https://github.com/${repo}/${hasGiscusCategory ? 'discussions' : 'issues'}" target="_blank" rel="noopener noreferrer" class="comments-admin-link">
-                        <i class="fas fa-user-shield"></i> Trang kiểm duyệt Admin trên GitHub <i class="fas fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
-            </div>
+            ${isAdmin ? `
+            <div style="margin-bottom: 0.75rem; text-align: right;">
+                <a href="https://github.com/${repo}/${hasGiscusCategory ? 'discussions' : 'issues'}" target="_blank" rel="noopener noreferrer" class="comments-admin-link" style="font-size: 0.76rem; color: var(--primary-light);">
+                    <i class="fas fa-user-shield"></i> Quản lý bình luận trên GitHub (Admin) <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>` : ''}
             <div id="github-comments-embed"></div>
         `;
 
