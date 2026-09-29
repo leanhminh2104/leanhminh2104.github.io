@@ -1121,7 +1121,7 @@ select.form-input {
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 9999 !important;
+    z-index: 100000 !important;
     padding-bottom: env(safe-area-inset-bottom);
     pointer-events: none !important;
 }
@@ -3468,7 +3468,7 @@ input:checked+.toggle-slider:before {
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
-    z-index: 99998;
+    z-index: 99990;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -3484,7 +3484,7 @@ input:checked+.toggle-slider:before {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 99999;
+    z-index: 99995;
     background: rgb(15, 12, 25);
     background: linear-gradient(180deg, rgba(20, 16, 35, 0.98) 0%, rgba(12, 10, 22, 0.99) 100%);
     backdrop-filter: var(--glass-blur);
