@@ -2108,7 +2108,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Platform Google AdSense */
 .blog-ad-card.platform-adsense {
-    background: linear-gradient(135deg, rgba(66, 133, 244, 0.05) 0%, rgba(52, 168, 83, 0.03) 50%, rgba(13, 8, 22, 0.9) 100%);
+    background: var(--glass-bg) !important;
     border: 1px solid rgba(66, 133, 244, 0.3);
     min-height: 100px;
     display: flex;
@@ -2141,7 +2141,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Platform Custom HTML / Embed (AccessTrade, MasOffer, Ezoic, ...) */
 .blog-ad-card.platform-html {
-    background: rgba(14, 10, 26, 0.7);
+    background: var(--glass-bg) !important;
     border: 1px solid var(--glass-border);
     padding: 1rem;
 }
@@ -3204,10 +3204,8 @@ h1, h2, h3, h4, h5, h6 {
    (Liquid Glass iOS 26/27 Purple Water Drop — Siêu trong suốt 0.010, không đục)
    ========================================================================== */
 
-/* 1. KHUNG CHÍNH, BÀI VIẾT & SIDEBAR (Glass Cards chuẩn qlct) */
+/* 1. CÁC THẺ KHUNG KÍNH ĐỘC LẬP (Glass Cards chuẩn qlct) */
 .glass-card, 
-.article-content, 
-.article-body,
 .toc-card, 
 .author-card,
 .post-nav-card,
@@ -3222,10 +3220,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--glass-shadow) !important;
 }
 
+/* KHÔNG BAO GIỜ áp nền card lên toàn bộ khung bài viết (Tránh thừa viền và nền đè lên bài viết) */
+.article-body,
+.article-content,
 .article-layout,
 .blog-container,
 .blog-main {
     background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .glass-card:hover,
