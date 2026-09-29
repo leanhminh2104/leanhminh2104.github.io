@@ -180,7 +180,7 @@ window.BLOG_DATA = {
                 price: "Từ 25.000₫/tháng",
                 ctaText: "Xem Chi Tiết & Hỗ Trợ",
                 link: "tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/",
-                icon: "fa-youtube",
+                icon: "fa-brands fa-youtube",
                 accentColor: "#ef4444",
                 tags: ["youtube", "google", "tech", "entertainment"]
             },

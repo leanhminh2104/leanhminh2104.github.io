@@ -736,20 +736,30 @@
 
             // C. Thẻ tiếp thị liên kết (Shopee, TikTok Shop, Sponsor, Khóa học)
             const defaultIcon = platform === 'shopee' ? 'fa-bag-shopping' : (platform === 'tiktok' ? 'fa-tiktok' : (banner.icon || 'fa-star'));
-            const isBrandIcon = platform === 'tiktok';
-            const iconPrefix = isBrandIcon ? 'fab' : 'fas';
-
-            const pricingHtml = banner.price ? `
-                <div class="ad-card-pricing">
-                    <span class="ad-price-sale">${banner.price}</span>
-                    ${banner.originalPrice ? `<span class="ad-price-old">${banner.originalPrice}</span>` : ''}
-                    ${banner.discount ? `<span class="ad-discount-tag">${banner.discount}</span>` : ''}
-                </div>
-            ` : '';
-
-            const iconHtml = banner.imageUrl 
-                ? `<img src="${banner.imageUrl}" alt="${banner.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
-                : `<i class="${iconPrefix} ${banner.icon || defaultIcon}"></i>`;
+            const rawIcon = banner.icon || defaultIcon;
+            
+            // Tự động nhận diện class icon thương hiệu (Brand Icons)
+            let iconHtml = '';
+            if (banner.imageUrl) {
+                iconHtml = `<img src="${banner.imageUrl}" alt="${banner.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`;
+            } else {
+                let iconClass = rawIcon;
+                if (!iconClass.includes('fa-') && !iconClass.includes(' ')) {
+                    iconClass = `fa-${iconClass}`;
+                }
+                const isBrand = iconClass.includes('fa-youtube') || 
+                                iconClass.includes('fa-tiktok') || 
+                                iconClass.includes('fa-facebook') || 
+                                iconClass.includes('fa-github') || 
+                                iconClass.includes('fa-google') || 
+                                iconClass.includes('fa-brands') ||
+                                platform === 'tiktok' || 
+                                platform === 'shopee';
+                
+                const prefix = isBrand ? 'fab' : (iconClass.startsWith('far ') ? 'far' : 'fas');
+                const cleanIconName = iconClass.replace(/^(fas|fab|far|fa-brands|fa-solid|fa-regular)\s+/, '');
+                iconHtml = `<i class="${prefix} ${cleanIconName}"></i>`;
+            }
 
             const defaultBadge = platform === 'shopee' ? 'Shopee Deal' : (platform === 'tiktok' ? 'TikTok Shop' : 'Tài trợ');
             const defaultCta = platform === 'shopee' ? 'Săn Deal Shopee' : (platform === 'tiktok' ? 'Mua Trên TikTok Shop' : 'Khám Phá Ngay');
