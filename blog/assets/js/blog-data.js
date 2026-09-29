@@ -144,6 +144,14 @@ window.BLOG_DATA = {
         autoInjectInArticles: true,     // Tự động chèn quảng cáo vào mọi bài viết (cuối bài & sidebar) nếu bài chưa gắn thẻ
         adsensePublisherId: "",         // Google AdSense ID của bạn (ví dụ: "ca-pub-1234567890123456")
         
+        // Cấu hình Popup Quảng Cáo Nổi (Floating Popup Ad)
+        popup: {
+            enabled: true,              // Bật/Tắt hiển thị popup nổi (true / false)
+            intervalMinutes: 30,        // 30 phút hiển thị 1 lần (lưu trữ theo LocalStorage)
+            delaySeconds: 3,            // Xuất hiện sau khi người dùng vào trang 3 giây (trải nghiệm mượt)
+            bannerId: null              // null = Tự động xoay vòng ngẫu nhiên từ banners; Hoặc điền id cụ thể
+        },
+        
         // Danh sách quảng cáo đa nguồn (Shopee, TikTok Shop, Google Ads, Nhà tài trợ, Custom HTML)
         banners: [
             // 1. TIẾP THỊ LIÊN KẾT SHOPEE AFFILIATE (Đồ công nghệ / Bàn phím / Phụ kiện)

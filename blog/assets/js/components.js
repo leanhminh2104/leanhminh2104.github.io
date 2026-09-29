@@ -828,6 +828,141 @@
                 sidebarSlot.innerHTML = buildAdCardHtml(sidebarBanner, true);
             }
         }
+
+        // 7. Khởi tạo Popup Quảng Cáo Nổi (Floating Popup Ad - 30 phút / 1 lần)
+        initPopupAd();
+
+        function initPopupAd() {
+            const popupConfig = DATA.ads.popup;
+            if (!popupConfig || popupConfig.enabled === false) return;
+            if (document.getElementById('blog-ad-popup-modal')) return;
+
+            const STORAGE_KEY = 'blog_ad_popup_last_shown';
+            const intervalMinutes = typeof popupConfig.intervalMinutes === 'number' ? popupConfig.intervalMinutes : 30;
+            const intervalMs = intervalMinutes * 60 * 1000;
+            const now = Date.now();
+            const lastShown = localStorage.getItem(STORAGE_KEY);
+
+            if (lastShown) {
+                const elapsed = now - parseInt(lastShown, 10);
+                if (!isNaN(elapsed) && elapsed < intervalMs) {
+                    return; // Chưa đủ 30 phút kể từ lần hiển thị trước
+                }
+            }
+
+            // Chọn banner cho popup (ưu tiên bannerId hoặc banner có slot popup / deal hot)
+            let banner = null;
+            if (popupConfig.bannerId) {
+                banner = pickBannerForSlot('popup', popupConfig.bannerId);
+            }
+            if (!banner) {
+                banner = pickBannerForSlot('popup') || 
+                         DATA.ads.banners.find(b => (b.platform === 'shopee' || b.platform === 'tiktok') && b.active !== false) || 
+                         DATA.ads.banners.find(b => b.active !== false);
+            }
+            if (!banner) return;
+
+            const delaySec = typeof popupConfig.delaySeconds === 'number' ? popupConfig.delaySeconds : 3;
+
+            setTimeout(() => {
+                if (document.getElementById('blog-ad-popup-modal')) return;
+
+                const platform = banner.platform || 'sponsor';
+                const defaultIcon = platform === 'shopee' ? 'fa-bag-shopping' : (platform === 'tiktok' ? 'fa-tiktok' : (banner.icon || 'fa-fire'));
+                const isBrandIcon = platform === 'tiktok';
+                const iconPrefix = isBrandIcon ? 'fab' : 'fas';
+                const defaultBadge = platform === 'shopee' ? 'Shopee Deal' : (platform === 'tiktok' ? 'TikTok Shop' : 'Hot Deal');
+                const defaultCta = platform === 'shopee' ? 'Săn Deal Ngay' : (platform === 'tiktok' ? 'Mua Trên TikTok Shop' : 'Khám Phá Ngay');
+
+                const pricingHtml = banner.price ? `
+                    <div class="ad-popup-pricing">
+                        <span class="ad-popup-price">${banner.price}</span>
+                        ${banner.originalPrice ? `<span class="ad-popup-old-price">${banner.originalPrice}</span>` : ''}
+                        ${banner.discount ? `<span class="ad-popup-discount">${banner.discount}</span>` : ''}
+                    </div>
+                ` : '';
+
+                const iconHtml = banner.imageUrl 
+                    ? `<img src="${banner.imageUrl}" alt="${banner.title}" class="ad-popup-thumb">`
+                    : `<div class="ad-popup-icon-wrap" style="color:${banner.accentColor || 'var(--primary-hover)'};"><i class="${iconPrefix} ${banner.icon || defaultIcon}"></i></div>`;
+
+                const modal = document.createElement('div');
+                modal.id = 'blog-ad-popup-modal';
+                modal.className = `blog-ad-popup-backdrop platform-${platform}`;
+                modal.setAttribute('role', 'dialog');
+                modal.setAttribute('aria-modal', 'true');
+
+                modal.innerHTML = `
+                    <div class="ad-popup-card animate-popup">
+                        <div class="ad-popup-glow"></div>
+                        
+                        <div class="ad-popup-header">
+                            <div class="ad-popup-badges">
+                                <span class="ad-popup-badge ${platform}">${banner.badge || defaultBadge}</span>
+                                <span class="ad-popup-live-indicator"><span class="live-dot"></span> Đang có ưu đãi</span>
+                            </div>
+                            <button type="button" class="ad-popup-close-btn" id="ad-popup-close-btn" title="Đóng quảng cáo" aria-label="Đóng quảng cáo">
+                                <i class="fas fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        <div class="ad-popup-body">
+                            ${iconHtml}
+                            <div class="ad-popup-info">
+                                <h3 class="ad-popup-title">${banner.title}</h3>
+                                <p class="ad-popup-desc">${banner.desc || ''}</p>
+                                ${pricingHtml}
+                            </div>
+                        </div>
+
+                        <div class="ad-popup-actions">
+                            <a href="${banner.link || '#'}" target="_blank" rel="noopener noreferrer sponsored" class="ad-popup-cta-btn" id="ad-popup-cta-btn">
+                                <span>${banner.ctaText || defaultCta}</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <button type="button" class="ad-popup-dismiss-text" id="ad-popup-dismiss-btn">
+                                Bỏ qua ưu đãi này
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+                // Lưu thời điểm hiển thị vào localStorage
+                localStorage.setItem(STORAGE_KEY, Date.now().toString());
+
+                function closePopup() {
+                    modal.classList.add('closing');
+                    setTimeout(() => {
+                        if (modal.parentNode) modal.parentNode.removeChild(modal);
+                    }, 300);
+                }
+
+                const closeBtn = modal.querySelector('#ad-popup-close-btn');
+                const dismissBtn = modal.querySelector('#ad-popup-dismiss-btn');
+                const ctaBtn = modal.querySelector('#ad-popup-cta-btn');
+
+                if (closeBtn) closeBtn.addEventListener('click', closePopup);
+                if (dismissBtn) dismissBtn.addEventListener('click', closePopup);
+                if (ctaBtn) {
+                    ctaBtn.addEventListener('click', () => {
+                        setTimeout(closePopup, 300);
+                    });
+                }
+
+                const onEsc = (e) => {
+                    if (e.key === 'Escape') {
+                        closePopup();
+                        document.removeEventListener('keydown', onEsc);
+                    }
+                };
+                document.addEventListener('keydown', onEsc);
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closePopup();
+                });
+            }, delaySec * 1000);
+        }
     };
 
     // ────────────────────────────────────────────────────────────

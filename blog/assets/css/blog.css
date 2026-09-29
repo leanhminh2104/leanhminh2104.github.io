@@ -2271,3 +2271,315 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
+/* ==========================================================================
+   FLOATING AD POPUP (CYBERPUNK GLASSMORPHISM - 30 MINS FREQUENCY)
+   ========================================================================== */
+.blog-ad-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(3, 4, 10, 0.68);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    opacity: 1;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-ad-popup-backdrop.closing {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ad-popup-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(145deg, rgba(24, 14, 42, 0.95) 0%, rgba(12, 7, 22, 0.98) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(168, 85, 247, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    padding: 1.45rem;
+    overflow: hidden;
+    transform: scale(1) translateY(0);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-ad-popup-backdrop.closing .ad-popup-card {
+    transform: scale(0.92) translateY(16px);
+}
+
+.ad-popup-glow {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.platform-tiktok .ad-popup-card {
+    border-color: rgba(0, 242, 254, 0.35);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 242, 254, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+.platform-tiktok .ad-popup-glow {
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.35) 0%, transparent 70%);
+}
+
+.platform-shopee .ad-popup-card {
+    border-color: rgba(255, 87, 34, 0.4);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 87, 34, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+.platform-shopee .ad-popup-glow {
+    background: radial-gradient(circle, rgba(255, 87, 34, 0.35) 0%, transparent 70%);
+}
+
+.ad-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+}
+
+.ad-popup-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.ad-popup-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: rgba(168, 85, 247, 0.18);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    color: #d8b4fe;
+}
+.ad-popup-badge.shopee { background: rgba(238, 77, 45, 0.2); border-color: rgba(238, 77, 45, 0.4); color: #ff7a59; }
+.ad-popup-badge.tiktok { background: rgba(0, 242, 254, 0.18); border-color: rgba(0, 242, 254, 0.35); color: #00f2fe; }
+
+.ad-popup-live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: livePulse 1.8s infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.ad-popup-close-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.ad-popup-close-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #f87171;
+    transform: rotate(90deg);
+}
+
+.ad-popup-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.15rem;
+    margin-bottom: 1.25rem;
+}
+
+.ad-popup-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    flex-shrink: 0;
+}
+
+.ad-popup-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ad-popup-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ad-popup-title {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+}
+
+.ad-popup-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.45rem;
+}
+
+.ad-popup-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    margin-top: 0.3rem;
+}
+
+.ad-popup-price {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #f59e0b;
+}
+.platform-shopee .ad-popup-price { color: #ff5722; }
+.platform-tiktok .ad-popup-price { color: #00f2fe; }
+
+.ad-popup-old-price {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-decoration: line-through;
+}
+
+.ad-popup-discount {
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 0.12rem 0.4rem;
+    border-radius: 4px;
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ad-popup-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.ad-popup-cta-btn {
+    width: 100%;
+    padding: 0.75rem 1.4rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.45);
+    transition: var(--transition);
+}
+.ad-popup-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 26px rgba(168, 85, 247, 0.65);
+}
+
+.platform-tiktok .ad-popup-cta-btn {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #030712;
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
+}
+.platform-tiktok .ad-popup-cta-btn:hover {
+    box-shadow: 0 6px 26px rgba(0, 242, 254, 0.6);
+}
+
+.platform-shopee .ad-popup-cta-btn {
+    background: linear-gradient(135deg, #ff5722 0%, #ff8a65 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+}
+.platform-shopee .ad-popup-cta-btn:hover {
+    box-shadow: 0 6px 26px rgba(255, 87, 34, 0.6);
+}
+
+.ad-popup-dismiss-text {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+.ad-popup-dismiss-text:hover {
+    color: var(--text-muted);
+}
+
+@keyframes popupEntry {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+.animate-popup {
+    animation: popupEntry 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 480px) {
+    .ad-popup-card {
+        padding: 1.25rem;
+        border-radius: var(--radius-lg);
+    }
+    .ad-popup-body {
+        gap: 0.85rem;
+    }
+    .ad-popup-icon-wrap, .ad-popup-thumb {
+        width: 52px;
+        height: 52px;
+        font-size: 1.6rem;
+    }
+    .ad-popup-title {
+        font-size: 0.96rem;
+    }
+    .ad-popup-desc {
+        font-size: 0.78rem;
+    }
+}
+
