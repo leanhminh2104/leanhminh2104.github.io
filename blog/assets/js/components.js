@@ -998,13 +998,58 @@
             return;
         }
 
-        // 1. Nếu đã cài Giscus App và có categoryId hợp lệ thì nạp Giscus chính thức
-        if (config.categoryId && config.categoryId.trim() !== '') {
+        const repo = config.repo || 'leanhminh2104/leanhminh2104.github.io';
+        const hasGiscusCategory = Boolean(config.categoryId && config.categoryId.trim() !== '');
+
+        // 1. Render khung Tiêu chuẩn cộng đồng & Chống Spam chuẩn GitHub
+        el.innerHTML = `
+            <div class="comments-policy-box">
+                <div class="comments-policy-header">
+                    <span class="comments-policy-title">
+                        <i class="fab fa-github"></i> Hệ thống bình luận xác thực GitHub
+                    </span>
+                    <span class="comments-github-badge">
+                        <i class="fas fa-shield-halved"></i> Chống Spam & Nick ảo 100%
+                    </span>
+                </div>
+                <div class="comments-policy-grid">
+                    <div class="comments-policy-item verified">
+                        <i class="fas fa-user-check"></i>
+                        <div><strong>Tài khoản chính chủ:</strong> Bắt buộc đăng nhập GitHub để bình luận. Không hỗ trợ nặc danh.</div>
+                    </div>
+                    <div class="comments-policy-item reply">
+                        <i class="fas fa-reply-all"></i>
+                        <div><strong>Hỗ trợ Reply:</strong> Dễ dàng trả lời qua lại, nhận thông báo qua GitHub/Email khi được rep.</div>
+                    </div>
+                    <div class="comments-policy-item antispam">
+                        <i class="fas fa-ban"></i>
+                        <div><strong>Chống Spam & Từ cấm:</strong> Nghiêm cấm quảng cáo rác, lừa đảo, cờ bạc, ngôn từ xúc phạm hoặc vi phạm pháp luật.</div>
+                    </div>
+                    <div class="comments-policy-item admin">
+                        <i class="fas fa-gavel"></i>
+                        <div><strong>Toàn quyền Admin:</strong> Admin có quyền Xóa vĩnh viễn bình luận xấu, Ẩn spam và Block tài khoản vi phạm.</div>
+                    </div>
+                </div>
+                <div class="comments-admin-tools">
+                    <span><i class="fas fa-info-circle"></i> Đăng nhập tài khoản GitHub bên dưới để thảo luận và nhận phản hồi từ tác giả.</span>
+                    <a href="https://github.com/${repo}/${hasGiscusCategory ? 'discussions' : 'issues'}" target="_blank" rel="noopener noreferrer" class="comments-admin-link">
+                        <i class="fas fa-user-shield"></i> Trang kiểm duyệt Admin trên GitHub <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+            <div id="github-comments-embed"></div>
+        `;
+
+        const embedContainer = el.querySelector('#github-comments-embed');
+        if (!embedContainer) return;
+
+        // 2. Nạp script bình luận GitHub (Giscus nếu có categoryId, ngược lại nạp Utterances)
+        if (hasGiscusCategory) {
             if (document.getElementById('giscus-client-script')) return;
             const script = document.createElement('script');
             script.id = 'giscus-client-script';
             script.src = 'https://giscus.app/client.js';
-            script.setAttribute('data-repo', config.repo || 'leanhminh2104/leanhminh2104.github.io');
+            script.setAttribute('data-repo', repo);
             script.setAttribute('data-repo-id', config.repoId || 'R_kgDOPJsGaQ');
             script.setAttribute('data-category', config.category || 'General');
             script.setAttribute('data-category-id', config.categoryId);
@@ -1017,114 +1062,20 @@
             script.setAttribute('data-lang', config.lang || 'vi');
             script.setAttribute('crossorigin', 'anonymous');
             script.async = true;
-            el.appendChild(script);
-            return;
-        }
-
-        // 2. KHUNG BÌNH LUẬN BẢN ĐỊA BLOG (Hoạt động 100% không lo lỗi Giscus chưa cài)
-        renderNativeBlogComments(el);
-    }
-
-    function renderNativeBlogComments(container) {
-        const pathKey = window.location.pathname.replace(/\/index\.html$/, '/');
-        const storageKey = 'blog_comments_' + pathKey;
-        let comments = [];
-        try {
-            comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
-        } catch (_) {}
-
-        function escapeHtml(str) {
-            return String(str || '').replace(/[&<>"']/g, m => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-            })[m]);
-        }
-
-        function renderListHtml() {
-            if (comments.length === 0) {
-                return `
-                    <div class="empty-comments-state">
-                        <i class="far fa-comments"></i>
-                        <p>Chưa có bình luận nào. Hãy là người đầu tiên chia sẻ cảm nghĩ!</p>
-                    </div>
-                `;
-            }
-
-            return comments.map(c => `
-                <div class="comment-item-card">
-                    <div class="comment-author-avatar">
-                        <i class="fas fa-user-astronaut"></i>
-                    </div>
-                    <div class="comment-content-wrap">
-                        <div class="comment-item-header">
-                            <span class="comment-author-name">${escapeHtml(c.name)}</span>
-                            <span class="comment-item-time"><i class="far fa-clock"></i> ${escapeHtml(c.time)}</span>
-                        </div>
-                        <p class="comment-item-text">${escapeHtml(c.text)}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        container.innerHTML = `
-            <div class="native-comments-box">
-                <!-- Form nhập bình luận -->
-                <form class="native-comment-form" id="native-comment-form">
-                    <div class="comment-form-row">
-                        <input type="text" id="comment-author-input" class="comment-input" placeholder="Tên hoặc biệt danh của bạn *" required maxlength="40">
-                        <input type="email" id="comment-email-input" class="comment-input" placeholder="Email (tùy chọn, bảo mật)" maxlength="60">
-                    </div>
-                    <textarea id="comment-text-input" class="comment-textarea" rows="3" placeholder="Viết câu hỏi hoặc chia sẻ góc nhìn của bạn về bài viết..." required maxlength="800"></textarea>
-                    <div class="comment-form-footer">
-                        <span class="comment-form-note"><i class="fas fa-shield-halved"></i> Bình luận văn minh, tôn trọng độc giả</span>
-                        <button type="submit" class="comment-submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Gửi bình luận</span>
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Danh sách bình luận -->
-                <div class="native-comments-list" id="native-comments-list">
-                    ${renderListHtml()}
-                </div>
-            </div>
-        `;
-
-        const form = container.querySelector('#native-comment-form');
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nameInput = form.querySelector('#comment-author-input');
-                const textInput = form.querySelector('#comment-text-input');
-                const name = nameInput.value.trim();
-                const text = textInput.value.trim();
-                if (!name || !text) return;
-
-                const newComment = {
-                    name: name,
-                    text: text,
-                    time: new Date().toLocaleDateString('vi-VN', {
-                        day: '2-digit', month: '2-digit', year: 'numeric',
-                        hour: '2-digit', minute: '2-digit'
-                    })
-                };
-
-                comments.unshift(newComment);
-                try {
-                    localStorage.setItem(storageKey, JSON.stringify(comments));
-                } catch (_) {}
-
-                textInput.value = '';
-                const listEl = container.querySelector('#native-comments-list');
-                if (listEl) listEl.innerHTML = renderListHtml();
-
-                const note = form.querySelector('.comment-form-note');
-                if (note) {
-                    const original = note.innerHTML;
-                    note.innerHTML = '<span style="color:#34d399; font-weight:600;"><i class="fas fa-check-circle"></i> Đã đăng bình luận thành công!</span>';
-                    setTimeout(() => { note.innerHTML = original; }, 4000);
-                }
-            });
+            embedContainer.appendChild(script);
+        } else {
+            // Nạp Utterances qua GitHub Issues (chỉ cần repo GitHub, bắt buộc login GitHub, rep & admin xóa thoải mái)
+            if (document.getElementById('utterances-client-script')) return;
+            const script = document.createElement('script');
+            script.id = 'utterances-client-script';
+            script.src = 'https://utteranc.es/client.js';
+            script.setAttribute('repo', repo);
+            script.setAttribute('issue-term', config.mapping || 'pathname');
+            script.setAttribute('label', '💬 blog-comment');
+            script.setAttribute('theme', 'github-dark');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            embedContainer.appendChild(script);
         }
     }
 

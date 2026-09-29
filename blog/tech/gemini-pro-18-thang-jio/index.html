@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
+
+    <!-- ============================================================
+         1. SEO & OPENGRAPH META
+         ============================================================ -->
+    <meta name="description" content="Sở hữu Gemini Pro (Google AI Pro) 18 tháng chỉ 45.000₫. Trải nghiệm model 1.5 Pro, tạo ảnh Imagen 3, context 1M token. Kích hoạt trực tiếp qua link, bảo hành 24h.">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Gemini Pro 18 Tháng Giá Sốc 45K — Kích Hoạt Ngay, Dùng Liền Tay 🤖✨">
+    <meta property="og:description" content="Nâng cấp Google AI Pro 18 tháng vào chính Gmail cá nhân chỉ với 45.000₫. Không cần mật khẩu, kích hoạt qua link 60 giây, bảo hành 24h uy tín.">
+    <title>Gemini Pro 18 Tháng Giá Sốc 45K — Kích Hoạt Ngay, Dùng Liền Tay 🤖✨ — Lê Anh Minh Blog</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS dùng chung toàn Blog -->
+    <link rel="stylesheet" href="../../assets/css/blog.css">
+
+    <style>
+        /* === Styles chuyên biệt: Price Hero & Feature Grid === */
+        .price-hero {
+            background: linear-gradient(135deg, rgba(168,85,247,0.18) 0%, rgba(56,189,248,0.12) 100%);
+            border: 1px solid rgba(168,85,247,0.35);
+            border-radius: 1.25rem;
+            padding: 2.25rem 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(168,85,247,0.15);
+        }
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% -20%, rgba(168,85,247,0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .price-badge-old {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px;
+            padding: 0.35rem 1.1rem;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            text-decoration: line-through;
+            margin-bottom: 0.65rem;
+        }
+        .price-main {
+            font-size: 3.25rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #a855f7 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin: 0.25rem 0 0.5rem;
+            letter-spacing: -1px;
+        }
+        .price-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.4rem;
+        }
+        .price-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(90deg, #a855f7, #7c3aed);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0.85rem 2.25rem;
+            border-radius: 999px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 24px rgba(168,85,247,0.45);
+        }
+        .price-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 36px rgba(168,85,247,0.7);
+            color: #fff;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin: 1.75rem 0;
+        }
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1.35rem 1.15rem;
+            text-align: center;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+        .feature-card:hover {
+            border-color: rgba(168,85,247,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(168,85,247,0.15);
+        }
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.65rem;
+            display: block;
+        }
+        .feature-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+        .feature-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+        .steps-list {
+            counter-reset: steps;
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.15rem;
+            padding: 1.15rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+        .step-num {
+            flex-shrink: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            background: linear-gradient(135deg, #a855f7, #38bdf8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: #fff;
+            box-shadow: 0 0 14px rgba(168,85,247,0.4);
+        }
+        .step-num::before {
+            content: counter(steps);
+        }
+        .compare-row-good {
+            color: #34d399;
+            font-weight: 700;
+        }
+        .compare-row-bad {
+            color: #f87171;
+        }
+        .warranty-box {
+            background: linear-gradient(135deg, rgba(52,211,153,0.12), rgba(56,189,248,0.08));
+            border: 1px solid rgba(52,211,153,0.35);
+            border-radius: 1rem;
+            padding: 1.35rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
+            margin: 1.75rem 0;
+        }
+        .warranty-icon {
+            font-size: 2.4rem;
+            flex-shrink: 0;
+        }
+        .warranty-text strong {
+            color: #34d399;
+            font-size: 1rem;
+        }
+        .highlight-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.2rem 0.65rem;
+            background: rgba(168,85,247,0.15);
+            border: 1px solid rgba(168,85,247,0.3);
+            border-radius: 6px;
+            color: #c084fc;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        @media (max-width: 480px) {
+            .price-main { font-size: 2.4rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Thanh tiến trình đọc trên cùng -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Nền trời sao động -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<!-- TOPBAR / HEADER (Tự động nạp bởi components.js) -->
+<div id="site-header"></div>
+
+<!-- NỘI DUNG CHÍNH -->
+<main class="blog-main">
+    <div class="blog-container">
+
+        <!-- BREADCRUMB ĐIỀU HƯỚNG -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../">Công nghệ</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Gemini Pro 18 Tháng</span>
+        </nav>
+
+        <div class="article-layout">
+
+            <!-- CỘT TRÁI: Thân bài viết -->
+            <article class="article-body">
+
+                <!-- Article Header Hero -->
+                <header class="article-header animate-up">
+                    <h1 class="article-title">
+                        Gemini Pro 18 Tháng Giá Sốc 45K — Kích Hoạt Ngay, Dùng Liền Tay 🤖✨
+                    </h1>
+
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 29 tháng 9, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">đang tính...</span></span>
+                    </div>
+
+                    <div class="article-tags">
+                        <span class="badge badge-info"><i class="fas fa-robot"></i> Trí tuệ nhân tạo</span>
+                        <span class="badge badge-primary">Google Gemini Pro</span>
+                        <span class="badge badge-primary">AI Advanced</span>
+                        <span class="badge badge-primary">Giá siêu rẻ</span>
+                        <span class="badge badge-primary">Deal độc quyền</span>
+                    </div>
+                </header>
+
+                <!-- Đoạn mở đầu thu hút độc giả -->
+                <p>
+                    Bạn đang cần một <strong>trợ lý AI thông minh toàn diện</strong> để tăng tốc công việc, giải bài tập, dịch thuật, lập trình hay sáng tạo nội dung hàng ngày? Nếu bản miễn phí thường xuyên giới hạn lượt nhắn, không đọc được file dài hoặc trả lời nông, thì <strong>Google AI Pro (Gemini Advanced)</strong> chính là câu trả lời bạn đang tìm kiếm.
+                </p>
+
+                <p>
+                    Hiện tại, thay vì phải trả mức phí gốc đắt đỏ lên tới gần <strong>500.000₫/tháng</strong> (~8.600.000₫ cho 18 tháng) trực tiếp cho Google, bạn hoàn toàn có thể sở hữu trọn vẹn <strong>18 tháng bản quyền Google AI Pro</strong> kích hoạt thẳng vào Gmail cá nhân chỉ với <strong>45.000₫ duy nhất</strong>.
+                </p>
+
+                <!-- Hộp Tóm tắt nhanh -->
+                <blockquote>
+                    💡 <b>Tóm tắt gói ưu đãi:</b> Sở hữu <b>Google AI Pro (Gemini Advanced) 18 tháng</b> tặng kèm <b>YouTube Premium Lite</b> vào chính tài khoản Gmail của bạn — chỉ <b>45.000₫ thanh toán 1 lần</b>. Kích hoạt trực tiếp qua link đối tác độc quyền, không cần cấp mật khẩu, bảo hành kỹ thuật 24h.
+                </blockquote>
+
+                <!-- Thẻ Hero Giá Bán Nổi Bật -->
+                <div class="price-hero">
+                    <div style="font-size:3.5rem; margin-bottom:0.5rem;">🤖✨</div>
+                    <div style="font-size:1.15rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Google Gemini Pro (Google AI Pro) · Trọn Gói 18 Tháng</div>
+                    <div class="price-badge-old">Giá gốc Google: 8.640.000₫ / 18 tháng</div>
+                    <div class="price-main">45.000₫</div>
+                    <div class="price-sub">Thanh toán 1 lần · Dùng 18 tháng · Tặng kèm YouTube Premium Lite · Không trừ tiền thẻ</div>
+                    <a href="#cach-kich-hoat" class="price-cta-btn">
+                        <i class="fas fa-bolt"></i> Nhận link kích hoạt ngay
+                    </a>
+                </div>
+
+                <!-- MỤC 1: Bản chất gói -->
+                <h2>1. Trọn Bộ Đặc Quyền &amp; Tính Năng Đỉnh Cao Của Gói Google One AI Pro</h2>
+                <p>
+                    Đây là gói đăng ký <strong>Google One AI Premium (Google AI Pro)</strong> chính thức từ hệ sinh thái Google. Thông qua chương trình liên kết quà tặng đối tác chiến lược giữa Google và tập đoàn viễn thông hàng đầu Reliance Jio, mỗi người dùng sở hữu suất ưu đãi sẽ nhận được trọn bộ hệ sinh thái công nghệ và trí tuệ nhân tạo cao cấp nhất của Google trong thời hạn lên đến <strong>18 tháng liên tục</strong>.
+                </p>
+
+                <p>
+                    Khi kích hoạt thành công, tài khoản Google của bạn sẽ được mở khóa toàn bộ <strong>7 trụ cột đặc quyền VIP</strong> sau đây:
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <div class="feature-name">Gemini Advanced &amp; Pro</div>
+                        <div class="feature-desc">Mô hình AI tư duy đa phương thức mạnh nhất của Google — giải toán logic, suy luận sâu, viết code chuyên nghiệp và cửa sổ ngữ cảnh khổng lồ 1.000.000 tokens đọc tài liệu hàng ngàn trang.</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📺</span>
+                        <div class="feature-name">Tặng Kèm YouTube Premium Lite</div>
+                        <div class="feature-desc">Đặc quyền xem video YouTube không bị quảng cáo làm phiền, phát nhạc trong nền khi tắt màn hình điện thoại và tải video xem offline không cần mạng.</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">☁️</span>
+                        <div class="feature-name">Lưu Trữ Google One Đám Mây</div>
+                        <div class="feature-desc">Bộ nhớ đám mây tốc độ cao dùng chung cho Google Drive, Gmail và Google Photos. Tự động sao lưu ảnh chất lượng gốc, danh bạ và dữ liệu điện thoại không lo đầy bộ nhớ.</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🪄</span>
+                        <div class="feature-name">Google Photos Magic Editor AI</div>
+                        <div class="feature-desc">Bộ công cụ chỉnh sửa ảnh ma thuật độc quyền: Magic Eraser (xóa vật thể thừa), Magic Editor (dời vị trí vật thể, đổi bầu trời), Photo Unblur (làm nét ảnh mờ) và Portrait Light studio.</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎨</span>
+                        <div class="feature-name">Tạo Ảnh Nghệ Thuật Imagen 3</div>
+                        <div class="feature-desc">Công nghệ vẽ tranh bằng AI mới nhất của Google — hình ảnh siêu thực, chi tiết sắc nét, ánh sáng tự nhiên và hỗ trợ hiển thị chữ tiếng Việt chuẩn xác không bị méo.</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📑</span>
+                        <div class="feature-name">Gemini trong Gmail &amp; Docs</div>
+                        <div class="feature-desc">Tính năng "Help me write": Tự động soạn email, sửa giọng văn lịch sự trong Gmail; lên dàn ý, viết bài luận, dịch thuật trong Google Docs; tạo ảnh minh họa trong Google Slides.</div>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📹</span>
+                        <div class="feature-name">Google Meet &amp; Calendar VIP</div>
+                        <div class="feature-desc">Họp trực tuyến không giới hạn thời gian (lên đến 24 giờ liên tục), khử tiếng ồn môi trường bằng AI thông minh, tự động ghi âm cuộc họp lưu vào Drive và đặt lịch hẹn chuyên nghiệp.</div>
+                    </div>
+                </div>
+
+                <!-- MỤC 2: So sánh Free vs Pro -->
+                <h2>2. Bảng So Sánh Chi Tiết: Tài Khoản Google Miễn Phí vs Google One AI Pro</h2>
+                <p>
+                    Nếu bạn đang dùng tài khoản Google thông thường, hãy xem ngay bảng so sánh dưới đây để thấy sự khác biệt vượt trội mà gói mang lại:
+                </p>
+
+                <div class="glass-card" style="padding:1.15rem; overflow-x:auto; margin:1.5rem 0;">
+                    <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:left;">
+                        <thead>
+                            <tr style="border-bottom:1px solid var(--glass-border); color:var(--primary);">
+                                <th style="padding:0.85rem;">Tính năng / Quyền lợi</th>
+                                <th style="padding:0.85rem;">Tài Khoản Thường (Free)</th>
+                                <th style="padding:0.85rem;">Google One AI Pro 18 Tháng ✨</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Mô hình AI xử lý</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">Gemini tiêu chuẩn (bản rút gọn)</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Gemini Advanced (Model AI mạnh nhất của Google)</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Độ dài ngữ cảnh (Context Window)</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">~32.000 tokens (dễ quên nội dung)</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Lên tới 1.000.000 tokens (đọc trọn cuốn sách 1.500 trang)</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Xem YouTube không quảng cáo</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">Bị chèn quảng cáo liên tục, tắt màn hình là ngắt</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Tặng kèm YouTube Premium Lite: Chặn quảng cáo + Phát nền tắt màn hình</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Dung lượng lưu trữ đám mây</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">15GB miễn phí (rất nhanh đầy)</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Bộ nhớ Google One đám mây cực lớn cho Drive, Gmail &amp; Photos</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Chỉnh sửa ảnh Google Photos</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">Chỉ chỉnh sửa màu sắc cơ bản</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Đầy đủ Magic Editor, Magic Eraser, Photo Unblur, Portrait Light</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Tích hợp AI trong Gmail &amp; Docs</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">❌ Không hỗ trợ</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">✅ Có "Help me write", tóm tắt và soạn thảo trực tiếp</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Công cụ tạo ảnh AI Imagen 3</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">Bị hạn chế tính năng</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Tạo ảnh độ phân giải cao không giới hạn</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Google Meet họp nhóm</td>
+                                <td style="padding:0.85rem;" class="compare-row-bad">Giới hạn 60 phút / cuộc gọi</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Họp liên tục đến 24 giờ + Khử tiếng ồn AI + Ghi hình</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">Chi phí thực tế</td>
+                                <td style="padding:0.85rem;">0₫</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">Chỉ 45.000₫ cho trọn vẹn 18 tháng 🔥</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Vị trí Quảng Cáo Giữa Bài -->
+                <div class="ad-slot-container" data-slot="article-mid" style="margin: 2rem 0;"></div>
+
+                <!-- MỤC 3: Hướng dẫn kích hoạt -->
+                <h2 id="cach-kich-hoat">3. Hướng Dẫn Kích Hoạt — Chỉ 3 Bước Trong 60 Giây</h2>
+                <p>
+                    Quy trình kích hoạt được thiết kế tối giản để bất kỳ ai cũng có thể làm được ngay trên điện thoại hoặc máy tính mà không cần bất kỳ kiến thức kỹ thuật phức tạp nào:
+                </p>
+
+                <ol class="steps-list">
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Nhận link kích hoạt độc quyền từ Admin</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Sau khi chuyển khoản 45.000₫, Admin sẽ gửi ngay cho bạn một <strong>đường link kích hoạt ưu đãi Google chính thức</strong>. Đây là link dùng một lần (single-use) gắn trực tiếp với suất ưu đãi của bạn.
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Mở link &amp; bấm xác nhận bằng tài khoản Gmail của bạn</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Nhấp vào link trên trình duyệt Chrome/Safari $\rightarrow$ đăng nhập đúng tài khoản Gmail cá nhân bạn muốn dùng $\rightarrow$ bấm nút <b>"Chấp nhận ưu đãi" (Claim Offer / Redeem)</b>.
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Hoàn tất &amp; bắt đầu sử dụng Gemini Pro ngay lập tức!</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Màn hình sẽ hiện thông báo chào mừng gói Google AI Pro 18 tháng. Bạn truy cập ngay vào <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700;">gemini.google.com</a>, biểu tượng <b>Gemini Advanced</b> sẽ sáng lên và sẵn sàng phục vụ bạn!
+                            </span>
+                        </div>
+                    </li>
+                </ol>
+
+                <!-- Cam kết an toàn bảo mật -->
+                <blockquote>
+                    🔒 <b>An toàn tuyệt đối 100%:</b> Bạn <b>không cần gửi mật khẩu</b>, không cần chia sẻ quyền riêng tư của tài khoản. Bạn tự tay đăng nhập Gmail của chính mình trên trang chủ của Google để nhận gói. Tài khoản của bạn được bảo mật tuyệt đối.
+                </blockquote>
+
+                <!-- MỤC 4: Đối tượng sử dụng -->
+                <h2>4. Ai Nên Sở Hữu Gói Gemini Pro 18 Tháng Này?</h2>
+                <p>
+                    Với chi phí chỉ 45.000₫ cho tận 18 tháng (chia ra chỉ <strong>2.500₫/tháng</strong>), gói này đặc biệt hữu ích cho:
+                </p>
+
+                <ul>
+                    <li>🎓 <b>Học sinh, Sinh viên:</b> Hỗ trợ làm luận văn, tóm tắt giáo trình tiếng Anh, giải các bài toán phức tạp, tra cứu tài liệu khoa học nhanh gấp 10 lần.</li>
+                    <li>💼 <b>Dân văn phòng &amp; Marketing:</b> Viết email đối tác chuyên nghiệp, lên kế hoạch truyền thông, sáng tạo kịch bản video, tổng hợp báo cáo kinh doanh.</li>
+                    <li>✍️ <b>Blogger &amp; Content Creator:</b> Lên ý tưởng bài viết (brainstorming), viết bài chuẩn SEO, tạo ảnh minh họa bài viết chất lượng cao với Imagen 3.</li>
+                    <li>👨‍💻 <b>Lập trình viên &amp; Kỹ sư CNTT:</b> Review code, tìm lỗi logic, tối ưu truy vấn SQL, giải thích thuật toán và tài liệu API một cách mạch lạc.</li>
+                    <li>🏪 <b>Chủ shop Online:</b> Soạn tin nhắn phản hồi khách hàng tự động, viết bài quảng cáo Facebook/TikTok hấp dẫn, phân tích thị trường cạnh tranh.</li>
+                </ul>
+
+                <!-- MỤC 5: Chính sách giá & bảo hành -->
+                <h2>5. Bảng Giá &amp; Chính Sách Bảo Hành Rõ Ràng</h2>
+
+                <div class="warranty-box">
+                    <div class="warranty-icon">🛡️</div>
+                    <div class="warranty-text">
+                        <strong>Chính Sách Bảo Hành Kỹ Thuật 24 Giờ:</strong><br>
+                        <span style="color:var(--text-muted); font-size:0.88rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                            Bảo hành 24 giờ kể từ thời điểm gửi link. Nếu link kích hoạt gặp lỗi kỹ thuật không nhận được ưu đãi, Admin sẽ hỗ trợ xử lý ngay hoặc gửi đổi link mới hoàn toàn miễn phí.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="padding:1.15rem; overflow-x:auto; margin:1.5rem 0;">
+                    <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:left;">
+                        <thead>
+                            <tr style="border-bottom:1px solid var(--glass-border); color:var(--primary);">
+                                <th style="padding:0.85rem;">Thông tin</th>
+                                <th style="padding:0.85rem;">Chi tiết quy định</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">💰 Giá bán</td>
+                                <td style="padding:0.85rem;" class="compare-row-good">45.000₫ (thanh toán một lần duy nhất)</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">⏳ Thời hạn sử dụng</td>
+                                <td style="padding:0.85rem;">18 tháng kể từ thời điểm kích hoạt</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">🛡️ Thời gian bảo hành</td>
+                                <td style="padding:0.85rem;">24 giờ hỗ trợ đổi link mới nếu phát sinh lỗi</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem; font-weight:600;">📧 Loại tài khoản</td>
+                                <td style="padding:0.85rem;">Tài khoản Gmail cá nhân (@gmail.com)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.85rem; font-weight:600;">📞 Kênh hỗ trợ &amp; Mua hàng</td>
+                                <td style="padding:0.85rem;">Liên hệ trực tiếp Admin qua Zalo / Facebook Messenger</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote style="border-left-color: var(--warning);">
+                    ⚠️ <b>Lưu ý quan trọng:</b> Khuyến khích sử dụng tài khoản Gmail cá nhân để kích hoạt. Gói không áp dụng cho tài khoản Google Workspace thuộc cơ quan, trường học hoặc tài khoản đang tham gia nhóm Google Family có gói dịch vụ lưu trữ khác bị xung đột.
+                </blockquote>
+
+                <!-- MỤC 6: Tổng kết -->
+                <h2>6. Tổng Kết — Đầu Tư 45K Để Tăng Vọt Năng Suất Suốt 18 Tháng</h2>
+                <p>
+                    Chỉ với <strong>45.000₫</strong> — số tiền chưa bằng một bữa ăn sáng hay hai ly trà đá — bạn đã mở ra cánh cửa tiếp cận với <strong>trí tuệ nhân tạo tiên tiến hàng đầu thế giới</strong> của Google trong suốt 18 tháng liên tục.
+                </p>
+                <p>
+                    Không lo chi phí duy trì hàng tháng, không phiền toái hủy gia hạn, kích hoạt an toàn 100% trên chính tài khoản của bạn. Đừng bỏ lỡ cơ hội sở hữu công cụ làm việc và học tập mạnh mẽ này ngay hôm nay!
+                </p>
+
+                <!-- Vị trí Quảng Cáo Cuối Bài -->
+                <div class="ad-slot-container" data-slot="article-bottom" style="margin: 2rem 0;"></div>
+
+                <hr>
+
+                <!-- Điều hướng bài trước / bài sau (tự động cập nhật bởi master-build.js) -->
+                <div class="post-nav animate-up">
+                    <a href="../../" class="post-nav-card next">
+                        <span class="post-nav-label">Khám phá thêm <i class="fas fa-house"></i></span>
+                        <span class="post-nav-title">Về trang chủ Blog xem bài viết mới</span>
+                    </a>
+                </div>
+
+                <!-- KHU VỰC BÌNH LUẬN XÁC THỰC GITHUB (Tự động nạp bởi components.js) -->
+                <div class="article-comments-section" style="margin-top: 3rem;">
+                    <h3 style="font-size:1.15rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                        <i class="fas fa-comments" style="color:var(--primary);"></i> Bình luận &amp; Thảo luận
+                    </h3>
+                    <div id="comments"></div>
+                </div>
+
+            </article>
+
+            <!-- CỘT PHẢI: Sticky Sidebar -->
+            <aside class="article-sidebar">
+
+                <!-- Mục lục tự động (TOC) -->
+                <div class="glass-card toc-card" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Tự động sinh bởi core.js từ các thẻ h2, h3 -->
+                    </ul>
+                </div>
+
+                <!-- Thẻ thông tin tác giả -->
+                <div class="glass-card author-card">
+                    <div class="author-avatar">👨‍💻</div>
+                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Lê Anh Minh</div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Full-stack Developer</div>
+                    <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.6; margin-top:0.6rem;">
+                        Chia sẻ kiến thức lập trình, thủ thuật công nghệ và kinh nghiệm thực chiến.
+                    </p>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
+                        <i class="fab fa-github"></i> Theo dõi GitHub
+                    </a>
+                </div>
+
+                <!-- Vị trí Quảng Cáo Sidebar -->
+                <div id="sidebar-ad-slot" style="margin-top: 1.5rem;"></div>
+
+            </aside>
+
+        </div><!-- /article-layout -->
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Chân trang & Mobile Bottom Dock (Tự động nạp bởi components.js) -->
+<div id="site-footer"></div>
+<div id="site-bottom-dock"></div>
+
+<!-- Nạp Scripts cốt lõi -->
+<script src="../../assets/js/blog-data.js"></script>
+<script src="../../assets/js/components.js"></script>
+<script src="../../assets/js/core.js"></script>
+</body>
+</html>

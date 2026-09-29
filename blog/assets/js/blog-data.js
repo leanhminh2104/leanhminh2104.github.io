@@ -61,6 +61,21 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "gemini-pro-18-thang-jio",
+            title: "Gemini Pro 18 Tháng Giá Sốc 45K — Trọn Bộ Đặc Quyền Google One Pro 🤖",
+            slug: "gemini-pro-18-thang-jio",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/gemini-pro-18-thang-jio/",
+            date: "2026-09-29",
+            formattedDate: "29 Th09, 2026",
+            readTime: "5 phút",
+            excerpt: "Sở hữu trọn bộ Google One AI Pro 18 tháng chỉ 45.000₫. Nhận ngay Gemini Advanced, bộ nhớ đám mây, Google Photos Magic Editor và tặng kèm YouTube Premium Lite.",
+            tags: ["Google One Pro", "Gemini Advanced", "YouTube Premium Lite", "Giá rẻ", "Deal hot"],
+            isNew: true,
+            icon: "fa-robot"
+        },
+        {
             id: "co-che-duy-tri-youtube-premium-va-fix-loi-family",
             title: "Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family",
             slug: "co-che-duy-tri-youtube-premium-va-fix-loi-family",
