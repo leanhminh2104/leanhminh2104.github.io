@@ -1039,7 +1039,7 @@
             script.async = true;
             embedContainer.appendChild(script);
         } else {
-            // Nạp Utterances qua GitHub Issues (dùng theme icy-dark đồng bộ tông màu xanh cyan & không gian tối)
+            // Nạp Utterances qua GitHub Issues (dùng theme github-dark kết hợp mix-blend-mode screen để nền trong suốt nhìn xuyên thấu sao trời)
             if (document.getElementById('utterances-client-script')) return;
             const script = document.createElement('script');
             script.id = 'utterances-client-script';
@@ -1047,7 +1047,7 @@
             script.setAttribute('repo', repo);
             script.setAttribute('issue-term', config.mapping || 'pathname');
             script.setAttribute('label', '💬 blog-comment');
-            script.setAttribute('theme', 'icy-dark');
+            script.setAttribute('theme', 'github-dark');
             script.setAttribute('crossorigin', 'anonymous');
             script.async = true;
             embedContainer.appendChild(script);

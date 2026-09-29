@@ -5,6 +5,43 @@
  */
 
 // ============================================================
+// 0. Auto Scroll Preservation — Giữ nguyên vị trí cuộn khi F5
+// ============================================================
+(function initScrollPreservation() {
+    const key = 'blog_scroll_' + window.location.pathname;
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    let saveTimer;
+    window.addEventListener('scroll', () => {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+            sessionStorage.setItem(key, String(window.scrollY));
+        }, 80);
+    }, { passive: true });
+
+    window.addEventListener('beforeunload', () => {
+        sessionStorage.setItem(key, String(window.scrollY));
+    });
+
+    const saved = parseInt(sessionStorage.getItem(key), 10);
+    if (!isNaN(saved) && saved > 0) {
+        const doScroll = () => {
+            window.scrollTo({ top: saved, behavior: 'instant' });
+        };
+        doScroll();
+        document.addEventListener('DOMContentLoaded', doScroll);
+        window.addEventListener('load', () => {
+            doScroll();
+            setTimeout(doScroll, 80);
+            setTimeout(doScroll, 350);
+            setTimeout(doScroll, 800);
+        });
+    }
+})();
+
+// ============================================================
 // 1. Mobile Navigation & Drawer (Sheet)
 // ============================================================
 function initMobileNav() {
