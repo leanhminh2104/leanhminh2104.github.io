@@ -184,6 +184,48 @@ window.BLOG_DATA = {
             delaySeconds: 3,            // Xuất hiện sau khi người dùng vào trang 3 giây (trải nghiệm mượt)
             bannerId: null              // null = Tự động xoay vòng ngẫu nhiên từ banners; Hoặc điền id cụ thể
         },
+
+        // ============================================================
+        // CẤU HÌNH BANNER DỌC 2 BÊN HÔNG (SKYSCRAPER SIDE ADS)
+        // Admin tự làm ảnh rồi khai báo danh sách tại đây:
+        // - Tự động random ảnh khi vào trang
+        // - Tự động đổi ảnh (xoay tua) sau số giây định sẵn (rotateSeconds)
+        // - Dễ dàng thêm, sửa, xoá ảnh & đường dẫn tuỳ ý
+        // ============================================================
+        sideBanners: {
+            enabled: true,               // Bật/Tắt banner 2 bên (true / false)
+            rotateSeconds: 8,            // Số giây tự động đổi banner (vd: 5s, 8s, 10s...)
+            randomizeOnLoad: true,        // Random ảnh ngẫu nhiên ngay khi vừa load trang
+            allowDismiss: true,           // Cho phép người dùng bấm [x] để đóng
+            reappearSeconds: 45,          // Khi bấm [x], ẩn tạm thời rồi tự hiện lại sau 45s (F5 tải lại trang là hiện ngay lập tức)
+            pauseOnHover: true,           // Rê chuột vào sẽ tạm dừng đổi để người xem kịp đọc/bấm
+            items: [
+                {
+                    id: "side-viettel-yt",
+                    title: "Gói Cước Viettel YT150 & YT200 Tặng YouTube Premium",
+                    badge: "Viettel 5G",
+                    imageUrl: "assets/images/banners/side/side-viettel-yt.jpg",
+                    link: "tech/viettel-yt150-yt200-youtube-premium/",
+                    alt: "Gói Viettel YT150 YT200 YouTube Premium"
+                },
+                {
+                    id: "side-gemini-ai",
+                    title: "Google One AI Pro 18 Tháng Giá 45K",
+                    badge: "AI Pro 45K",
+                    imageUrl: "assets/images/banners/side/side-gemini-ai.jpg",
+                    link: "tech/gemini-pro-18-thang-jio/",
+                    alt: "Google One AI Pro 18 Tháng"
+                },
+                {
+                    id: "side-yt-family",
+                    title: "YouTube Premium & Fix Lỗi Family 24/7",
+                    badge: "Family VIP",
+                    imageUrl: "assets/images/banners/side/side-yt-family.jpg",
+                    link: "tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/",
+                    alt: "YouTube Premium Fix Lỗi Family"
+                }
+            ]
+        },
         
         // Danh sách ưu đãi & đề xuất dịch vụ chuẩn xác theo hệ sinh thái công nghệ
         banners: [

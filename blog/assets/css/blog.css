@@ -3632,6 +3632,184 @@ svg,
     font-style: italic;
 }
 
+/* ============================================================
+   VERTICAL SKYSCRAPER SIDE BANNERS (QUẢNG CÁO DỌC 2 BÊN HÔNG)
+   TỰ ĐỘNG PHÓNG TO LẤP ĐẦY TOÀN BỘ KHOẢNG TRỐNG 2 BÊN HÔNG
+   ============================================================ */
+:root {
+    --side-gutter-w: clamp(200px, calc(50vw - 570px - 36px), 380px);
+}
 
+.blog-side-banner {
+    position: fixed;
+    top: 84px;
+    z-index: 95;
+    display: none; /* Mặc định ẩn trên màn hình nhỏ để tránh che nội dung */
+    width: var(--side-gutter-w);
+    user-select: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
+/* Tự động lấp đầy toàn bộ khoảng trống 2 bên trên màn hình desktop */
+@media (min-width: 1360px) {
+    .blog-side-banner {
+        display: block;
+    }
+    .blog-side-banner-left {
+        left: max(16px, calc(50vw - 570px - var(--side-gutter-w) - 18px));
+    }
+    .blog-side-banner-right {
+        right: max(16px, calc(50vw - 570px - var(--side-gutter-w) - 18px));
+    }
+}
 
+/* Card bao bọc banner */
+.side-banner-wrapper {
+    position: relative;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(168, 85, 247, 0.28);
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.35s ease;
+}
+
+.side-banner-wrapper:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168, 85, 247, 0.85);
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.75), 0 0 40px rgba(168, 85, 247, 0.55);
+}
+
+/* Hiệu ứng mượt mà khi đổi banner */
+.side-banner-content {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.side-banner-content.is-swapping {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: blur(3px);
+}
+
+/* Khối ảnh banner */
+.side-banner-img-box {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #090d16;
+}
+
+.side-banner-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.side-banner-wrapper:hover .side-banner-img {
+    transform: scale(1.05);
+}
+
+/* Badge quảng cáo / tài trợ */
+.side-banner-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(99, 102, 241, 0.9));
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+/* Nút đóng banner [x] */
+.side-banner-close-btn {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    z-index: 10;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(10, 14, 25, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 0;
+}
+
+.side-banner-close-btn:hover {
+    background: #ef4444;
+    color: #ffffff;
+    border-color: #ef4444;
+    transform: scale(1.12);
+}
+
+/* Meta chi tiết dưới ảnh */
+.side-banner-meta {
+    padding: 12px 15px 14px;
+    background: rgba(13, 18, 30, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.side-banner-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #f8fafc;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.side-banner-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #c084fc;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+.side-banner-wrapper:hover .side-banner-action {
+    color: #38bdf8;
+}
+
+.side-banner-action i {
+    font-size: 0.72rem;
+    transition: transform 0.2s ease;
+}
+
+.side-banner-wrapper:hover .side-banner-action i {
+    transform: translateX(4px);
+}

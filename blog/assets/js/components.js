@@ -1071,6 +1071,205 @@
     };
 
     // ────────────────────────────────────────────────────────────
+    // 7.1 BANNER DỌC 2 BÊN HÔNG MÀN HÌNH (VERTICAL SKYSCRAPER ADS)
+    // Tự động random và đổi ảnh sau X giây theo cấu hình trong blog-data.js
+    // ────────────────────────────────────────────────────────────
+    function initSideBanners() {
+        const sideCfg = DATA.ads?.sideBanners;
+        if (!sideCfg || sideCfg.enabled === false) return;
+        const items = sideCfg.items;
+        if (!Array.isArray(items) || items.length === 0) return;
+
+        // Nếu đã có trên DOM thì không chèn lại
+        if (document.getElementById('blog-side-banner-left') || document.getElementById('blog-side-banner-right')) return;
+
+        function resolveUrl(url) {
+            if (!url) return '#';
+            if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//') || url.startsWith('#')) {
+                return url;
+            }
+            return ROOT + url;
+        }
+
+        // Chọn 2 index ngẫu nhiên ban đầu cho 2 bên
+        let leftIdx = 0;
+        let rightIdx = items.length > 1 ? 1 : 0;
+        if (sideCfg.randomizeOnLoad && items.length > 1) {
+            leftIdx = Math.floor(Math.random() * items.length);
+            do {
+                rightIdx = Math.floor(Math.random() * items.length);
+            } while (rightIdx === leftIdx && items.length > 1);
+        }
+
+        function createBannerElement(side, initialItem) {
+            const aside = document.createElement('aside');
+            aside.id = `blog-side-banner-${side}`;
+            aside.className = `blog-side-banner blog-side-banner-${side}`;
+            aside.setAttribute('aria-label', `Quảng cáo ${side === 'left' ? 'bên trái' : 'bên phải'}`);
+
+            const isExternal = initialItem.link && (initialItem.link.startsWith('http://') || initialItem.link.startsWith('https://'));
+            const targetAttr = isExternal ? 'target="_blank" rel="noopener noreferrer sponsored"' : '';
+
+            aside.innerHTML = `
+                <div class="side-banner-wrapper">
+                    ${sideCfg.allowDismiss !== false ? `
+                    <button type="button" class="side-banner-close-btn" title="Đóng banner này" aria-label="Đóng banner">
+                        <i class="fas fa-times"></i>
+                    </button>` : ''}
+                    <a href="${resolveUrl(initialItem.link)}" class="side-banner-content" ${targetAttr}>
+                        <div class="side-banner-img-box">
+                            ${initialItem.badge ? `<span class="side-banner-badge">${initialItem.badge}</span>` : ''}
+                            <img src="${resolveUrl(initialItem.imageUrl)}" alt="${initialItem.alt || initialItem.title || ''}" class="side-banner-img" loading="lazy">
+                        </div>
+                        ${initialItem.title ? `
+                        <div class="side-banner-meta">
+                            <span class="side-banner-title">${initialItem.title}</span>
+                            <span class="side-banner-action"><i class="fas fa-arrow-right"></i> Xem ngay</span>
+                        </div>` : ''}
+                    </a>
+                </div>
+            `;
+
+            // Nút đóng banner: bấm [x] thì ẩn tạm thời, sau 30s - 1p tự hiện lại, F5 tải lại trang là hiện ngay!
+            const closeBtn = aside.querySelector('.side-banner-close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    aside.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    aside.style.opacity = '0';
+                    aside.style.pointerEvents = 'none';
+
+                    // Sau reappearSeconds (mặc định 45s, khoảng 30s-1p) tự động hiện lại với banner mới
+                    const reappearSec = Math.max(10, parseInt(sideCfg.reappearSeconds, 10) || 45);
+                    setTimeout(() => {
+                        if (aside) {
+                            const randomItem = items[Math.floor(Math.random() * items.length)];
+                            updateBannerContent(aside, randomItem);
+                            aside.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            aside.style.opacity = '1';
+                            aside.style.pointerEvents = 'auto';
+                        }
+                    }, reappearSec * 1000);
+                });
+            }
+
+            return aside;
+        }
+
+        const leftEl = createBannerElement('left', items[leftIdx]);
+        const rightEl = createBannerElement('right', items[rightIdx]);
+
+        if (leftEl) document.body.appendChild(leftEl);
+        if (rightEl) document.body.appendChild(rightEl);
+
+        // Hàm cập nhật banner mượt mà với hiệu ứng làm mờ / hiện hình
+        function updateBannerContent(aside, item) {
+            if (!aside || !aside.parentNode) return;
+            const content = aside.querySelector('.side-banner-content');
+            if (!content) return;
+
+            content.classList.add('is-swapping');
+            setTimeout(() => {
+                const isExternal = item.link && (item.link.startsWith('http://') || item.link.startsWith('https://'));
+                content.href = resolveUrl(item.link);
+                if (isExternal) {
+                    content.target = '_blank';
+                    content.rel = 'noopener noreferrer sponsored';
+                } else {
+                    content.removeAttribute('target');
+                    content.removeAttribute('rel');
+                }
+
+                // Cập nhật badge
+                const badge = content.querySelector('.side-banner-badge');
+                if (badge) {
+                    if (item.badge) {
+                        badge.textContent = item.badge;
+                        badge.style.display = '';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                } else if (item.badge) {
+                    const imgBox = content.querySelector('.side-banner-img-box');
+                    if (imgBox) {
+                        const newBadge = document.createElement('span');
+                        newBadge.className = 'side-banner-badge';
+                        newBadge.textContent = item.badge;
+                        imgBox.insertBefore(newBadge, imgBox.firstChild);
+                    }
+                }
+
+                // Cập nhật ảnh
+                const img = content.querySelector('.side-banner-img');
+                if (img) {
+                    img.src = resolveUrl(item.imageUrl);
+                    img.alt = item.alt || item.title || '';
+                }
+
+                // Cập nhật tiêu đề
+                const title = content.querySelector('.side-banner-title');
+                if (title && item.title) {
+                    title.textContent = item.title;
+                }
+
+                content.classList.remove('is-swapping');
+            }, 350);
+        }
+
+        // Tự động xoay tua / đổi ngẫu nhiên theo số giây (rotateSeconds)
+        let isPaused = false;
+        if (sideCfg.pauseOnHover !== false) {
+            [leftEl, rightEl].filter(Boolean).forEach(el => {
+                el.addEventListener('mouseenter', () => { isPaused = true; });
+                el.addEventListener('mouseleave', () => { isPaused = false; });
+            });
+        }
+
+        const rotateSec = Math.max(3, parseInt(sideCfg.rotateSeconds, 10) || 8);
+        if (items.length > 1) {
+            setInterval(() => {
+                if (isPaused) return;
+
+                if (items.length >= 3) {
+                    // Chọn ngẫu nhiên item cho bên trái khác cả leftIdx lẫn rightIdx
+                    if (leftEl && leftEl.parentNode) {
+                        let newLeft;
+                        do {
+                            newLeft = Math.floor(Math.random() * items.length);
+                        } while (newLeft === leftIdx || newLeft === rightIdx);
+                        leftIdx = newLeft;
+                        updateBannerContent(leftEl, items[leftIdx]);
+                    }
+
+                    // Sau 1.5 giây đổi tiếp bên phải tạo cảm giác sinh động
+                    setTimeout(() => {
+                        if (isPaused) return;
+                        if (rightEl && rightEl.parentNode) {
+                            let newRight;
+                            do {
+                                newRight = Math.floor(Math.random() * items.length);
+                            } while (newRight === rightIdx || newRight === leftIdx);
+                            rightIdx = newRight;
+                            updateBannerContent(rightEl, items[rightIdx]);
+                        }
+                    }, 1500);
+                } else if (items.length === 2) {
+                    // Chỉ có 2 item thì đảo qua lại
+                    const temp = leftIdx;
+                    leftIdx = rightIdx;
+                    rightIdx = temp;
+                    if (leftEl && leftEl.parentNode) updateBannerContent(leftEl, items[leftIdx]);
+                    setTimeout(() => {
+                        if (isPaused) return;
+                        if (rightEl && rightEl.parentNode) updateBannerContent(rightEl, items[rightIdx]);
+                    }, 1500);
+                }
+            }, rotateSec * 1000);
+        }
+    }
+
+    // ────────────────────────────────────────────────────────────
     // 8. TỰ ĐỘNG LẤY THỐNG KÊ GITHUB & BÌNH LUẬN GISCUS
     // ────────────────────────────────────────────────────────────
     function fetchGitHubStats() {
@@ -1173,6 +1372,7 @@
         try { renderFooter(); } catch (e) { console.error('Error renderFooter:', e); }
         try { renderBackToTop(); } catch (e) { console.error('Error renderBackToTop:', e); }
         try { window.renderBlogAds(); } catch (e) { console.error('Error renderBlogAds:', e); }
+        try { initSideBanners(); } catch (e) { console.error('Error initSideBanners:', e); }
         try { fetchGitHubStats(); } catch (e) { console.error('Error fetchGitHubStats:', e); }
         try { initGiscusComments(); } catch (e) { console.error('Error initGiscusComments:', e); }
     }
@@ -1270,6 +1470,7 @@
         renderSearchModal,
         renderFooter,
         renderAds: window.renderBlogAds,
+        renderSideBanners: initSideBanners,
         getRoot: () => ROOT
     };
 })();
