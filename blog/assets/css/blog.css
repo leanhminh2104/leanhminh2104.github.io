@@ -2434,12 +2434,12 @@ h1, h2, h3, h4, h5, h6 {
 .ad-popup-card {
     position: relative;
     width: 100%;
-    max-width: 440px;
-    background: linear-gradient(145deg, rgba(24, 14, 42, 0.95) 0%, rgba(12, 7, 22, 0.98) 100%);
-    border: 1px solid rgba(168, 85, 247, 0.35);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(168, 85, 247, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-xl);
-    padding: 1.45rem;
+    max-width: 580px;
+    background: linear-gradient(145deg, rgba(24, 14, 42, 0.97) 0%, rgba(12, 7, 22, 0.98) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(168, 85, 247, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 1.95rem 2.2rem;
     overflow: hidden;
     transform: scale(1) translateY(0);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2451,54 +2451,54 @@ h1, h2, h3, h4, h5, h6 {
 
 .ad-popup-glow {
     position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
 }
 
 .platform-tiktok .ad-popup-card {
-    border-color: rgba(0, 242, 254, 0.35);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 242, 254, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 242, 254, 0.45);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(0, 242, 254, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.25);
 }
 .platform-tiktok .ad-popup-glow {
-    background: radial-gradient(circle, rgba(0, 242, 254, 0.35) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.4) 0%, transparent 70%);
 }
 
 .platform-shopee .ad-popup-card {
-    border-color: rgba(255, 87, 34, 0.4);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 87, 34, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 87, 34, 0.5);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(255, 87, 34, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.25);
 }
 .platform-shopee .ad-popup-glow {
-    background: radial-gradient(circle, rgba(255, 87, 34, 0.35) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 87, 34, 0.4) 0%, transparent 70%);
 }
 
 .ad-popup-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.15rem;
+    margin-bottom: 1.35rem;
 }
 
 .ad-popup-badges {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.75rem;
 }
 
 .ad-popup-badge {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    padding: 0.25rem 0.65rem;
+    padding: 0.32rem 0.8rem;
     border-radius: var(--radius-full);
-    background: rgba(168, 85, 247, 0.18);
-    border: 1px solid rgba(168, 85, 247, 0.35);
-    color: #d8b4fe;
+    background: rgba(168, 85, 247, 0.2);
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    color: #e9d5ff;
 }
 .ad-popup-badge.shopee { background: rgba(238, 77, 45, 0.2); border-color: rgba(238, 77, 45, 0.4); color: #ff7a59; }
 .ad-popup-badge.tiktok { background: rgba(0, 242, 254, 0.18); border-color: rgba(0, 242, 254, 0.35); color: #00f2fe; }
@@ -2506,18 +2506,18 @@ h1, h2, h3, h4, h5, h6 {
 .ad-popup-live-indicator {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.72rem;
+    gap: 0.45rem;
+    font-size: 0.78rem;
     color: var(--text-dim);
     font-weight: 600;
 }
 
 .live-dot {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #10b981;
-    box-shadow: 0 0 8px #10b981;
+    box-shadow: 0 0 10px #10b981;
     animation: livePulse 1.8s infinite;
 }
 
@@ -2527,13 +2527,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ad-popup-close-btn {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2541,8 +2541,8 @@ h1, h2, h3, h4, h5, h6 {
     transition: var(--transition);
 }
 .ad-popup-close-btn:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.5);
     color: #f87171;
     transform: rotate(90deg);
 }
@@ -2550,27 +2550,27 @@ h1, h2, h3, h4, h5, h6 {
 .ad-popup-body {
     display: flex;
     align-items: flex-start;
-    gap: 1.15rem;
-    margin-bottom: 1.25rem;
+    gap: 1.35rem;
+    margin-bottom: 1.45rem;
 }
 
 .ad-popup-icon-wrap {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.85rem;
+    font-size: 2.3rem;
     flex-shrink: 0;
 }
 
 .ad-popup-thumb {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--radius-md);
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -2581,29 +2581,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ad-popup-title {
-    font-size: 1.02rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
     color: #fff;
     line-height: 1.35;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.45rem;
 }
 
 .ad-popup-desc {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 0.45rem;
+    font-size: 0.94rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 0.55rem;
 }
 
 .ad-popup-pricing {
     display: flex;
     align-items: baseline;
-    gap: 0.55rem;
-    margin-top: 0.3rem;
+    gap: 0.65rem;
+    margin-top: 0.35rem;
 }
 
 .ad-popup-price {
-    font-size: 1.12rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: #f59e0b;
 }
@@ -2611,15 +2611,15 @@ h1, h2, h3, h4, h5, h6 {
 .platform-tiktok .ad-popup-price { color: #00f2fe; }
 
 .ad-popup-old-price {
-    font-size: 0.8rem;
+    font-size: 0.88rem;
     color: var(--text-dim);
     text-decoration: line-through;
 }
 
 .ad-popup-discount {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 800;
-    padding: 0.12rem 0.4rem;
+    padding: 0.15rem 0.45rem;
     border-radius: 4px;
     background: rgba(239, 68, 68, 0.2);
     color: #f87171;
@@ -2629,28 +2629,28 @@ h1, h2, h3, h4, h5, h6 {
 .ad-popup-actions {
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.75rem;
 }
 
 .ad-popup-cta-btn {
     width: 100%;
-    padding: 0.75rem 1.4rem;
+    padding: 0.92rem 1.6rem;
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     color: #fff;
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-size: 1.02rem;
+    font-weight: 800;
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.45);
+    box-shadow: 0 6px 25px rgba(168, 85, 247, 0.5);
     transition: var(--transition);
 }
 .ad-popup-cta-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 26px rgba(168, 85, 247, 0.65);
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.7);
 }
 
 .platform-tiktok .ad-popup-cta-btn {
