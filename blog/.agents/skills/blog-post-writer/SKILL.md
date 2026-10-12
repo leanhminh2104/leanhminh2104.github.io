@@ -1,698 +1,519 @@
 ---
 name: blog-post-writer
 description: |
-  Skill toan dien de viet, quan ly va dang bai viet len blog ca nhan leanhminh2104.
-  Bao gom: quy tac thiet ke, cau truc HTML chuan, tich hop GitHub Pages, theo doi
-  luot xem, quan ly commit, va workflow day du tu y tuong den dang bai.
-  Repo: leanhminh2104/leanhminh2104.github.io, blog tai /blog/ subfolder.
-  Local: d:\code\laragon\www\blog | Git mirror: d:\code\Git\leanhminh2104.github.io
+  Skill tiêu chuẩn và toàn diện để viết, định dạng, quản lý và tự động xuất bản bài viết
+  cho blog cá nhân leanhminh2104 (https://leanhminh2104.github.io/blog/).
+  Cung cấp 1 FORM CẤU TRÚC CHUẨN DUY NHẤT để mọi bài viết tiếp theo luôn đồng bộ 100%
+  về mặt giao diện, trải nghiệm đọc, SEO, mục lục (TOC), bình luận Giscus và CI/CD.
+  Local: d:\code\laragon\www\blog | Git mirror: d:\code\laragon\www\leanhminh2104.github.io
 ---
 
-# Blog Post Writer — Huong Dan Toan Dien
+# Blog Post Writer — Cẩm Nang Toàn Diện Về Viết & Tự Động Hóa Bài Viết
 
-## 1. KIEN TRUC TONG QUAN
+Tài liệu này là **bộ quy chuẩn tối cao và đầy đủ nhất** cho blog **leanhminh2104**. Dù là Developer hay AI Assistant khi viết bài mới, **bắt buộc phải tuân theo 1 FORM DUY NHẤT** được hướng dẫn chi tiết dưới đây. Mọi bài viết sẽ có cùng một phong cách thiết kế Cyberpunk Glassmorphism sang trọng, trải nghiệm đọc xuất sắc, tự động sinh mục lục, tự động cập nhật bài trước/sau và tự động deploy qua GitHub Actions.
 
-Blog la Static Blog HTML/CSS/JS thuan, khong can backend, khong can build tool.
+---
 
-| Thuoc tinh | Gia tri |
+## 📑 MỤC LỤC CẨM NANG
+1. [Kiến Trúc & Các Nguyên Tắc Bất Di Bất Dịch](#1-kien-truc--nguyen-tac)
+2. [Bộ Khung HTML Chuẩn 100% (The Full Blueprint)](#2-bo-khung-html-chuan)
+3. [Thư Viện Component & Snippet Nội Dung Chuẩn](#3-thu-vien-component)
+4. [Tiêu Chuẩn Biên Soạn Nội Dung (Editorial Standards)](#4-tieu-chuan-bien-soan)
+5. [Quy Trình 5 Bước Xuất Bản & Tự Động Hóa](#5-quy-trinh-xuat-ban)
+6. [Cấu Hình Dữ Liệu Bài Viết Trong `blog-data.js`](#6-cau-hinh-du-lieu)
+7. [Checklist Kiểm| Thuộc tính | Giá trị quy chuẩn |
 |---|---|
-| URL Local (Laragon) | http://blog.test/ |
-| URL GitHub Pages | https://leanhminh2104.github.io/blog/ |
-| CSS | 1 file blog.css (import stars.css) tai assets/css/ |
-| JS | 1 file core.js tai assets/js/ |
-| Font | Inter + Fira Code (Google Fonts CDN) |
-| Icons | Font Awesome 6.5 (CDN) |
-| Design | DaLyMMO Dark Purple Glassmorphism (copy tu qlct) |
-| Git Repo | leanhminh2104/leanhminh2104.github.io (branch: main) |
-| Deploy script | d:\code\laragon\www\blog\deploy.bat |
+| **Domain Trực Tuyến** | `https://leanhminh2104.github.io/blog/` |
+| **Môi Trường Local** | `d:\code\laragon\www\blog\` (`http://blog.test/`) |
+| **Git Mirror Local** | `d:\code\laragon\www\leanhminh2104.github.io\blog\` |
+| **Design Style** | Dark Cyberpunk Glassmorphism (`#06070a`, tím `--primary: #a855f7`, cyan `#38bdf8`) |
+| **Phông Chữ** | `Inter` (Nội dung) + `Fira Code` (Code/Monospace) + `Orbitron` (Logo) |
+| **Đường Dẫn Tương Đối** | Bài viết nằm ở cấp 2 (`tech/<slug>/` hoặc `life/<slug>/`) $\rightarrow$ Đường dẫn tới `assets` **LUÔN LÀ** `../../assets/...` |
+| **Hệ Thống CSS** | Dùng chung 100% `assets/css/blog.css` — Tuyệt đối không viết CSS riêng lẻ hoặc inline |
 
-QUY TAC CO BAN:
-- KHONG them style inline vao bai viet moi (tru nhung gi template da co)
-- KHONG viet JS rieng cho tung bai
-- Chi them style moi neu la component hoan toan moi chua co trong blog.css
-
----
-
-## 2. CAU TRUC THU MUC
-
-```
-blog/
-├── index.html                   (Trang chu - danh sach bai viet)
-├── deploy.bat                   (Script day len GitHub 1-click)
-├── README.md
-├── assets/
-│   ├── css/
-│   │   ├── blog.css             (CSS DUY NHAT cho toan bo blog)
-│   │   └── stars.css            (Hieu ung sao - duoc import boi blog.css)
-│   └── js/
-│       └── core.js              (JS DUY NHAT cho toan bo blog)
-├── tech/
-│   ├── index.html               (Trang danh muc Cong nghe)
-│   └── [slug]/
-│       └── index.html           (File HTML bai viet)
-├── life/
-│   ├── index.html               (Trang danh muc Cuoc song)
-│   └── [slug]/
-│       └── index.html
-└── _template/
-    └── post-template.html       (Mau goc de tao bai moi)
-```
-
-Quy tac dat ten slug: chu thuong, gach ngang (-), khong dau tieng Viet
-Vi du: laravel-tips, cuoc-song-dev, mysql-optimize-tips
-
-Duong dan tuong doi theo cap thu muc:
-- index.html (root): ./assets/css/blog.css
-- tech/index.html: ../assets/css/blog.css
-- tech/[slug]/index.html: ../../assets/css/blog.css
+### ⛔ 5 ĐIỀU CẤM KỴ:
+1. **KHÔNG viết CSS inline** (`style="..."`) tùy tiện trong các thẻ nội dung bài viết. Chỉ sử dụng hệ thống class đã được định nghĩa sẵn trong `blog.css`.
+2. **KHÔNG viết JavaScript riêng cho từng bài**. Toàn bộ tính năng (Mục lục TOC, thanh tiến trình đọc, nút copy code, bình luận Giscus, tìm kiếm, Header, Footer, Banner dọc, Popup) đã được xử lý tập trung trong `assets/js/core.js` và `assets/js/components.js`.
+3. **KHÔNG dùng ảnh cover trừu tượng/vô nghĩa**. Ảnh cover bài viết (tỷ lệ 16:9) phải thể hiện trực quan chủ đề: nhìn cái là biết bài viết nói về điều gì (logo thương hiệu, giao diện thực tế, thiết bị, text chủ đề tiếng Việt rõ ràng).
+4. **KHÔNG sửa thủ công `index.html` hoặc các bài viết khác** để thêm link bài mới. Hãy để kịch bản `scripts/master-build.js` tự động làm việc này.
+5. **KHÔNG chèn API Key, mật khẩu thật hoặc token bí mật** vào bài viết. Luôn che mờ hoặc dùng ví dụ giả định (`sk-proj-xxxx...`, `ghp_xxxx...`).
 
 ---
 
-## 3. WORKFLOW VIET BAI MOI (6 buoc)
+<a id="2-bo-khung-html-chuan"></a>
+## 2. BỘ KHUNG HTML CHUẨN 100% (THE FULL BLUEPRINT)
 
-Buoc 1: Xac dinh thong tin
-- title, slug, category (tech|life), date, emoji, tags, excerpt
+Khi tạo bài viết mới, tệp `index.html` của bài viết **PHẢI CHỨA ĐỦ 100% CẤU TRÚC SAU ĐÂY** (Mẫu gốc tại `_template/post-template.html`):
 
-Buoc 2: Tao thu muc va copy template
-  mkdir blog\tech\[slug]
-  copy blog\_template\post-template.html blog\tech\[slug]\index.html
-
-Buoc 3: Dien thong tin vao HTML (xem Section 4)
-
-Buoc 4: Them card vao index.html (trang chu)
-
-Buoc 5: Them card vao tech/index.html hoac life/index.html
-
-Buoc 6: Deploy
-  deploy.bat
-
----
-
-## 4. CAU TRUC HTML CHUAN BAI VIET
-
-Cac vi tri can sua trong template (danh dau []):
-
-### HEAD (SEO)
 ```html
-<meta name="description" content="[Mo ta 120-160 ky tu cho Google]">
-<meta property="og:title" content="[Tieu de] -- Le Anh Minh Blog">
-<meta property="og:description" content="[Mo ta ngan]">
-<meta property="og:url" content="https://leanhminh2104.github.io/blog/[category]/[slug]/">
-<meta property="article:published_time" content="[YYYY-MM-DD]">
-<title>[Tieu de bai viet] -- Le Anh Minh Blog</title>
-<!-- CSS (KHONG thay doi duong dan) -->
-<link rel="stylesheet" href="../../assets/css/blog.css">
-```
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
 
-### HEADER NAVIGATION (them class="active" dung danh muc)
-```html
-<nav class="blog-nav">
-  <a href="../../">Trang chu</a>
-  <a href="../../tech/" class="active">Cong nghe</a>  <!-- neu bai la Tech -->
-  <a href="../../life/">Cuoc song</a>
-</nav>
-```
+    <!-- ============================================================
+         1. SEO & OPENGRAPH META (Bắt buộc chỉnh sửa)
+         ============================================================ -->
+    <meta name="description" content="[Mô tả cuốn hút từ 120-160 ký tự chuẩn SEO Google]">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[Tiêu đề bài viết]">
+    <meta property="og:description" content="[Mô tả ngắn gọn hiển thị khi chia sẻ Facebook/Zalo]">
+    <meta property="og:image" content="https://leanhminh2104.github.io/blog/assets/images/posts/[slug]/cover.jpg">
+    <title>[Tiêu đề bài viết] — Lê Anh Minh Blog</title>
 
-### BREADCRUMB
-```html
-<nav class="breadcrumb animate-up">
-  <a href="../../"><i class="fas fa-house"></i> Trang chu</a>
-  <i class="fas fa-chevron-right"></i>
-  <a href="../">[Ten danh muc]</a>
-  <i class="fas fa-chevron-right"></i>
-  <span>[Ten rut gon bai viet]</span>
-</nav>
-```
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-### ARTICLE HEADER
-```html
-<header class="article-header animate-up">
-  <h1 class="article-title">[Tieu de day du] [emoji]</h1>
-  <div class="article-meta">
-    <span class="article-meta-item"><i class="fas fa-user"></i> Le Anh Minh</span>
-    <span class="article-meta-item"><i class="fas fa-calendar"></i> [Ngay thang nam]</span>
-    <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">dang tinh...</span></span>
-    <!-- GitHub commit date (xem Section 8) -->
-    <span class="article-meta-item"><i class="fas fa-rotate"></i> Cap nhat: <span id="last-updated">...</span></span>
-    <!-- View counter (xem Section 9) -->
-    <span class="article-meta-item" id="view-counter">
-      <i class="fas fa-eye"></i> <span id="view-count">...</span> luot xem
-    </span>
-  </div>
-  <div class="article-tags">
-    <!-- Badge mau theo danh muc: Tech=badge-info, Life=badge-success -->
-    <span class="badge badge-info"><i class="fas fa-code"></i> Tech</span>
-    <span class="badge badge-primary">[Tag 2]</span>
-  </div>
-</header>
-```
+    <!-- CSS dùng chung toàn Blog (Đường dẫn tương đối 2 cấp) -->
+    <link rel="stylesheet" href="../../assets/css/blog.css">
+</head>
+<body>
 
-### NOI DUNG BAI VIET (cac the h2, h3 tu dong tao TOC)
-```html
-<p>[Doan mo dau]</p>
+<!-- Thanh tiến trình đọc trên cùng -->
+<div class="reading-progress" id="reading-progress"></div>
 
-<blockquote>"[Trich dan noi bat]"</blockquote>
-
-<h2>1. [Tieu de muc chinh]</h2>
-<p>[Noi dung...]</p>
-
-<!-- Code block: them class language-xxx -->
-<pre><code class="language-php">
-$users = User::where('active', true)->get();
-</code></pre>
-
-<h2>2. [Tieu de muc thu hai]</h2>
-<ul>
-  <li>[Diem 1]</li>
-  <li>[Diem 2]</li>
-</ul>
-
-<h3>[Tieu de phu]</h3>
-<p>[Chi tiet hon...]</p>
-
-<h2>Ket luan</h2>
-<p>[Tom luoc + loi khuyen]</p>
-
-<hr>
-
-<!-- Navigation bai ke tiep -->
-<div class="glass-card" style="margin-top:2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
-  <div>
-    <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; font-weight:700;">Bai ke tiep</div>
-    <a href="../../" style="color:#fff; font-weight:700; text-decoration:none; display:block; margin-top:0.2rem;">
-      [Ten bai ke tiep]
-    </a>
-  </div>
-  <a href="../../" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;">
-    Doc tiep <i class="fas fa-arrow-right"></i>
-  </a>
+<!-- Nền trời sao động -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
 </div>
-```
 
-### SIDEBAR (tu dong tao TOC tu h2/h3)
-```html
-<aside class="article-sidebar">
-  <!-- Muc luc - TU DONG tao boi core.js -->
-  <div class="glass-card toc-card" id="toc-card">
-    <div class="toc-title"><i class="fas fa-list-ul"></i> Muc luc</div>
-    <ul class="toc-list" id="toc-list"></ul>
-  </div>
+<!-- TOPBAR / HEADER (Tự động tạo bởi components.js) -->
+<div id="site-header"></div>
 
-  <!-- The tac gia -->
-  <div class="glass-card author-card">
-    <div class="author-avatar">&#x1F468;&#x200D;&#x1F4BB;</div>
-    <div style="font-weight:700; color:#fff;">Le Anh Minh</div>
-    <div style="font-size:0.75rem; color:var(--text-dim);">Full-stack Developer</div>
-    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer"
-       class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
-      <i class="fab fa-github"></i> Theo doi GitHub
-    </a>
-  </div>
+<!-- NỘI DUNG CHÍNH -->
+<main class="blog-main">
+    <div class="blog-container">
 
-  <!-- GitHub Stats Card -->
-  <div class="glass-card" style="padding:1rem;">
-    <div style="font-size:0.72rem; color:var(--text-dim); font-weight:700; text-transform:uppercase; margin-bottom:0.75rem;">
-      <i class="fab fa-github" style="color:#c084fc;"></i> GitHub Stats
-    </div>
-    <div id="github-stats-sidebar"><div style="font-size:0.78rem; color:var(--text-muted);">Dang tai...</div></div>
-  </div>
-</aside>
-```
+        <!-- ========================================================
+             2. BREADCRUMB (Điều hướng phân cấp)
+             ======================================================== -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../">[Tên chuyên mục: Công nghệ hoặc Cuộc sống]</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>[Tên rút gọn bài viết]</span>
+        </nav>
 
-### MOBILE BOTTOM NAV (them class active cho dung trang)
-```html
-<div class="bottom-nav-wrapper">
-  <div class="bottom-nav-inner">
-    <div class="bottom-nav-glass">
-      <div class="bottom-nav-gradients"></div>
-      <nav class="bottom-nav-menu">
-        <a href="../../" class="nav-item">
-          <i class="fas fa-house nav-icon"></i>
-          <span class="nav-text">Trang chu</span>
-        </a>
-        <a href="../../tech/" class="nav-item active"> <!-- them active neu bai la tech -->
-          <i class="fas fa-code nav-icon"></i>
-          <span class="nav-text">Cong nghe</span>
-        </a>
-        <div class="fab-container">
-          <div class="fab-ping"></div>
-          <a href="../../" class="fab-btn" title="Trang chu">
-            <i class="fas fa-pen-nib"></i>
-          </a>
-          <div class="fab-placeholder"></div>
-          <span class="fab-text">Kham pha</span>
-        </div>
-        <a href="../../life/" class="nav-item"> <!-- them active neu bai la life -->
-          <i class="fas fa-heart nav-icon"></i>
-          <span class="nav-text">Cuoc song</span>
-        </a>
-        <button type="button" class="nav-item" id="open-drawer-btn">
-          <i class="fas fa-bars nav-icon"></i>
-          <span class="nav-text">Menu</span>
-        </button>
-      </nav>
-    </div>
-  </div>
-</div>
-```
+        <div class="article-layout">
 
-### SCRIPT CUOI FILE
-```html
-<!-- JS Core - KHONG thay doi duong dan -->
+            <!-- CỘT TRÁI: Thân bài viết -->
+            <article class="article-body">
+
+                <!-- Article Header Hero -->
+                <header class="article-header animate-up">
+                    <h1 class="article-title">
+                        [Tiêu đề bài viết đầy đủ] 🚀
+                    </h1>
+
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> [Ngày đăng, VD: 28 tháng 9, 2026]</span>
+                        <!-- Tự động tính thời gian đọc dựa trên số từ bởi core.js -->
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">đang tính...</span></span>
+                    </div>
+
+                    <div class="article-tags">
+                        <!-- Chuyên mục: badge-info (Tech) hoặc badge-success (Life) -->
+                        <span class="badge badge-info"><i class="fas fa-code"></i> [Chuyên mục]</span>
+                        <span class="badge badge-primary">Tag 1</span>
+                        <span class="badge badge-primary">Tag 2</span>
+                        <span class="badge badge-primary">Tag 3</span>
+                    </div>
+                </header>
+
+                <!-- ====================================================
+                     3. THÂN NỘI DUNG CHUẨN FORM
+                     ==================================================== -->
+                
+                <!-- Đoạn mở đầu (Lead Hook) -->
+                <p>
+                    [Đoạn mở đầu giới thiệu bài toán thực tế. Nêu khó khăn thường gặp và giải pháp mà bài viết đem lại].
+                </p>
+
+                <!-- Hộp Tóm tắt nhanh (Callout Box) -->
+                <blockquote>
+                    💡 <b>Tóm tắt nhanh:</b> [1-2 câu ngắn gọn cô đọng toàn bộ giá trị cốt lõi của bài viết].
+                </blockquote>
+
+                <!-- MỤC 1 (Heading h2 có số thứ tự để TOC tự bắt) -->
+                <h2>1. [Tiêu đề mục 1: Bản chất vấn đề / Khái niệm]</h2>
+                <p>
+                    [Giải thích chi tiết, cơ chế hoạt động hoặc nguyên nhân gốc rễ].
+                </p>
+
+                <!-- KHỐI HÌNH ẢNH MINH HỌA CHUẨN CAPTION & WATERMARK (Xem chi tiết Mục 3-D) -->
+                <figure class="post-figure">
+                    <img src="../../assets/images/posts/[slug]/hinh-1.png" alt="[Mô tả ảnh]" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 1:</b> [Mô tả chi tiết nội dung ảnh — bắt buộc canh giữa, chữ Ảnh in đậm, toàn bộ in nghiêng]</em>
+                    </figcaption>
+                </figure>
+
+                <!-- Khối mã nguồn minh họa -->
+                <pre><code class="language-php">// [Mã nguồn mẫu chuẩn]
+namespace App\Services;
+
+class ExampleService {
+    public function execute(): void {
+        // Xử lý logic
+    }
+}</code></pre>
+
+                <!-- MỤC 2 -->
+                <h2>2. [Tiêu đề mục 2: Hướng dẫn triển khai từng bước]</h2>
+                <p>
+                    [Nội dung hướng dẫn chi tiết]:
+                </p>
+                <ul>
+                    <li><b>Bước 1:</b> [Mô tả chi tiết].</li>
+                    <li><b>Bước 2:</b> [Mô tả chi tiết kèm lưu ý].</li>
+                    <li><b>Bước 3:</b> [Mô tả chi tiết và kiểm tra].</li>
+                </ul>
+
+                <!-- MỤC 3 -->
+                <h2>3. [Tiêu đề mục 3: Kinh nghiệm thực chiến & Best Practices]</h2>
+                <p>
+                    [Các cạm bẫy cần tránh và mẹo tối ưu hiệu năng].
+                </p>
+
+                <!-- Vị trí Quảng Cáo Giữa Bài (Shopee / TikTok / Sponsor tự động nạp từ blog-data.js) -->
+                <div class="ad-slot-container" data-slot="article-mid" style="margin: 2rem 0;"></div>
+
+                <!-- MỤC TỔNG KẾT -->
+                <h2>4. Tổng kết</h2>
+                <p>
+                    [Đoạn kết bài ngắn gọn, nhấn mạnh lại giá trị và gợi ý các chủ đề tiếp theo].
+                </p>
+
+                <!-- Vị trí Quảng Cáo Cuối Bài (Shopee / TikTok Hot Deal tự động nạp từ blog-data.js) -->
+                <div class="ad-slot-container" data-slot="article-bottom" style="margin: 2rem 0;"></div>
+
+                <hr>
+
+                <!-- ====================================================
+                     4. ĐIỀU HƯỚNG BÀI TRƯỚC / BÀI SAU
+                     (Được tự động đồng bộ bởi scripts/master-build.js)
+                     ==================================================== -->
+                <div class="post-nav animate-up">
+                    <a href="../../" class="post-nav-card next">
+                        <span class="post-nav-label">Khám phá thêm <i class="fas fa-house"></i></span>
+                        <span class="post-nav-title">Về trang chủ Blog xem bài viết mới</span>
+                    </a>
+                </div>
+
+                <!-- ====================================================
+                     5. BÌNH LUẬN GISCUS (Kết nối GitHub Discussions)
+                     ==================================================== -->
+                <div class="article-comments-section" style="margin-top: 3rem;">
+                    <h3 style="font-size:1.15rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                        <i class="fas fa-comments" style="color:var(--primary);"></i> Bình luận & Thảo luận
+                    </h3>
+                    <div id="comments"></div>
+                </div>
+
+            </article>
+
+            <!-- CỘT PHẢI: Sticky Sidebar -->
+            <aside class="article-sidebar">
+
+                <!-- Mục lục tự động (TOC) -->
+                <div class="glass-card toc-card" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Tự động sinh bởi core.js từ các thẻ h2, h3 -->
+                    </ul>
+                </div>
+
+                <!-- Thẻ thông tin tác giả -->
+                <div class="glass-card author-card">
+                    <div class="author-avatar">👨‍💻</div>
+                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Lê Anh Minh</div>
+                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Full-stack Developer</div>
+                    <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.6; margin-top:0.6rem;">
+                        Chia sẻ kiến thức lập trình, công nghệ và bài học cuộc sống.
+                    </p>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
+                        <i class="fab fa-github"></i> Theo dõi GitHub
+                    </a>
+                </div>
+
+                <!-- Vị trí Quảng Cáo / Affiliate Sidebar (Shopee / TikTok Hot Deal) -->
+                <div id="sidebar-ad-slot" style="margin-top: 1.5rem;"></div>
+
+            </aside>
+
+        </div><!-- /article-layout -->
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Chân trang & Mobile Bottom Dock (Tự động tạo bởi components.js) -->
+<div id="site-footer"></div>
+<div id="site-bottom-dock"></div>
+
+<!-- Nạp Scripts cốt lõi -->
+<script src="../../assets/js/blog-data.js"></script>
+<script src="../../assets/js/components.js"></script>
 <script src="../../assets/js/core.js"></script>
-
-<!-- GitHub Integration -->
-<script>
-const POST_PATH = 'tech/laravel-tips'; // Doi theo bai hien tai
-// Tai GitHub stats sidebar
-(async () => {
-  try {
-    // Load last commit date
-    const commitRes = await fetch(
-      'https://api.github.com/repos/leanhminh2104/leanhminh2104.github.io/commits?path=blog/' + POST_PATH + '/index.html&per_page=1'
-    );
-    const commits = await commitRes.json();
-    if (commits[0]) {
-      const d = new Date(commits[0].commit.committer.date);
-      const el = document.getElementById('last-updated');
-      if (el) el.textContent = d.toLocaleDateString('vi-VN');
-    }
-
-    // Load GitHub profile stats
-    const userRes = await fetch('https://api.github.com/users/leanhminh2104');
-    const user = await userRes.json();
-    const statsEl = document.getElementById('github-stats-sidebar');
-    if (statsEl) {
-      statsEl.innerHTML =
-        '<div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">' +
-        '<div style="text-align:center; padding:0.5rem; background:rgba(168,85,247,0.08); border-radius:10px;">' +
-        '<div style="font-size:1.1rem; font-weight:800; color:#c084fc;">' + user.public_repos + '</div>' +
-        '<div style="font-size:0.65rem; color:var(--text-dim);">Repos</div></div>' +
-        '<div style="text-align:center; padding:0.5rem; background:rgba(56,189,248,0.08); border-radius:10px;">' +
-        '<div style="font-size:1.1rem; font-weight:800; color:#38bdf8;">' + user.followers + '</div>' +
-        '<div style="font-size:0.65rem; color:var(--text-dim);">Followers</div></div>' +
-        '</div>';
-    }
-  } catch(e) { console.log('GitHub API load error:', e); }
-})();
-</script>
+</body>
+</html>
 ```
 
 ---
 
-## 5. DESIGN TOKENS (MAU SAC VA LOP KINH)
+<a id="3-thu-vien-component"></a>
+## 3. THƯ VIỆN COMPONENT, HÌNH ẢNH & QUY CHUẨN THIẾT KẾ
 
-Mau sac chinh (CSS variables trong :root):
-- --primary: #a855f7 (tim chinh)
-- --primary-hover: #c084fc (tim sang hon)
-- --accent: #6366f1 (indigo phu)
-- --success: #10b981 (xanh la - Life category)
-- --warning: #f59e0b (vang - Coming Soon)
-- --danger: #ef4444 (do)
-- --text-main: #ffffff
-- --text-muted: #cbd5e1
-- --text-dim: #94a3b8
+### A. Quy chuẩn Ảnh Bìa Đại Diện (Post Cover 16:9)
+Mỗi bài viết **bắt buộc phải có ảnh cover tỷ lệ 16:9** lưu tại thư mục `assets/images/posts/[slug]/cover.jpg`:
+- **Độ phân giải khuyến nghị:** `1280x720` px hoặc `1200x675` px.
+- **Tiêu chuẩn nội dung ảnh cover:**
+  - **Trực quan 100%:** Nhìn lướt qua là biết ngay bài viết nói về chủ đề gì.
+  - **Yếu tố nhận diện:** Phải chứa logo thương hiệu chính thức (Viettel, Google, YouTube, ACB, Laravel...), giao diện ứng dụng hoặc thiết bị minh họa thực tế.
+  - **Typography nổi bật:** Tiêu đề / từ khóa chính in tiếng Việt rõ ràng, tương phản cao, badge tính năng nổi bật (ví dụ: `120GB DATA`, `AI ASSISTANT`, `ELOQUENT TIPS`).
+  - ⛔ **Tuyệt đối cấm:** Dùng các khối hình học trừu tượng 3D, cầu xoắn neon vô nghĩa không liên quan đến bài viết.
 
-Cac lop Glass (kinh mo):
-- --glass-bg: rgba(147,51,234,0.010) - rat trong suot
-- --glass-bg-2: rgba(168,85,247,0.025) - hover state
-- --glass-border: rgba(168,85,247,0.12) - vien tim mo
-- --glass-blur: blur(20px)
+### B. Quy chuẩn Chú Thích Hình Ảnh (Image Caption)
+Toàn bộ hình ảnh minh họa trong bài viết phải đặt trong thẻ `<figure class="post-figure">` với cấu trúc chuẩn:
+```html
+<figure class="post-figure">
+    <img src="../../assets/images/posts/[slug]/ten-anh.png" alt="[Mô tả ảnh]" loading="lazy">
+    <figcaption>
+        <em><b>Ảnh 1:</b> Thông cáo báo chí chính thức từ Fanpage Thông tin Chính phủ</em>
+    </figcaption>
+</figure>
+```
+**Yêu cầu nghiêm ngặt:**
+1. Vị trí chú thích: **Canh chính giữa ảnh** (`text-align: center; margin: 0 auto;`).
+2. Chữ `Ảnh X:` phải **in đậm** (`<b>Ảnh 1:</b>`).
+3. Toàn bộ nội dung chú thích phải **in nghiêng** (`<em>...</em>`).
+4. Khung ảnh có bo góc `border-radius: 12px;`, viền kính nhẹ và đổ bóng nổi sang trọng theo đúng chuẩn Cyberpunk.
 
-Border radius:
-- --radius-sm: 8px
-- --radius-md: 14px
-- --radius-lg: 20px
-- --radius-xl: 28px (card lon chinh)
-- --radius-full: 9999px (pill button, badge)
+### C. Đóng Dấu Chìm Bản Quyền Chống Sao Chép (Watermark `DALYMMO.COM`)
+Để chống việc các website đối thủ tự động cào bài (clone) và đánh cắp hình ảnh minh họa:
+- Toàn bộ ảnh chụp màn hình, ảnh tài liệu trong bài viết **phải được đóng dấu chìm `DALYMMO.COM`**.
+- **Quy cách đóng dấu:**
+  - Chữ nằm **xiên / chéo 1 góc** khoảng `22° - 25°` vắt ngang qua ảnh.
+  - Màu chữ: Trắng có bóng đổ đen mờ nhẹ (`rgba(255, 255, 255, 110)`).
+  - Độ mờ: Vừa đủ để bảo vệ bản quyền nhưng **không làm cản trở việc đọc thông tin** trên ảnh.
+- **Script Python mẫu tự động đóng watermark (Pillow):**
+```python
+from PIL import Image, ImageDraw, ImageFont
+
+def add_watermark(input_path, output_path, text="DALYMMO.COM"):
+    im = Image.open(input_path).convert("RGBA")
+    w, h = im.size
+    
+    txt_layer = Image.new("RGBA", (w, h), (255, 255, 255, 0))
+    draw = ImageDraw.Draw(txt_layer)
+    font_size = max(28, int(min(w, h) * 0.055))
+    font = ImageFont.truetype("arialbd.ttf", font_size)
+    
+    # Tạo stamp xoay nghiêng 23 độ
+    stamp = Image.new("RGBA", (int(w * 0.8), font_size * 3), (255, 255, 255, 0))
+    s_draw = ImageDraw.Draw(stamp)
+    s_draw.text((10, 10), text, font=font, fill=(255, 255, 255, 115), stroke_fill=(0, 0, 0, 70), stroke_width=2)
+    rotated = stamp.rotate(23, expand=True, resample=Image.BICUBIC)
+    
+    rw, rh = rotated.size
+    txt_layer.paste(rotated, ((w - rw) // 2, (h - rh) // 2), rotated)
+    
+    out = Image.alpha_composite(im, txt_layer).convert("RGB")
+    out.save(output_path, quality=95)
+```
+
+### D. Hệ Thống Banner Dọc 2 Bên Màn Hình (Skyscraper Side Banners)
+Blog trang bị hệ thống 2 banner dọc cố định ở 2 bên mép màn hình:
+1. **Thiết kế lấp đầy khoảng trống:**
+   - Chiều rộng co giãn tự động theo kích thước màn hình bằng CSS:
+     `width: clamp(200px, calc(50vw - 570px - 36px), 380px);` (~354px trên màn hình Full HD 1920x1080).
+   - Nằm chính giữa 2 khoảng trống gutter bên trái và bên phải bài viết.
+   - Tự động ẩn trên màn hình `< 1360px` để không đè vào khung bài viết.
+2. **Cơ chế Đóng & F5 Tái Xuất Hiện (Dismiss & Refresh Rules):**
+   - Khi độc giả bấm nút đóng `[x]`, banner **chỉ tạm ẩn trong 45 giây** (`reappearSeconds: 45`). Sau 45s sẽ tự động mờ dần hiện lại với nội dung banner ngẫu nhiên.
+   - **Tuyệt đối KHÔNG lưu vĩnh viễn vào `sessionStorage`:** Khi độc giả F5 (tải lại trang) hoặc chuyển trang, **banner lập tức hiển thị lại đầy đủ**.
+3. **Cấu hình dữ liệu trong `assets/js/blog-data.js`:**
+   Được quản lý trong `BLOG_DATA.ads.sideSkyscrapers`:
+   - `enabled: true`
+   - `reappearSeconds: 45`
+   - `left`: Danh sách các banner bên trái (random luân phiên sau 35s).
+   - `right`: Danh sách các banner bên phải (random luân phiên sau 35s).
+
+### E. Popup Quảng Cáo Nổi (Floating Ad Popup)
+- Được cấu hình tại `BLOG_DATA.ads.floatingPopup`.
+- Kích thước thẻ hiển thị to rõ, sang trọng: `max-width: 580px`, padding `2rem 2.2rem`, icon kích thước lớn `72x72px`, tiêu đề `1.25rem` font-weight 800, nút bấm CTA lớn `1.02rem`.
+- Cơ chế xuất hiện sau độ trễ `delaySeconds: 15`.
+
+### F. Khối Code chuẩn (Code Block)
+Luôn đặt class `language-{ngôn_ngữ}` trên thẻ `<code>`. Hệ thống `core.js` sẽ tự động hiển thị nhãn ngôn ngữ và gắn nút **Copy Mã**:
+```html
+<pre><code class="language-bash"># Cài đặt qua Composer
+composer require laravel/sanctum</code></pre>
+```
+
+### G. Hộp Ghi Chú & Cảnh Báo (Callout / Alert Boxes)
+- **Ghi chú / Mẹo (Tip):**
+```html
+<blockquote>
+    💡 <b>Mẹo tối ưu:</b> Luôn sử dụng <code>select()</code> để chỉ lấy các cột cần thiết thay vì <code>select *</code>.
+</blockquote>
+```
+
+- **Cảnh báo quan trọng (Warning):**
+```html
+<blockquote style="border-left-color: var(--warning);">
+    ⚠️ <b>Lưu ý quan trọng:</b> Hãy đảm bảo đã sao lưu cơ sở dữ liệu trước khi chạy lệnh migration này.
+</blockquote>
+```
+
+- **Nguy hiểm / Bảo mật (Security / Danger):**
+```html
+<blockquote style="border-left-color: var(--danger);">
+    🛑 <b>Cảnh báo bảo mật:</b> Tuyệt đối không commit tệp <code>.env</code> lên GitHub công khai!
+</blockquote>
+```
+
+### H. Vị trí Chèn Quảng Cáo Nội Dung (Article Ads)
+- Giữa bài: `<div class="ad-slot-container" data-slot="article-mid" style="margin: 2rem 0;"></div>`
+- Cuối bài: `<div class="ad-slot-container" data-slot="article-bottom" style="margin: 2rem 0;"></div>`
+- Sidebar: `<div id="sidebar-ad-slot" style="margin-top: 1.5rem;"></div>`
 
 ---
 
-## 6. COMPONENT CSS SAN CO
+<a id="4-tieu-chuan-bien-soan"></a>
+## 4. TIÊU CHUẨN BIÊN SOẠN NỘI DUNG (EDITORIAL STANDARDS)
 
-### Badge / Tag
-```html
-<span class="badge badge-info"><i class="fas fa-code"></i> Tech</span>
-<span class="badge badge-success"><i class="fas fa-heart"></i> Life</span>
-<span class="badge badge-primary">Laravel</span>
-<span class="badge badge-warning">Coming Soon</span>
-<span class="badge badge-danger">Hot</span>
-```
+### 1. Công thức đặt Tiêu đề (Headline Formula):
+- **Cấu trúc:** `[Số lượng hoặc Hành động] + [Từ khóa chính] + [Lợi ích thực tế] + [Emoji]`
+- **Ví dụ chuẩn:**
+  - `Gói Viettel YT150, YT200 Tặng YouTube Premium: Sự Thật & Lưu Ý 📱`
+  - `Nâng Cấp Google Gemini Advanced 18 Tháng Bản Quyền: Review & Đánh Giá Chi Tiết ✨`
+  - `Cơ Chế Duy Trì YouTube Premium Và Cách Fix Lỗi Family Khi Bị Đổi Quốc Gia 🌍`
+  - `Cấu hình thông báo biến động số dư ACB về Email & API 📲`
 
-### Button
-```html
-<a href="#" class="btn btn-primary">Doc tiep <i class="fas fa-arrow-right"></i></a>
-<a href="#" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-```
+### 2. Định dạng Slug URL:
+- Chỉ dùng chữ thường, không dấu, ngăn cách bằng dấu gạch ngang (`-`).
+- Không chứa ký tự đặc biệt, không dài quá 6-8 từ.
+- Ví dụ: `tech/viettel-yt150-yt200-youtube-premium/`, `tech/gemini-pro-18-thang-jio/`.
 
-### Glass Card
-```html
-<div class="glass-card">
-  <h3>Tieu de</h3>
-  <p>Noi dung</p>
-</div>
-```
-
-### Code Block (tu dong co nut Copy)
-```html
-<pre><code class="language-php">$users = User::all();</code></pre>
-<pre><code class="language-javascript">const x = 1;</code></pre>
-<pre><code class="language-bash">php artisan migrate</code></pre>
-<pre><code class="language-sql">SELECT * FROM users;</code></pre>
-```
-Ngon ngu ho tro: php, javascript, python, bash, sql, html, css, json, yaml
-
-### Blockquote
-```html
-<blockquote>"Cau trich dan quan trong can lam noi bat."</blockquote>
-```
-
-### Animation
-```html
-<div class="animate-up">Xuat hien voi hieu ung truot len</div>
-<div class="reveal">Card xuat hien khi scroll den</div>
-```
-
-### Info/Warning Box
-```html
-<!-- Meo hay -->
-<div class="glass-card" style="border-color:rgba(168,85,247,0.4); background:rgba(168,85,247,0.06);">
-  <div style="font-weight:700; color:#c084fc; margin-bottom:0.5rem;"><i class="fas fa-lightbulb"></i> Meo hay</div>
-  <p style="color:var(--text-muted); font-size:0.875rem; margin:0;">[Noi dung tip]</p>
-</div>
-
-<!-- Luu y -->
-<div class="glass-card" style="border-color:rgba(245,158,11,0.4); background:rgba(245,158,11,0.06);">
-  <div style="font-weight:700; color:#fbbf24; margin-bottom:0.5rem;"><i class="fas fa-triangle-exclamation"></i> Luu y</div>
-  <p style="color:var(--text-muted); font-size:0.875rem; margin:0;">[Canh bao]</p>
-</div>
-```
+### 3. Quy chuẩn Đánh số Heading (`<h2>` và `<h3>`):
+- Mọi thẻ `<h2>` phải có số thứ tự: `1. ...`, `2. ...`, `3. ...`, `4. Tổng kết`.
+- Giúp mục lục tự động (TOC) phân cấp rõ ràng và hỗ trợ người đọc cuộn tới đúng mục quan tâm.
 
 ---
 
-## 7. THEM CARD BAI VIET VAO TRANG CHU
+<a id="5-quy-trinh-xuat-ban"></a>
+## 5. QUY TRÌNH 5 BƯỚC XUẤT BẢN & TỰ ĐỘNG HÓA
 
-Tim phan posts-grid trong index.html, them o DAU DANH SACH:
-
-```html
-<div class="post-card-wrapper reveal" data-category="tech">
-  <a href="./tech/[slug]/" class="post-card">
-    <div class="post-cover">[emoji]</div>
-    <div class="post-body">
-      <div class="post-meta">
-        <span class="badge badge-info"><i class="fas fa-code"></i> Tech</span>
-        <span class="post-meta-item"><i class="fas fa-calendar"></i> [ngay]</span>
-        <span class="post-meta-item"><i class="fas fa-clock"></i> [X phut]</span>
-        <span class="badge badge-warning" style="margin-left:auto;"><i class="fas fa-sparkles"></i> Moi</span>
-      </div>
-      <h2 class="post-title">[Tieu de bai viet]</h2>
-      <p class="post-excerpt">[Mo ta ngan 100-150 ky tu...]</p>
-      <div class="post-footer">
-        <div class="post-tags">
-          <span class="badge badge-primary">[Tag 1]</span>
-          <span class="badge badge-primary">[Tag 2]</span>
-        </div>
-        <div class="post-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-    </div>
-  </a>
-</div>
+```
+[ Bước 1: Tạo thư mục bài & ảnh ] ──▶ [ Bước 2: Viết nội dung HTML ] ──▶ [ Bước 3: Đăng ký blog-data.js ]
+                                                                                   │
+[ Bước 5: Deploy GitHub ]         ◀── [ Bước 4: Chạy master-build.js ] ◀───────────┘
 ```
 
-Cho category index (tech/index.html hoac life/index.html): duong dan la ./[slug]/ khong co prefix.
-
----
-
-## 8. TICH HOP GITHUB SAU
-
-### 8.1 Ngay cap nhat tu commit cuoi cung
-```javascript
-async function loadLastUpdate(postPath) {
-  const res = await fetch(
-    'https://api.github.com/repos/leanhminh2104/leanhminh2104.github.io/commits?path=blog/' + postPath + '/index.html&per_page=1'
-  );
-  const data = await res.json();
-  if (data[0]) {
-    const d = new Date(data[0].commit.committer.date);
-    document.getElementById('last-updated').textContent = d.toLocaleDateString('vi-VN');
-  }
-}
-```
-
-### 8.2 So lan chinh sua (edit count)
-```javascript
-async function loadEditCount(postPath) {
-  const res = await fetch(
-    'https://api.github.com/repos/leanhminh2104/leanhminh2104.github.io/commits?path=blog/' + postPath + '/index.html&per_page=100'
-  );
-  const data = await res.json();
-  document.getElementById('edit-count').textContent = data.length;
-}
-```
-
-### 8.3 Profile stats (repos, followers)
-```javascript
-async function loadGitHubStats() {
-  const res = await fetch('https://api.github.com/users/leanhminh2104');
-  const user = await res.json();
-  // user.public_repos, user.followers, user.following, user.public_gists
-}
-```
-
-### 8.4 Danh sach repo moi nhat
-```javascript
-async function loadRecentRepos() {
-  const res = await fetch('https://api.github.com/users/leanhminh2104/repos?sort=updated&per_page=3');
-  const repos = await res.json();
-  // repos[i].name, repos[i].html_url, repos[i].stargazers_count, repos[i].description
-}
-```
-
-### 8.5 Traffic API (qua gh CLI)
+### Bước 1: Tạo thư mục bài viết & tài nguyên ảnh
 ```bash
-gh api repos/leanhminh2104/leanhminh2104.github.io/traffic/views
-gh api repos/leanhminh2104/leanhminh2104.github.io/traffic/popular/paths
+# Tạo thư mục bài viết
+mkdir "d:\code\laragon\www\blog\tech\docker-tips"
+copy "d:\code\laragon\www\blog\_template\post-template.html" "d:\code\laragon\www\blog\tech\docker-tips\index.html"
+
+# Tạo thư mục ảnh riêng
+mkdir "d:\code\laragon\www\blog\assets\images\posts\docker-tips"
+# Chuẩn bị ảnh cover.jpg (16:9) và ảnh minh họa đã đóng watermark DALYMMO.COM
 ```
 
----
+### Bước 2: Soạn thảo nội dung
+Mở tệp `index.html` vừa tạo, điền tiêu đề, mô tả SEO, ảnh minh họa chuẩn `<figure>` và nội dung theo đúng **Form Mục 2**.
 
-## 9. HE THONG DEM LUOT XEM
-
-### Phuong an A: GitHub Issues lam View Counter
-
-Tao issue cho moi bai (chay 1 lan khi publish):
-```bash
-gh issue create --repo leanhminh2104/leanhminh2104.github.io \
-  --title "views:tech/laravel-tips" \
-  --body "View counter for: Laravel Tips" \
-  --label "view-counter"
-```
-
-Doc luot xem (them vao cuoi body):
-```html
-<script>
-const ISSUE_NUMBER = 1; // So issue GitHub tuong ung
-async function loadViewCount() {
-  try {
-    const res = await fetch(
-      'https://api.github.com/repos/leanhminh2104/leanhminh2104.github.io/issues/' + ISSUE_NUMBER
-    );
-    const issue = await res.json();
-    const views = issue.reactions ? issue.reactions.total_count : 0;
-    document.getElementById('view-count').textContent = views > 0 ? views.toLocaleString('vi') : 'Moi';
-  } catch(e) {}
-}
-loadViewCount();
-</script>
-```
-
-### Phuong an B: GitHub Releases lam Changelog
-```bash
-gh release create "post/tech/laravel-tips/v1.0" \
-  --repo leanhminh2104/leanhminh2104.github.io \
-  --title "Bai viet moi: Laravel Tips" \
-  --notes "Bai viet moi ve Laravel tips"
-```
-
----
-
-## 10. BADGE "MOI" VA GITHUB ACTIONS
-
-### Badge "Moi" tu dong (duoi 7 ngay)
-Them vao cuoi core.js hoac inline:
+### Bước 3: Đăng ký vào `assets/js/blog-data.js`
+Thêm đối tượng vào đầu mảng `posts` (BẮT BUỘC có trường `cover`):
 ```javascript
-function initNewBadge() {
-  document.querySelectorAll('.post-card-wrapper').forEach(card => {
-    const dateEl = card.querySelector('.post-meta-item i.fa-calendar');
-    if (!dateEl) return;
-    const dateText = dateEl.parentElement.textContent.trim();
-    const m = dateText.match(/(\d+) thang (\d+), (\d+)/);
-    if (!m) return;
-    const postDate = new Date(m[3], m[2]-1, m[1]);
-    if ((new Date() - postDate) / 86400000 <= 7) {
-      const meta = card.querySelector('.post-meta');
-      if (meta && !meta.querySelector('.badge-new')) {
-        const badge = document.createElement('span');
-        badge.className = 'badge badge-warning badge-new';
-        badge.style.marginLeft = 'auto';
-        badge.innerHTML = '<i class="fas fa-sparkles"></i> Moi';
-        meta.appendChild(badge);
-      }
-    }
-  });
-}
+{
+    id: "docker-tips",
+    title: "10 Docker Tips Giúp Developer Tối Ưu Môi Trường Dev",
+    slug: "docker-tips",
+    category: "tech",
+    categoryName: "Công nghệ",
+    path: "tech/docker-tips/",
+    cover: "assets/images/posts/docker-tips/cover.jpg",
+    date: "2026-10-12",
+    formattedDate: "12 Th10, 2026",
+    readTime: "6 phút",
+    excerpt: "Những kinh nghiệm thực tế giúp tối ưu dung lượng image, tăng tốc build và quản lý container chuyên nghiệp.",
+    tags: ["Docker", "DevOps", "Container", "Tips"],
+    isNew: true,
+    icon: "fa-server"
+},
 ```
 
-### GitHub Action: Tu dong tao issue khi co bai moi
-Tao .github/workflows/announce-post.yml trong repo leanhminh2104.github.io:
-```yaml
-name: Announce New Blog Post
-on:
-  push:
-    paths: ['blog/tech/*/index.html', 'blog/life/*/index.html']
-jobs:
-  announce:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 2 }
-      - name: Detect new post
-        id: detect
-        run: |
-          NEW_FILE=$(git diff --name-only HEAD~1 HEAD | grep 'blog/.*/index.html' | grep -v 'blog/index.html' | head -1)
-          echo "post_path=$NEW_FILE" >> $GITHUB_OUTPUT
-      - name: Create issue
-        if: steps.detect.outputs.post_path != ''
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const path = '${{ steps.detect.outputs.post_path }}';
-            const url = 'https://leanhminh2104.github.io/' + path.replace('index.html', '');
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: 'Bai viet moi: ' + path,
-              body: 'Bai viet moi!\n\n' + url + '\n\n*Tu dong tao boi GitHub Actions*',
-              labels: ['new-post', 'view-counter']
-            });
-```
-
-### GitHub Action: Validate HTML khi push
-```yaml
-name: Deploy Check
-on:
-  push:
-    branches: [main]
-    paths: ['blog/**']
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check HTML
-        run: |
-          find blog -name "*.html" | while read f; do
-            grep -q "blog.css" "$f" || echo "WARNING Missing blog.css: $f"
-            grep -q "core.js" "$f" || echo "WARNING Missing core.js: $f"
-          done
-          echo "OK All checked"
-```
-
----
-
-## 11. TRIEN KHAI TU DONG
-
-### deploy.bat (co san tai d:\code\laragon\www\blog\deploy.bat)
-Git repo tai: d:\code\Git\leanhminh2104.github.io\
-
-Chay deploy.bat:
-- Sync blog/ sang git repo
-- git add blog/
-- git commit (nhap message)
-- git push origin main
-- GitHub Pages tu build trong 30-60 giay
-
-Kiem tra sau deploy:
+### Bước 4: Chạy Master Automation Script
+Mở Terminal và thực thi:
 ```bash
-gh api repos/leanhminh2104/leanhminh2104.github.io/pages
-git -C d:\code\Git\leanhminh2104.github.io log --name-status -1
+node scripts/master-build.js
 ```
+Script sẽ tự động:
+1. Điền thẻ bài viết mới vào trang chủ `index.html` và trang danh mục `tech/index.html` (kèm cover 16:9).
+2. Tự động liên kết nút "Bài trước / Bài sau" giữa bài viết này và các bài viết khác.
+3. Sinh mới `sitemap.xml` và `robots.txt` chuẩn SEO Google.
+4. Sinh mới kênh `feed.xml` chuẩn RSS 2.0.
+5. Cập nhật danh sách bài viết mới vào `README.md`.
 
-URL check: https://leanhminh2104.github.io/blog/
-
----
-
-## 12. CHECKLIST TRUOC KHI DANG
-
-### Bai viet moi:
-- [ ] Thu muc: [category]/[slug]/index.html
-- [ ] Slug khong co dau, dung gach ngang
-- [ ] title dung format: [Tieu de] -- Le Anh Minh Blog
-- [ ] meta description 120-160 ky tu
-- [ ] og:url dung URL GitHub Pages
-- [ ] Duong dan CSS: ../../assets/css/blog.css
-- [ ] Duong dan JS: ../../assets/js/core.js
-- [ ] Breadcrumb dung danh muc
-- [ ] blog-nav a.active dung trang
-- [ ] nav-item.active trong bottom-nav dung
-- [ ] drawer-item.active trong drawer dung
-- [ ] Code blocks co class="language-xxx"
-- [ ] Co it nhat 3 section h2
-
-### Trang chu index.html:
-- [ ] Card them VAO DAU danh sach
-- [ ] data-category dung de filter hoat dong
-- [ ] Excerpt 100-150 ky tu
-
-### Category index:
-- [ ] Card them vao tech/index.html hoac life/index.html
-- [ ] Duong dan la ./[slug]/ (khong co prefix category)
-
-### Deploy:
-- [ ] Chay deploy.bat
-- [ ] Kiem tra https://leanhminh2104.github.io/blog/
-- [ ] Test mobile
-- [ ] Test desktop
-
----
-
-## VI DU THUC TE: Them bai "MySQL Optimize Tips"
-
+### Bước 5: Deploy an toàn lên GitHub
+Chạy quy trình đồng bộ sang Git mirror và push lên GitHub:
 ```bash
-mkdir d:\code\laragon\www\blog\tech\mysql-optimize-tips
-copy d:\code\laragon\www\blog\_template\post-template.html d:\code\laragon\www\blog\tech\mysql-optimize-tips\index.html
+deploy.bat
 ```
 
-Dien vao HTML:
-- title: MySQL Optimize Tips -- 10 cach toi uu database sieu nhanh -- Le Anh Minh Blog
-- slug: mysql-optimize-tips, category: tech, emoji: lightning
-- tags: MySQL, Database, Performance
-- Breadcrumb: Trang chu > Cong nghe > MySQL Tips
-- class="active" tren link ../../tech/
+---
 
-Them card vao index.html (o dau posts-grid):
-```html
-<div class="post-card-wrapper reveal" data-category="tech">
-  <a href="./tech/mysql-optimize-tips/" class="post-card">
-    <div class="post-cover">&#x26A1;</div>
-    <div class="post-body">
-      <div class="post-meta">
-        <span class="badge badge-info"><i class="fas fa-code"></i> Tech</span>
-        <span class="post-meta-item"><i class="fas fa-calendar"></i> 27 thang 9, 2026</span>
-        <span class="badge badge-warning" style="margin-left:auto;"><i class="fas fa-sparkles"></i> Moi</span>
-      </div>
-      <h2 class="post-title">MySQL Optimize Tips -- 10 cach toi uu database sieu nhanh</h2>
-      <p class="post-excerpt">Tong hop 10 ky thuat toi uu MySQL hieu qua nhat giup query chay nhanh gap 10 lan...</p>
-      <div class="post-footer">
-        <div class="post-tags">
-          <span class="badge badge-primary">MySQL</span>
-          <span class="badge badge-primary">Database</span>
-        </div>
-        <div class="post-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-    </div>
-  </a>
-</div>
-```
+<a id="6-cau-hinh-du-lieu"></a>
+## 6. CẤU HÌNH DỮ LIỆU BÀI VIẾT TRONG `blog-data.js`
 
-Chay: deploy.bat (nhap: "feat: add mysql optimize tips post")
+Mỗi bài viết khi khai báo vào `assets/js/blog-data.js` bắt buộc phải có đủ 12 thuộc tính sau:
+
+| Thuộc tính | Kiểu | Mô tả & Ví dụ |
+|---|---|---|
+| `id` | string | Định danh duy nhất (trùng slug): `"docker-tips"` |
+| `title` | string | Tiêu đề bài viết đầy đủ |
+| `slug` | string | Slug URL bài viết: `"docker-tips"` |
+| `category` | string | `"tech"` (Công nghệ) hoặc `"life"` (Cuộc sống) |
+| `categoryName` | string | `"Công nghệ"` hoặc `"Cuộc sống"` |
+| `path` | string | Đường dẫn tương đối từ gốc: `"tech/docker-tips/"` |
+| `cover` | string | Đường dẫn ảnh cover 16:9: `"assets/images/posts/docker-tips/cover.jpg"` |
+| `date` | string | Ngày chuẩn ISO: `"2026-10-12"` |
+| `formattedDate`| string | Ngày hiển thị tiếng Việt: `"12 Th10, 2026"` |
+| `readTime` | string | Thời gian đọc ước tính: `"6 phút"` |
+| `excerpt` | string | Tóm tắt ngắn gọn 1-2 câu hiển thị ở danh sách bài viết |
+| `tags` | array | Mảng 3-5 thẻ tag: `["Docker", "DevOps", "Tips"]` |
+| `isNew` | boolean | `true` nếu là bài mới nhất để hiện nhãn vàng "Mới" |
+| `icon` | string | Class icon FontAwesome: `"fa-server"`, `"fa-bolt"` |
+
+---
+
+<a id="7-checklist-kiem-tra"></a>
+## 7. CHECKLIST KIỂM TRA CHẤT LƯỢNG TRƯỚC KHI DEPLOY
+
+Trước khi chạy `deploy.bat`, hãy điểm qua danh sách kiểm tra sau:
+
+- [ ] **SEO Meta:** Đã điền `title`, `meta description` và `og:image` (trỏ tới cover 16:9) chưa?
+- [ ] **Ảnh Cover 16:9:** Đã có ảnh bìa tại `assets/images/posts/[slug]/cover.jpg` và khai báo trường `cover` trong `blog-data.js` chưa? Ảnh có nhận diện thương hiệu rõ ràng không?
+- [ ] **Watermark Bản Quyền:** Toàn bộ ảnh minh họa trong bài viết đã được đóng dấu mờ `DALYMMO.COM` nghiêng chưa?
+- [ ] **Caption Ảnh:** Toàn bộ chú thích ảnh đã được đặt trong `<figure><figcaption>`, canh chính giữa, chữ `Ảnh X:` in đậm, toàn bộ in nghiêng chưa?
+- [ ] **Breadcrumb & CSS:** Đường dẫn Breadcrumb đúng danh mục (`../`), đường dẫn CSS/JS đúng 2 cấp (`../../assets/...`) không?
+- [ ] **Heading TOC:** Các thẻ `<h2>` đã có số thứ tự `1.`, `2.`, `3.` chưa?
+- [ ] **Master Build:** Đã chạy `node scripts/master-build.js` thành công chưa?
+- [ ] **Bảo mật:** Không có mật khẩu, token thật, API key thật nào trong bài viết.
+- [ ] **Kiểm tra trên Mobile:** Mở trình duyệt F12 (chế độ Responsive 360px), bài viết hiển thị gọn gàng, banner dọc tự ẩn, không bị tràn viền ngang.
+
