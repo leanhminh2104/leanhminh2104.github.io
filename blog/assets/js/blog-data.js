@@ -184,6 +184,21 @@ window.BLOG_DATA = {
         
         // Danh sách ưu đãi & đề xuất dịch vụ chuẩn xác theo hệ sinh thái công nghệ
         banners: [
+            // 0. DỊCH VỤ THU MUA LINK & NÂNG CẤP YOUTUBE PREMIUM CHÍNH CHỦ VIETTEL (Admin trực tiếp hỗ trợ)
+            {
+                id: "service-viettel-youtube-premium",
+                platform: "sponsor",
+                slot: ["article-mid", "article-bottom", "sidebar", "feed"],
+                badge: "Admin Hỗ Trợ 24/7",
+                title: "Thu Mua Link & Nâng Cấp YouTube Premium Chính Chủ Viettel",
+                desc: "Admin nhận thu mua lại link kích hoạt gói YT150/YT200 giá tốt. Hỗ trợ trung gian uy tín, nâng YouTube Premium chính chủ 100% không vào nhóm Family.",
+                price: "Chiết khấu cao · Hỗ trợ 24/7",
+                ctaText: "Nhắn Tin Cho Admin Ngay",
+                link: "https://facebook.com/leanhminh2104", // Admin có thể đổi link Zalo/Telegram/Facebook tại đây
+                icon: "fa-brands fa-youtube",
+                accentColor: "#ef4444",
+                tags: ["viettel", "youtube", "premium", "5g", "yt150", "yt200"]
+            },
             // 1. DỊCH VỤ YOUTUBE PREMIUM & GOOGLE FAMILY (Rất liên quan đến các bài viết Google & giải trí)
             {
                 id: "service-youtube-family",

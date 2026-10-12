@@ -9,12 +9,12 @@
     <!-- ============================================================
          1. SEO & OPENGRAPH META
          ============================================================ -->
-    <meta name="description" content="Chi tiết bộ đôi gói cước Viettel 5G YT150 và YT200 tích hợp YouTube Premium chính chủ và 120GB data tốc độ cao. Cú pháp đăng ký, cách kích hoạt và mẹo tối ưu chi phí cực đỉnh.">
+    <meta name="description" content="Chi tiết bộ đôi gói cước Viettel 5G YT150 và YT200 tích hợp YouTube Premium chính chủ và 120GB data tốc độ cao. Cú pháp đăng ký 191, quy trình kích hoạt và mẹo share cước lấy Premium siêu hời.">
     <meta name="author" content="Lê Anh Minh">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀">
-    <meta property="og:description" content="Viettel hợp tác Big Tech ra mắt gói cước 5G YT150 và YT200 tích hợp YouTube Premium chính chủ cùng 120GB data. Cú pháp đăng ký 191 và mẹo share cước lấy Premium siêu hời.">
-    <meta property="og:image" content="../../assets/images/posts/viettel-yt150-yt200/viettel-yt150-yt200.png">
+    <meta property="og:description" content="Viettel hợp tác Big Tech ra mắt gói cước 5G YT150 và YT200 tích hợp YouTube Premium chính chủ cùng 120GB data. Cú pháp đăng ký 191, cách kích hoạt và mẹo chia sẻ chi phí cực đỉnh.">
+    <meta property="og:image" content="../../assets/images/posts/viettel-yt150-yt200/thong-tin-chinh-phu-viettel.png">
     <title>Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀 — Lê Anh Minh Blog</title>
 
     <!-- Google Fonts & FontAwesome -->
@@ -23,45 +23,255 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- CSS dùng chung cho toàn bộ Blog -->
+    <!-- CSS dùng chung toàn Blog -->
     <link rel="stylesheet" href="../../assets/css/blog.css">
+
+    <style>
+        /* === Styles chuyên biệt: Price Hero, Features Grid & Step Cards === */
+        .price-hero {
+            background: var(--glass-bg);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            padding: 2.25rem 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% -20%, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .price-badge-old {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px;
+            padding: 0.35rem 1.1rem;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            text-decoration: line-through;
+            margin-bottom: 0.65rem;
+        }
+        .price-main {
+            font-size: 3.25rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin: 0.25rem 0 0.5rem;
+            letter-spacing: -1px;
+        }
+        .price-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.4rem;
+        }
+        .price-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0.85rem 2.25rem;
+            border-radius: 999px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 24px rgba(239,68,68,0.45);
+        }
+        .price-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 36px rgba(239,68,68,0.7);
+            color: #fff;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.75rem 0;
+        }
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1.25rem 1.15rem;
+            text-align: left;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+        .feature-card:hover {
+            border-color: rgba(239,68,68,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(239,68,68,0.15);
+        }
+        .feature-icon-wrapper {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #ef4444;
+        }
+        .feature-name {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: #fff;
+            margin-bottom: 0.45rem;
+        }
+        .feature-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+        .steps-list {
+            counter-reset: steps;
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        .steps-list li {
+            counter-increment: steps;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.15rem;
+            padding: 1.15rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .steps-list li:last-child {
+            border-bottom: none;
+        }
+        .step-num {
+            flex-shrink: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            background: linear-gradient(135deg, #ef4444, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: #fff;
+            box-shadow: 0 0 14px rgba(239,68,68,0.4);
+        }
+        .step-num::before {
+            content: counter(steps);
+        }
+        .compare-row-good {
+            color: #34d399;
+            font-weight: 700;
+        }
+        .compare-row-bad {
+            color: #f87171;
+        }
+        .warranty-box {
+            background: rgba(52,211,153,0.03);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: 1px solid rgba(52,211,153,0.22);
+            border-radius: 1rem;
+            padding: 1.35rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
+            margin: 1.75rem 0;
+            box-shadow: var(--glass-shadow);
+        }
+        .warranty-icon {
+            font-size: 2.4rem;
+            flex-shrink: 0;
+        }
+        .warranty-text strong {
+            color: #34d399;
+            font-size: 1rem;
+        }
+        .highlight-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.2rem 0.65rem;
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.3);
+            border-radius: 6px;
+            color: #f87171;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .article-img-container {
+            margin: 1.75rem 0;
+            text-align: center;
+        }
+        .article-img {
+            max-width: 100%;
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.3s ease;
+        }
+        .article-img:hover {
+            transform: scale(1.01);
+        }
+        .img-caption {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+        @media (max-width: 480px) {
+            .price-main { font-size: 2.35rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Reading Progress Bar -->
+<!-- Thanh tiến trình đọc trên cùng -->
 <div class="reading-progress" id="reading-progress"></div>
 
-<!-- Stars Background -->
+<!-- Nền trời sao động -->
 <div class="stars-bg-container">
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
 </div>
 
-<!-- TOPBAR / HEADER (Tự động nạp từ components.js) -->
+<!-- TOPBAR / HEADER (Tự động nạp bởi components.js) -->
 <div id="site-header"></div>
 
-<!-- MAIN CONTENT -->
+<!-- NỘI DUNG CHÍNH -->
 <main class="blog-main">
     <div class="blog-container">
 
-        <!-- ========================================================
-             2. BREADCRUMB
-             ======================================================== -->
+        <!-- BREADCRUMB ĐIỀU HƯỚNG -->
         <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
             <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
             <i class="fas fa-chevron-right"></i>
             <a href="../">Công nghệ</a>
             <i class="fas fa-chevron-right"></i>
-            <span>Viettel YT150 & YT200 Tặng YouTube Premium</span>
+            <span>Gói Cước Viettel YT150 & YT200</span>
         </nav>
 
         <div class="article-layout">
 
-            <!-- Left: Nội dung bài viết -->
+            <!-- CỘT TRÁI: Thân bài viết -->
             <article class="article-body">
 
-                <!-- Article Header -->
+                <!-- Article Header Hero -->
                 <header class="article-header animate-up">
                     <h1 class="article-title">
                         Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀
@@ -78,47 +288,98 @@
                         <span class="badge badge-primary">Viettel 5G</span>
                         <span class="badge badge-primary">YouTube Premium</span>
                         <span class="badge badge-primary">YT150 & YT200</span>
-                        <span class="badge badge-primary">Thủ thuật</span>
+                        <span class="badge badge-primary">Deal Độc Quyền</span>
                     </div>
                 </header>
 
-                <!-- ====================================================
-                     3. NỘI DUNG CHÍNH (THEO FORM CHUẨN CỦA BLOG)
-                     ==================================================== -->
-                
-                <!-- Đoạn mở đầu (Lead Hook) -->
+                <!-- Đoạn mở đầu thu hút độc giả -->
                 <p>
-                    Giữa thời điểm các cơ quan chức năng cùng các tập đoàn Big Tech liên tục siết chặt các tài khoản lậu, việc sở hữu dịch vụ nội dung số có bản quyền với chi phí hợp lý đang là nhu cầu cấp thiết hơn bao giờ hết. Mới đây, <b>Tổng Công ty Viễn thông Viettel (Viettel Telecom)</b> đã chính thức tung ra bộ đôi gói cước 5G mang tên <b>YT150</b> và <b>YT200</b> — tích hợp trọn gói <b>tài khoản YouTube Premium chính chủ</b> cùng dung lượng data tốc độ cao lên tới <b>120GB/tháng</b>.
+                    Trong bối cảnh các cơ quan chức năng cùng các tập đoàn công nghệ toàn cầu (Big Tech) liên tục siết chặt kiểm tra các loại tài khoản chia sẻ lậu, việc sở hữu dịch vụ nội dung số có bản quyền với chi phí tiết kiệm đang là mối quan tâm hàng đầu của người dùng Việt. Mới đây, <b>Tổng Công ty Viễn thông Viettel (Viettel Telecom)</b> đã chính thức triển khai thỏa thuận hợp tác cùng Google, đem đến bộ đôi gói cước 5G giải trí đỉnh cao: <b>YT150</b> và <b>YT200</b>.
                 </p>
 
-                <!-- Hộp Tóm tắt Nhanh (Callout Box) -->
+                <p>
+                    Chỉ với mức cước từ <b>150.000đ/tháng</b>, người dùng không chỉ nhận ngay <b>120GB data tốc độ cao (4GB/ngày)</b> trên hạ tầng mạng 4G/5G hàng đầu, mà còn được <b>tặng kèm 01 tài khoản YouTube Premium chính chủ</b> — nâng cấp trực tiếp vào chính Gmail cá nhân của bạn mà không cần tham gia nhóm gia đình.
+                </p>
+
+                <!-- Hộp Tóm tắt nhanh -->
                 <blockquote>
-                    💡 <b>Tóm tắt nhanh:</b> Chỉ từ 150.000đ/tháng, gói <b>YT150</b> đem lại 4GB data/ngày (120GB/tháng) và tặng kèm tài khoản YouTube Premium chính chủ (tiết kiệm hơn 25% - 35% so với mua lẻ). Bài viết này sẽ phân tích chi tiết thông số gói cước, hướng dẫn kích hoạt và chia sẻ <b>mẹo bắt tay chia sẻ chi phí cực đỉnh</b> cũng như <b>dịch vụ trung gian thu mua / hỗ trợ nâng cấp uy tín từ Admin</b>!
+                    💡 <b>Tóm tắt nhanh:</b> Gói <b>YT150 (150k/tháng)</b> mang đến 4GB data/ngày kèm tài khoản YouTube Premium chính chủ không quảng cáo (tiết kiệm hơn 30% so với mua riêng lẻ). Bài viết này sẽ phân tích chi tiết toàn bộ quyền lợi, hướng dẫn 4 bước kích hoạt nhanh gọn và bật mí <b>mẹo chia sẻ chi phí cực đỉnh với người quen</b> cùng <b>dịch vụ trung gian uy tín từ Admin</b>!
                 </blockquote>
 
-                <!-- MỤC 1 -->
+                <!-- Thẻ Hero Giá Bán Nổi Bật -->
+                <div class="price-hero">
+                    <div style="font-size:3.5rem; margin-bottom:0.5rem;">📶▶️</div>
+                    <div style="font-size:1.15rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">Viettel 5G · Bộ Đôi Gói Cước YT150 & YT200</div>
+                    <div class="price-badge-old">Giá mua riêng Data (135k) + YouTube Premium (79k) = 214.000₫ / tháng</div>
+                    <div class="price-main">150.000₫ <span style="font-size:1.35rem; font-weight:500; color:var(--text-muted); -webkit-text-fill-color: var(--text-muted);">/ tháng</span></div>
+                    <div class="price-sub">120GB Data Tốc Độ Cao (4GB/ngày) · Tặng YouTube Premium Chính Chủ · Không Lo Quét Family</div>
+                    <a href="#huong-dan-dang-ky" class="price-cta-btn">
+                        <i class="fas fa-bolt"></i> Xem cú pháp đăng ký 191 ngay
+                    </a>
+                </div>
+
+                <!-- MỤC 1: Bối cảnh -->
                 <h2>1. Bối cảnh: Cơ quan chức năng & Big Tech siết chặt tài khoản lậu</h2>
                 <p>
-                    Theo thông tin chính thức được đăng tải trên cổng thông tin cơ quan chức năng, thị trường tài khoản số chia sẻ lậu đang phải đối mặt với các đợt truy quét gắt gao nhất từ trước tới nay:
+                    Thời gian gần đây, thị trường tài khoản bản quyền tại Việt Nam đang có những chuyển biến rõ nét. Sự siết chặt từ các bên khiến các phương pháp dùng tài khoản lậu giá rẻ ngày càng trở nên rủi ro:
                 </p>
                 <ul>
-                    <li><b>Quét nhóm Google Family (Household Check):</b> Google liên tục kiểm tra định kỳ địa chỉ IP, vị trí địa lý của các thành viên trong nhóm gia đình. Các tài khoản "ghép nhóm lậu" ở khác địa bàn hay dùng thẻ thanh toán ảo bị hủy gói hàng loạt hoặc vướng quy định hạn chế đổi nhóm 12 tháng.</li>
-                    <li><b>Chặn fake IP & VPN thanh toán ngoại tệ:</b> Những phương pháp gian lận mua YouTube Premium giá rẻ qua Thổ Nhĩ Kỳ, Argentina hay Nigeria gần như đã bị triệt tiêu hoàn toàn bởi chính sách xác thực thẻ ngân hàng bản địa của Google.</li>
-                    <li><b>Định hướng dịch vụ số lành mạnh:</b> Để đáp ứng nhu cầu hội nhập và đảm bảo quyền lợi lâu dài cho người tiêu dùng, Viettel Telecom — doanh nghiệp viễn thông hàng đầu Việt Nam — đã chủ động "bắt tay" với Google để phân phối gói cước tích hợp bản quyền chính hãng với giá thành tối ưu nhất cho người Việt.</li>
+                    <li><b>Cơ chế quét vị trí Google Family (Household Check):</b> Google liên tục kiểm tra định kỳ địa chỉ IP, dải mạng và vị trí thực tế của các thành viên so với chủ nhóm gia đình. Những tài khoản ghép nhóm lậu ở xa hoặc dùng thẻ ảo bị hủy gói đồng loạt và dính hạn mức khóa chuyển nhóm 12 tháng.</li>
+                    <li><b>Chặn triệt để VPN đổi vùng sang Thổ Nhĩ Kỳ, Argentina, Nigeria:</b> Các thủ thuật fake IP qua các quốc gia có tỷ giá thấp để mua YouTube Premium rẻ tiền gần như đã bị Google vô hiệu hóa thông qua việc bắt buộc thẻ thanh toán phải phát hành tại cùng quốc gia đăng ký.</li>
+                    <li><b>Doanh nghiệp Nhà nước tiên phong hợp tác bản quyền:</b> Trước thực trạng đó, Viettel Telecom đã chủ động bắt tay chiến lược cùng Big Tech để phân phối gói cước tích hợp nội dung số chính ngạch, đảm bảo người dùng được thụ hưởng dịch vụ chuẩn chất lượng với chi phí bình ổn.</li>
                 </ul>
 
-                <!-- Ảnh minh họa thông tin chính phủ -->
-                <div style="margin: 1.5rem 0; text-align: center;">
-                    <img src="../../assets/images/posts/viettel-yt150-yt200/thong-tin-chinh-phu-viettel.png" alt="Thông báo chính thức từ Fanpage Thông tin Chính phủ về gói cước Viettel YouTube Premium" style="max-width: 100%; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);">
-                    <p style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.5rem; font-style: italic;">
-                        Hình 1: Thông cáo báo chí từ Fanpage Thông tin Chính phủ về chương trình hợp tác giữa Viettel và Big Tech.
+                <!-- Ảnh 1: Hình ảnh bài đăng Thông tin Chính phủ -->
+                <div class="article-img-container">
+                    <img src="../../assets/images/posts/viettel-yt150-yt200/thong-tin-chinh-phu-viettel.png" alt="Ảnh 1: Thông báo chính thức từ Fanpage Thông tin Chính phủ về gói cước Viettel hợp tác Big Tech" class="article-img">
+                    <p class="img-caption">
+                        Hình 1: Thông cáo báo chí chính thức từ Fanpage Thông tin Chính phủ về gói cước 5G Viettel tích hợp YouTube Premium bản quyền.
                     </p>
                 </div>
 
-                <!-- MỤC 2 -->
-                <h2>2. Chi tiết gói cước Viettel YT150 và YT200</h2>
+                <!-- MỤC 2: Trọn bộ đặc quyền -->
+                <h2>2. Trọn Bộ Đặc Quyền Của Bộ Đôi Gói Cước Viettel YT150 & YT200</h2>
                 <p>
-                    Bộ đôi gói cước giải trí này được thiết kế theo mô hình <i>"Đăng ký một lần, nhận trọn gói giải trí chuẩn Premium"</i>, đáp ứng hoàn hảo cả nhu cầu lướt mạng hàng ngày lẫn trải nghiệm xem video, nghe nhạc chất lượng cao.
+                    Bộ đôi gói cước giải trí chuẩn Premium của Viettel mang tới hệ sinh thái tiện ích toàn diện cho cả nhu cầu kết nối lẫn giải trí số đỉnh cao:
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper"><i class="fas fa-wifi"></i></div>
+                        <div class="feature-name">120GB Data Tốc Độ Cao</div>
+                        <div class="feature-desc">Cung cấp 4GB data tốc độ cao mỗi ngày (tương đương 120GB/tháng) trên hạ tầng 4G/5G Viettel phủ sóng rộng khắp cả nước.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper"><i class="fa-brands fa-youtube"></i></div>
+                        <div class="feature-name">Tặng YouTube Premium Chính Chủ</div>
+                        <div class="feature-desc">Xem trọn vẹn mọi video trên YouTube không có một giây quảng cáo nào, tải video xem ngoại tuyến và phát âm thanh trong nền khi tắt màn hình.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper"><i class="fas fa-music"></i></div>
+                        <div class="feature-name">Kho Nhạc YouTube Music</div>
+                        <div class="feature-desc">Bao gồm toàn bộ quyền lợi của ứng dụng YouTube Music Premium: Nghe nhạc chất lượng cao, chuyển bài không giới hạn và nghe nhạc độc quyền.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper"><i class="fas fa-user-shield"></i></div>
+                        <div class="feature-name">Nâng Cấp Gmail Cá Nhân</div>
+                        <div class="feature-desc">Kích hoạt trực tiếp vào tài khoản Google cá nhân của bạn. Không bắt buộc vào nhóm Family, không sợ lỗi lệch địa chỉ nhà.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper"><i class="fa-brands fa-tiktok"></i></div>
+                        <div class="feature-name">Miễn Phí Data MXH (Gói YT200)</div>
+                        <div class="feature-desc">Lướt thả ga không lo tốn dung lượng trên các ứng dụng hot nhất: YouTube, TikTok, Facebook, Threads, Instagram, Messenger.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper"><i class="fas fa-phone-volume"></i></div>
+                        <div class="feature-name">Miễn Phí Gọi Thoại (Gói YT200)</div>
+                        <div class="feature-desc">Miễn phí toàn bộ cuộc gọi nội mạng Viettel dưới 10 phút và tặng thêm 50 phút gọi ngoại mạng miễn phí mỗi tháng.</div>
+                    </div>
+                </div>
+
+                <!-- MỤC 3: Bảng so sánh YT150 vs YT200 -->
+                <h2>3. So Sánh Chi Tiết: Gói Cước YT150 vs YT200 Viettel</h2>
+                <p>
+                    Để giúp bạn dễ dàng lựa chọn gói cước phù hợp nhất với nhu cầu sử dụng thực tế của mình, dưới đây là bảng thông số đối sánh chi tiết:
                 </p>
 
                 <!-- Bảng so sánh 2 gói cước -->
@@ -126,218 +387,261 @@
                     <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:left;">
                         <thead>
                             <tr style="border-bottom:1px solid var(--glass-border); color:var(--primary);">
-                                <th style="padding:0.75rem 0.5rem;">Tiêu chí so sánh</th>
-                                <th style="padding:0.75rem 0.5rem; color:#38bdf8;">Gói cước YT150</th>
-                                <th style="padding:0.75rem 0.5rem; color:#f59e0b;">Gói cước YT200</th>
+                                <th style="padding:0.85rem 0.6rem;">Nội dung ưu đãi</th>
+                                <th style="padding:0.85rem 0.6rem; color:#38bdf8;">Gói cước YT150 🚀</th>
+                                <th style="padding:0.85rem 0.6rem; color:#f59e0b;">Gói cước YT200 🔥</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                <td style="padding:0.75rem 0.5rem; font-weight:600;">Giá cước niêm yết</td>
-                                <td style="padding:0.75rem 0.5rem; color:#38bdf8; font-weight:700;">150.000đ / tháng</td>
-                                <td style="padding:0.75rem 0.5rem; color:#f59e0b; font-weight:700;">200.000đ / tháng</td>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">💰 Giá cước chu kỳ</td>
+                                <td style="padding:0.85rem 0.6rem; color:#38bdf8; font-weight:700;">150.000đ / tháng</td>
+                                <td style="padding:0.85rem 0.6rem; color:#f59e0b; font-weight:700;">200.000đ / tháng</td>
                             </tr>
                             <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                <td style="padding:0.75rem 0.5rem; font-weight:600;">Data tốc độ cao (4G/5G)</td>
-                                <td style="padding:0.75rem 0.5rem;"><b>4GB / ngày</b> (120GB / tháng)</td>
-                                <td style="padding:0.75rem 0.5rem;"><b>4GB / ngày</b> (120GB / tháng)</td>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">📶 Data tốc độ cao 4G/5G</td>
+                                <td style="padding:0.85rem 0.6rem;"><b>4GB / ngày</b> (120GB / tháng)</td>
+                                <td style="padding:0.85rem 0.6rem;"><b>4GB / ngày</b> (120GB / tháng)</td>
                             </tr>
                             <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                <td style="padding:0.75rem 0.5rem; font-weight:600;">Đặc quyền YouTube Premium</td>
-                                <td style="padding:0.75rem 0.5rem; color:#34d399; font-weight:700;"><i class="fas fa-check-circle"></i> Tặng 01 tài khoản chính chủ</td>
-                                <td style="padding:0.75rem 0.5rem; color:#34d399; font-weight:700;"><i class="fas fa-check-circle"></i> Tặng 01 tài khoản chính chủ</td>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">▶️ YouTube Premium chính chủ</td>
+                                <td style="padding:0.85rem 0.6rem;" class="compare-row-good"><i class="fas fa-check-circle"></i> Tặng trọn vẹn suốt chu kỳ</td>
+                                <td style="padding:0.85rem 0.6rem;" class="compare-row-good"><i class="fas fa-check-circle"></i> Tặng trọn vẹn suốt chu kỳ</td>
                             </tr>
                             <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                <td style="padding:0.75rem 0.5rem; font-weight:600;">Data miễn phí Mạng xã hội</td>
-                                <td style="padding:0.75rem 0.5rem; color:var(--text-dim);">Không có (trừ vào 4GB/ngày)</td>
-                                <td style="padding:0.75rem 0.5rem; color:#34d399;"><b>Miễn phí data</b>: YouTube, TikTok, Facebook, Threads, Instagram, Messenger</td>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">🌐 Miễn phí Data Mạng xã hội</td>
+                                <td style="padding:0.85rem 0.6rem; color:var(--text-dim);">Không có (trừ vào 4GB/ngày)</td>
+                                <td style="padding:0.85rem 0.6rem;" class="compare-row-good"><b>Free Data:</b> YouTube, TikTok, Facebook, Threads, Instagram, Messenger</td>
                             </tr>
                             <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                <td style="padding:0.75rem 0.5rem; font-weight:600;">Ưu đãi cuộc gọi thoại</td>
-                                <td style="padding:0.75rem 0.5rem; color:var(--text-dim);">Không có</td>
-                                <td style="padding:0.75rem 0.5rem; color:#38bdf8;">Miễn phí nội mạng (&lt;10p/cuộc) + <b>50 phút</b> ngoại mạng</td>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">📞 Miễn phí Thoại</td>
+                                <td style="padding:0.85rem 0.6rem; color:var(--text-dim);">Không có ưu đãi thoại</td>
+                                <td style="padding:0.85rem 0.6rem;" class="compare-row-good">Miễn phí nội mạng (&lt;10p/cuộc) + <b>50 phút</b> ngoại mạng</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">🎯 Phù hợp nhất cho ai?</td>
+                                <td style="padding:0.85rem 0.6rem;">Người cần Data khủng + YouTube Premium với chi phí tối thiểu</td>
+                                <td style="padding:0.85rem 0.6rem;">Người nghe gọi nhiều, nghiện lướt TikTok/FB & cày YouTube không lo hết data</td>
                             </tr>
                             <tr>
-                                <td style="padding:0.75rem 0.5rem; font-weight:600;">Cú pháp đăng ký qua 191</td>
-                                <td style="padding:0.75rem 0.5rem;"><code class="language-text" style="color:#38bdf8;">YT150 gửi 191</code></td>
-                                <td style="padding:0.75rem 0.5rem;"><code class="language-text" style="color:#f59e0b;">YT200 gửi 191</code></td>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">📲 Cú pháp đăng ký qua 191</td>
+                                <td style="padding:0.85rem 0.6rem;"><code class="language-text" style="color:#38bdf8; font-weight:700;">YT150 gửi 191</code></td>
+                                <td style="padding:0.85rem 0.6rem;"><code class="language-text" style="color:#f59e0b; font-weight:700;">YT200 gửi 191</code></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Ảnh Infographic Viettel -->
-                <div style="margin: 1.5rem 0; text-align: center;">
-                    <img src="../../assets/images/posts/viettel-yt150-yt200/viettel-yt150-yt200.png" alt="Infographic chi tiết gói cước Viettel 5G YT150 và YT200" style="max-width: 100%; max-height: 480px; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); object-fit: contain;">
-                    <p style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.5rem; font-style: italic;">
-                        Hình 2: Infographic quyền lợi gói cước YT150 và YT200 do Viettel phát hành.
+                <!-- Ảnh 2: Infographic Viettel -->
+                <div class="article-img-container">
+                    <img src="../../assets/images/posts/viettel-yt150-yt200/viettel-yt150-yt200.png" alt="Ảnh 2: Infographic chi tiết gói cước Viettel 5G YT150 và YT200 do nhà mạng phát hành" class="article-img" style="max-height: 480px; object-fit: contain;">
+                    <p class="img-caption">
+                        Hình 2: Infographic quyền lợi gói cước YT150 và YT200 phát hành chính thức bởi Viettel Telecom.
                     </p>
                 </div>
 
                 <h3>Bài toán kinh tế: Tiết kiệm tối thiểu 25% - 35% mỗi tháng</h3>
                 <p>
-                    Hãy làm một phép tính nhanh nếu bạn đăng ký riêng lẻ từng dịch vụ:
+                    Hãy so sánh chi phí khi bạn mua riêng lẻ từng dịch vụ trên thị trường:
                 </p>
                 <ul>
-                    <li>Gói cước YouTube Premium Cá nhân (Individual) tại Việt Nam mua trực tiếp qua Google có giá <b>79.000đ/tháng</b>.</li>
-                    <li>Gói cước Data 4GB/ngày thông thường của nhà mạng (ví dụ các gói 120GB/tháng như SD120 hoặc 5G135) có mức cước từ <b>120.000đ - 135.000đ/tháng</b>.</li>
+                    <li>Gói cước <b>YouTube Premium Cá nhân</b> tại Việt Nam mua trực tiếp qua Google có giá <b>79.000đ/tháng</b>.</li>
+                    <li>Gói Data <b>4GB/ngày (120GB/tháng)</b> độc lập của nhà mạng (ví dụ gói SD120, 5G135...) có cước phí từ <b>120.000đ - 135.000đ/tháng</b>.</li>
                     <li>👉 <b>Tổng chi phí mua lẻ:</b> Khoảng <code>79.000 + 135.000 = 214.000đ/tháng</code>.</li>
                 </ul>
                 <p>
-                    Trong khi đó, với gói <b>YT150 (150.000đ/tháng)</b>, bạn đã có trọn vẹn cả 2 dịch vụ, tiết kiệm ngay <b>~64.000đ mỗi tháng</b> (tương đương tiết kiệm gần 30% chi phí). Đối với những ai thường xuyên gọi điện và lướt TikTok/Facebook thì gói <b>YT200 (200.000đ)</b> lại càng là món hời lớn khi bao trọn gói thoại và data mạng xã hội không giới hạn!
+                    Khi đăng ký gói <b>YT150 (150.000đ/tháng)</b>, bạn tiết kiệm ngay <b>~64.000đ mỗi tháng</b>. Với gói <b>YT200</b>, chỉ thêm 50.000đ bạn đã nhận thêm gói thoại miễn phí cùng data mạng xã hội không giới hạn — một mức giá quá hời!
                 </p>
-
-                <!-- MỤC 3 -->
-                <h2>3. Hướng dẫn đăng ký & Quy trình kích hoạt YouTube Premium chính chủ</h2>
-                <p>
-                    Điểm tuyệt vời nhất của gói cước Viettel nằm ở cơ chế phân phối: <b>Tài khoản được nâng trực tiếp lên gói Cá nhân (Individual)</b> chứ không bắt ép bạn vào nhóm gia đình Google Family. Quy trình gồm 4 bước đơn giản:
-                </p>
-
-                <div class="glass-card" style="padding: 1.5rem; margin: 1.5rem 0;">
-                    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                            <div style="flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #38bdf8); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff;">1</div>
-                            <div>
-                                <h4 style="color: #fff; margin: 0 0 0.35rem; font-size: 1rem;">Soạn tin nhắn SMS đăng ký</h4>
-                                <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
-                                    Mở ứng dụng tin nhắn trên điện thoại, soạn cú pháp:
-                                    <br><code class="language-text" style="display: inline-block; margin-top: 0.35rem;">YT150 gửi 191</code> (hoặc <code class="language-text">YT200 gửi 191</code>).
-                                </p>
-                            </div>
-                        </div>
-
-                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                            <div style="flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #38bdf8); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff;">2</div>
-                            <div>
-                                <h4 style="color: #fff; margin: 0 0 0.35rem; font-size: 1rem;">Nhận tin nhắn phản hồi chứa đường link kích hoạt</h4>
-                                <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
-                                    Sau khi trừ cước thành công, tổng đài Viettel sẽ gửi về máy bạn một tin nhắn SMS thông báo đăng ký thành công, kèm theo <b>một đường link kích hoạt YouTube Premium độc quyền</b>.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                            <div style="flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #38bdf8); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff;">3</div>
-                            <div>
-                                <h4 style="color: #fff; margin: 0 0 0.35rem; font-size: 1rem;">Xác thực thuê bao & nhận mã OTP</h4>
-                                <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
-                                    Bấm vào đường link trong tin nhắn, hệ thống sẽ yêu cầu bạn nhập số điện thoại Viettel vừa đăng ký để nhận mã OTP xác thực chính chủ.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                            <div style="flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #38bdf8); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff;">4</div>
-                            <div>
-                                <h4 style="color: #fff; margin: 0 0 0.35rem; font-size: 1rem;">Liên kết tài khoản Google cá nhân</h4>
-                                <p style="margin: 0; font-size: 0.88rem; color: var(--text-muted);">
-                                    Màn hình sẽ chuyển tiếp sang trang ủy quyền của Google. Tại đây, bạn đăng nhập tài khoản Gmail cá nhân của mình (hoặc bất kỳ tài khoản Gmail nào bạn muốn tặng) và bấm <b>Kích hoạt</b>. Ngay lập tức, tài khoản sẽ được nâng cấp lên YouTube Premium!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <blockquote>
-                    ✨ <b>Ưu điểm tuyệt đối so với gói Family:</b> Nâng trực tiếp trên email cá nhân, giữ nguyên toàn bộ lịch sử xem, video đã lưu, danh sách phát (playlist) và gợi ý bài hát yêu thích trên YouTube Music. Hoàn toàn không lo bị rớt Premium giữa chừng do vi phạm chính sách địa chỉ gia đình của Google!
-                </blockquote>
 
                 <!-- Vị trí Quảng Cáo Giữa Bài -->
                 <div class="ad-slot-container" data-slot="article-mid" style="margin: 2rem 0;"></div>
 
-                <!-- MỤC 4 -->
-                <h2>4. Mẹo thực chiến: Bắt tay chia sẻ chi phí & Dịch vụ trung gian Admin</h2>
+                <!-- MỤC 4: Hướng dẫn đăng ký -->
+                <h2 id="huong-dan-dang-ky">4. Hướng Dẫn Đăng Ký & Quy Trình Kích Hoạt Chỉ 4 Bước</h2>
                 <p>
-                    Đây chính là <b>phần giá trị nhất</b> dành cho bạn đọc Blog Lê Anh Minh! Vì cơ chế của Viettel là gửi link kích hoạt liên kết cho một tài khoản Google bất kỳ, nên <b>người đứng tên SIM Viettel và người sở hữu tài khoản YouTube Premium KHÔNG NHẤT THIẾT PHẢI LÀ MỘT NGƯỜI</b>. Từ đây mở ra những cách tối ưu chi phí cực kỳ thông minh:
+                    Việc đăng ký và nhận link nâng cấp diễn ra hoàn toàn tự động, nhanh chóng và bảo mật:
                 </p>
 
-                <h3>💡 Mẹo 1: Rủ người thân đăng ký mạng — Bạn chịu một phần phí để lấy Premium</h3>
+                <ol class="steps-list">
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Soạn tin nhắn SMS đăng ký qua tổng đài 191</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Mở ứng dụng tin nhắn trên điện thoại, soạn cú pháp: <code class="language-text" style="color:#38bdf8;">YT150 gửi 191</code> (hoặc <code class="language-text" style="color:#f59e0b;">YT200 gửi 191</code>). Đảm bảo số dư tài khoản chính đủ 150.000đ hoặc 200.000đ.
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Nhận tin nhắn phản hồi chứa đường link kích hoạt</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Sau khi trừ cước thành công, tổng đài Viettel sẽ gửi về máy bạn một tin nhắn SMS thông báo đăng ký thành công, kèm theo <b>một đường link kích hoạt YouTube Premium độc quyền</b>.
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Xác thực số điện thoại & nhận mã OTP</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Bấm vào đường link trong tin nhắn SMS, nhập số điện thoại Viettel của bạn để nhận mã xác thực OTP gửi về máy, đảm bảo quyền sở hữu chính chủ.
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="step-num"></div>
+                        <div>
+                            <strong style="color:#fff; font-size:0.98rem;">Liên kết tài khoản Google cá nhân & tận hưởng Premium</strong><br>
+                            <span style="color:var(--text-muted); font-size:0.86rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                                Hệ thống sẽ chuyển tiếp sang giao diện Google. Bạn chỉ việc đăng nhập tài khoản Gmail cá nhân của mình (hoặc gửi link cho bạn bè) và bấm <b>Chấp nhận</b>. Tài khoản lập tức trở thành YouTube Premium!
+                            </span>
+                        </div>
+                    </li>
+                </ol>
+
+                <blockquote>
+                    🔒 <b>An toàn tuyệt đối 100%:</b> Bạn <b>không cần gửi mật khẩu</b> cho bất kỳ ai. Toàn bộ thao tác ủy quyền được thực hiện trực tiếp trên máy chủ bảo mật của Google.
+                </blockquote>
+
+                <!-- MỤC 5: Mẹo thực chiến -->
+                <h2>5. Mẹo Thực Chiến: Chia Sẻ Chi Phí & Dịch Vụ Trung Gian Uy Tín Từ Admin</h2>
                 <p>
-                    Trong gia đình hay cơ quan của bạn (bố mẹ, cô dì, đồng nghiệp, bạn bè), chắc chắn có rất nhiều người có nhu cầu dùng mạng 4G/5G rất cao (cần 4GB/ngày để lướt Zalo, Facebook, đọc báo, làm việc ngoài đường) nhưng họ <b>hoàn toàn không có nhu cầu nghe nhạc tắt màn hình hay xem YouTube không quảng cáo</b>.
+                    Vì cơ chế của Viettel là gửi link kích hoạt để người dùng tự do liên kết với một tài khoản Google bất kỳ, nên <b>người đứng tên SIM Viettel và người sở hữu tài khoản YouTube Premium hoàn toàn có thể là 2 người khác nhau</b>. Điều này mở ra những phương án tối ưu chi phí cực kỳ thông minh:
+                </p>
+
+                <h3>💡 Mẹo 1: Rủ người quen đăng ký mạng — Bạn chịu một phần phí để lấy Premium</h3>
+                <p>
+                    Trong gia đình hay cơ quan của bạn (bố mẹ, anh chị, đồng nghiệp), chắc chắn có rất nhiều người có nhu cầu dùng 4G/5G rất lớn (cần 4GB/ngày để lướt Zalo, Facebook, đọc báo, làm việc ngoài đường) nhưng họ <b>hoàn toàn không có nhu cầu nghe nhạc tắt màn hình hay xem YouTube</b>.
                 </p>
                 <ul>
                     <li>Bạn gợi ý họ đăng ký gói <b>YT150 (150.000đ/tháng)</b>.</li>
-                    <li>Bạn đề xuất: <i>"Bác/bạn trả 90.000đ hoặc 100.000đ để dùng tẹt ga 120GB data tốc độ cao mỗi tháng, còn 50.000đ - 60.000đ em/mình sẽ hỗ trợ đóng cho!"</i>.</li>
-                    <li>Đổi lại, khi Viettel gửi tin nhắn link kích hoạt YouTube Premium về máy, họ chỉ cần chuyển tiếp (forward) tin nhắn hoặc copy link gửi cho bạn.</li>
-                    <li>Bạn mở link và liên kết vào tài khoản Gmail của chính bạn!</li>
+                    <li>Bạn đề xuất hỗ trợ: <i>"Bác/bạn chỉ cần đóng 90.000đ - 100.000đ để xài tẹt ga 120GB data tốc độ cao, còn 50.000đ - 60.000đ em/mình sẽ thanh toán cho!"</i>.</li>
+                    <li>Đổi lại, khi SMS chứa link kích hoạt gửi về máy họ, họ chỉ cần chuyển tiếp (forward) link cho bạn.</li>
+                    <li>Bạn mở link và liên kết ngay vào tài khoản Gmail cá nhân của mình!</li>
                 </ul>
-                <div class="glass-card" style="padding: 1rem; border-left: 4px solid #34d399; margin: 1rem 0; font-size: 0.9rem;">
-                    🤝 <b>Kèo Win - Win 100%:</b> Người thân của bạn có gói data 120GB/tháng với giá siêu rẻ (chỉ ~90k thay vì phải trả 120k-135k), còn bạn có tài khoản YouTube Premium chính chủ chỉ với ~50k-60k/tháng (rẻ hơn nhiều so với giá gốc 79k)!
-                </div>
 
-                <h3>🛡️ Mẹo 2: Admin nhận làm trung gian & Thu lại link nâng YouTube Premium chính chủ</h3>
-                <p>
-                    Nếu bạn không tìm được người quen phù hợp hoặc SIM của bạn không phải Viettel thì sao? Đừng lo, <b>Admin (Lê Anh Minh) hỗ trợ toàn diện</b> cho cộng đồng theo 2 chiều:
-                </p>
-
-                <div class="glass-card" style="padding: 1.25rem; margin: 1.25rem 0;">
-                    <h4 style="color: #38bdf8; margin: 0 0 0.75rem; font-size: 1.05rem;">
-                        <i class="fas fa-hand-holding-dollar"></i> 1. Thu mua lại link YouTube Premium từ người đăng ký gói cước
-                    </h4>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.5rem;">
-                        Nếu bạn đang dùng SIM Viettel và đăng ký gói YT150/YT200 nhưng bạn không có nhu cầu dùng YouTube Premium (hoặc đã có sẵn rồi), <b>hãy gửi link kích hoạt cho Admin</b>. Admin nhận <b>thu mua lại link kích hoạt với giá cực tốt từng tháng</b>! Tiền sẽ được chuyển khoản nhanh gọn, giúp bạn giảm ngay một khoản tiền cước điện thoại hàng tháng.
-                    </p>
-                </div>
-
-                <div class="glass-card" style="padding: 1.25rem; margin: 1.25rem 0;">
-                    <h4 style="color: #a855f7; margin: 0 0 0.75rem; font-size: 1.05rem;">
-                        <i class="fas fa-shield-halved"></i> 2. Cung cấp link & Làm trung gian kết nối nâng YouTube Premium chính chủ
-                    </h4>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.5rem;">
-                        Nếu bạn đang dùng mạng khác (VinaPhone, MobiFone...) hoặc SIM không thuộc diện ưu đãi gói YT nhưng muốn sở hữu <b>YouTube Premium chính chủ nâng thẳng vào email cá nhân</b>:
-                    </p>
-                    <ul style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-left: 1.2rem;">
-                        <li>Admin có sẵn nguồn link nâng YouTube Premium chính chủ từ các chủ thuê bao đối tác với mức giá siêu ưu đãi.</li>
-                        <li>Admin đứng ra làm <b>trung gian đảm bảo (Escrow)</b> uy tín 100%, bảo hành đủ chu kỳ, hỗ trợ hướng dẫn kích hoạt từ A - Z.</li>
-                        <li>Không sợ dính tài khoản rác, không sợ lộ mật khẩu (bạn tự tay đăng nhập ủy quyền trên Google của bạn).</li>
+                <!-- Thẻ tính toán chi phí -->
+                <div class="glass-card" style="padding: 1.15rem; border-left: 4px solid #34d399; margin: 1.25rem 0;">
+                    <div style="font-weight: 700; color: #34d399; font-size: 1rem; margin-bottom: 0.4rem;">
+                        🤝 Kèo Win - Win 100%: Cả hai cùng tiết kiệm tối đa!
+                    </div>
+                    <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+                        <li><b>Người thân:</b> Có 120GB Data (4GB/ngày) chỉ với <b>~90k - 100k/tháng</b> (rẻ hơn 30% so với mua gói data riêng 120k-135k).</li>
+                        <li><b>Bạn:</b> Có tài khoản YouTube Premium chính chủ chỉ với <b>~50k - 60k/tháng</b> (rẻ hơn nhiều so với giá gốc 79k, không lo quét lỗi).</li>
                     </ul>
                 </div>
 
-                <div class="callout callout-info" style="background: rgba(168, 85, 247, 0.1); border-left: 4px solid var(--primary); padding: 1.25rem; border-radius: 12px; margin: 1.5rem 0;">
-                    <h4 style="color: #c084fc; margin: 0 0 0.5rem; font-size: 1.05rem;">
-                        <i class="fas fa-headset"></i> Kênh liên hệ trực tiếp với Admin Lê Anh Minh:
-                    </h4>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0; line-height: 1.6;">
-                        • <b>Facebook Cá nhân:</b> <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" style="color: #38bdf8;">facebook.com/leanhminh2104</a><br>
-                        • <b>Email liên hệ:</b> <a href="mailto:contact@leanhminh.dev" style="color: #38bdf8;">contact@leanhminh.dev</a><br>
-                        • <b>GitHub:</b> <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" style="color: #38bdf8;">github.com/leanhminh2104</a><br>
-                        <i>(Hoặc để lại bình luận ở cuối bài viết để nhận phản hồi nhanh nhất!)</i>
-                    </p>
+                <h3>🛡️ Mẹo 2: Dịch Vụ Admin Thu Mua Link & Làm Trung Gian Kết Nối An Toàn</h3>
+                <p>
+                    Nếu bạn không tìm được người quen phù hợp hoặc dùng mạng khác không đăng ký được gói, <b>Admin (Lê Anh Minh) hỗ trợ toàn diện</b> cho cộng đồng:
+                </p>
+
+                <div class="warranty-box">
+                    <div class="warranty-icon">🛡️</div>
+                    <div class="warranty-text">
+                        <strong>Cam Kết Trung Gian Uy Tín & Bảo Hành Trọn Chu Kỳ:</strong><br>
+                        <span style="color:var(--text-muted); font-size:0.88rem; line-height:1.6; display:block; margin-top:0.25rem;">
+                            Admin đóng vai trò bảo chứng trung gian an toàn giữa người sở hữu SIM có link và người cần nâng cấp YouTube Premium. Mọi giao dịch đều được bảo đảm uy tín 100%, bảo hành kỹ thuật đủ 30 ngày và hỗ trợ kích hoạt trực tiếp.
+                        </span>
+                    </div>
                 </div>
 
-                <!-- MỤC 5 -->
-                <h2>5. Những câu hỏi thường gặp (FAQ) & Lưu ý cần nhớ</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div class="glass-card" style="padding: 1.25rem;">
+                        <h4 style="color: #38bdf8; margin: 0 0 0.5rem; font-size: 1rem;">
+                            <i class="fas fa-hand-holding-dollar"></i> 1. Thu mua lại link YouTube Premium
+                        </h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
+                            Bạn đăng ký gói YT150/YT200 để lấy data nhưng không dùng YouTube Premium? <b>Hãy gửi link kích hoạt cho Admin</b>. Admin nhận thu mua lại link với giá tốt từng tháng, tiền chuyển khoản nhanh gọn giúp bạn giảm ngay tiền cước!
+                        </p>
+                    </div>
+
+                    <div class="glass-card" style="padding: 1.25rem;">
+                        <h4 style="color: #a855f7; margin: 0 0 0.5rem; font-size: 1rem;">
+                            <i class="fas fa-shield-halved"></i> 2. Cung cấp link & Nâng cấp chính chủ
+                        </h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
+                            Bạn dùng VinaPhone, MobiFone hoặc SIM không có ưu đãi nhưng muốn YouTube Premium chính chủ? Admin có sẵn link đối tác giá ưu đãi, nâng thẳng vào email cá nhân, tự tay bạn đăng nhập xác nhận, không lo lừa đảo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BANNER QUẢNG CÁO & DỊCH VỤ ADMIN (TỰ ĐỘNG NẠP TỪ blog-data.js) -->
+                <!-- Lưu ý: Thông tin ưu đãi, giá cả và link liên hệ của banner này được quản lý tập trung tại assets/js/blog-data.js (id: service-viettel-youtube-premium) -->
+                <div class="ad-slot-container" data-ad-id="service-viettel-youtube-premium" style="margin: 2rem 0;"></div>
+
+                <!-- MỤC 6: Bảng quy định & chính sách -->
+                <h2>6. Bảng Giá & Quy Định Giao Dịch Dịch Vụ Admin</h2>
+                <div class="glass-card" style="padding:1.15rem; overflow-x:auto; margin:1.5rem 0;">
+                    <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:left;">
+                        <thead>
+                            <tr style="border-bottom:1px solid var(--glass-border); color:var(--primary);">
+                                <th style="padding:0.85rem 0.6rem;">Hạng mục</th>
+                                <th style="padding:0.85rem 0.6rem;">Chi tiết quy định & Quyền lợi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">💰 Giá thu mua / cung cấp link</td>
+                                <td style="padding:0.85rem 0.6rem;" class="compare-row-good">Mức giá cạnh tranh, chiết khấu cao theo từng thời điểm</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">⏳ Thời hạn chu kỳ</td>
+                                <td style="padding:0.85rem 0.6rem;">30 ngày / chu kỳ gói cước Viettel</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">🛡️ Chính sách bảo hành</td>
+                                <td style="padding:0.85rem 0.6rem;">Bảo hành trọn chu kỳ; 1 đổi 1 nếu phát sinh lỗi kỹ thuật</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">📧 Loại tài khoản hỗ trợ</td>
+                                <td style="padding:0.85rem 0.6rem;">Mọi tài khoản Gmail cá nhân (@gmail.com) chưa kích hoạt gói khác</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.85rem 0.6rem; font-weight:600;">📞 Kênh liên hệ trực tiếp</td>
+                                <td style="padding:0.85rem 0.6rem;">
+                                    Facebook: <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" style="color:#38bdf8; font-weight:600;">facebook.com/leanhminh2104</a> | Email: <a href="mailto:contact@leanhminh.dev" style="color:#38bdf8;">contact@leanhminh.dev</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- MỤC 7: Những câu hỏi thường gặp FAQ -->
+                <h2>7. Những Câu Hỏi Thường Gặp (FAQ) & Lưu Ý Quan Trọng</h2>
                 <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
                     <div class="glass-card" style="padding: 1.15rem;">
                         <h4 style="color: #fff; margin: 0 0 0.4rem; font-size: 0.95rem;">
-                            ❓ SIM nào đăng ký được gói YT150 và YT200?
+                            ❓ Thuê bao Viettel nào được phép đăng ký gói YT150 và YT200?
                         </h4>
                         <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.55;">
-                            Gói cước áp dụng cho các thuê bao di động trả trước của Viettel thuộc danh sách ưu đãi hoặc thuê bao hòa mạng mới. Bạn có thể soạn thử cú pháp <code class="language-text">YT150 gửi 191</code> — nếu thuê bao đủ điều kiện, tổng đài sẽ trừ cước và thông báo thành công; nếu không thuộc danh sách, bạn không bị mất phí.
+                            Gói cước áp dụng cho thuê bao di động trả trước của Viettel thuộc danh sách khuyến mại hoặc thuê bao kích hoạt mới. Bạn có thể kiểm tra nhanh bằng cách soạn thử <code class="language-text">YT150 gửi 191</code>. Nếu không thuộc danh sách, hệ thống sẽ báo chưa đủ điều kiện và bạn không bị trừ bất kỳ chi phí nào.
                         </p>
                     </div>
 
                     <div class="glass-card" style="padding: 1.15rem;">
                         <h4 style="color: #fff; margin: 0 0 0.4rem; font-size: 0.95rem;">
-                            ❓ Gói YT150 xem YouTube có bị trừ dung lượng data không?
+                            ❓ Gói YT150 xem YouTube có bị trừ vào 4GB data/ngày không?
                         </h4>
                         <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.55;">
-                            <b>Có.</b> Gói YT150 chỉ tặng kèm tài khoản YouTube Premium (không có quảng cáo), dung lượng data khi xem YouTube vẫn sẽ trừ vào hạn mức 4GB/ngày. Nếu muốn xem YouTube và lướt TikTok, Facebook hoàn toàn miễn phí data không giới hạn, bạn nên chọn gói <b>YT200</b>.
+                            <b>Có.</b> Gói YT150 chỉ tặng kèm tài khoản YouTube Premium (không có quảng cáo), dung lượng data khi xem video vẫn sẽ trừ vào hạn mức 4GB/ngày. Nếu bạn muốn vừa có Premium vừa lướt YouTube, TikTok, Facebook miễn phí data không giới hạn, hãy chọn gói <b>YT200</b>.
                         </p>
                     </div>
 
                     <div class="glass-card" style="padding: 1.15rem;">
                         <h4 style="color: #fff; margin: 0 0 0.4rem; font-size: 0.95rem;">
-                            ❓ Gói cước có tự động gia hạn không?
+                            ❓ Gói cước có tự động gia hạn sau 30 ngày không?
                         </h4>
                         <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.55;">
-                            Gói cước có chu kỳ 30 ngày và tự động gia hạn. Để duy trì YouTube Premium thông suốt, bạn cần nạp đủ số dư (150.000đ hoặc 200.000đ) vào tài khoản chính trước ngày hết hạn chu kỳ.
+                            Gói cước có tính năng tự động gia hạn sau mỗi 30 ngày nếu số dư tài khoản chính đủ tiền. Để duy trì YouTube Premium thông suốt, bạn chỉ cần nạp tiền vào SIM trước thời điểm gia hạn.
                         </p>
                     </div>
 
                     <div class="glass-card" style="padding: 1.15rem;">
                         <h4 style="color: #fff; margin: 0 0 0.4rem; font-size: 0.95rem;">
-                            ❓ Cú pháp tra cứu data và hủy gói cước như thế nào?
+                            ❓ Cú pháp tra cứu data và hủy gia hạn gói cước như thế nào?
                         </h4>
                         <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.55;">
                             • Kiểm tra data còn lại: Soạn <code class="language-text">KTTK gửi 191</code>.<br>
@@ -346,13 +650,13 @@
                     </div>
                 </div>
 
-                <!-- MỤC 6 -->
-                <h2>6. Tổng kết</h2>
+                <!-- MỤC 8: Tổng kết -->
+                <h2>8. Tổng Kết — Giải Pháp Bản Quyền Bền Vững & Tiết Kiệm</h2>
                 <p>
-                    Việc Viettel hợp tác cùng Google ra mắt hai gói cước <b>YT150</b> và <b>YT200</b> là bước ngoặt tích cực cho thị trường nội dung số tại Việt Nam. Người dùng không chỉ được tiếp cận dịch vụ số chuẩn bản quyền với mức giá tiết kiệm hơn bao giờ hết, mà còn chấm dứt hoàn toàn nỗi lo bị gián đoạn tài khoản khi tham gia các nhóm lậu.
+                    Bộ đôi gói cước <b>YT150</b> và <b>YT200</b> của Viettel chính là lời giải hoàn hảo cho bài toán sử dụng dịch vụ số bản quyền với chi phí bình dân tại Việt Nam. Không chỉ mang lại đường truyền data 4G/5G tốc độ cao dồi dào, gói cước còn giúp người dùng an tâm tận hưởng trọn vẹn đặc quyền YouTube Premium chính chủ mà không lo bị ngắt quãng do các đợt truy quét tài khoản gia đình.
                 </p>
                 <p>
-                    Hãy tận dụng ngay mẹo chia sẻ gói cước với người thân hoặc liên hệ với <b>Admin</b> nếu bạn có link kích hoạt cần nhượng lại, hoặc đang tìm kiếm giải pháp nâng cấp YouTube Premium chính chủ uy tín, ổn định dài lâu!
+                    Hãy tận dụng ngay mẹo chia sẻ gói cước cùng người thân để tối ưu chi phí, hoặc liên hệ ngay với <b>Admin Lê Anh Minh</b> nếu bạn có link kích hoạt cần nhượng lại, hoặc đang tìm kiếm địa chỉ nâng cấp YouTube Premium chính chủ uy tín, ổn định dài lâu!
                 </p>
 
                 <!-- Vị trí Quảng Cáo Cuối Bài -->
@@ -377,10 +681,10 @@
 
             </article>
 
-            <!-- Right: Sticky Sidebar (Tự động tạo Mục lục TOC & Thẻ tác giả) -->
+            <!-- CỘT PHẢI: Sticky Sidebar (Tự động tạo Mục lục TOC & Thẻ tác giả) -->
             <aside class="article-sidebar">
 
-                <!-- Table of Contents (Tự động lấy từ các thẻ h2, h3) -->
+                <!-- Mục lục tự động (TOC) -->
                 <div class="glass-card toc-card" id="toc-card">
                     <div class="toc-title">
                         <i class="fas fa-list-ul"></i> Mục lục bài viết
@@ -390,7 +694,7 @@
                     </ul>
                 </div>
 
-                <!-- Author Card -->
+                <!-- Thẻ thông tin tác giả -->
                 <div class="glass-card author-card">
                     <div class="author-avatar-wrapper">
                         <img src="../../assets/images/avatar.jpg" alt="Lê Anh Minh" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Le+Anh+Minh&background=a855f7&color=fff&size=128'">
@@ -398,32 +702,30 @@
                     <h3 class="author-name">Lê Anh Minh</h3>
                     <p class="author-role">Full-stack Developer & Tech Lead</p>
                     <p class="author-bio">
-                        Chia sẻ kiến thức về lập trình Laravel, PHP, tối ưu hóa hệ thống và các thủ thuật công nghệ hữu ích trong thực tế.
+                        Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.
                     </p>
                     <div class="author-socials">
                         <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="mailto:contact@leanhminh.dev" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
 
-                <!-- Sponsored / Ad Card (Nạp tự động nếu có trong blog-data.js) -->
-                <div id="sidebar-ad-slot"></div>
+                <!-- Vị trí Quảng Cáo Sidebar -->
+                <div id="sidebar-ad-slot" style="margin-top: 1.5rem;"></div>
 
             </aside>
 
-        </div>
+        </div><!-- /article-layout -->
 
-    </div>
+    </div><!-- /blog-container -->
 </main>
 
-<!-- FOOTER (Tự động tạo bởi components.js) -->
+<!-- Chân trang & Mobile Bottom Dock (Tự động tạo bởi components.js) -->
 <div id="site-footer"></div>
-
-<!-- Mobile Bottom Dock (Tự động tạo bởi components.js) -->
 <div id="site-bottom-dock"></div>
 
-<!-- Core Scripts -->
+<!-- Nạp Scripts cốt lõi -->
 <script src="../../assets/js/blog-data.js"></script>
 <script src="../../assets/js/components.js"></script>
 <script src="../../assets/js/core.js"></script>
