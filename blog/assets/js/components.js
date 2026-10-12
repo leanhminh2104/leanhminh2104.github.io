@@ -1075,6 +1075,7 @@
     // Tự động random và đổi ảnh sau X giây theo cấu hình trong blog-data.js
     // ────────────────────────────────────────────────────────────
     function initSideBanners() {
+        try { sessionStorage.removeItem('blog_side_banners_dismissed'); } catch (_) {}
         const sideCfg = DATA.ads?.sideBanners;
         if (!sideCfg || sideCfg.enabled === false) return;
         const items = sideCfg.items;
