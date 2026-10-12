@@ -38,12 +38,15 @@ function renderPostCard(post, relativeRoot = './') {
     const badgeColor = post.category === 'tech' ? 'badge-info' : 'badge-success';
     const catIcon = post.category === 'tech' ? 'fa-code' : 'fa-heart';
     const tagsHtml = (post.tags || []).slice(0, 3).map(t => `<span class="badge badge-primary">${t}</span>`).join('\n                                ');
+    const coverContent = post.cover 
+        ? `<img src="${relativeRoot}${post.cover}" alt="${post.title}" loading="lazy">` 
+        : emoji;
 
     return `            <!-- Card: ${post.title} -->
             <div class="post-card-wrapper reveal" data-category="${post.category}">
                 <a href="${relativeRoot}${post.path}" class="post-card">
                     <div class="post-cover">
-                        ${emoji}
+                        ${coverContent}
                     </div>
                     <div class="post-body">
                         <div class="post-meta">

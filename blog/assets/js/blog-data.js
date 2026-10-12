@@ -73,7 +73,8 @@ window.BLOG_DATA = {
             excerpt: "Viettel bắt tay Google ra mắt bộ đôi gói cước 5G YT150 và YT200 tích hợp YouTube Premium chính chủ cùng 120GB data tốc độ cao. Cú pháp đăng ký 191 và mẹo share cước cực đỉnh.",
             tags: ["Viettel 5G", "YouTube Premium", "YT150 & YT200", "Gói cước", "Thủ thuật"],
             isNew: true,
-            icon: "fa-brands fa-youtube"
+            icon: "fa-brands fa-youtube",
+            cover: "assets/images/posts/viettel-yt150-yt200/banner-cover.jpg"
         },
         {
             id: "gemini-pro-18-thang-jio",
@@ -88,7 +89,8 @@ window.BLOG_DATA = {
             excerpt: "Sở hữu trọn bộ Google One AI Pro 18 tháng chỉ 45.000₫. Nhận ngay Gemini Advanced, bộ nhớ đám mây, Google Photos Magic Editor và tặng kèm YouTube Premium Lite.",
             tags: ["Google One Pro", "Gemini Advanced", "YouTube Premium Lite", "Giá rẻ", "Deal hot"],
             isNew: false,
-            icon: "fa-robot"
+            icon: "fa-robot",
+            cover: "assets/images/posts/gemini-pro/banner-cover.jpg"
         },
         {
             id: "co-che-duy-tri-youtube-premium-va-fix-loi-family",
@@ -103,7 +105,8 @@ window.BLOG_DATA = {
             excerpt: "Nắm rõ cơ chế luân chuyển nhóm YouTube Premium tránh quét Household và cách fix triệt để lỗi không cùng quốc gia, không nhận được lời mời Family.",
             tags: ["YouTube Premium", "Google Family", "Thủ thuật", "Fix lỗi", "Google Payments"],
             isNew: true,
-            icon: "fa-brands fa-youtube"
+            icon: "fa-brands fa-youtube",
+            cover: "assets/images/posts/youtube-family/banner-cover.jpg"
         },
         {
             id: "cau-hinh-thong-bao-acb-email",
