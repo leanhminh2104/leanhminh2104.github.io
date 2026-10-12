@@ -121,7 +121,8 @@ window.BLOG_DATA = {
             excerpt: "Từng bước thiết lập nhận thông báo biến động số dư ACB ONE về Gmail và kết nối webhook xử lý nạp tiền tự động 24/7.",
             tags: ["ACB", "Banking API", "Gmail", "Webhook", "Automation"],
             isNew: true,
-            icon: "fa-mobile-screen-button"
+            icon: "fa-mobile-screen-button",
+            cover: "assets/images/posts/acb-email/banner-cover.jpg"
         },
         {
             id: "lay-app-password-google",
@@ -136,7 +137,8 @@ window.BLOG_DATA = {
             excerpt: "Cách tạo App Password 16 ký tự của Gmail để gửi nhận email qua SMTP/IMAP trong Laravel, WordPress, NodeJS.",
             tags: ["Google", "App Password", "SMTP", "Security", "Gmail"],
             isNew: true,
-            icon: "fa-key"
+            icon: "fa-key",
+            cover: "assets/images/posts/google-app-password/banner-cover.jpg"
         },
         {
             id: "laravel-tips",
@@ -151,7 +153,8 @@ window.BLOG_DATA = {
             excerpt: "Tổng hợp 10 mẹo hữu ích trong Laravel giúp code gọn gàng hơn, tối ưu query database và tăng hiệu suất ứng dụng PHP trong thực tế.",
             tags: ["Laravel", "PHP", "Performance", "Tips"],
             isNew: true,
-            icon: "fa-bolt"
+            icon: "fa-bolt",
+            cover: "assets/images/posts/laravel-tips/banner-cover.jpg"
         },
         {
             id: "cuoc-song-dev",
@@ -166,7 +169,8 @@ window.BLOG_DATA = {
             excerpt: "Chia sẻ chân thực về hành trình làm dev, cách quản lý năng lượng, phòng tránh burnout và nuôi dưỡng niềm vui lập trình dài hạn.",
             tags: ["Life", "Developer", "Mindset", "Health"],
             isNew: false,
-            icon: "fa-coffee"
+            icon: "fa-coffee",
+            cover: "assets/images/posts/cuoc-song-dev/banner-cover.jpg"
         }
     ],
 
