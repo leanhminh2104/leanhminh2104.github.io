@@ -21,10 +21,24 @@ window.BLOG_DATA = {
         tagline: "Chia sẻ về Lập trình, Công nghệ & Cuộc sống",
         author: "Lê Anh Minh",
         github: "https://github.com/leanhminh2104",
-        facebook: "https://facebook.com/",
+        facebook: "https://facebook.com/leanhminh2104",
         email: "contact@leanhminh.dev",
         logo: "assets/images/logo/logo.svg",
         year: 2026
+    },
+
+    // 1.1 Cấu hình thông tin tác giả tập trung (Dùng chung cho toàn bộ bài viết)
+    author: {
+        name: "Lê Anh Minh",
+        role: "Full-Stack & System Lead",
+        bio: "Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.",
+        avatar: "assets/images/avatar.gif",
+        verified: true,
+        online: true,
+        techChips: ["Laravel", "Vue/React", "DevOps"],
+        github: "https://github.com/leanhminh2104",
+        facebook: "https://facebook.com/leanhminh2104",
+        email: "contact@leanhminh.dev"
     },
 
     // 2. Danh mục chuyên mục (Tự động sinh menu PC, Mobile & Filter)
@@ -61,6 +75,22 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "huong-dan-roi-nhom-gia-dinh-google-family",
+            title: "Hướng Dẫn Rời Nhóm Gia Đình & Xóa Nhóm Google Family Chi Tiết 👨‍👩‍👧‍👦",
+            slug: "huong-dan-roi-nhom-gia-dinh-google-family",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/huong-dan-roi-nhom-gia-dinh-google-family/",
+            date: "2026-10-12",
+            formattedDate: "12 Th10, 2026",
+            readTime: "5 phút",
+            excerpt: "Hướng dẫn chi tiết cách rời nhóm gia đình hoặc xóa nhóm Google Family hoàn toàn qua link myaccount.google.com/family/details. Đầy đủ cho thành viên và chủ nhóm.",
+            tags: ["Google Family", "YouTube Premium", "Google Account", "Thủ thuật"],
+            isNew: true,
+            icon: "fa-users",
+            cover: "tech/huong-dan-roi-nhom-gia-dinh-google-family/images/banner-cover.jpg"
+        },
+        {
             id: "viettel-yt150-yt200-youtube-premium",
             title: "Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀",
             slug: "viettel-yt150-yt200-youtube-premium",
@@ -72,9 +102,9 @@ window.BLOG_DATA = {
             readTime: "6 phút",
             excerpt: "Viettel bắt tay Google ra mắt bộ đôi gói cước 5G YT150 và YT200 tích hợp YouTube Premium chính chủ cùng 120GB data tốc độ cao. Cú pháp đăng ký 191 và mẹo share cước cực đỉnh.",
             tags: ["Viettel 5G", "YouTube Premium", "YT150 & YT200", "Gói cước", "Thủ thuật"],
-            isNew: true,
+            isNew: false,
             icon: "fa-brands fa-youtube",
-            cover: "assets/images/posts/viettel-yt150-yt200/banner-cover.jpg"
+            cover: "tech/viettel-yt150-yt200-youtube-premium/images/banner-cover.jpg"
         },
         {
             id: "gemini-pro-18-thang-jio",
@@ -90,7 +120,7 @@ window.BLOG_DATA = {
             tags: ["Google One Pro", "Gemini Advanced", "YouTube Premium Lite", "Giá rẻ", "Deal hot"],
             isNew: false,
             icon: "fa-robot",
-            cover: "assets/images/posts/gemini-pro/banner-cover.jpg"
+            cover: "tech/gemini-pro-18-thang-jio/images/banner-cover.jpg"
         },
         {
             id: "co-che-duy-tri-youtube-premium-va-fix-loi-family",
@@ -106,7 +136,7 @@ window.BLOG_DATA = {
             tags: ["YouTube Premium", "Google Family", "Thủ thuật", "Fix lỗi", "Google Payments"],
             isNew: true,
             icon: "fa-brands fa-youtube",
-            cover: "assets/images/posts/youtube-family/banner-cover.jpg"
+            cover: "tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/images/banner-cover.jpg"
         },
         {
             id: "cau-hinh-thong-bao-acb-email",
@@ -122,7 +152,7 @@ window.BLOG_DATA = {
             tags: ["ACB", "Banking API", "Gmail", "Webhook", "Automation"],
             isNew: true,
             icon: "fa-mobile-screen-button",
-            cover: "assets/images/posts/acb-email/banner-cover.jpg"
+            cover: "tech/cau-hinh-thong-bao-acb-email/images/banner-cover.jpg"
         },
         {
             id: "lay-app-password-google",
@@ -138,7 +168,7 @@ window.BLOG_DATA = {
             tags: ["Google", "App Password", "SMTP", "Security", "Gmail"],
             isNew: true,
             icon: "fa-key",
-            cover: "assets/images/posts/google-app-password/banner-cover.jpg"
+            cover: "tech/lay-app-password-google/images/banner-cover.jpg"
         },
         {
             id: "laravel-tips",
@@ -154,7 +184,7 @@ window.BLOG_DATA = {
             tags: ["Laravel", "PHP", "Performance", "Tips"],
             isNew: true,
             icon: "fa-bolt",
-            cover: "assets/images/posts/laravel-tips/banner-cover.jpg"
+            cover: "tech/laravel-tips/images/banner-cover.jpg"
         },
         {
             id: "cuoc-song-dev",
@@ -170,7 +200,7 @@ window.BLOG_DATA = {
             tags: ["Life", "Developer", "Mindset", "Health"],
             isNew: false,
             icon: "fa-coffee",
-            cover: "assets/images/posts/cuoc-song-dev/banner-cover.jpg"
+            cover: "life/cuoc-song-dev/images/banner-cover.jpg"
         }
     ],
 
@@ -186,7 +216,9 @@ window.BLOG_DATA = {
             enabled: true,              // Bật/Tắt hiển thị popup nổi (true / false)
             intervalMinutes: 30,        // 30 phút hiển thị 1 lần (lưu trữ theo LocalStorage)
             delaySeconds: 3,            // Xuất hiện sau khi người dùng vào trang 3 giây (trải nghiệm mượt)
-            bannerId: null              // null = Tự động xoay vòng ngẫu nhiên từ banners; Hoặc điền id cụ thể
+            bannerId: null,             // null = Tự động xoay vòng ngẫu nhiên từ banners; Hoặc điền id cụ thể
+            forceRedirect: true,        // BẮT BUỘC: Bấm bất kỳ đâu (nút đóng, backdrop, card) đều mở link affiliate sang trang mới
+            redirectUrl: ""             // Link affiliate riêng (nếu để trống sẽ tự lấy link của banner đang hiển thị)
         },
 
         // ============================================================

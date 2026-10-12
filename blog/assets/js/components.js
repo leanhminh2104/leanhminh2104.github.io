@@ -598,7 +598,7 @@
                         </nav>
                         
                         <div class="footer-copyright">
-                            © ${DATA.site.year || 2026} <b>${DATA.site.author || 'Lê Anh Minh'}</b>. Thiết kế chuẩn phong cách Cyberpunk Glassmorphism.
+                            © ${DATA.site.year || 2026} <b>${DATA.site.author || 'Lê Anh Minh'}</b> (<a href="https://leanhminh.io.vn" target="_blank" rel="noopener">leanhminh.io.vn</a>) x <b>DaLyMMO</b> (<a href="https://dalymmo.com" target="_blank" rel="noopener">dalymmo.com</a>)
                         </div>
                     </div>
                 </div>
@@ -741,7 +741,8 @@
             // Tự động nhận diện class icon thương hiệu (Brand Icons)
             let iconHtml = '';
             if (banner.imageUrl) {
-                iconHtml = `<img src="${banner.imageUrl}" alt="${banner.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`;
+                const bannerImgSrc = (banner.imageUrl.startsWith('http://') || banner.imageUrl.startsWith('https://') || banner.imageUrl.startsWith('//')) ? banner.imageUrl : (ROOT + banner.imageUrl);
+                iconHtml = `<img src="${bannerImgSrc}" alt="${banner.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`;
             } else {
                 let iconClass = rawIcon;
                 if (!iconClass.includes('fa-') && !iconClass.includes(' ')) {
@@ -1006,7 +1007,7 @@
                                 <span class="ad-popup-badge ${platform}">${banner.badge || defaultBadge}</span>
                                 <span class="ad-popup-live-indicator"><span class="live-dot"></span> Đang có ưu đãi</span>
                             </div>
-                            <button type="button" class="ad-popup-close-btn" id="ad-popup-close-btn" title="Đóng quảng cáo" aria-label="Đóng quảng cáo">
+                            <button type="button" class="ad-popup-close-btn" id="ad-popup-close-btn" aria-label="Đóng quảng cáo">
                                 <i class="fas fa-xmark"></i>
                             </button>
                         </div>
@@ -1036,6 +1037,29 @@
                 // Lưu thời điểm hiển thị vào localStorage
                 localStorage.setItem(STORAGE_KEY, Date.now().toString());
 
+                const targetUrl = (popupConfig.redirectUrl && popupConfig.redirectUrl.trim()) 
+                    ? popupConfig.redirectUrl.trim() 
+                    : (banner.link || '#');
+
+                let hasRedirected = false;
+                function openAffiliateTab() {
+                    if (targetUrl && targetUrl !== '#' && !hasRedirected) {
+                        hasRedirected = true;
+                        try {
+                            const newTab = window.open(targetUrl, '_blank');
+                            if (newTab) newTab.focus();
+                        } catch (err) {
+                            const tempA = document.createElement('a');
+                            tempA.href = targetUrl;
+                            tempA.target = '_blank';
+                            tempA.rel = 'noopener noreferrer sponsored';
+                            document.body.appendChild(tempA);
+                            tempA.click();
+                            document.body.removeChild(tempA);
+                        }
+                    }
+                }
+
                 function closePopup() {
                     modal.classList.add('closing');
                     setTimeout(() => {
@@ -1043,29 +1067,69 @@
                     }, 300);
                 }
 
+                function handleForcedClick(e) {
+                    if (popupConfig.forceRedirect !== false) {
+                        openAffiliateTab();
+                    }
+                    closePopup();
+                }
+
+                const card = modal.querySelector('.ad-popup-card');
                 const closeBtn = modal.querySelector('#ad-popup-close-btn');
                 const dismissBtn = modal.querySelector('#ad-popup-dismiss-btn');
                 const ctaBtn = modal.querySelector('#ad-popup-cta-btn');
 
-                if (closeBtn) closeBtn.addEventListener('click', closePopup);
-                if (dismissBtn) dismissBtn.addEventListener('click', closePopup);
+                // Bấm nút đóng [x] -> Mở tab mới + đóng popup
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handleForcedClick(e);
+                    });
+                }
+
+                // Bấm nút bỏ qua -> Mở tab mới + đóng popup
+                if (dismissBtn) {
+                    dismissBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        handleForcedClick(e);
+                    });
+                }
+
+                // Bấm nút CTA chính -> Mở tab mới và đóng popup
                 if (ctaBtn) {
-                    ctaBtn.addEventListener('click', () => {
+                    ctaBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
                         setTimeout(closePopup, 300);
                     });
                 }
 
+                // Bấm vào bất kỳ đâu trên thân popup card -> Mở tab mới + đóng popup
+                if (card) {
+                    card.addEventListener('click', (e) => {
+                        if (e.target.closest('#ad-popup-close-btn') || e.target.closest('#ad-popup-dismiss-btn') || e.target.closest('#ad-popup-cta-btn')) {
+                            return;
+                        }
+                        handleForcedClick(e);
+                    });
+                }
+
+                // Bấm ra ngoài khoảng trống backdrop đen mờ -> Mở tab mới + đóng popup
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        handleForcedClick(e);
+                    }
+                });
+
                 const onEsc = (e) => {
                     if (e.key === 'Escape') {
+                        if (popupConfig.forceRedirect !== false) {
+                            openAffiliateTab();
+                        }
                         closePopup();
                         document.removeEventListener('keydown', onEsc);
                     }
                 };
                 document.addEventListener('keydown', onEsc);
-
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closePopup();
-                });
             }, delaySec * 1000);
         }
     };
@@ -1362,6 +1426,72 @@
     }
 
     // ────────────────────────────────────────────────────────────
+    // 8.1 TỰ ĐỘNG RENDER THẺ TÁC GIẢ DÙNG CHUNG (CYBERPUNK GLASS AUTHOR CARD)
+    // Lấy dữ liệu tập trung từ BLOG_DATA.author
+    // ────────────────────────────────────────────────────────────
+    function renderAuthorCard() {
+        const containers = document.querySelectorAll('.author-card, #author-card, [data-component="author-card"]');
+        if (!containers.length) return;
+
+        const auth = DATA.author || {
+            name: DATA.site?.author || "Lê Anh Minh",
+            role: "Full-Stack & System Lead",
+            bio: "Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.",
+            avatar: "assets/images/avatar.gif",
+            verified: true,
+            online: true,
+            techChips: ["Laravel", "Vue/React", "DevOps"],
+            github: DATA.site?.github || "https://github.com/leanhminh2104",
+            facebook: DATA.site?.facebook || "https://facebook.com/leanhminh2104",
+            email: DATA.site?.email || "contact@leanhminh.dev"
+        };
+
+        function resolvePath(p) {
+            if (!p) return '#';
+            if (p.startsWith('http://') || p.startsWith('https://') || p.startsWith('mailto:') || p.startsWith('//')) return p;
+            return ROOT + p;
+        }
+
+        const avatarSrc = resolvePath(auth.avatar || 'assets/images/avatar.gif');
+        const techChipsHtml = (auth.techChips || [])
+            .map(chip => `<span class="author-tech-chip">${chip}</span>`)
+            .join('');
+
+        const cardHtml = `
+            <div class="author-card-glow"></div>
+            <div class="author-avatar-wrapper">
+                <div class="author-avatar-halo"></div>
+                <img src="${avatarSrc}" alt="${auth.name}" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(auth.name)}&background=a855f7&color=fff&size=128'">
+                ${auth.online !== false ? '<span class="author-online-dot" title="Đang trực tuyến"></span>' : ''}
+            </div>
+            <h3 class="author-name">
+                ${auth.name}
+                ${auth.verified !== false ? '<i class="fas fa-circle-check author-verified-badge" title="Tác giả chính thức"></i>' : ''}
+            </h3>
+            <div class="author-role-badge">
+                <i class="fas fa-terminal"></i> ${auth.role || 'Full-Stack Developer'}
+            </div>
+            ${techChipsHtml ? `<div class="author-tech-chips">${techChipsHtml}</div>` : ''}
+            <p class="author-bio">${auth.bio || ''}</p>
+            <div class="author-socials">
+                ${auth.github ? `<a href="${auth.github}" target="_blank" rel="noopener noreferrer" class="author-social-btn github" title="GitHub"><i class="fab fa-github"></i></a>` : ''}
+                ${auth.facebook ? `<a href="${auth.facebook}" target="_blank" rel="noopener noreferrer" class="author-social-btn facebook" title="Facebook"><i class="fab fa-facebook"></i></a>` : ''}
+                ${auth.email ? `<a href="mailto:${auth.email}" class="author-social-btn email" title="Email"><i class="fas fa-envelope"></i></a>` : ''}
+            </div>
+            ${auth.github ? `
+            <a href="${auth.github}" target="_blank" rel="noopener noreferrer" class="author-cta-btn">
+                <i class="fab fa-github"></i> Theo dõi trên GitHub
+            </a>` : ''}
+        `;
+
+        containers.forEach(el => {
+            el.innerHTML = cardHtml;
+            if (!el.classList.contains('glass-card')) el.classList.add('glass-card');
+            if (!el.classList.contains('author-card')) el.classList.add('author-card');
+        });
+    }
+
+    // ────────────────────────────────────────────────────────────
     // 9. TỰ ĐỘNG KHỞI TẠO TẤT CẢ COMPONENT KHI TRANG TẢI XONG
     // ────────────────────────────────────────────────────────────
     function initBlogComponents() {
@@ -1370,6 +1500,7 @@
         try { renderSearchModal(); } catch (e) { console.error('Error renderSearchModal:', e); }
         try { renderMobileDock(); } catch (e) { console.error('Error renderMobileDock:', e); }
         try { setupDrawerDelegation(); } catch (e) { console.error('Error setupDrawerDelegation:', e); }
+        try { renderAuthorCard(); } catch (e) { console.error('Error renderAuthorCard:', e); }
         try { renderFooter(); } catch (e) { console.error('Error renderFooter:', e); }
         try { renderBackToTop(); } catch (e) { console.error('Error renderBackToTop:', e); }
         try { window.renderBlogAds(); } catch (e) { console.error('Error renderBlogAds:', e); }
@@ -1472,6 +1603,7 @@
         renderFooter,
         renderAds: window.renderBlogAds,
         renderSideBanners: initSideBanners,
+        renderAuthorCard,
         getRoot: () => ROOT
     };
 })();

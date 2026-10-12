@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀">
     <meta property="og:description" content="Viettel ra mắt gói YT150 & YT200 tích hợp YouTube Premium chính chủ và 120GB data. Nút bấm tự động mở tin nhắn đăng ký 191 và mẹo share cước cực hời.">
-    <meta property="og:image" content="../../assets/images/posts/viettel-yt150-yt200/banner-cover.jpg">
+    <meta property="og:image" content="./images/banner-cover.jpg">
     <title>Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀 — Lê Anh Minh Blog</title>
 
     <!-- Google Fonts & FontAwesome -->
@@ -81,7 +81,7 @@
 
                 <!-- Ảnh Banner Chính của bài viết (Hiển thị nổi bật) -->
                 <figure class="article-cover-wrapper animate-up">
-                    <img src="../../assets/images/posts/viettel-yt150-yt200/banner-cover.jpg" 
+                    <img src="./images/banner-cover.jpg" 
                          alt="Banner Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G" 
                          class="article-cover-img" 
                          loading="eager">
@@ -125,7 +125,7 @@
 
                 <!-- Ảnh 1: Thông tin Chính phủ (Căn giữa, có watermark) -->
                 <figure class="post-figure">
-                    <img src="../../assets/images/posts/viettel-yt150-yt200/thong-tin-chinh-phu-viettel.png" 
+                    <img src="./images/thong-tin-chinh-phu-viettel.png" 
                          alt="Thông báo chính thức từ Fanpage Thông tin Chính phủ" 
                          loading="lazy">
                     <figcaption>
@@ -194,12 +194,12 @@
 
                 <!-- Ảnh 2: Infographic Viettel (Gọn gàng) -->
                 <figure class="post-figure">
-                    <img src="../../assets/images/posts/viettel-yt150-yt200/viettel-yt150-yt200.png" 
+                    <img src="./images/viettel-yt150-yt200.png" 
                          alt="Infographic gói cước Viettel 5G YT150 và YT200" 
                          style="max-width: 400px;" 
                          loading="lazy">
                     <figcaption>
-                        Ảnh 2: Bảng quyền lợi chính thức gói cước YT150 và YT200 từ Viettel Telecom
+                        <em><b>Ảnh 2:</b> Bảng quyền lợi chính thức gói cước YT150 và YT200 từ Viettel Telecom</em>
                     </figcaption>
                 </figure>
 
@@ -275,13 +275,14 @@
                 <hr>
 
                 <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
-            <div class="post-nav animate-up">
-                <div class="post-nav-card disabled">
-                    <span class="post-nav-label"><i class="fas fa-flag-checkered"></i> Bài viết đầu tiên</span>
-                    <span class="post-nav-title">Bạn đang đọc bài mới nhất</span>
-                </div>
+            <div class="post-nav split animate-up">
+                <a href="../../tech/huong-dan-roi-nhom-gia-dinh-google-family/" class="post-nav-card prev">
+                    <span class="post-nav-badge"><i class="fas fa-arrow-left"></i> Bài trước</span>
+                    <span class="post-nav-title">Hướng Dẫn Rời Nhóm Gia Đình & Xóa Nhóm Google Family Chi Tiết 👨‍👩‍👧‍👦</span>
+                </a>
+                
                 <a href="../../tech/gemini-pro-18-thang-jio/" class="post-nav-card next">
-                    <span class="post-nav-label">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
+                    <span class="post-nav-badge">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
                     <span class="post-nav-title">Gemini Pro 18 Tháng Giá Sốc 45K — Trọn Bộ Đặc Quyền Google One Pro 🤖</span>
                 </a>
             </div>
@@ -309,21 +310,37 @@
                     </ul>
                 </div>
 
-                <!-- Thẻ thông tin tác giả -->
+                <!-- Thẻ thông tin tác giả (Cyberpunk Glass Author Card) -->
                 <div class="glass-card author-card">
+                    <div class="author-card-glow"></div>
                     <div class="author-avatar-wrapper">
-                        <img src="../../assets/images/avatar.jpg" alt="Lê Anh Minh" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Le+Anh+Minh&background=a855f7&color=fff&size=128'">
+                        <div class="author-avatar-halo"></div>
+                        <img src="../../assets/images/avatar.gif" alt="Lê Anh Minh" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Le+Anh+Minh&background=a855f7&color=fff&size=128'">
+                        <span class="author-online-dot" title="Đang trực tuyến"></span>
                     </div>
-                    <h3 class="author-name">Lê Anh Minh</h3>
-                    <p class="author-role">Full-stack Developer & Tech Lead</p>
+                    <h3 class="author-name">
+                        Lê Anh Minh
+                        <i class="fas fa-circle-check author-verified-badge" title="Tác giả chính thức"></i>
+                    </h3>
+                    <div class="author-role-badge">
+                        <i class="fas fa-terminal"></i> Full-Stack & System Lead
+                    </div>
+                    <div class="author-tech-chips">
+                        <span class="author-tech-chip">Laravel</span>
+                        <span class="author-tech-chip">Vue/React</span>
+                        <span class="author-tech-chip">DevOps</span>
+                    </div>
                     <p class="author-bio">
                         Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.
                     </p>
                     <div class="author-socials">
-                        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="mailto:contact@leanhminh.dev" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn github" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="mailto:contact@leanhminh.dev" class="author-social-btn email" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-cta-btn">
+                        <i class="fab fa-github"></i> Theo dõi trên GitHub
+                    </a>
                 </div>
 
                 <!-- Vị trí Quảng Cáo Sidebar -->

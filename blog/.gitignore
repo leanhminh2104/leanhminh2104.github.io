@@ -1,0 +1,8 @@
+# Backup images & internal scripts
+*.orig.*
+*.bak
+*.py
+.DS_Store
+Thumbs.db
+node_modules/
+.cache/

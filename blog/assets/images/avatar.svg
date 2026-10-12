@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+
+    <!-- Neon Rim Aura -->
+    <linearGradient id="neonAura" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <!-- Skin Gradient -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#fba86e" />
+    </linearGradient>
+
+    <!-- Hair Gradient -->
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Glasses Cyan Glow -->
+    <linearGradient id="glassesGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+
+    <!-- Hoodie Gradient -->
+    <linearGradient id="hoodieGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Inner Shadow Filter -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="100" cy="100" r="96" fill="url(#bgGrad)" stroke="url(#neonAura)" stroke-width="4" />
+
+  <!-- Ambient Grid / Digital Code Particle Rings -->
+  <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(168, 85, 247, 0.2)" stroke-width="1.5" stroke-dasharray="4 6" />
+  <circle cx="100" cy="100" r="68" fill="none" stroke="rgba(56, 189, 248, 0.15)" stroke-width="1" stroke-dasharray="8 8" />
+
+  <!-- Shoulders & Hoodie Body -->
+  <path d="M 38 186 C 42 144, 70 134, 100 134 C 130 134, 158 144, 162 186 Z" fill="url(#hoodieGrad)" />
+  <!-- Hoodie Zipper / Accent lines -->
+  <path d="M 100 138 L 100 190" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" opacity="0.85" />
+  <path d="M 86 142 L 72 188" stroke="rgba(168, 85, 247, 0.4)" stroke-width="2" />
+  <path d="M 114 142 L 128 188" stroke="rgba(168, 85, 247, 0.4)" stroke-width="2" />
+
+  <!-- Neck -->
+  <rect x="87" y="114" width="26" height="26" rx="6" fill="url(#skinGrad)" />
+  <path d="M 87 122 C 95 128, 105 128, 113 122 L 113 130 C 105 134, 95 134, 87 130 Z" fill="#fba86e" opacity="0.45" />
+
+  <!-- Head Base (Face) -->
+  <path d="M 68 82 C 68 56, 132 56, 132 82 C 132 108, 118 126, 100 126 C 82 126, 68 108, 68 82 Z" fill="url(#skinGrad)" />
+
+  <!-- Ears -->
+  <circle cx="68" cy="86" r="7" fill="url(#skinGrad)" />
+  <circle cx="132" cy="86" r="7" fill="url(#skinGrad)" />
+
+  <!-- Modern Hair Style -->
+  <path d="M 62 76 C 60 52, 74 34, 100 34 C 126 34, 140 52, 138 76 C 133 66, 126 58, 116 56 C 104 54, 94 58, 86 52 C 78 58, 70 64, 62 76 Z" fill="url(#hairGrad)" />
+  <path d="M 68 62 C 78 46, 106 42, 128 54 C 134 57, 138 64, 136 70 C 134 60, 124 50, 104 46 C 88 43, 76 52, 68 62 Z" fill="#475569" opacity="0.6" />
+
+  <!-- Eyebrows -->
+  <path d="M 76 72 Q 84 68 92 73" fill="none" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+  <path d="M 108 73 Q 116 68 124 72" fill="none" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Eyes -->
+  <circle cx="84" cy="82" r="3.5" fill="#0f172a" />
+  <circle cx="85" cy="80.5" r="1.2" fill="#fff" />
+  <circle cx="116" cy="82" r="3.5" fill="#0f172a" />
+  <circle cx="117" cy="80.5" r="1.2" fill="#fff" />
+
+  <!-- Stylish Tech Glasses -->
+  <rect x="74" y="74" width="22" height="17" rx="5" fill="none" stroke="url(#glassesGrad)" stroke-width="2.5" />
+  <rect x="104" y="74" width="22" height="17" rx="5" fill="none" stroke="url(#glassesGrad)" stroke-width="2.5" />
+  <!-- Bridge of glasses -->
+  <path d="M 96 80 L 104 80" stroke="url(#glassesGrad)" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Glass arms -->
+  <path d="M 74 80 L 67 78" stroke="url(#glassesGrad)" stroke-width="2" stroke-linecap="round" />
+  <path d="M 126 80 L 133 78" stroke="url(#glassesGrad)" stroke-width="2" stroke-linecap="round" />
+  <!-- Cyan Light Reflection on Glasses -->
+  <path d="M 77 77 L 85 77" stroke="#bae6fd" stroke-width="1.5" stroke-linecap="round" opacity="0.8" />
+  <path d="M 107 77 L 115 77" stroke="#bae6fd" stroke-width="1.5" stroke-linecap="round" opacity="0.8" />
+
+  <!-- Nose -->
+  <path d="M 99 87 L 97 94 L 102 94" fill="none" stroke="#fba86e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Friendly Smile -->
+  <path d="M 92 103 Q 100 110 108 103" fill="none" stroke="#991b1b" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Tech Code Symbols floating (Left & Right) -->
+  <text x="32" y="98" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#a855f7" opacity="0.75">&lt;/&gt;</text>
+  <text x="156" y="98" font-family="'Fira Code', monospace" font-size="14" font-weight="700" fill="#38bdf8" opacity="0.75">{;}</text>
+  <circle cx="38" cy="118" r="2.5" fill="#ec4899" opacity="0.7" />
+  <circle cx="162" cy="118" r="2.5" fill="#38bdf8" opacity="0.7" />
+</svg>

@@ -5,8 +5,20 @@
     <link>https://leanhminh2104.github.io/blog/</link>
     <description><![CDATA[Chia sẻ về Lập trình, Công nghệ & Cuộc sống]]></description>
     <language>vi</language>
+<<<<<<< HEAD
     <lastBuildDate>Mon, 12 Oct 2026 14:49:18 GMT</lastBuildDate>
+=======
+    <lastBuildDate>Mon, 12 Oct 2026 17:19:00 GMT</lastBuildDate>
+>>>>>>> 6e4a401 (feat(blog): update new post, optimize cyberpunk hero, avatar gif, copyright links and watermark)
     <atom:link href="https://leanhminh2104.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Hướng Dẫn Rời Nhóm Gia Đình & Xóa Nhóm Google Family Chi Tiết 👨‍👩‍👧‍👦]]></title>
+      <link>https://leanhminh2104.github.io/blog/tech/huong-dan-roi-nhom-gia-dinh-google-family/</link>
+      <guid isPermaLink="true">https://leanhminh2104.github.io/blog/tech/huong-dan-roi-nhom-gia-dinh-google-family/</guid>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Công nghệ]]></category>
+      <description><![CDATA[Hướng dẫn chi tiết cách rời nhóm gia đình hoặc xóa nhóm Google Family hoàn toàn qua link myaccount.google.com/family/details. Đầy đủ cho thành viên và chủ nhóm.]]></description>
+    </item>
     <item>
       <title><![CDATA[Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀]]></title>
       <link>https://leanhminh2104.github.io/blog/tech/viettel-yt150-yt200-youtube-premium/</link>

@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Hỗ trợ backward-compatibility & URL rewrite:
+# Map /tech/[slug]/assets/images/posts/[old-folder]/[filename] -> /tech/[slug]/images/[filename]
+RewriteRule ^(tech|life)/([^/]+)/assets/images/posts/([^/]+)/(.*)$ $1/$2/images/$4 [L,NC]
+</IfModule>

@@ -1,25 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#06070a">
-    <meta name="description" content="Laravel Tips — Những trick hay mình hay dùng trong quá trình làm việc thực tế. Từ Query Builder, Eloquent đến tối ưu bộ nhớ.">
+
+    <!-- ============================================================
+         1. SEO & OPENGRAPH META
+         ============================================================ -->
+    <meta name="description" content="Tổng hợp 10 mẹo hữu ích trong Laravel giúp code gọn gàng hơn, tối ưu query database và tăng hiệu suất ứng dụng PHP trong thực tế.">
     <meta name="author" content="Lê Anh Minh">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Laravel Tips — Những trick hay mình hay dùng">
-    <meta property="og:description" content="Tổng hợp những tip, trick và best practice trong Laravel được đúc kết qua các dự án thực tế.">
-    <title>Laravel Tips — Lê Anh Minh Blog</title>
+    <meta property="og:title" content="10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn 🚀">
+    <meta property="og:description" content="Những thủ thuật thực chiến trong Laravel: cursor(), when(), Custom Collection, tap() và Benchmark::measure() giúp code gọn và tăng tốc ứng dụng.">
+    <meta property="og:image" content="./images/banner-cover.jpg">
+    <title>10 Laravel Tips & Tricks Giúp Tối Ưu Code — Lê Anh Minh Blog</title>
 
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- CSS dùng chung -->
-    <link rel="stylesheet" href="../../assets/css/blog.css">
+    <!-- CSS dùng chung toàn Blog -->
+    <link rel="stylesheet" href="../../assets/css/blog.css?v=20261012">
 </head>
 <body>
 
@@ -33,14 +38,14 @@
     <div id="stars3"></div>
 </div>
 
-<!-- TOPBAR / HEADER (Tự động tạo bởi components.js) -->
+<!-- TOPBAR / HEADER (Tự động nạp từ components.js) -->
 <div id="site-header"></div>
 
 <!-- MAIN CONTENT -->
 <main class="blog-main">
     <div class="blog-container">
 
-        <!-- Breadcrumb -->
+        <!-- BREADCRUMB -->
         <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
             <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
             <i class="fas fa-chevron-right"></i>
@@ -51,27 +56,37 @@
 
         <div class="article-layout">
 
-            <!-- Left: Article Content -->
+            <!-- CỘT TRÁI: Nội dung bài viết -->
             <article class="article-body">
 
                 <!-- Article Header -->
                 <header class="article-header animate-up">
                     <h1 class="article-title">
-                        Laravel Tips — Những trick hay mình hay dùng 💡
+                        10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn 💡🚀
                     </h1>
 
                     <div class="article-meta">
                         <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
-                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 27 tháng 9, 2026</span>
-                        <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">5 phút đọc</span></span>
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 24 tháng 3, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> <span id="reading-time">đang tính...</span></span>
                     </div>
 
                     <div class="article-tags">
-                        <span class="badge badge-primary"><i class="fab fa-laravel"></i> Laravel</span>
-                        <span class="badge badge-primary"><i class="fab fa-php"></i> PHP</span>
-                        <span class="badge badge-info"><i class="fas fa-bolt"></i> Backend</span>
+                        <span class="badge badge-info"><i class="fas fa-code"></i> Công nghệ</span>
+                        <span class="badge badge-primary">Laravel</span>
+                        <span class="badge badge-primary">PHP</span>
+                        <span class="badge badge-primary">Performance</span>
+                        <span class="badge badge-primary">Tips</span>
                     </div>
                 </header>
+
+                <!-- Ảnh Banner Chính của bài viết (Hiển thị nổi bật) -->
+                <figure class="article-cover-wrapper animate-up">
+                    <img src="./images/banner-cover.jpg" 
+                         alt="Banner 10 Laravel Tips & Tricks Giúp Tối Ưu Code Của Bạn" 
+                         class="article-cover-img" 
+                         loading="eager">
+                </figure>
 
                 <!-- Introduction -->
                 <p>
@@ -79,7 +94,7 @@
                 </p>
 
                 <blockquote>
-                    "Viết code không chỉ là để máy tính hiểu, mà quan trọng hơn là để đồng nghiệp và chính bạn 6 tháng sau đọc lại vẫn thấy dễ chịu."
+                    💡 <b>Tóm tắt nhanh:</b> Viết code không chỉ là để máy tính hiểu, mà quan trọng hơn là để đồng nghiệp và chính bạn 6 tháng sau đọc lại vẫn thấy dễ chịu, dễ bảo trì và xử lý nhanh chóng.
                 </blockquote>
 
                 <!-- Section 1 -->
@@ -142,6 +157,9 @@ class OrderCollection extends \Illuminate\Database\Eloquent\Collection
 $orders = Order::whereDate('created_at', today())->get();
 echo $orders->totalRevenue();</code></pre>
 
+                <!-- Vị trí Quảng Cáo Giữa Bài -->
+                <div class="ad-slot-container" data-slot="article-mid" style="margin: 2rem 0;"></div>
+
                 <!-- Section 4 -->
                 <h2>4. Dùng helper tap() để giữ method chaining liền mạch</h2>
                 <p>
@@ -166,41 +184,103 @@ Benchmark::dd([
     'Method B' => fn () => User::all()->load('posts'),
 ]);</code></pre>
 
+                <!-- Section 6 -->
+                <h2>6. Tổng kết</h2>
+                <p>
+                    Áp dụng những mẹo nhỏ này vào công việc hàng ngày sẽ giúp codebase của bạn tinh gọn, sạch sẽ hơn và cải thiện hiệu năng hệ thống một cách rõ rệt. Chúc các bạn code vui vẻ!
+                </p>
+
+                <!-- Vị trí Quảng Cáo Cuối Bài -->
+                <div class="ad-slot-container" data-slot="article-bottom" style="margin: 1.5rem 0;"></div>
+
                 <hr>
 
-                <!-- Next post card -->
-                <div class="glass-card" style="margin-top:2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;">
-                    <div>
-                        <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; letter-spacing:0.06em;">Bài tiếp theo</div>
-                        <a href="../../life/cuoc-song-dev/" style="color:#fff; font-weight:700; text-decoration:none; font-size:1rem; margin-top:0.2rem; display:block;">
-                            Cuộc sống của một dev — Cân bằng công việc & cuộc sống 🌱
-                        </a>
+                <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
+            <div class="post-nav split animate-up">
+                <a href="../../tech/lay-app-password-google/" class="post-nav-card prev">
+                    <span class="post-nav-badge"><i class="fas fa-arrow-left"></i> Bài trước</span>
+                    <span class="post-nav-title">Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer</span>
+                </a>
+                
+                <a href="../../life/cuoc-song-dev/" class="post-nav-card next">
+                    <span class="post-nav-badge">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
+                    <span class="post-nav-title">Một Ngày Của Developer: Cân Bằng Giữa Code Và Cuộc Sống</span>
+                </a>
+            </div>
+
+                <!-- BÌNH LUẬN & THẢO LUẬN -->
+                <div class="article-comments-section" style="margin-top: 3rem;">
+                    <h3 style="font-size:1.15rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                        <i class="fas fa-comments" style="color:var(--primary);"></i> Bình luận & Thảo luận
+                    </h3>
+                    <div id="comments"></div>
+                </div>
+
+            </article>
+
+            <!-- CỘT PHẢI: Sticky Sidebar -->
+            <aside class="article-sidebar">
+
+                <!-- Mục lục tự động (TOC) -->
+                <div class="glass-card toc-card" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
                     </div>
-                    <a href="../../life/cuoc-song-dev/" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem;">
-                        Đọc tiếp <i class="fas fa-arrow-right"></i>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Tự động nạp bởi core.js -->
+                    </ul>
+                </div>
+
+                <!-- Thẻ thông tin tác giả (Cyberpunk Glass Author Card) -->
+                <div class="glass-card author-card">
+                    <div class="author-card-glow"></div>
+                    <div class="author-avatar-wrapper">
+                        <div class="author-avatar-halo"></div>
+                        <img src="../../assets/images/avatar.gif" alt="Lê Anh Minh" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Le+Anh+Minh&background=a855f7&color=fff&size=128'">
+                        <span class="author-online-dot" title="Đang trực tuyến"></span>
+                    </div>
+                    <h3 class="author-name">
+                        Lê Anh Minh
+                        <i class="fas fa-circle-check author-verified-badge" title="Tác giả chính thức"></i>
+                    </h3>
+                    <div class="author-role-badge">
+                        <i class="fas fa-terminal"></i> Full-Stack & System Lead
+                    </div>
+                    <div class="author-tech-chips">
+                        <span class="author-tech-chip">Laravel</span>
+                        <span class="author-tech-chip">Vue/React</span>
+                        <span class="author-tech-chip">DevOps</span>
+                    </div>
+                    <p class="author-bio">
+                        Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.
+                    </p>
+                    <div class="author-socials">
+                        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn github" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="mailto:contact@leanhminh.dev" class="author-social-btn email" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-cta-btn">
+                        <i class="fab fa-github"></i> Theo dõi trên GitHub
                     </a>
                 </div>
 
-                        <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
-            <div class="post-nav animate-up">
-                <a href="../../tech/lay-app-password-google/" class="post-nav-card prev">
-                    <span class="post-nav-label"><i class="fas fa-arrow-left"></i> Bài trước</span>
-                    <span class="post-nav-title">Hướng Dẫn Lấy App Password (Mật Khẩu Ứng Dụng) Google Cho Developer</span>
-                </a>
-                <a href="../../life/cuoc-song-dev/" class="post-nav-card next">
-                    <span class="post-nav-label">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
-                    <span class="post-nav-title">Một Ngày Của Developer: Cân Bằng Giữa Code Và Cuộc Sống</span>
-                </a>
-            </div><!-- /blog-container -->
+                <!-- Vị trí Quảng Cáo Sidebar -->
+                <div id="sidebar-ad-slot" style="margin-top: 1.5rem;"></div>
+
+            </aside>
+
+        </div><!-- /article-layout -->
+
+    </div><!-- /blog-container -->
 </main>
 
 <!-- Chân trang & Mobile Bottom Dock (Tự động tạo bởi components.js) -->
 <div id="site-footer"></div>
 <div id="site-bottom-dock"></div>
 
-<!-- Core & Components Scripts -->
-<script src="../../assets/js/blog-data.js"></script>
-<script src="../../assets/js/components.js"></script>
-<script src="../../assets/js/core.js"></script>
+<!-- Nạp Scripts cốt lõi -->
+<script src="../../assets/js/blog-data.js?v=20261012"></script>
+<script src="../../assets/js/components.js?v=20261012"></script>
+<script src="../../assets/js/core.js?v=20261012"></script>
 </body>
 </html>

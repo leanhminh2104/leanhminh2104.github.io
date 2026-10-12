@@ -106,33 +106,36 @@ DATA.posts.forEach((post, idx) => {
     const prevPost = idx > 0 ? DATA.posts[idx - 1] : null;
     const nextPost = idx < DATA.posts.length - 1 ? DATA.posts[idx + 1] : null;
 
-    let navHtml = '            <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->\n            <div class="post-nav animate-up">\n';
-    
-    if (prevPost) {
-        navHtml += `                <a href="../../${prevPost.path}" class="post-nav-card prev">
-                    <span class="post-nav-label"><i class="fas fa-arrow-left"></i> Bài trước</span>
-                    <span class="post-nav-title">${prevPost.title}</span>
-                </a>\n`;
-    } else {
-        navHtml += `                <div class="post-nav-card disabled">
-                    <span class="post-nav-label"><i class="fas fa-flag-checkered"></i> Bài viết đầu tiên</span>
-                    <span class="post-nav-title">Bạn đang đọc bài mới nhất</span>
-                </div>\n`;
-    }
-
-    if (nextPost) {
-        navHtml += `                <a href="../../${nextPost.path}" class="post-nav-card next">
-                    <span class="post-nav-label">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
+    let navHtml = '';
+    if (!prevPost && nextPost) {
+        // Bài viết mới nhất: Chỉ hiện 1 thanh gọn gàng dẫn tới bài tiếp theo
+        navHtml = `            <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
+            <div class="post-nav single animate-up">
+                <a href="../../${nextPost.path}" class="post-nav-card single next">
+                    <span class="post-nav-badge"><i class="fas fa-forward"></i> Bài tiếp theo</span>
                     <span class="post-nav-title">${nextPost.title}</span>
-                </a>\n`;
-    } else {
-        navHtml += `                <a href="../../" class="post-nav-card next">
-                    <span class="post-nav-label">Khám phá thêm <i class="fas fa-house"></i></span>
-                    <span class="post-nav-title">Về trang chủ Blog</span>
-                </a>\n`;
+                    <i class="fas fa-arrow-right post-nav-arrow"></i>
+                </a>
+            </div>`;
+    } else if (prevPost) {
+        // Có bài trước: Hiện thanh điều hướng đối xứng gọn gàng
+        navHtml = `            <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
+            <div class="post-nav split animate-up">
+                <a href="../../${prevPost.path}" class="post-nav-card prev">
+                    <span class="post-nav-badge"><i class="fas fa-arrow-left"></i> Bài trước</span>
+                    <span class="post-nav-title">${prevPost.title}</span>
+                </a>
+                ${nextPost ? `
+                <a href="../../${nextPost.path}" class="post-nav-card next">
+                    <span class="post-nav-badge">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
+                    <span class="post-nav-title">${nextPost.title}</span>
+                </a>` : `
+                <a href="../../" class="post-nav-card next home">
+                    <span class="post-nav-badge"><i class="fas fa-house"></i> Về trang chủ</span>
+                    <span class="post-nav-title">Khám phá các bài viết khác</span>
+                </a>`}
+            </div>`;
     }
-
-    navHtml += '            </div>';
 
     // Thay thế khối .post-nav nếu đã có, hoặc chèn trước thẻ </article>
     const postNavRegex = /(?:<!--[^\n]*-->\s*)?<div class="post-nav[^"]*"[^>]*>[\s\S]*?<\/div>(?=\s*(?:<div class="article-comments-section"|<!--[^\n]*(?:BÌNH LUẬN|comments)|<\/article>))/i;

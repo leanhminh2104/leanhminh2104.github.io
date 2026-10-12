@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="[Tiêu đề bài viết]">
     <meta property="og:description" content="[Mô tả ngắn]">
+    <meta property="og:image" content="./images/banner-cover.jpg">
     <title>[Tiêu đề bài viết] — Lê Anh Minh Blog</title>
 
     <!-- Google Fonts & FontAwesome -->
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- CSS dùng chung cho toàn bộ Blog -->
-    <link rel="stylesheet" href="../../assets/css/blog.css">
+    <link rel="stylesheet" href="../../assets/css/blog.css?v=20261012">
 </head>
 <body>
 
@@ -82,6 +83,14 @@
                     </div>
                 </header>
 
+                <!-- Ảnh Banner Chính của bài viết (Hiển thị nổi bật) -->
+                <figure class="article-cover-wrapper animate-up">
+                    <img src="./images/banner-cover.jpg" 
+                         alt="[Banner bài viết]" 
+                         class="article-cover-img" 
+                         loading="eager">
+                </figure>
+
                 <!-- ====================================================
                      3. NỘI DUNG CHÍNH (FORM CHUẨN CỦA BLOG)
                      ==================================================== -->
@@ -102,6 +111,14 @@
                     [Nội dung giải thích chi tiết mục 1. Phân tích nguyên nhân, cơ chế hoặc ngữ cảnh thực tế].
                 </p>
 
+                <!-- KHỐI HÌNH ẢNH MINH HỌA CHUẨN (Bắt buộc dùng figure.post-figure, không bọc thẻ div tùy tiện) -->
+                <figure class="post-figure">
+                    <img src="./images/hinh-1.png" alt="[Mô tả ảnh]" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 1:</b> [Mô tả chi tiết ảnh — chữ Ảnh in đậm, toàn bộ in nghiêng, căn giữa]</em>
+                    </figcaption>
+                </figure>
+
                 <!-- Ví dụ Code chuẩn (Tự động có nút Copy và nhãn ngôn ngữ) -->
                 <pre><code class="language-php">// [Ví dụ mã nguồn minh họa]
 namespace App\Services;
@@ -115,7 +132,7 @@ class ExampleService {
                 <!-- MỤC 2 -->
                 <h2>2. [Tiêu đề mục 2: Các bước giải quyết & Thực hành]</h2>
                 <p>
-                    [Hướng dẫn từng bước thực hiện rõ ràng. Có thể dùng danh sách các bước hoặc gạch đầu dòng].
+                    [Hướng dẫn từng bước thực hiện rõ ràng. Có thể dùng danh sách các bước hoặc gạch đầu dòng]:
                 </p>
                 <ul>
                     <li><b>Bước 1:</b> [Mô tả chi tiết bước 1].</li>
@@ -178,16 +195,36 @@ class ExampleService {
                     </ul>
                 </div>
 
-                <!-- Author Card -->
+                <!-- Thẻ thông tin tác giả (Cyberpunk Glass Author Card) -->
                 <div class="glass-card author-card">
-                    <div class="author-avatar">👨‍💻</div>
-                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Lê Anh Minh</div>
-                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Full-stack Developer</div>
-                    <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.6; margin-top:0.6rem;">
-                        Chia sẻ kiến thức lập trình, công nghệ và bài học cuộc sống.
+                    <div class="author-card-glow"></div>
+                    <div class="author-avatar-wrapper">
+                        <div class="author-avatar-halo"></div>
+                        <img src="../../assets/images/avatar.gif" alt="Lê Anh Minh" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Le+Anh+Minh&background=a855f7&color=fff&size=128'">
+                        <span class="author-online-dot" title="Đang trực tuyến"></span>
+                    </div>
+                    <h3 class="author-name">
+                        Lê Anh Minh
+                        <i class="fas fa-circle-check author-verified-badge" title="Tác giả chính thức"></i>
+                    </h3>
+                    <div class="author-role-badge">
+                        <i class="fas fa-terminal"></i> Full-Stack & System Lead
+                    </div>
+                    <div class="author-tech-chips">
+                        <span class="author-tech-chip">Laravel</span>
+                        <span class="author-tech-chip">Vue/React</span>
+                        <span class="author-tech-chip">DevOps</span>
+                    </div>
+                    <p class="author-bio">
+                        Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.
                     </p>
-                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
-                        <i class="fab fa-github"></i> Theo dõi GitHub
+                    <div class="author-socials">
+                        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn github" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="mailto:contact@leanhminh.dev" class="author-social-btn email" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-cta-btn">
+                        <i class="fab fa-github"></i> Theo dõi trên GitHub
                     </a>
                 </div>
 
@@ -206,8 +243,8 @@ class ExampleService {
 <div id="site-bottom-dock"></div>
 
 <!-- Core & Components Scripts -->
-<script src="../../assets/js/blog-data.js"></script>
-<script src="../../assets/js/components.js"></script>
-<script src="../../assets/js/core.js"></script>
+<script src="../../assets/js/blog-data.js?v=20261012"></script>
+<script src="../../assets/js/components.js?v=20261012"></script>
+<script src="../../assets/js/core.js?v=20261012"></script>
 </body>
 </html>

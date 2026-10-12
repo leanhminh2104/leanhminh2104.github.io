@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Gemini Pro 18 Tháng Giá Sốc 45K — Kích Hoạt Ngay, Dùng Liền Tay 🤖✨">
     <meta property="og:description" content="Nâng cấp Google AI Pro 18 tháng vào chính Gmail cá nhân chỉ với 45.000₫. Không cần mật khẩu, kích hoạt qua link 60 giây, bảo hành 24h uy tín.">
+    <meta property="og:image" content="./images/banner-cover.jpg">
     <title>Gemini Pro 18 Tháng Giá Sốc 45K — Kích Hoạt Ngay, Dùng Liền Tay 🤖✨ — Lê Anh Minh Blog</title>
 
     <!-- Google Fonts & FontAwesome -->
@@ -23,187 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- CSS dùng chung toàn Blog -->
-    <link rel="stylesheet" href="../../assets/css/blog.css">
-
-    <style>
-        /* === Styles chuyên biệt: Price Hero & Feature Grid === */
-        .price-hero {
-            background: var(--glass-bg);
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: 1px solid var(--glass-border);
-            border-radius: 1.25rem;
-            padding: 2.25rem 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--glass-shadow);
-        }
-        .price-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% -20%, rgba(168,85,247,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .price-badge-old {
-            display: inline-block;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 999px;
-            padding: 0.35rem 1.1rem;
-            font-size: 0.82rem;
-            color: var(--text-dim);
-            text-decoration: line-through;
-            margin-bottom: 0.65rem;
-        }
-        .price-main {
-            font-size: 3.25rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, #a855f7 0%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin: 0.25rem 0 0.5rem;
-            letter-spacing: -1px;
-        }
-        .price-sub {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.4rem;
-        }
-        .price-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: linear-gradient(90deg, #a855f7, #7c3aed);
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.05rem;
-            padding: 0.85rem 2.25rem;
-            border-radius: 999px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 24px rgba(168,85,247,0.45);
-        }
-        .price-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 36px rgba(168,85,247,0.7);
-            color: #fff;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 1rem;
-            margin: 1.75rem 0;
-        }
-        .feature-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 1.25rem 1.15rem;
-            text-align: left;
-            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-        }
-        .feature-card:hover {
-            border-color: rgba(168,85,247,0.5);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(168,85,247,0.15);
-        }
-        .feature-name {
-            font-weight: 700;
-            font-size: 0.98rem;
-            color: #fff;
-            margin-bottom: 0.45rem;
-        }
-        .feature-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-        .steps-list {
-            counter-reset: steps;
-            list-style: none;
-            padding: 0;
-            margin: 1.5rem 0;
-        }
-        .steps-list li {
-            counter-increment: steps;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.15rem;
-            padding: 1.15rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .steps-list li:last-child {
-            border-bottom: none;
-        }
-        .step-num {
-            flex-shrink: 0;
-            width: 2.25rem;
-            height: 2.25rem;
-            background: linear-gradient(135deg, #a855f7, #38bdf8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.9rem;
-            color: #fff;
-            box-shadow: 0 0 14px rgba(168,85,247,0.4);
-        }
-        .step-num::before {
-            content: counter(steps);
-        }
-        .compare-row-good {
-            color: #34d399;
-            font-weight: 700;
-        }
-        .compare-row-bad {
-            color: #f87171;
-        }
-        .warranty-box {
-            background: rgba(52,211,153,0.02);
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: 1px solid rgba(52,211,153,0.18);
-            border-radius: 1rem;
-            padding: 1.35rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.15rem;
-            margin: 1.75rem 0;
-            box-shadow: var(--glass-shadow);
-        }
-        .warranty-icon {
-            font-size: 2.4rem;
-            flex-shrink: 0;
-        }
-        .warranty-text strong {
-            color: #34d399;
-            font-size: 1rem;
-        }
-        .highlight-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.2rem 0.65rem;
-            background: rgba(168,85,247,0.15);
-            border: 1px solid rgba(168,85,247,0.3);
-            border-radius: 6px;
-            color: #c084fc;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        @media (max-width: 480px) {
-            .price-main { font-size: 2.4rem; }
-            .features-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/blog.css?v=20261012">
 </head>
 <body>
 
@@ -258,6 +79,14 @@
                         <span class="badge badge-primary">Deal độc quyền</span>
                     </div>
                 </header>
+
+                <!-- Ảnh Banner Chính của bài viết (Hiển thị nổi bật) -->
+                <figure class="article-cover-wrapper animate-up">
+                    <img src="./images/banner-cover.jpg" 
+                         alt="Banner Gemini Pro 18 Tháng Giá Sốc 45K — Trọn Bộ Đặc Quyền Google One Pro 🤖" 
+                         class="article-cover-img" 
+                         loading="eager">
+                </figure>
 
                 <!-- Đoạn mở đầu thu hút độc giả -->
                 <p>
@@ -514,13 +343,14 @@
                 <hr>
 
                 <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
-            <div class="post-nav animate-up">
+            <div class="post-nav split animate-up">
                 <a href="../../tech/viettel-yt150-yt200-youtube-premium/" class="post-nav-card prev">
-                    <span class="post-nav-label"><i class="fas fa-arrow-left"></i> Bài trước</span>
+                    <span class="post-nav-badge"><i class="fas fa-arrow-left"></i> Bài trước</span>
                     <span class="post-nav-title">Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀</span>
                 </a>
+                
                 <a href="../../tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/" class="post-nav-card next">
-                    <span class="post-nav-label">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
+                    <span class="post-nav-badge">Bài tiếp theo <i class="fas fa-arrow-right"></i></span>
                     <span class="post-nav-title">Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family</span>
                 </a>
             </div>
@@ -548,16 +378,36 @@
                     </ul>
                 </div>
 
-                <!-- Thẻ thông tin tác giả -->
+                <!-- Thẻ thông tin tác giả (Cyberpunk Glass Author Card) -->
                 <div class="glass-card author-card">
-                    <div class="author-avatar">👨‍💻</div>
-                    <div style="font-weight:700; font-size:0.95rem; color:#fff;">Lê Anh Minh</div>
-                    <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Full-stack Developer</div>
-                    <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.6; margin-top:0.6rem;">
-                        Chia sẻ kiến thức lập trình, thủ thuật công nghệ và kinh nghiệm thực chiến.
+                    <div class="author-card-glow"></div>
+                    <div class="author-avatar-wrapper">
+                        <div class="author-avatar-halo"></div>
+                        <img src="../../assets/images/avatar.gif" alt="Lê Anh Minh" class="author-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Le+Anh+Minh&background=a855f7&color=fff&size=128'">
+                        <span class="author-online-dot" title="Đang trực tuyến"></span>
+                    </div>
+                    <h3 class="author-name">
+                        Lê Anh Minh
+                        <i class="fas fa-circle-check author-verified-badge" title="Tác giả chính thức"></i>
+                    </h3>
+                    <div class="author-role-badge">
+                        <i class="fas fa-terminal"></i> Full-Stack & System Lead
+                    </div>
+                    <div class="author-tech-chips">
+                        <span class="author-tech-chip">Laravel</span>
+                        <span class="author-tech-chip">Vue/React</span>
+                        <span class="author-tech-chip">DevOps</span>
+                    </div>
+                    <p class="author-bio">
+                        Chia sẻ kiến thức lập trình Laravel, tối ưu hóa hệ thống và các thủ thuật công nghệ thực chiến hữu ích.
                     </p>
-                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%; margin-top:0.85rem; font-size:0.78rem; padding:0.45rem 0.8rem;">
-                        <i class="fab fa-github"></i> Theo dõi GitHub
+                    <div class="author-socials">
+                        <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn github" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://facebook.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-social-btn facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="mailto:contact@leanhminh.dev" class="author-social-btn email" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <a href="https://github.com/leanhminh2104" target="_blank" rel="noopener noreferrer" class="author-cta-btn">
+                        <i class="fab fa-github"></i> Theo dõi trên GitHub
                     </a>
                 </div>
 
@@ -576,8 +426,8 @@
 <div id="site-bottom-dock"></div>
 
 <!-- Nạp Scripts cốt lõi -->
-<script src="../../assets/js/blog-data.js"></script>
-<script src="../../assets/js/components.js"></script>
-<script src="../../assets/js/core.js"></script>
+<script src="../../assets/js/blog-data.js?v=20261012"></script>
+<script src="../../assets/js/components.js?v=20261012"></script>
+<script src="../../assets/js/core.js?v=20261012"></script>
 </body>
 </html>
