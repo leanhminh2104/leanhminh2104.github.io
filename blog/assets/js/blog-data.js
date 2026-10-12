@@ -61,6 +61,21 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "viettel-yt150-yt200-youtube-premium",
+            title: "Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀",
+            slug: "viettel-yt150-yt200-youtube-premium",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/viettel-yt150-yt200-youtube-premium/",
+            date: "2026-10-12",
+            formattedDate: "12 Th10, 2026",
+            readTime: "6 phút",
+            excerpt: "Viettel bắt tay Google ra mắt bộ đôi gói cước 5G YT150 và YT200 tích hợp YouTube Premium chính chủ cùng 120GB data tốc độ cao. Cú pháp đăng ký 191 và mẹo share cước cực đỉnh.",
+            tags: ["Viettel 5G", "YouTube Premium", "YT150 & YT200", "Gói cước", "Thủ thuật"],
+            isNew: true,
+            icon: "fa-brands fa-youtube"
+        },
+        {
             id: "gemini-pro-18-thang-jio",
             title: "Gemini Pro 18 Tháng Giá Sốc 45K — Trọn Bộ Đặc Quyền Google One Pro 🤖",
             slug: "gemini-pro-18-thang-jio",
@@ -72,7 +87,7 @@ window.BLOG_DATA = {
             readTime: "5 phút",
             excerpt: "Sở hữu trọn bộ Google One AI Pro 18 tháng chỉ 45.000₫. Nhận ngay Gemini Advanced, bộ nhớ đám mây, Google Photos Magic Editor và tặng kèm YouTube Premium Lite.",
             tags: ["Google One Pro", "Gemini Advanced", "YouTube Premium Lite", "Giá rẻ", "Deal hot"],
-            isNew: true,
+            isNew: false,
             icon: "fa-robot"
         },
         {

@@ -66,6 +66,7 @@ Repository áp dụng các nguyên tắc bảo mật nghiêm ngặt:
 ### 📝 Bài viết mới nhất trên Blog
 
 <!-- BLOG-POSTS-START -->
+- [Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀](https://leanhminh2104.github.io/blog/tech/viettel-yt150-yt200-youtube-premium/) — *2026-10-12* `Công nghệ` (6 phút)
 - [Gemini Pro 18 Tháng Giá Sốc 45K — Trọn Bộ Đặc Quyền Google One Pro 🤖](https://leanhminh2104.github.io/blog/tech/gemini-pro-18-thang-jio/) — *2026-09-29* `Công nghệ` (5 phút)
 - [Cơ Chế Duy Trì Gói YouTube Premium & Hướng Dẫn Sửa Lỗi Gia Đình Google Family](https://leanhminh2104.github.io/blog/tech/co-che-duy-tri-youtube-premium-va-fix-loi-family/) — *2026-09-28* `Công nghệ` (6 phút)
 - [Hướng Dẫn Cấu Hình Thông Báo Biến Động Số Dư ACB Về Email & API Ngân Hàng](https://leanhminh2104.github.io/blog/tech/cau-hinh-thong-bao-acb-email/) — *2026-03-26* `Công nghệ` (7 phút)

@@ -23,6 +23,8 @@ console.log(`[Blog Builder] Đang đồng bộ cho ${DATA.posts.length} bài vi�
 
 // Emoji tương ứng theo icon hoặc category
 function getPostEmoji(post) {
+    if (post.icon && post.icon.includes('youtube')) return '▶️';
+    if (post.icon === 'fa-robot') return '🤖';
     if (post.icon === 'fa-mobile-screen-button') return '📲';
     if (post.icon === 'fa-key') return '🔑';
     if (post.icon === 'fa-bolt') return '💡';
@@ -130,8 +132,9 @@ DATA.posts.forEach((post, idx) => {
     navHtml += '            </div>';
 
     // Thay thế khối .post-nav nếu đã có, hoặc chèn trước thẻ </article>
-    if (html.includes('class="post-nav')) {
-        html = html.replace(/<!-- Post Navigation[\s\S]*?<\/div>\s*<\/div>/, navHtml.trim());
+    const postNavRegex = /(?:<!--[^\n]*-->\s*)?<div class="post-nav[^"]*"[^>]*>[\s\S]*?<\/div>(?=\s*(?:<div class="article-comments-section"|<!--[^\n]*(?:BÌNH LUẬN|comments)|<\/article>))/i;
+    if (postNavRegex.test(html)) {
+        html = html.replace(postNavRegex, navHtml.trim());
     } else if (html.includes('</article>')) {
         html = html.replace('</article>', `${navHtml}\n\n            </article>`);
     }
