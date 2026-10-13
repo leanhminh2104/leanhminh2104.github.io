@@ -75,6 +75,21 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "nang-locket-gold-dns",
+            title: "Nâng Cấp Locket Gold Qua DNS Giá Rẻ: Đổi Theme, Icon, Up Video & Full Chú Thích 💛",
+            slug: "nang-locket-gold-dns",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/nang-locket-gold-dns/",
+            date: "2026-10-13",
+            formattedDate: "Vừa xong",
+            excerpt: "Sở hữu Locket Gold VIP qua DNS Profile chỉ từ 99k/năm hoặc 199k vĩnh viễn. Đổi theme, icon, quay video 30s âm thanh, up từ thư viện và mở full kho chú thích Wordsmith.",
+            tags: ["Locket Gold", "DNS Profile", "iOS Mod", "Thủ thuật", "Giá rẻ"],
+            isNew: true,
+            icon: "fa-heart",
+            cover: "tech/nang-locket-gold-dns/images/banner-cover.jpg"
+        },
+        {
             id: "huong-dan-roi-nhom-gia-dinh-google-family",
             title: "Hướng Dẫn Rời Nhóm Gia Đình & Xóa Nhóm Google Family Chi Tiết 👨‍👩‍👧‍👦",
             slug: "huong-dan-roi-nhom-gia-dinh-google-family",
@@ -83,10 +98,9 @@ window.BLOG_DATA = {
             path: "tech/huong-dan-roi-nhom-gia-dinh-google-family/",
             date: "2026-10-13",
             formattedDate: "Hôm nay",
-            readTime: "5 phút",
             excerpt: "Hướng dẫn chi tiết cách rời nhóm gia đình hoặc xóa nhóm Google Family hoàn toàn qua link myaccount.google.com/family/details. Đầy đủ cho thành viên và chủ nhóm.",
             tags: ["Google Family", "YouTube Premium", "Google Account", "Thủ thuật"],
-            isNew: true,
+            isNew: false,
             icon: "fa-users",
             cover: "tech/huong-dan-roi-nhom-gia-dinh-google-family/images/banner-cover.jpg"
         },
@@ -265,6 +279,21 @@ window.BLOG_DATA = {
         
         // Danh sách ưu đãi & đề xuất dịch vụ chuẩn xác theo hệ sinh thái công nghệ
         banners: [
+            // -1. DỊCH VỤ NÂNG CẤP LOCKET GOLD QUA DNS PROFILE
+            {
+                id: "service-locket-gold-dns",
+                platform: "sponsor",
+                slot: ["article-mid", "article-bottom", "sidebar", "feed"],
+                badge: "Hot Deal 💛",
+                title: "Nâng Cấp Locket Gold Qua DNS VIP",
+                desc: "Đổi theme, icon độc quyền, quay video 30s âm thanh, up video thư viện và mở khóa full kho chú thích Wordsmith.",
+                price: "Chỉ từ 99.000₫",
+                ctaText: "Khám Phá Ngay",
+                link: "tech/nang-locket-gold-dns/",
+                icon: "fa-heart",
+                accentColor: "#f59e0b",
+                tags: ["locket", "locket gold", "ios", "dns", "tech", "entertainment"]
+            },
             // 0. DỊCH VỤ THU MUA LINK & NÂNG CẤP YOUTUBE PREMIUM CHÍNH CHỦ VIETTEL (Admin trực tiếp hỗ trợ)
             {
                 id: "service-viettel-youtube-premium",

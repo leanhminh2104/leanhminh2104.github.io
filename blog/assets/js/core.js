@@ -289,20 +289,7 @@ function initSearch() {
 }
 
 // ============================================================
-// 10. Estimated Reading Time
-// ============================================================
-function initReadingTime() {
-    const article = document.querySelector('.article-body, .article-content');
-    const target  = document.getElementById('reading-time');
-    if (!article || !target) return;
-
-    const words = article.textContent.trim().split(/\s+/).length;
-    const mins  = Math.max(1, Math.round(words / 220));
-    target.textContent = mins + ' phút đọc';
-}
-
-// ============================================================
-// 11. Stagger animation cho post cards
+// 10. Stagger animation cho post cards
 // ============================================================
 function initStaggerCards() {
     document.querySelectorAll('.post-card-wrapper').forEach((card, i) => {
@@ -323,6 +310,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCodeBlocks();
     initPostFilter();
     initSearch();
-    initReadingTime();
     initStaggerCards();
 });
