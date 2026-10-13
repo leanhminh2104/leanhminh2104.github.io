@@ -4169,7 +4169,7 @@ svg,
    TỰ ĐỘNG PHÓNG TO LẤP ĐẦY TOÀN BỘ KHOẢNG TRỐNG 2 BÊN HÔNG
    ============================================================ */
 :root {
-    --side-gutter-w: clamp(140px, calc(50vw - 600px - 24px), 210px);
+    --side-gutter-w: clamp(200px, calc(50vw - 570px - 32px), 360px);
 }
 
 .blog-side-banner {
@@ -4178,7 +4178,7 @@ svg,
     z-index: 95;
     display: none; /* Mặc định ẩn trên màn hình nhỏ để tránh che nội dung */
     width: var(--side-gutter-w);
-    max-width: 210px;
+    max-width: 360px;
     user-select: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -4189,10 +4189,10 @@ svg,
         display: block;
     }
     .blog-side-banner-left {
-        left: max(16px, calc(50vw - 585px - var(--side-gutter-w) - 24px));
+        left: max(16px, calc(50vw - 575px - var(--side-gutter-w) - 20px));
     }
     .blog-side-banner-right {
-        right: max(16px, calc(50vw - 585px - var(--side-gutter-w) - 24px));
+        right: max(16px, calc(50vw - 575px - var(--side-gutter-w) - 20px));
     }
 }
 
