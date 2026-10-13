@@ -504,8 +504,7 @@
                             <div class="search-result-meta">
                                 <span class="badge ${badgeColor}">${post.categoryName}</span>
                                 ${post.isNew ? '<span class="badge badge-warning">Mới</span>' : ''}
-                                <span>${post.formattedDate}</span>
-                                <span>• ${post.readTime}</span>
+                                <span><i class="far fa-calendar"></i> ${post.formattedDate || post.date}</span>
                             </div>
                             <h4 class="search-result-title">${highlightQuery(post.title, q)}</h4>
                             <p class="search-result-excerpt">${highlightQuery(post.excerpt, q)}</p>
@@ -818,7 +817,6 @@
                             <h4 class="ad-card-title">${post.title}</h4>
                             <p class="ad-card-desc">${post.excerpt || ''}</p>
                             <div class="ad-card-meta" style="font-size:0.75rem; color:var(--text-dim); display:flex; gap:0.85rem; align-items:center; margin-top:0.35rem;">
-                                <span><i class="far fa-clock"></i> ${post.readTime}</span>
                                 <span><i class="far fa-calendar"></i> ${post.formattedDate}</span>
                             </div>
                         </div>
@@ -1492,6 +1490,73 @@
     }
 
     // ────────────────────────────────────────────────────────────
+    // 8.5. TỰ ĐỘNG CHUẨN HOÁ THỜI GIAN TƯƠNG ĐỐI THÔNG MINH (Smart Relative Time)
+    // ────────────────────────────────────────────────────────────
+    function formatSmartTimeAgo(dateInput) {
+        if (!dateInput) return null;
+        const target = new Date(dateInput);
+        if (isNaN(target.getTime())) return null;
+        const now = new Date();
+        const targetDay = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+        const nowDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const diffDays = Math.round((nowDay - targetDay) / (1000 * 60 * 60 * 24));
+
+        const d = target.getDate().toString().padStart(2, '0');
+        const m = (target.getMonth() + 1).toString().padStart(2, '0');
+        const y = target.getFullYear();
+        const fullDate = `${d}/${m}/${y}`;
+
+        let label = '';
+        if (diffDays <= 0) label = 'Hôm nay';
+        else if (diffDays === 1) label = 'Hôm qua';
+        else if (diffDays >= 2 && diffDays <= 6) label = `${diffDays} ngày trước`;
+        else if (diffDays >= 7 && diffDays <= 27) label = `${Math.floor(diffDays / 7)} tuần trước`;
+        else if (diffDays >= 28 && diffDays <= 364) label = `${Math.floor(diffDays / 30)} tháng trước`;
+        else label = `${Math.floor(diffDays / 365)} năm trước`;
+
+        return { label, fullDate };
+    }
+
+    function initSmartDates() {
+        if (!DATA || !Array.isArray(DATA.posts)) return;
+        const dateItems = document.querySelectorAll('.post-meta-item, .article-meta-item');
+        dateItems.forEach(el => {
+            const calIcon = el.querySelector('.fa-calendar, .fa-calendar-days, .far.fa-calendar');
+            if (!calIcon) return;
+
+            let post = null;
+            const cardLink = el.closest('a.post-card, .search-result-item');
+            if (cardLink) {
+                const href = cardLink.getAttribute('href') || '';
+                post = DATA.posts.find(p => href.includes(p.slug) || href.includes(p.id));
+            } else {
+                const currentUrl = window.location.pathname;
+                post = DATA.posts.find(p => currentUrl.includes(p.slug) || currentUrl.includes(p.id));
+            }
+
+            if (post && post.date) {
+                const smart = formatSmartTimeAgo(post.date);
+                if (smart) {
+                    el.title = `Ngày đăng: ${smart.fullDate}`;
+                    // Cập nhật text sau icon lịch
+                    if (calIcon.nextSibling) {
+                        calIcon.nextSibling.textContent = ' ' + smart.label;
+                    } else {
+                        el.innerHTML = `<i class="${calIcon.className}"></i> ${smart.label}`;
+                    }
+                }
+            }
+        });
+
+        // Loại bỏ thời gian đọc (5 phút, 6 phút...) khỏi post-meta của card theo yêu cầu
+        document.querySelectorAll('.post-card .post-meta .post-meta-item, .post-card .post-meta span').forEach(m => {
+            if (m.querySelector('.fa-clock, .far.fa-clock') || (m.textContent && m.textContent.includes('phút'))) {
+                m.remove();
+            }
+        });
+    }
+
+    // ────────────────────────────────────────────────────────────
     // 9. TỰ ĐỘNG KHỞI TẠO TẤT CẢ COMPONENT KHI TRANG TẢI XONG
     // ────────────────────────────────────────────────────────────
     function initBlogComponents() {
@@ -1507,6 +1572,7 @@
         try { initSideBanners(); } catch (e) { console.error('Error initSideBanners:', e); }
         try { fetchGitHubStats(); } catch (e) { console.error('Error fetchGitHubStats:', e); }
         try { initGiscusComments(); } catch (e) { console.error('Error initGiscusComments:', e); }
+        try { initSmartDates(); } catch (e) { console.error('Error initSmartDates:', e); }
     }
 
     function setupDrawerDelegation() {

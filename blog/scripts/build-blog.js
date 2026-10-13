@@ -32,6 +32,31 @@ function getPostEmoji(post) {
     return '🚀';
 }
 
+// Hàm tính thời gian tương đối thông minh (Hôm nay, Hôm qua, X tuần trước...)
+function getSmartRelativeTime(dateStr) {
+    if (!dateStr) return { text: '', fullDate: '' };
+    const target = new Date(dateStr);
+    const now = new Date();
+    const targetDay = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+    const nowDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diffDays = Math.round((nowDay - targetDay) / (1000 * 60 * 60 * 24));
+
+    const d = target.getDate().toString().padStart(2, '0');
+    const m = (target.getMonth() + 1).toString().padStart(2, '0');
+    const y = target.getFullYear();
+    const fullDate = `${d}/${m}/${y}`;
+
+    let text = '';
+    if (diffDays <= 0) text = 'Hôm nay';
+    else if (diffDays === 1) text = 'Hôm qua';
+    else if (diffDays >= 2 && diffDays <= 6) text = `${diffDays} ngày trước`;
+    else if (diffDays >= 7 && diffDays <= 27) text = `${Math.floor(diffDays / 7)} tuần trước`;
+    else if (diffDays >= 28 && diffDays <= 364) text = `${Math.floor(diffDays / 30)} tháng trước`;
+    else text = `${Math.floor(diffDays / 365)} năm trước`;
+
+    return { text, fullDate };
+}
+
 // 2. Hàm sinh thẻ bài viết HTML
 function renderPostCard(post, relativeRoot = './') {
     const emoji = getPostEmoji(post);
@@ -41,6 +66,10 @@ function renderPostCard(post, relativeRoot = './') {
     const coverContent = post.cover 
         ? `<img src="${relativeRoot}${post.cover}" alt="${post.title}" loading="lazy">` 
         : emoji;
+
+    const smartDate = getSmartRelativeTime(post.date);
+    const displayDate = smartDate.text || post.formattedDate || post.date;
+    const dateTitle = smartDate.fullDate || post.date;
 
     return `            <!-- Card: ${post.title} -->
             <div class="post-card-wrapper reveal" data-category="${post.category}">
@@ -52,8 +81,7 @@ function renderPostCard(post, relativeRoot = './') {
                         <div class="post-meta">
                             <span class="badge ${badgeColor}"><i class="fas ${catIcon}"></i> ${post.categoryName}</span>
                             ${post.isNew ? '<span class="badge badge-warning">Mới</span>' : ''}
-                            <span class="post-meta-item"><i class="fas fa-calendar"></i> ${post.formattedDate || post.date}</span>
-                            <span class="post-meta-item"><i class="fas fa-clock"></i> ${post.readTime}</span>
+                            <span class="post-meta-item" title="${dateTitle}"><i class="fas fa-calendar"></i> ${displayDate}</span>
                         </div>
                         <h2 class="post-title">${post.title}</h2>
                         <p class="post-excerpt">
