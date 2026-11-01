@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#06070a">
+
+    <!-- ============================================================
+         1. SEO & OPENGRAPH META
+         ============================================================ -->
+    <meta name="description" content="Hướng dẫn nâng Locket Gold miễn phí bằng Shadowrocket trên iPhone: cài module 1-click, bật giải mã HTTPS, tin cậy chứng chỉ và DNS chống thu hồi vĩnh viễn.">
+    <meta name="author" content="Lê Anh Minh">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Nâng Locket Gold Bằng Shadowrocket Miễn Phí: Hướng Dẫn 7 Bước Kèm DNS Chống Thu Hồi 💛">
+    <meta property="og:description" content="Mở khóa Locket Gold VIP bằng Shadowrocket: cài 1-click, bật HTTPS Decryption, tin cậy chứng chỉ và giữ Gold vĩnh viễn bằng DNS profile.">
+    <meta property="og:image" content="./images/banner-cover.jpg">
+    <title>Nâng Locket Gold Bằng Shadowrocket Miễn Phí: Hướng Dẫn 7 Bước Kèm DNS Chống Thu Hồi 💛 — Lê Anh Minh Blog</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS dùng chung toàn Blog (Đường dẫn tương đối 2 cấp) -->
+    <link rel="stylesheet" href="../../assets/css/blog.css?v=20261013a">
+</head>
+<body>
+
+<!-- Thanh tiến trình đọc trên cùng -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Nền trời sao động -->
+<div class="stars-bg-container">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+</div>
+
+<!-- TOPBAR / HEADER (Tự động nạp bởi components.js) -->
+<div id="site-header"></div>
+
+<!-- NỘI DUNG CHÍNH -->
+<main class="blog-main">
+    <div class="blog-container">
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb animate-up" aria-label="Breadcrumb">
+            <a href="../../"><i class="fas fa-house"></i> Trang chủ</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="../">Công nghệ</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Nâng Locket Gold Bằng Shadowrocket</span>
+        </nav>
+
+        <div class="article-layout">
+
+            <!-- CỘT TRÁI: Thân bài viết -->
+            <article class="article-body">
+
+                <header class="article-header animate-up">
+                    <h1 class="article-title">
+                        Nâng Locket Gold Bằng Shadowrocket Miễn Phí: Hướng Dẫn 7 Bước Kèm DNS Chống Thu Hồi 💛
+                    </h1>
+
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-user"></i> Lê Anh Minh</span>
+                        <span class="article-meta-item"><i class="fas fa-calendar"></i> 1 tháng 11, 2026</span>
+                    </div>
+
+                    <div class="article-tags">
+                        <span class="badge badge-info"><i class="fas fa-code"></i> Công nghệ</span>
+                        <span class="badge badge-primary">Locket Gold</span>
+                        <span class="badge badge-primary">Shadowrocket</span>
+                        <span class="badge badge-primary">iOS</span>
+                        <span class="badge badge-primary">Thủ thuật</span>
+                    </div>
+                </header>
+
+                <!-- Ảnh Banner Chính (16:9) -->
+                <figure class="article-cover-wrapper animate-up">
+                    <img src="./images/banner-cover.jpg"
+                         alt="Banner Nâng Locket Gold Bằng Shadowrocket — LAMDev"
+                         class="article-cover-img"
+                         loading="eager">
+                </figure>
+
+                <!-- Lead Hook -->
+                <p>
+                    Bạn muốn dùng <strong>Locket Gold</strong> với đầy đủ theme, icon, khung widget và xem được ai đã xem bài đăng của mình, nhưng không muốn trả phí hằng năm? Với <strong>Shadowrocket</strong> và bộ cấu hình <strong>LocketLAM</strong> do LAMDev phát triển, bạn có thể mở khóa Locket Gold ngay trên app Locket chính chủ tải từ App Store, chỉ với vài thao tác trên iPhone.
+                </p>
+
+                <p>
+                    Bộ cấu hình được tinh gọn <strong>100% dành riêng cho Locket</strong>, loại bỏ mọi thành phần dư thừa của các ứng dụng khác nên chạy nhẹ và ổn định. Kèm theo đó là <strong>DNS chống thu hồi</strong> giúp giữ trạng thái Gold lâu dài mà không phải bật VPN liên tục.
+                </p>
+
+                <blockquote>
+                    💡 <b>Tóm tắt nhanh:</b> Cài Shadowrocket → bấm link 1-click nạp Module/Config → bật Giải mã HTTPS → tạo &amp; tin cậy chứng chỉ CA → bật VPN và mở lại Locket. Muốn tắt VPN vẫn giữ Gold thì cài thêm hồ sơ DNS <code>.mobileconfig</code>.
+                </blockquote>
+
+                <!-- MỤC 1 -->
+                <h2>1. Locket Gold Bằng Shadowrocket Là Gì?</h2>
+                <p>
+                    <strong>Shadowrocket</strong> là ứng dụng proxy/VPN cho iOS có khả năng can thiệp (rewrite) các phản hồi mạng theo quy tắc. Khi Locket kiểm tra gói đăng ký, module <code>locketlam.sgmodule</code> sẽ trả về thông tin gói <strong>Locket Gold</strong> hợp lệ, nhờ đó app mở khóa toàn bộ tính năng VIP. Để đọc và sửa được nội dung kết nối HTTPS, Shadowrocket cần bật <strong>HTTPS Decryption</strong> cùng một chứng chỉ CA do chính máy bạn tạo ra.
+                </p>
+
+                <h3>1.1 Danh sách tính năng được mở khóa</h3>
+                <div class="glass-card" style="padding: 1rem; overflow-x: auto; margin: 1.5rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--glass-border); color: var(--primary);">
+                                <th style="padding: 0.75rem;">Nhóm tính năng</th>
+                                <th style="padding: 0.75rem; color: #fbbf24;">Chi tiết mở khóa 💛</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Gói VIP</td>
+                                <td style="padding: 0.75rem;">Gói <b>Locket Gold 1 năm</b>, gia hạn tự động đến năm 9999</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Hồ sơ &amp; Huy hiệu</td>
+                                <td style="padding: 0.75rem;">Huy hiệu vàng <b>Gold Badge</b> trên trang cá nhân và bài đăng</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Giao diện &amp; Icon</td>
+                                <td style="padding: 0.75rem;">Chọn mọi <b>App Icon</b> độc quyền và <b>Camera Themes</b></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Đăng tải &amp; Camera</td>
+                                <td style="padding: 0.75rem;">Tải ảnh từ <b>Camera Roll</b> không giới hạn, quay video dài hơn</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Tương tác &amp; Xem</td>
+                                <td style="padding: 0.75rem;"><b>Locket Views</b>: biết ai đã xem bài đăng của bạn</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Chú thích &amp; Bạn bè</td>
+                                <td style="padding: 0.75rem;"><b>Long Captions</b> không giới hạn ký tự, kết bạn không giới hạn</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Tiện ích (Widgets)</td>
+                                <td style="padding: 0.75rem;">Toàn bộ <b>Custom Widget Frames</b> cao cấp</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.75rem; font-weight: 600;">Chuỗi bạn bè</td>
+                                <td style="padding: 0.75rem;"><b>Streak Recovery</b>: khôi phục chuỗi khi lỡ quên gửi</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; font-weight: 600;">Trải nghiệm</td>
+                                <td style="padding: 0.75rem;">Xóa sạch quảng cáo và pop-up mời mua gói</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <blockquote style="border-left-color: var(--warning);">
+                    ⚠️ <b>Lưu ý quan trọng:</b> Đây là giải pháp cộng đồng miễn phí, không phải sản phẩm chính thức của Locket. Hãy dùng cho mục đích cá nhân, và nếu có điều kiện hãy ủng hộ nhà phát triển ứng dụng gốc.
+                </blockquote>
+
+                <!-- MỤC 2 -->
+                <h2>2. Cài Đặt Nhanh 1-Click Cho iPhone</h2>
+                <p>
+                    Trên <strong>Safari iPhone</strong>, bấm trực tiếp vào các liên kết dưới đây để thiết bị tự mở Shadowrocket và nạp cấu hình. Repo gốc nằm tại <a href="https://github.com/leanhminh2104/locketlam/tree/shadowrocket" target="_blank" rel="noopener noreferrer">github.com/leanhminh2104/locketlam</a> (nhánh <code>shadowrocket</code>).
+                </p>
+
+                <div class="price-hero">
+                    <div class="price-hero-header">
+                        <span class="price-hero-icon">💛</span>
+                        <span class="price-hero-title">LocketLAM · Cài 1-Click Trong Shadowrocket</span>
+                    </div>
+                    <div class="price-hero-body">
+                        <span class="price-badge-old">Miễn phí 100%</span>
+                        <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/module.html" target="_blank" rel="noopener noreferrer" class="price-cta-btn">
+                            <i class="fas fa-bolt"></i> Cài Module (Khuyên dùng)
+                        </a>
+                        <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/conf.html" target="_blank" rel="noopener noreferrer" class="price-cta-btn">
+                            <i class="fas fa-rocket"></i> Thêm Config
+                        </a>
+                    </div>
+                    <div class="price-sub">Chỉ dành cho Locket · Nhẹ &amp; ổn định · Có DNS chống thu hồi · Hỗ trợ qua Telegram</div>
+                </div>
+
+                <h3>2.1 Bảng link chép thủ công</h3>
+                <p>
+                    Nếu bấm 1-click không mở được Shadowrocket, hãy chép link bên dưới và dán vào tab <b>Cấu hình</b> hoặc <b>Module</b> trong ứng dụng:
+                </p>
+
+                <pre><code class="language-text"># Module Locket (.sgmodule)
+https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.sgmodule
+
+# Config Locket (.conf)
+https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.conf
+
+# Hồ sơ DNS chống thu hồi (.mobileconfig)
+https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig</code></pre>
+
+                <blockquote>
+                    💡 <b>Mẹo:</b> Cũng có trang cài đặt nhanh tổng hợp tại <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/index.html" target="_blank" rel="noopener noreferrer">Web Installer</a>, mở bằng Safari trên iPhone là dùng được ngay.
+                </blockquote>
+
+                <!-- MỤC 3 -->
+                <h2>3. Hướng Dẫn Chi Tiết Từ A–Z (7 Bước)</h2>
+                <p>
+                    Làm lần lượt 7 bước dưới đây. Bước 6 (tin cậy chứng chỉ) là bước <strong>quan trọng nhất</strong>, bỏ sót là Locket sẽ không lên Gold.
+                </p>
+
+                <h3>Bước 1: Tải và cài đặt Shadowrocket</h3>
+                <p>
+                    Mở App Store trên iPhone, tìm từ khóa <code>Shadowrocket</code> và tải về. Ứng dụng này là bản trả phí; nếu bạn chưa có thì cần mua hoặc dùng tài khoản đã sở hữu ứng dụng.
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-1-tai-shadowrocket.jpg" alt="Tải ứng dụng Shadowrocket từ App Store" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 1:</b> Tìm và cài đặt ứng dụng Shadowrocket từ App Store</em>
+                    </figcaption>
+                </figure>
+
+                <h3>Bước 2: Thêm Module hoặc Config vào Shadowrocket</h3>
+                <p>
+                    Bấm nút cài nhanh ở Mục 2 bằng Safari. Khi hộp thoại <b>Mở trong "Shadowrocket"?</b> hiện lên, chọn <b>Mở</b>. Cấu hình <code>locketlam.conf</code> sẽ được thêm tự động, chạm vào nó và bấm <b>Sử dụng Config</b>.
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-2-them-config.jpg" alt="Thêm cấu hình locketlam.conf vào Shadowrocket" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 2:</b> Cấu hình locketlam.conf được thêm tự động, chọn Sử dụng Config</em>
+                    </figcaption>
+                </figure>
+
+                <h3>Bước 3: Bật Giải mã HTTPS (HTTPS Decryption)</h3>
+                <p>
+                    Ở tab <b>Cấu hình</b>, bấm biểu tượng chữ <b>(i)</b> màu xanh cạnh <code>locketlam.conf</code>. Tìm mục <b>Giải mã HTTPS</b> và gạt công tắc sang <b>BẬT</b> (màu xanh).
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-3-bat-giai-ma-https.jpg" alt="Bật công tắc Giải mã HTTPS trong cấu hình Shadowrocket" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 3:</b> Gạt bật công tắc Giải mã HTTPS (HTTPS Decryption)</em>
+                    </figcaption>
+                </figure>
+
+                <h3>Bước 4: Tạo và tải Chứng chỉ CA mới</h3>
+                <p>
+                    Trong mục Chứng chỉ CA, bấm <b>Tạo Chứng chỉ CA mới</b> và xác nhận. Sau đó bấm <b>Cài đặt Chứng chỉ CA vào hệ thống</b>; Safari sẽ hỏi, chọn <b>Cho phép</b> để tải hồ sơ chứng chỉ về máy.
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-4-tao-chung-chi-ca.jpg" alt="Tạo chứng chỉ CA mới và cài đặt vào hệ thống" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 4:</b> Tạo Chứng chỉ CA mới rồi chọn Cài đặt Chứng chỉ CA vào hệ thống</em>
+                    </figcaption>
+                </figure>
+
+                <h3>Bước 5: Cài đặt hồ sơ chứng chỉ vào iPhone</h3>
+                <p>
+                    Mở <b>Cài đặt</b> → chọn <b>Đã tải về hồ sơ</b> ở trên cùng (hoặc vào <b>Cài đặt chung → Quản lý VPN &amp; thiết bị</b>). Chọn hồ sơ Shadowrocket vừa tải, bấm <b>Cài đặt</b> ở góc trên bên phải và nhập mật mã máy nếu được hỏi.
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-5-cai-ho-so-chung-chi.jpg" alt="Cài đặt hồ sơ chứng chỉ Shadowrocket vào iPhone" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 5:</b> Cài đặt hồ sơ chứng chỉ Shadowrocket đã tải về trong Cài đặt iPhone</em>
+                    </figcaption>
+                </figure>
+
+                <!-- Quảng cáo giữa bài -->
+                <div class="ad-slot-container" data-slot="article-mid" style="margin: 2rem 0;"></div>
+
+                <h3>Bước 6: Bật quyền tin cậy chứng nhận gốc</h3>
+                <blockquote style="border-left-color: var(--warning);">
+                    ⚠️ <b>Lưu ý quan trọng:</b> Đây là bước quan trọng nhất để Shadowrocket kích hoạt được Locket Gold.
+                </blockquote>
+                <p>
+                    Vào <b>Cài đặt → Cài đặt chung → Giới thiệu</b>, kéo xuống cuối và chọn <b>Cài đặt tin cậy chứng nhận</b>. Tại mục <i>Bật tin cậy đầy đủ cho chứng nhận gốc</i>, gạt công tắc chứng chỉ <b>Shadowrocket</b> sang <b>BẬT</b>, sau đó bấm <b>Tiếp tục</b> ở bảng cảnh báo.
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-6-bat-tin-cay-chung-chi.jpg" alt="Bật tin cậy đầy đủ cho chứng chỉ gốc Shadowrocket" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 6:</b> Bật tin cậy đầy đủ cho chứng chỉ gốc Shadowrocket trong Cài đặt tin cậy chứng nhận</em>
+                    </figcaption>
+                </figure>
+
+                <h3>Bước 7: Bật kết nối VPN và tận hưởng Locket Gold</h3>
+                <p>
+                    Quay lại Shadowrocket, ở tab <b>Nhà</b>, gạt công tắc kết nối trên cùng sang <b>BẬT</b> và bấm <b>Kết nối</b> (biểu tượng VPN sẽ hiện trên thanh trạng thái). Sau đó <strong>vuốt tắt hẳn app Locket</strong> khỏi danh sách đa nhiệm rồi mở lại. Tài khoản của bạn đã lên <strong>Locket Gold VIP 💛</strong>.
+                </p>
+                <figure class="post-figure">
+                    <img src="./images/buoc-7-bat-ket-noi-vpn.jpg" alt="Bật kết nối VPN trong Shadowrocket" loading="lazy">
+                    <figcaption>
+                        <em><b>Ảnh 7:</b> Bật công tắc kết nối VPN trong Shadowrocket rồi mở lại Locket</em>
+                    </figcaption>
+                </figure>
+
+                <!-- MỤC 4 -->
+                <h2>4. Chống Thu Hồi Vĩnh Viễn Bằng DNS (Không Cần Bật VPN)</h2>
+                <p>
+                    Sau khi Locket đã lên Gold, nếu không muốn bật VPN liên tục gây tốn pin, bạn có thể chuyển sang dùng hồ sơ DNS của LAMDev:
+                </p>
+
+                <div class="price-hero">
+                    <div class="price-hero-header">
+                        <span class="price-hero-icon">🛡️</span>
+                        <span class="price-hero-title">Hồ Sơ DNS Chống Thu Hồi · locketlam.mobileconfig</span>
+                    </div>
+                    <div class="price-hero-body">
+                        <span class="price-badge-old">Không cần bật VPN</span>
+                        <a href="https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig" target="_blank" rel="noopener noreferrer" class="price-cta-btn">
+                            <i class="fas fa-download"></i> Tải Profile DNS
+                        </a>
+                    </div>
+                    <div class="price-sub">Mở bằng Safari trên iPhone · Tự hiện "Đã tải về hồ sơ" · Split DNS không làm chậm mạng</div>
+                </div>
+
+                <ol>
+                    <li>Tắt VPN Shadowrocket, mở link trên bằng <b>Safari</b> để tải file <code>locketlam.mobileconfig</code>.</li>
+                    <li>Vào <b>Cài đặt → Đã tải về hồ sơ → Cài đặt</b>.</li>
+                    <li>Vào <b>Cài đặt chung → VPN &amp; Quản lý thiết bị → DNS</b> và chọn <b>"Locket Gold DNS (LAMDev)"</b>.</li>
+                </ol>
+
+                <blockquote>
+                    💡 <b>Mẹo:</b> Cấu hình dùng công nghệ <b>Split DNS</b>, chỉ định tuyến yêu cầu kiểm tra của Locket về máy chủ chống thu hồi; lướt web, Facebook, TikTok, YouTube vẫn dùng mạng gốc nên không bị chậm.
+                </blockquote>
+
+                <!-- MỤC 5 -->
+                <h2>5. Khắc Phục Lỗi &amp; Câu Hỏi Thường Gặp</h2>
+
+                <h3>5.1 Đã làm đủ các bước nhưng Locket vẫn chưa có Gold?</h3>
+                <ul>
+                    <li>Kiểm tra đã <b>bật tin cậy chứng chỉ</b> ở <i>Cài đặt → Cài đặt chung → Giới thiệu → Cài đặt tin cậy chứng nhận</i> chưa (Bước 6).</li>
+                    <li>Đảm bảo đã <b>vuốt tắt hẳn Locket</b> chạy ngầm rồi mới mở lại.</li>
+                    <li>Trong Locket, vào Cài đặt và bấm <b>Khôi phục gói mua (Restore Purchase)</b>.</li>
+                    <li>Chắc chắn công tắc <b>Giải mã HTTPS</b> trong cấu hình đang bật và VPN đang kết nối.</li>
+                </ul>
+
+                <h3>5.2 Dùng DNS chống thu hồi có làm mạng chậm không?</h3>
+                <p>
+                    Không. Nhờ <strong>Split DNS</strong>, chỉ yêu cầu liên quan đến Locket được chuyển hướng, mọi dịch vụ khác vẫn chạy trên mạng gốc với tốc độ đầy đủ.
+                </p>
+
+                <h3>5.3 Có chia sẻ cho bạn bè dùng chung được không?</h3>
+                <p>
+                    Được. Cấu hình được phát hành miễn phí cho cộng đồng iOS, bạn chỉ cần gửi link bài viết này cho bạn bè. Lưu ý: nghiêm cấm sao chép nhằm mục đích thương mại.
+                </p>
+
+                <blockquote style="border-left-color: var(--danger);">
+                    🛑 <b>Cảnh báo bảo mật:</b> Chỉ cài chứng chỉ CA do chính Shadowrocket trên máy bạn tạo ra và chỉ nạp cấu hình từ nguồn bạn tin cậy. Khi không dùng nữa, hãy tắt Giải mã HTTPS và xóa hồ sơ chứng chỉ trong Cài đặt.
+                </blockquote>
+
+                <!-- MỤC 6 -->
+                <h2>6. Tổng Kết</h2>
+                <p>
+                    Chỉ với Shadowrocket và bộ cấu hình <strong>LocketLAM</strong>, bạn có thể mở khóa Locket Gold với đầy đủ theme, icon, widget frame, Locket Views và không còn quảng cáo, rồi dùng thêm DNS chống thu hồi để giữ Gold mà không cần bật VPN. Cần hỗ trợ, bạn có thể vào website <a href="https://dalymmo.com" target="_blank" rel="noopener noreferrer">dalymmo.com</a> hoặc kênh Telegram <a href="https://t.me/dalymmocom" target="_blank" rel="noopener noreferrer">@dalymmocom</a>. Bạn cũng có thể xem thêm bài <a href="../nang-locket-gold-dns/">Nâng cấp Locket Gold qua DNS</a> nếu muốn phương án cài đặt khác.
+                </p>
+
+                <!-- Quảng cáo cuối bài -->
+                <div class="ad-slot-container" data-slot="article-bottom" style="margin: 2rem 0;"></div>
+
+                <hr>
+
+                <!-- Post Navigation (Tự động cập nhật bởi build-blog.js) -->
+            <div class="post-nav single animate-up">
+                <a href="../../tech/nang-locket-gold-dns/" class="post-nav-card single next">
+                    <span class="post-nav-badge"><i class="fas fa-forward"></i> Bài tiếp theo</span>
+                    <span class="post-nav-title">Nâng Cấp Locket Gold Qua DNS Giá Rẻ: Đổi Theme, Icon, Up Video & Full Chú Thích 💛</span>
+                    <i class="fas fa-arrow-right post-nav-arrow"></i>
+                </a>
+            </div>
+
+                <!-- Bình luận Giscus -->
+                <div class="article-comments-section" style="margin-top: 3rem;">
+                    <h3 style="font-size:1.15rem; color:#fff; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                        <i class="fas fa-comments" style="color:var(--primary);"></i> Bình luận &amp; Thảo luận
+                    </h3>
+                    <div id="comments"></div>
+                </div>
+
+            </article>
+
+            <!-- CỘT PHẢI: Sticky Sidebar -->
+            <aside class="article-sidebar">
+
+                <div class="glass-card toc-card" id="toc-card">
+                    <div class="toc-title">
+                        <i class="fas fa-list-ul"></i> Mục lục bài viết
+                    </div>
+                    <ul class="toc-list" id="toc-list"></ul>
+                </div>
+
+                <div class="glass-card author-card" id="author-card"></div>
+
+                <div id="sidebar-ad-slot" style="margin-top: 1.5rem;"></div>
+
+            </aside>
+
+        </div><!-- /article-layout -->
+
+    </div><!-- /blog-container -->
+</main>
+
+<!-- Chân trang & Mobile Bottom Dock -->
+<div id="site-footer"></div>
+<div id="site-bottom-dock"></div>
+
+<!-- Nạp Scripts cốt lõi -->
+<script src="../../assets/js/blog-data.js?v=20261013a"></script>
+<script src="../../assets/js/components.js?v=20261013a"></script>
+<script src="../../assets/js/core.js?v=20261013a"></script>
+</body>
+</html>

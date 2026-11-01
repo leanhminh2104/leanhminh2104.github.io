@@ -75,6 +75,21 @@ window.BLOG_DATA = {
     // 3. Cơ sở dữ liệu bài viết (Tự động cấp dữ liệu cho Search, Menu, Danh sách, Gợi ý)
     posts: [
         {
+            id: "nang-locket-gold-shadowrocket",
+            title: "Nâng Locket Gold Bằng Shadowrocket Miễn Phí: Hướng Dẫn 7 Bước Kèm DNS Chống Thu Hồi 💛",
+            slug: "nang-locket-gold-shadowrocket",
+            category: "tech",
+            categoryName: "Công nghệ",
+            path: "tech/nang-locket-gold-shadowrocket/",
+            date: "2026-11-01",
+            formattedDate: "Hôm nay",
+            excerpt: "Hướng dẫn mở khóa Locket Gold bằng Shadowrocket: cài 1-click, bật giải mã HTTPS, tin cậy chứng chỉ và giữ Gold vĩnh viễn với DNS chống thu hồi.",
+            tags: ["Locket Gold", "Shadowrocket", "iOS", "Thủ thuật", "Miễn phí"],
+            isNew: true,
+            icon: "fa-rocket",
+            cover: "tech/nang-locket-gold-shadowrocket/images/banner-cover.jpg"
+        },
+        {
             id: "nang-locket-gold-dns",
             title: "Nâng Cấp Locket Gold Qua DNS Giá Rẻ: Đổi Theme, Icon, Up Video & Full Chú Thích 💛",
             slug: "nang-locket-gold-dns",
@@ -85,7 +100,7 @@ window.BLOG_DATA = {
             formattedDate: "Vừa xong",
             excerpt: "Sở hữu Locket Gold VIP qua DNS Profile chỉ từ 99k/năm hoặc 199k vĩnh viễn. Đổi theme, icon, quay video 30s âm thanh, up từ thư viện và mở full kho chú thích Wordsmith.",
             tags: ["Locket Gold", "DNS Profile", "iOS Mod", "Thủ thuật", "Giá rẻ"],
-            isNew: true,
+            isNew: false,
             icon: "fa-heart",
             cover: "tech/nang-locket-gold-dns/images/banner-cover.jpg"
         },
