@@ -162,42 +162,144 @@
                 <!-- MỤC 2 -->
                 <h2>2. Cài Đặt Nhanh 1-Click Cho iPhone</h2>
                 <p>
-                    Trên <strong>Safari iPhone</strong>, bấm trực tiếp vào các liên kết dưới đây để thiết bị tự mở Shadowrocket và nạp cấu hình. Repo gốc nằm tại <a href="https://github.com/leanhminh2104/locketlam/tree/shadowrocket" target="_blank" rel="noopener noreferrer">github.com/leanhminh2104/locketlam</a> (nhánh <code>shadowrocket</code>).
+                    Trên trình duyệt <strong>Safari iPhone</strong>, bạn chỉ cần chạm trực tiếp vào các nút bấm bên dưới:
                 </p>
+                <ul>
+                    <li><b>2 nút đầu (Module &amp; Config):</b> Bấm vào là iPhone sẽ hiện hộp thoại <i>"Mở trong Shadowrocket?"</i> và tự động mở ứng dụng nạp cấu hình ngay lập tức!</li>
+                    <li><b>Nút thứ 3 (Hồ sơ DNS):</b> Bấm vào là Safari sẽ hiện thông báo <i>"Trang web đang cố gắng tải về hồ sơ cấu hình"</i> ➔ Bấm Cho phép là hiện ngay <b>"Đã tải về hồ sơ"</b>!</li>
+                </ul>
 
-                <div class="price-hero">
-                    <div class="price-hero-header">
-                        <span class="price-hero-icon">💛</span>
-                        <span class="price-hero-title">LocketLAM · Cài 1-Click Trong Shadowrocket</span>
+                <!-- Khối Cài Đặt 1-Click Chuẩn Phong Cách Glassmorphism -->
+                <div style="display: flex; flex-direction: column; gap: 1.25rem; margin: 1.5rem 0;">
+
+                    <!-- Action 1: Module Locket -->
+                    <div class="glass-card" style="padding: 1.25rem 1.5rem; border: 1px solid rgba(56, 189, 248, 0.35); background: rgba(56, 189, 248, 0.04);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                                <span style="font-size: 1.25rem; color: #38bdf8;">⚡</span>
+                                <div>
+                                    <strong style="color: #fff; font-size: 1.05rem;">1. Cài Đặt Module Locket (.sgmodule)</strong>
+                                    <span class="badge badge-info" style="margin-left: 0.5rem; font-size: 0.72rem;">Khuyên Dùng</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            Tự động cấu hình kịch bản mở khóa RevenueCat, kích hoạt quyền hạn VIP và huy hiệu Gold Badge.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                            <!-- Link Scheme mở trực tiếp Shadowrocket -->
+                            <a href="shadowrocket://install?module=https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.sgmodule" class="price-cta-btn" style="background: linear-gradient(90deg, #0284c7, #38bdf8); box-shadow: 0 0 16px rgba(56, 189, 248, 0.4); text-decoration: none; padding: 0.65rem 1.25rem;">
+                                <i class="fas fa-bolt"></i> Bấm Mở Trong Shadowrocket
+                            </a>
+                            <!-- Link chuyển hướng web dự phòng -->
+                            <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/module.html" target="_blank" rel="noopener noreferrer" class="price-cta-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; text-decoration: none; padding: 0.65rem 1rem;">
+                                <i class="fas fa-arrow-up-right-from-square"></i> Mở Qua Web
+                            </a>
+                        </div>
                     </div>
-                    <div class="price-hero-body">
-                        <span class="price-badge-old">Miễn phí 100%</span>
-                        <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/module.html" target="_blank" rel="noopener noreferrer" class="price-cta-btn">
-                            <i class="fas fa-bolt"></i> Cài Module (Khuyên dùng)
-                        </a>
-                        <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/conf.html" target="_blank" rel="noopener noreferrer" class="price-cta-btn">
-                            <i class="fas fa-rocket"></i> Thêm Config
-                        </a>
+
+                    <!-- Action 2: Config Locket -->
+                    <div class="glass-card" style="padding: 1.25rem 1.5rem; border: 1px solid rgba(52, 211, 153, 0.35); background: rgba(52, 211, 153, 0.04);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                                <span style="font-size: 1.25rem; color: #34d399;">🚀</span>
+                                <div>
+                                    <strong style="color: #fff; font-size: 1.05rem;">2. Thêm Cấu Hình Config Locket (.conf)</strong>
+                                    <span class="badge badge-success" style="margin-left: 0.5rem; font-size: 0.72rem;">Đầy Đủ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            Dùng khi bạn muốn nạp trọn bộ tệp cấu hình <code>locketlam.conf</code> độc lập vào danh sách Config của Shadowrocket.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                            <!-- Link Scheme mở trực tiếp Shadowrocket -->
+                            <a href="shadowrocket://config/add/https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.conf" class="price-cta-btn" style="background: linear-gradient(90deg, #059669, #34d399); box-shadow: 0 0 16px rgba(52, 211, 153, 0.4); text-decoration: none; padding: 0.65rem 1.25rem;">
+                                <i class="fas fa-plus-circle"></i> Thêm Config Vào Shadowrocket
+                            </a>
+                            <!-- Link chuyển hướng web dự phòng -->
+                            <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/conf.html" target="_blank" rel="noopener noreferrer" class="price-cta-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399; text-decoration: none; padding: 0.65rem 1rem;">
+                                <i class="fas fa-arrow-up-right-from-square"></i> Mở Qua Web
+                            </a>
+                        </div>
                     </div>
-                    <div class="price-sub">Chỉ dành cho Locket · Nhẹ &amp; ổn định · Có DNS chống thu hồi · Hỗ trợ qua Telegram</div>
+
+                    <!-- Action 3: Hồ Sơ DNS Chống Thu Hồi -->
+                    <div class="glass-card" style="padding: 1.25rem 1.5rem; border: 1px solid rgba(251, 191, 36, 0.45); background: rgba(251, 191, 36, 0.05);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                                <span style="font-size: 1.25rem; color: #fbbf24;">🛡️</span>
+                                <div>
+                                    <strong style="color: #fff; font-size: 1.05rem;">3. Tải Hồ Sơ DNS Chống Thu Hồi (.mobileconfig)</strong>
+                                    <span class="badge badge-warning" style="margin-left: 0.5rem; font-size: 0.72rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24;">Không Cần Bật VPN</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            Bấm nút bên dưới bằng Safari trên iPhone, hệ thống sẽ lập tức hiện hộp thoại cho phép tải hồ sơ ➔ Bấm <b>Cho phép</b> là hiện ngay thông báo <b>"Đã tải về hồ sơ"</b>. Sau đó bạn chỉ cần vào <i>Cài đặt ➔ Đã tải về hồ sơ ➔ Cài đặt</i> là xong!
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                            <!-- Link tải trực tiếp không target=_blank để Safari trigger native profile prompt -->
+                            <a href="./locketlam.mobileconfig" class="price-cta-btn" style="background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; font-weight: 700; box-shadow: 0 0 16px rgba(245, 158, 11, 0.4); text-decoration: none; padding: 0.65rem 1.35rem;">
+                                <i class="fas fa-download"></i> Bấm Tải Hồ Sơ DNS Về iPhone
+                            </a>
+                            <!-- Link CDN dự phòng -->
+                            <a href="https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig" class="price-cta-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(251, 191, 36, 0.35); color: #fbbf24; text-decoration: none; padding: 0.65rem 1rem;">
+                                <i class="fas fa-cloud-arrow-down"></i> Link CDN Dự Phòng
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
-                <h3>2.1 Bảng link chép thủ công</h3>
+                <h3>2.1 Bảng Link Sao Chép Thủ Công</h3>
                 <p>
-                    Nếu bấm 1-click không mở được Shadowrocket, hãy chép link bên dưới và dán vào tab <b>Cấu hình</b> hoặc <b>Module</b> trong ứng dụng:
+                    Nếu không muốn mở tự động, bạn có thể copy link bên dưới và dán thủ công vào tab <b>Cấu hình</b> hoặc <b>Module</b> trong Shadowrocket:
                 </p>
 
-                <pre><code class="language-text"># Module Locket (.sgmodule)
-https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.sgmodule
-
-# Config Locket (.conf)
-https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.conf
-
-# Hồ sơ DNS chống thu hồi (.mobileconfig)
-https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig</code></pre>
+                <div class="glass-card" style="padding: 1rem; overflow-x: auto; margin: 1rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--glass-border); color: var(--primary);">
+                                <th style="padding: 0.6rem;">Mục Cài Đặt</th>
+                                <th style="padding: 0.6rem;">Thao Tác 1-Click</th>
+                                <th style="padding: 0.6rem;">Link Sao Chép Thủ Công</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.65rem; font-weight: 600; color: #fff;">Module Locket (.sgmodule)</td>
+                                <td style="padding: 0.65rem;">
+                                    <a href="shadowrocket://install?module=https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.sgmodule" style="color: #38bdf8; font-weight: 600;">⚡ Mở Module</a>
+                                </td>
+                                <td style="padding: 0.65rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-muted); word-break: break-all;">
+                                    <code>https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.sgmodule</code>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.65rem; font-weight: 600; color: #fff;">Config Locket (.conf)</td>
+                                <td style="padding: 0.65rem;">
+                                    <a href="shadowrocket://config/add/https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.conf" style="color: #34d399; font-weight: 600;">🚀 Thêm Config</a>
+                                </td>
+                                <td style="padding: 0.65rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-muted); word-break: break-all;">
+                                    <code>https://raw.githubusercontent.com/leanhminh2104/locketlam/refs/heads/shadowrocket/locketlam.conf</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.65rem; font-weight: 600; color: #fff;">Hồ Sơ DNS (.mobileconfig)</td>
+                                <td style="padding: 0.65rem;">
+                                    <a href="./locketlam.mobileconfig" style="color: #fbbf24; font-weight: 600;">🛡️ Tải Profile DNS</a>
+                                </td>
+                                <td style="padding: 0.65rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-muted); word-break: break-all;">
+                                    <code>https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig</code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <blockquote>
-                    💡 <b>Mẹo:</b> Cũng có trang cài đặt nhanh tổng hợp tại <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/index.html" target="_blank" rel="noopener noreferrer">Web Installer</a>, mở bằng Safari trên iPhone là dùng được ngay.
+                    💡 <b>Mẹo:</b> Bạn cũng có thể mở trang cài đặt nhanh chuyên biệt tại <a href="https://raw.githack.com/leanhminh2104/locketlam/shadowrocket/index.html" target="_blank" rel="noopener noreferrer">Web Installer</a> trên Safari iPhone.
                 </blockquote>
 
                 <!-- MỤC 3 -->
@@ -302,8 +404,11 @@ https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobil
                     </div>
                     <div class="price-hero-body">
                         <span class="price-badge-old">Không cần bật VPN</span>
-                        <a href="https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig" target="_blank" rel="noopener noreferrer" class="price-cta-btn">
-                            <i class="fas fa-download"></i> Tải Profile DNS
+                        <a href="./locketlam.mobileconfig" class="price-cta-btn" style="background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; font-weight: 700;">
+                            <i class="fas fa-download"></i> Tải Profile DNS Về iPhone
+                        </a>
+                        <a href="https://cdn.jsdelivr.net/gh/leanhminh2104/locketlam@shadowrocket/locketlam.mobileconfig" class="price-cta-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(251, 191, 36, 0.35); color: #fbbf24;">
+                            <i class="fas fa-cloud-arrow-down"></i> Link Dự Phòng
                         </a>
                     </div>
                     <div class="price-sub">Mở bằng Safari trên iPhone · Tự hiện "Đã tải về hồ sơ" · Split DNS không làm chậm mạng</div>
