@@ -66,6 +66,7 @@ Repository áp dụng các nguyên tắc bảo mật nghiêm ngặt:
 ### 📝 Bài viết mới nhất trên Blog
 
 <!-- BLOG-POSTS-START -->
+- [Nâng Locket Gold Bằng Shadowrocket Miễn Phí: Hướng Dẫn 7 Bước Kèm DNS Chống Thu Hồi 💛](https://leanhminh2104.github.io/blog/tech/nang-locket-gold-shadowrocket/) — *2026-11-01* `Công nghệ` (undefined)
 - [Nâng Cấp Locket Gold Qua DNS Giá Rẻ: Đổi Theme, Icon, Up Video & Full Chú Thích 💛](https://leanhminh2104.github.io/blog/tech/nang-locket-gold-dns/) — *2026-10-13* `Công nghệ` (undefined)
 - [Hướng Dẫn Rời Nhóm Gia Đình & Xóa Nhóm Google Family Chi Tiết 👨‍👩‍👧‍👦](https://leanhminh2104.github.io/blog/tech/huong-dan-roi-nhom-gia-dinh-google-family/) — *2026-10-13* `Công nghệ` (undefined)
 - [Gói Cước Viettel YT150 & YT200: Tặng YouTube Premium Chính Chủ Kèm 120GB Data 5G 🚀](https://leanhminh2104.github.io/blog/tech/viettel-yt150-yt200-youtube-premium/) — *2026-10-12* `Công nghệ` (6 phút)
